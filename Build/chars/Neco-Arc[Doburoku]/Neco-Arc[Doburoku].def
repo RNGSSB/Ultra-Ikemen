@@ -1,0 +1,48 @@
+; Win専用 D4推奨
+; Required WinMUGEN, DoubleRes = 4
+
+
+[Info];基本情報
+
+Name         = "Neco-Arc"
+DisplayName  = "Neco-Arc"
+VersionDate  = 06,14,2003
+MugenVersion = 06,14,2003
+Author       = "DOBUROKU"
+Pal.Defaults = 6,3,4,2
+
+
+[Files];必要なファイルの設定
+
+Cmd      = NECO.cmd.txt
+Cns      = NECO.cns
+St       = NECO.cns
+St0      = NECO-N.cns
+St1      = NECO-S.cns
+St2      = NECO-H.cns
+St3      = NECO-A.cns
+St8      = NECO-2-3.cns
+St9      = NECO_helper.cns
+StCommon = MB_commonst1.cns
+Sprite   = NECO.sff
+Anim     = NECO.air
+Sound    = NECO.snd
+
+Pal1 = NECO_001.act
+Pal2 = NECO_002.act
+Pal3 = NECO_003.act
+Pal4 = NECO_004.act
+Pal5 = NECO_005.act
+Pal6 = NECO_006.act
+Pal7 = NECO_007.act
+Pal8 = NECO_008.act
+Pal9 = NECO_009.act
+Pal10 = NECO_010.act
+Pal11 = NECO_011.act
+Pal12 = NECO_012.act
+
+
+[Arcade];ストーリーボード設定
+
+;Intro.Storyboard  = Option/intro.def
+;Ending.Storyboard = Option/ending.def

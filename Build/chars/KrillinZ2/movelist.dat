@@ -1,0 +1,50 @@
+<#f0f000>:Command Normals:</>
+  Uppercut(LAUNCH)        _D^HP
+
+  Dash Kick        _F_F^HK
+
+<#f0f000>:Target Combos:</>
+  Triple Turtle Combos      ^MK,^MK,^HP or ^MK,^MK,^HK
+
+  Tough Guy       ^HP,^HP
+
+<#f0f000>:Special Moves:</>
+  Duck N' Cover       _D_D_D or _D^3K
+    then Roll       _DB or _DF
+
+  Rocketman (EX)       (in air) _D^P
+
+  Trick Ki Blast (*2) (EX)        _D_DF_F^P
+
+  Jet Kamehameha (AIR) (EX)       _D_DB_B^P
+
+  Turtle Flip (EX)        _B_DB_D_DF_F^K
+    then Double-Hammer Punch        ^P
+    or High Kick        ^K
+    or Grab       ^LP_+^LK
+
+  Solar Flare       _B_D_DB^K
+
+<#f0f000>:Super Moves:</>
+  Destructo Disk (HOLD)
+    LVL 1   _D_DB_B_D_DB_B^P
+
+  Orin Combo
+    LVL 1   _D_DF_F_D_DF_F^K
+
+  Scattering Bullet
+    LVL 1   _D_DF_F_D_DF_F^P
+    LVL 2   _D_DF_F_D_DF_F^P_+^P
+
+  Kamehameha
+    LVL 2   (in air) _D_DF_F_D_DF_F^P_+^P
+
+  Solar Flare *100 (POWER)
+    LVL 3   _D_DB_B_D_DB_B^K
+
+<#f0f000>:Power Mode:</>
+  Confidence Mode   _D_D^MP_+^MK
+    then Senzu Bean   _D_D^MP_+^MK
+    or Wild Sense   _D_DB_B^P
+      then Follow Up    ^K
+      or Mirage   ^P

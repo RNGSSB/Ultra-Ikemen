@@ -1,0 +1,29 @@
+; Definition file for player
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Morrigan"        ;Name of character
+displayname = "Morrigan" ;Name of character to display
+versiondate = 3/26/2014   ;Version date of character
+mugenversion = 1.0  ;Version of M.U.G.E.N character works on
+author = "hsienthm & DarkWolf13-MvC2"      ;Character author name
+editor = "REDHOT"
+pal.defaults = 1,2,3,4,5,6  ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd     = CMND/Morrigan.cmd   ;Command set
+cns     = CNS/Morrigan.cns   ;Constants
+st      = CNS/Morrigan.cns   ;States
+st1 = CNS/config.txt
+stcommon = CNS/common1.cns ;Common states
+sprite  = SPRITES/Morrigan.sff   ;Sprite
+anim    = ANIMATIONS/Morrigan.air   ;Animation
+sound   = SOUNDS/Morrigan.snd   ;Sound
+pal1    = PALETTES/Morrigan_01.act  ;Palettes (can have up to 12)
+pal2    = PALETTES/Morrigan_02.act
+pal3    = PALETTES/Morrigan_03.act
+pal4    = PALETTES/Morrigan_04.act
+pal5    = PALETTES/Morrigan_05.act
+pal6    = PALETTES/Morrigan_06.act

@@ -1,0 +1,46 @@
+<#f0f000>:Command Normals:</>
+  Wonderful Multi-Punches       ^LP rapid
+
+  Wonderful Multi-Kicks       ^MK rapid
+
+  Sliding Tackle        _D^HK
+
+  Satan Shoot (LAUNCH)        ^HK,_U^HK or (in air) ^HK
+
+  Woodchopper Kick        (in air) _D^HK
+
+  Satan Smash       _F_F^HP
+
+<#f0f000>:Target Combos:</>
+  Satan Seconds       ^HK,^HK
+
+<#f0f000>:Special Moves:</>
+  Capsule Surprise        _D_DF_F^P
+
+  Dynamite Kick (AIR)       _D_DF_F^K
+
+  Nimbly Wimbly       _B_D_DB^K or _F_D_DF^K
+    then Woodchopper Kick       _D^HK
+    or Dynamite Kick        ^K
+
+  Rolling Mine        _D_DB_B^P
+
+  Satan Stance        _B_D_DB^P
+
+<#f0f000>:Super Moves:</>
+  Golden Capsule Surprise
+    LVL 1   _D_DF_F_D_DF_F^P
+
+  Megaton Punch (HOLD)
+    LVL 1   _D_DB_B_F^P
+
+  Bat Outta Hell
+    LVL 1   _D_DF_F_D_DF_F^K
+    LVL 2   _D_DF_F_D_DF_F^K_+^K
+
+  Present For You (GRAB) (POWER)
+    LVL 3   ^LP,^LP,_F,^LK,^HP
+
+<#f0f000>:Power Mode:</>
+  Champion Mode   _D_D^MP_+^MK
+    then The Crowd Goes Wild!   _D_D^MP_+^MK

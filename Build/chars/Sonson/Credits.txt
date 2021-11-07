@@ -1,0 +1,4 @@
+- FerchoGTX, Ryou Win & Kong (Original authors and various original codes of this character, Some MvC2 FX and sounds)
+- Mouser (various original codes of this character)
+- DarkWolf13, walruslui and ExShadow (Hyper Ports, and Common1 codes)
+- Violin Ken (Negative edge command)

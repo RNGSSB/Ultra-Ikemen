@@ -1,0 +1,3831 @@
+[Statedef -2]
+
+
+
+[State 0, DisplayToClipboard]
+type = null
+trigger1 = 1
+text = "var(54) = %d p2bodydist x = %d pos y = %d  enemy pos y = %d"
+params = var(54), p2bodydist x, pos y, enemynear, pos y
+ignorehitpause = 1
+
+[State 0, DisplayToClipboard]
+type = displaytoclipboard
+trigger1 = 1
+text = "ctrl = %d, stateno = %d, prevstateno = %d var(49) = %d"
+params = ctrl, stateno, prevstateno, var(49)
+ignorehitpause = 1
+
+
+[State -2, Training stuff, it won't effect the gameplay]
+;also I'm tired of pressing the spacebar. :P
+type = AssertSpecial
+trigger1 = Enemy, Name = "Training"
+flag = timerfreeze
+ignorehitpause = 1
+
+[state 0 ]
+type = DisplayToClipboard
+trigger1 = 1
+text = "var(2) = %d"
+params = enemynear, cond(NumHelper(44003), Helper(44003), cond(1, var(50) = 1, 0), 0)
+
+[State -2, EXPLODsive Buffering Helper]
+type = Helper
+trigger1 = !NumHelper(90000005)
+stateNo = 90000005
+ID = 90000005
+name = "EXPLODsive Buffering helper"
+posType = P1
+facing = ifElse(Facing = 1, 1, -1)
+keyCtrl = 1
+ignoreHitPause = 1
+
+;Throw Tech
+[State 0, Explod]
+type = Explod
+triggerall = !NumExplod(98000000)
+trigger1 = StateNo = [0,20]
+trigger2 = StateNo = [120,152]
+anim = 15999
+ID = 98000000
+removetime = -1
+removeongethit = 1
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = StateNo != [0,20]
+trigger1 = StateNo != [120,152]
+id = 98000000
+
+;Mash limit
+[state 801, varset]
+type = varset
+trigger1 = stateno = 800 || stateno = 810
+var(3) = 0
+
+[state 801, varset]
+type = varset
+trigger1 = stateno != [800,899]
+var(12) = 0
+
+;focus limiter2
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = P2MoveType != H
+trigger1 = P2StateNo !=5300
+id = 1302
+
+;Emo between rounds
+[State 0, RemapPal]
+type = RemapPal
+triggerall = var(51) >= 1
+trigger1 = roundstate = 0
+source = 1,1
+dest = 2,Var(58)
+
+[state 801, varset]
+type = varset
+trigger1 = var(51) = 2
+trigger1 = roundstate = 0
+var(51) = 0
+
+[state 801, detransform after death]
+type = varset
+trigger1 = var(51) > 0
+trigger1 = !alive
+var(25) = 2
+
+
+[State 0, Projectile]
+type = Projectile
+trigger1 = enemy,stateno = [3272,3279]
+ProjID = 3001
+projanim = 15999
+projremovetime = 1
+ignorehitpause=1
+
+;=======================================================
+;Personal Varsets
+;=======================================================
+
+
+[state 1420, limiter]
+type = varset
+trigger1 = Numtarget
+trigger1 = target, stateno = 1471
+var(40) = 1
+ignorehitpause = 1
+persistent = 0
+
+;Enhanced Ex Royal Buster Var reset
+[state 1420,varset]
+type = varset
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+var(16) = 0
+ignorehitpause = 1
+
+;Royal Buster Var reset
+[state 1420,varset]
+type = varset
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+var(40) = 0
+ignorehitpause = 1
+
+;Royal Buster Medium Check
+[state 1420, varset]
+type = varset
+trigger1 = stateno != [1400,1422]
+var(42) = 0
+
+;Royal Buster Heavy Check
+[state 1420, varset]
+type = varset
+trigger1 = stateno != [1400,1422]
+var(43) = 0
+
+;------------Bingo---------------------------
+[state 44005, ]
+type = stopsnd
+trigger1 = movetype = H && prevstateno = 4450 && time = 0
+channel = 18
+ignorehitpause = 1
+;--------------------------------------------
+
+;------------Emo mode stuff------------------
+
+
+;------LVL 3 deactivation-------
+
+
+[state 3101, assertspecial]
+type = assertspecial
+trigger1 = var(51) = 2
+trigger1 = cond(teammode = simul || enemy, teammode = simul, alive,1) 
+flag = nomusic
+ignorehitpause = 1
+
+[State 1001, EndByPowMax]
+type = PalFX
+triggerall = var(25) = 2 
+triggerall = alive || (stateno = 5150 && time = 30) ;Detransform in death liedown
+trigger1 = stateno != [4000,4999]
+trigger2 = stateno = 4101 
+trigger2 = pos y >= 0 && vel y > 0
+time = 10
+add = 255, 255, 255
+
+[State 0, RemapPal]
+type = RemapPal
+triggerall = alive || (stateno = 5150 && time = 30) ;Detransform in death liedown
+trigger1 = var(25) = 2 
+trigger1 = stateno != [4000,4999]
+source = 1,1
+dest = 1,var(58)
+
+
+[state 3102, detransform]
+type = playsnd
+triggerall = var(25) = 2 
+triggerall = alive || (stateno = 5150 && time = 30) ;Detransform in death liedown 
+trigger1 = stateno != [4000,4999]
+trigger2 = stateno = 4101 
+trigger2 = pos y >= 0 && vel y > 0
+value = 3102,3
+persistent = 0
+
+[state 801, varset] 
+type = varset
+triggerall = var(25) = 2  && var(51) != 0
+trigger1 = stateno != [4000,4999]
+trigger2 = stateno = 4101 
+trigger2 = pos y >= 0 && vel y > 0
+var(51) = 0
+
+
+[state 801, varset] 
+type = varset
+triggerall = var(25) = 2
+triggerall = alive || (stateno = 5150 && time = 30) ;Detransform in death liedown
+trigger1 = stateno != [4000,4999]
+trigger2 = stateno = 4101 
+trigger2 = pos y >= 0 && vel y > 0
+trigger3 = stateno = 4201 && time = 400
+var(25) = 0
+;---------------------------
+
+[state 801, varset]
+type = varset
+triggerall = var(51) = 0 
+trigger1 = var(52) != 0 && stateno != [4000,4999]
+var(52) = 0
+
+
+[state 3101, attackmulset]
+type = null
+trigger1 = var(51) = 2
+value = 1.2
+
+
+
+
+[state 3101, varadd] ;Evolution drain
+type = varadd
+triggerall = var(51) = 2 && stateno != 3101 && roundstate = 2
+triggerall = stateno != [4000, 4999]
+trigger1 = enemynear,stateno = [120,155]
+trigger2 = enemy, movetype != H
+var(52) = -2
+ignorehitpause = 1
+
+[state 3101, varadd] ;Evolution drain
+type = varadd
+triggerall = var(51) = 2 && stateno != 3101 && roundstate =2
+triggerall = stateno != [4000, 4999]
+trigger1 = enemynear,stateno != [120,155]
+trigger1 = enemy, movetype = H
+var(52) = -1
+ignorehitpause = 1
+
+[state 3101, metergain]
+type = poweradd
+triggerall = var(51) = 2 && stateno != 3101 && roundstate = 2
+triggerall = stateno != 4300
+triggerall = stateno != [4000, 4999]
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+value = 4
+ignorehitpause = 1
+
+
+[state 3103, varset]
+type = varset
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+var(29) = 0
+ignorehitpause = 1 
+
+[state 3101, varset]
+type = varset
+triggerall = var(52) <= 0
+trigger1 = var(51) = 2
+var(54) = 1
+
+
+[state 801, died in blue2]
+type = varset
+triggerall = var(51) = 2 && var(54) < 3
+trigger1 = !alive
+var(54) = 3
+
+[state 3101, record scratch]
+type = playsnd
+triggerall = cond(Numpartner, cond(partner ,name = "SSJ Vegeta Z2", partner, var(51) != 2,1),1)
+triggerall = cond(Numenemy, cond(enemy(0) ,name = "SSJ Vegeta Z2", enemy(0), var(51) != 2,1),1)
+triggerall = cond(Numenemy, cond(enemy(Numenemy = 2) ,name = "SSJ Vegeta Z2", enemy(Numenemy = 2), var(51) != 2,1),1)
+trigger1 =  var(54) = 3 
+value = 3102,2
+persistent  = 0
+ignorehitpause = 1
+
+[state 3101, stop theme]
+type = stopsnd
+triggerall = cond(Numpartner, cond(partner ,name = "SSJ Vegeta Z2", partner, var(51) != 2,1),1)
+triggerall = cond(Numenemy, cond(enemy(0) ,name = "SSJ Vegeta Z2", enemy(0), var(51) != 2,1),1)
+triggerall = cond(Numenemy, cond(enemy(Numenemy = 2) ,name = "SSJ Vegeta Z2", enemy(Numenemy = 2), var(51) != 2,1),1)
+trigger1 = stateno = 3102
+trigger2 = enemy, name = "Golden Freeza Z2"
+trigger2 = enemy,stateno = 29685
+trigger3 = var(54) = 2
+trigger4 = var(54) = 3 ;Killed in Blue2
+trigger4 = var(54):= 4 ;No longer active. 
+channel = 18
+persistent = 0
+ignorehitpause = 1
+
+
+[State 221, finish]
+type = changestate
+triggerall = stateno != 3102 && roundstate = 2
+triggerall = var(54) = 1 
+trigger1 = ctrl = 1 && statetype = S
+trigger2 = stateno = 1100
+value = 3102
+ctrl = 0
+
+[state 2750, varset] ;Full Emo Bar
+type = varset
+trigger1 = var(52) > 3000
+var(52) = 3000
+ignorehitpause = 1
+
+
+
+[state 0, varadd]
+type = varadd  ;Momentum gain
+triggerall = stateno != [4000,4999]
+triggerall = var(51) = 1 && roundstate = 2
+triggerall = movetype != H
+trigger1 = Vel X > 0
+var(52) = ceil(Vel X / cond(enemynear, movetype = H,4,1))
+ignorehitpause = 1
+
+[state 0, varadd]
+type = varadd ;Momentum Lose
+triggerall = stateno != [4000,4999]
+triggerall = var(52) < 3000
+triggerall = var(51) = 1 && roundstate = 2
+triggerall = movetype != H
+triggerall = stateno != 320 
+trigger1 = Vel X < 0
+var(52) = ceil(Vel X)
+ignorehitpause = 1
+
+[state 0, varadd]
+type = varadd ;Knocked down
+triggerall = var(51) != 2 && roundstate = 2
+trigger1 = anim = 5120
+var(52) = -5
+ignorehitpause = 1
+
+[state 0, fill when not god stepping]
+type = varadd
+triggerall = var(51) = 1 && roundstate = [0,2]
+triggerall = var(19) < 1000
+triggerall = stateno = 1100
+triggerall = var(28) <= 1
+trigger1 = prevstateno != [1000,1050]
+trigger1 = prevstateno != [1400,1422]
+trigger1 = prevstateno != 2000
+trigger1 = prevstateno != [2400,2410]
+var(19) = 10
+ignorehitpause = 1
+
+[state 0, fill in other states]
+type = varadd
+triggerall = var(51) = 1 && roundstate = [0,2]
+triggerall = var(19) < 1000
+triggerall = var(28) <= 1
+trigger1 = stateno != 1100
+var(19) = 10
+ignorehitpause = 1
+
+[state 0, fill between rounds]
+type = varadd
+trigger1 = var(51) = 1 && roundstate = 0
+trigger1 = var(19) < 1000
+var(19) = 1000
+ignorehitpause = 1
+
+
+[state 0, full]
+type = varset
+triggerall = var(51) = 1 && roundstate = [0,2]
+trigger1 = var(19) > 1000
+var(19) = 1000
+ignorehitpause = 1
+
+[state 1500, varset]
+type = varset
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+var(28) = 1
+
+[state 1500, varset]
+type = varset
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+var(11) = 0
+
+;Atomic burst
+[State -2, Burst]
+type = Varset
+triggerall = prevstateno = 3200
+trigger1 = stateno != 3200
+var(39) = 0
+
+;Enhanced Royal Buster
+[State -2, Buster]
+type = Varset
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+var(41) = 0
+ignorehitpause = 1
+
+[State 300, limiter]
+type = Varset
+triggerall = enemy, movetype = H
+trigger1 = enemy, stateno = 301
+trigger1 = var(41) = 0
+var(41) = 1
+ignorehitpause = 1
+
+;Enhanced Straight Shooter
+[State -2, Shooter]
+type = Varset
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+var(41) = 0
+
+;Grounder var reset
+[state 1420,varset]
+type = varset
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+var(36) = 0
+ignorehitpause = 1
+
+[state 0, varset] ;SSG transformation reset
+type = varset
+triggerall = var(35) = 1
+trigger1 = stateno != 1100 ;Saiyan Step
+trigger1 = stateno != 1000 ;Superdash
+trigger1 = stateno != 1200 ;Straight Shooter
+trigger1 = stateno != 1421 ;Enhanced Royal Buster
+trigger1 = stateno != 1520 ;Enhanced Savage Grounder
+trigger1 = stateno != 2000 ;Ex Superdash
+trigger1 = stateno != 2400 ;Ex Royal Buster
+var(35) = 0
+ignorehitpause = 1
+
+;-----------------------------------
+
+;C18 Special KO
+[state 5000, changeanim]
+type = changestate
+triggerall = TeamMode != Simul
+triggerall = enemyNear,TeamMode != Simul
+triggerall = !alive
+trigger1 = enemy, name = "C18 Z2"
+trigger1 = enemy, stateno = 1302
+trigger1 = stateno = 5000
+value = 5950
+
+;--------------------------------------
+;Satan Special anim
+
+[State 0, RemapPal]
+type = RemapPal
+trigger1 = animelemtime(2) = 0
+trigger1 = anim = 7611
+source = 1,1
+dest = 3,Var(58)
+
+[State 0, RemapPal]
+type = RemapPal
+trigger1 = animelemtime(3) = 0
+trigger1 = anim = 7611
+source = 1,1
+dest = cond(var(51) = 0,1,cond(var(51) = 1,2,3)),Var(58)
+;=======================================================
+;Advanced EXPLODsive buffer turning
+;=======================================================
+;disable MUGEN's hardcoded turning
+[State -2, AssertSpecial]
+type = AssertSpecial
+trigger1 = P2DisT x >= -12
+flag = noautoturn
+
+[State -2, No walk during turning animation]
+type = PosFreeze
+triggerall = MoveType != H
+trigger1 = anim=5
+value = 1
+[State 0, AssertSpecial]
+type = AssertSpecial
+triggerall = MoveType != H
+trigger1 = Anim = 5
+flag = nowalk
+
+;When to play standing turn anim
+[State -2, ChangeAnim]
+type = ChangeAnim
+triggerall = MoveType != H
+triggerall = ctrl
+triggerall = Anim !=5
+triggerall = StateType !=A
+trigger1 = prevstateno !=50
+trigger1 = P2DisT x < -12
+trigger1 = StateNo = [0,20]
+trigger1 = (!AILEVEL && !NumExplod(90000001) && !NumExplod(90000002) && !NumExplod(90000003)) || AILEVEL && command != "holddown"
+value = 5
+;When to play crouching turn anim
+[State -2, ChangeAnim]
+type = ChangeAnim
+triggerall = MoveType != H
+triggerall = StateType !=A
+trigger1 = Anim !=6
+trigger1 = P2DisT x < -12
+trigger1 = ctrl
+trigger1 = StateNo = [0,20]
+trigger1 = (!AILEVEL && NumExplod(90000001) || NumExplod(90000002) || NumExplod(90000003)) || AILEVEL && command = "holddown"
+value = 6
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = MoveType != H
+triggerall = (!AILEVEL && !NumExplod(90000001) && !NumExplod(90000002) && !NumExplod(90000003)) || AILEVEL && command != "holddown"
+triggerall = ctrl
+triggerall = Anim !=5
+triggerall = P2DisT x < -12
+triggerall = StateType !=A
+trigger1 = StateNo != [0,20]
+trigger1 = MoveType = I
+value = 0
+ctrl = 1
+[State 0, ChangeState]
+type = ChangeState
+triggerall = MoveType != H
+triggerall = (!AILEVEL && NumExplod(90000001) || NumExplod(90000002) || NumExplod(90000003)) || AILEVEL && command = "holddown"
+triggerall = ctrl
+triggerall = Anim !=6
+triggerall = P2DisT x < -12
+triggerall = StateType !=A
+trigger1 = StateNo != [0,20]
+trigger1 = MoveType = I
+value = 11
+ctrl = 1
+
+;When to actually turn(notice this is below the turn anim code blocks)
+[State -2, Turn]
+type = Turn
+triggerall = P2DisT x < -12
+trigger1 = MoveType != H || (StateNo !=[120,155]) 
+trigger1 = StateType != A
+trigger1 = ctrl
+trigger1 = stateno !=52
+trigger1 = StateNo = [0,20]
+trigger2 = StateNo = 5120 && !AnimTime
+trigger2 = ctrl=0
+[State -2, Turn]
+type = Turn
+triggerall = FrontEdgeBodyDist <= 2
+trigger1 = StateNo = 5120 && !AnimTime
+trigger1 = ctrl=0
+
+;can throw tech in these states
+[State 0, Explod]
+type = Explod
+triggerall = !NumExplod(98000000)
+trigger1 = StateNo = [0,20]
+trigger2 = StateNo = [120,152]
+anim = 15999
+ID = 98000000
+removetime = -1
+removeongethit = 1
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = StateNo != [0,20]
+trigger1 = StateNo != [120,152]
+id = 98000000
+
+;air basic juggle limiter
+[State 0, VarSet]
+type = VarSet
+trigger1 = P2MoveType != H
+var(1) = 0
+
+;jump link infinite prevention on tall chars--see state 50 in override
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = P2MoveType != H
+trigger2 = P2StateType = A
+trigger3 = StateNo >=1000
+id = 52
+
+;this resets the var so he will go to state 5170 correctly in all instances
+ [State -2, System Variable Set]
+type = VarSet
+trigger1 = StateType = S || Statetype = C
+sysvar(0) = 0
+ignorehitpause = 1
+
+;===============================================================================
+; ------- Remove various explods --------
+;===============================================================================
+
+[state -2, remove Flip KO FX]
+type = removeexplod
+trigger1 = anim!=5937
+id = 5938
+[state -2, remove Twist KO FX]
+type = removeexplod
+trigger1 = anim!=5052 && anim != 1205
+id = 20152
+
+[State -2, remove basics limiter]
+type = RemoveExplod
+triggerall = NumExplod(987654321)
+triggerall = numenemy
+trigger1 = enemynear, movetype != H || (enemynear, stateno = [120,155]) || enemynear, ctrl
+id = 987654321
+ignorehitpause = 1
+
+[state -2, remove charge dust]
+type = removeexplod
+trigger1 = stateno != 900
+trigger1 = stateno != 901
+trigger1 = stateno != 704
+trigger1 = stateno != 705
+trigger2 = stateno = 704 && animelemtime(130) = 0
+trigger3 = stateno = 705 && animelemtime(20) = 0
+id = 908
+
+[state 450, removeexplod]
+type = removeexplod
+trigger1 = stateno != 450
+id = 757
+
+[state 300, removeexplod]
+type = removeexplod
+trigger1 = stateno !=  1421
+id = 30100
+
+[state 300, removeexplod]
+type = removeexplod
+trigger1 = stateno !=  3600
+id = 380000
+
+;===============================================================================
+; ------- Damage Dampener --------
+;===============================================================================
+ 
+[State -2, Counter Flag] 
+type = VarSet
+trigger1 = NumEnemy
+fvar(8) = (EnemyNear, MoveType = A)
+ignoreHitPause = 1
+ 
+;Damage Dampener Variable (by POTS)
+[State -2, Hit Count] 
+type = VarAdd 
+trigger1 = !IsHelper
+trigger1 = MoveHit = 1 
+trigger1 = !HitPauseTime 
+trigger1 = !(HitDefAttr = SCA, AT) 
+trigger2 = NumProjID(1760)
+fvar(13) = 1 
+ 
+[State -2, Hit Count Reset] 
+type = VarSet 
+trigger1 = NumEnemy && fvar(13) 
+trigger1 = (EnemyNear, MoveType != H) && (EnemyNear, StateNo != 5300) 
+fvar(13) = 0 
+ignoreHitPause = 1
+ 
+[State -2, Dampener] 
+type = VarSet 
+trigger1 = 1 
+fvar(10) = ifElse(fvar(13) < 3, 24, ifElse(fvar(13) >= 23, 1, 24 - fvar(13))) / 24.0 
+ignoreHitPause = 1 
+ 
+[State -2, Dampener Limit] 
+type = VarSet 
+trigger1 = fvar(10) < 0 
+fvar(10) = 0 
+ignoreHitPause = 1 
+ 
+[State -2, Root Dampener] 
+type = VarSet 
+trigger1 = 1 
+fvar(11) = fvar(10) * ifElse(fvar(8), 1.2, 1) 
+ignoreHitPause = 1
+
+;===============================================================================
+; ------- VarSets --------
+;===============================================================================
+[State -2, check shake]
+type = varset
+trigger1 = stateno != [1400,1440]
+var(42) = 0
+var(43) = 0
+[State -2, 2OS Helper to detect life removal]
+type = helper
+trigger1 = !numhelper(2)
+id = 2
+keyctrl = 0
+size.xscale = const(size.xscale)
+size.yscale = const(size.yscale)
+stateno = 2
+ignorehitpause = 1
+persistent = 1
+pausemovetime = 9999999
+supermovetime = 9999999
+
+[State -2, 2OS Damage detection]
+type = varset
+trigger1 = 1
+fvar(2) = life - helper(2),var(2)
+ignorehitpause = 1
+persistent = 1
+
+
+[State -2, Air dash reset var when char lands]
+type=VarSet
+trigger1= statetype!=A
+var(10) = 0
+
+;Slashing Chop
+[State -2, Focus Attack meter reset when no longer charging]
+type = VarSet
+trigger1 = (StateNo !=[1300,1301]) && ((StateNo = [5000,5099]) && PrevStateNo != 1300)
+trigger2 = StateNo = [100,105]
+fv = 9
+value = 0
+
+[State -2, Reset var when the opponent recovers]
+type=VarSet
+trigger1= NumEnemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !NumEnemy
+var(7) = 0
+ignorehitpause = 1
+
+[State -2, OTG]
+type= VarSet
+trigger1= MoveContact=1 && p2statetype!=L
+var(6) = 0
+ignorehitpause = 1
+[State -2, Free Juggling] ;NO JUGGLE CHECK nojugglecheck free juggling
+type = assertspecial
+trigger1 = var(6)=1
+flag = nojugglecheck
+ignorehitpause = 1
+
+[State -2, Super Jump reset var when char lands]
+type=VarSet
+trigger1= statetype!=A
+var(22) = 0
+
+[State -2, Throws Allowed]
+type = VarSet
+triggerall = NumEnemy
+trigger1 = EnemyNear, MoveType != H
+trigger1 = EnemyNear, StateNo != 140
+trigger1 = (EnemyNear, ctrl && EnemyNear, Time >= 1) || (EnemyNear, Time >= 8)
+trigger2 = EnemyNear, MoveType = A
+trigger3 = (EnemyNear, StateNo != [0,52]) && (EnemyNear, StateNo != [120,155]) && (EnemyNear, StateNo != [5000,5120])
+trigger4 = var(20) || var(22)
+var(38) = 0
+
+[State -2, Throws Disallowed]
+type = VarSet
+triggerAll = NumEnemy
+trigger1 = EnemyNear, StateNo = [150,155]
+trigger2 = (EnemyNear, StateNo = 51 || EnemyNear, StateNo = 140) && (EnemyNear, PrevStateNo = [150, 155])
+trigger3 = EnemyNear, MoveType = H && EnemyNear, StateType != A && !var(20) && !var(22)
+trigger4 = (EnemyNear, StateNo = [5020,5040]) && EnemyNear, HitFall = 0
+trigger5 = EnemyNear, StateNo = 40 && EnemyNear, PrevStateNo != 52 && (EnemyNear, Anim != [0, 29])
+var(38) = 1
+ignorehitpause = 1
+
+[State -2, KO snd]
+type = VarSet
+trigger1 = alive && var(8) > 0
+trigger2 = !alive && var(8) < 2
+var(8) = IfElse(alive, 0, var(8) + 1)
+ignorehitpause = 1
+
+;These controllers play the "hit ground" sound effect everytime the enemy hits the ground, 
+;during different custom states.
+[State -2, Hitting ground sound effect];Strong sound effect, first bounce.
+type		= PlaySnd
+triggerall	= NumTarget		;You must have a target
+triggerall	= Target, Time = 1
+trigger1		= Target, StateNo = 652	;custom state: a.SP
+trigger2            = Target, stateno = 2072
+trigger3            = Target, stateno = 4055
+trigger4            = Target, stateno = 1321
+trigger5            = Target, stateno = 1255
+value		= 15000, 2
+ignorehitpause	= 1
+channel		= 20
+
+[State -2, Strong hit ground effect]
+type		= PlaySnd
+triggerall	= NumTarget		;You must have a target
+triggerall	= Target, Time = 1
+trigger1		= Target, stateno = 4054
+value		= 3000, 1
+ignorehitpause	= 1
+channel		= 20
+
+[State -2, Strong hit ground effect]
+type		= PlaySnd
+triggerall	= NumTarget		;You must have a target
+triggerall	= Target, Time = 1
+trigger1		= Target, stateno = 4055
+value		= 4000, 4
+ignorehitpause	= 1
+
+[State -2, atomic wall bounce effect]
+type                =Playsnd
+trigger1            = (enemy,stateno = 3272 || enemy,stateno = 3274 || enemy,stateno = 3276 || enemy, stateno = 3278) 
+value		= 15000, 2
+ignorehitpause	= 1
+channel		= 20
+
+[State -2, Hitting ground sound effect];Medium sound effect, first bounce
+type		= PlaySnd
+triggerall	= NumTarget
+triggerall	= Target, Time = 1
+trigger1		= Target, StateNo = 1115100	;custom state: Dizzy/Stun, falling
+value		= 15000, 1
+ignorehitpause	= 1
+channel		= 21
+[State -2, Hitting ground sound effect];Weak sound effect, second bounce
+type		= PlaySnd
+triggerall	= NumTarget
+triggerall	= Target, Time = 1
+trigger1		= Target, StateNo = 1115110	;custom state: Dizzy/Stun, falling
+value		= 15000, 0
+ignorehitpause	= 1
+channel		= 22
+
+[State -2, Glass break sound effect];FA kill sound
+type		= PlaySnd
+triggerall	= NumTarget
+triggerall          = !(Target, alive)
+trigger1            = Target, time = 1
+trigger1		= Target,StateNo = 1323 
+value		= 1323, 0
+ignorehitpause	= 1
+persistent  = 0
+
+[State -2, P2 Glass Break FX Left]
+type		= Explod
+triggerall	= NumTarget
+triggerall          = !(Target, alive)
+trigger1            = Target, time = 1
+trigger1		= Target,StateNo = 1323  && !NumExplod(1323)
+trigger1            = Target, Facing = 1 
+persistent	= 0
+ID		= 1323
+anim		= 1323
+postype		= left
+pos		= -10, ceil(Target,screenpos y)-55
+velocity		= 0, 0
+accel		= 0, 0
+removetime	= -2
+sprpriority	= 3
+ignorehitpause	= 1
+persistent = 0
+
+[State -2, P2 Glass Break FX Right]
+type		= Explod
+triggerall	= NumTarget
+triggerall          = !(Target, alive)
+trigger1            = Target, time = 1
+trigger1		= Target,StateNo = 1323  && !NumExplod(1323) 
+trigger1            = Target, Facing = -1
+persistent	= 0
+ID		= 1323
+anim		= 1323
+postype		= right
+pos		= 10, ceil(Target,screenpos y)-55
+facing              = -1
+velocity		= 0, 0
+accel		= 0, 0
+removetime	= -2
+sprpriority	= 3
+ignorehitpause	= 1
+persistent = 0
+
+
+[state -2, target id track]
+type = varset
+trigger1 = Numtarget
+var(2) = target,id
+ignorehitpause = 1
+;=============================================
+;Dizzy code 5.0
+;=============================================
+
+[State -2, Dizzy tap buffer]
+type = VarSet
+trigger1 = enemy,stateno=1321
+sysvar(3) = 130
+ignorehitpause = 1
+
+[State 100, snd]
+type = playsnd
+trigger1 = enemy,stateno = 1321 
+trigger1 = enemy,time <= 1
+value = 5,8
+persistent = 0
+
+[State 3033, Snd]
+type = playsnd
+trigger1 = enemy, stateno = 5300
+trigger1 = enemy,time <= 1
+value = 2522, ifelse(random < 500, 0, 1)
+persistent = 0
+
+[State -2, Dizzy tap buffer]
+type = VarSet
+trigger1 = enemy,stateno=1321
+sysvar(2) = 0
+ignorehitpause = 1
+[State -2, Var if Gohan performed Finisher 1]
+type = varset
+trigger1 = (enemy,stateno=[3020,3030])
+sysvar(3) = 0
+ignorehitpause = 1
+[State 5300, dizzy Timer]
+type = varadd
+trigger1 = enemy,stateno=5300
+sysvar(3) = -1
+[State 5300, Timer]
+type = varadd
+trigger1 = enemy,stateno=5300
+trigger1 = sysvar(3) > 0
+trigger1 = enemy,command = "up" || enemy,command = "down" || enemy,command = "back" || enemy,command = "fwd"
+sysvar(3) = -2
+[State 5300, Timer]
+type = varadd
+trigger1 = enemy,stateno=5300
+trigger1 = sysvar(3) > 0
+trigger1 = enemy,command = "x" || enemy,command = "y" || enemy,command = "z" || enemy,command = "a" || enemy,command = "b" || enemy,command = "c"
+sysvar(3) = -1
+[State 5300, Skip Anim]
+type = varadd
+triggerall = enemy,stateno=5300
+triggerall = sysvar(3) > 0
+trigger1 = enemy,command = "up" || enemy,command = "down" || enemy,command = "back" || enemy,command = "fwd"
+trigger2 = enemy,command = "a" || enemy,command = "b" || enemy,command = "c" || enemy,command = "x" || enemy,command = "y" || enemy,command = "z"
+sysvar(2) = 1
+[State 5300, Skip Anim]
+type = varset
+triggerall = enemy,stateno=5300
+triggerall = sysvar(3) > 0
+trigger1 = enemy,animelemtime(1) >= 0 && !(enemy,animelemtime(enemy,animelemno(0)))
+sysvar(2) = 0
+;End dizzy code 5.0
+
+;remove dizzy stars
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = Anim != 5300
+id = 5931
+
+;dizzy stars
+[State 0, Explod]
+type = Explod
+trigger1 = !NumExplod(5931)
+trigger1 = Anim = 5300
+trigger1 = MoveType = H
+trigger2 = !NumExplod(5931)
+trigger2 = stateno = 5300
+anim = 5931
+ID = 5931
+pos = 15,-60
+postype = p1  ;p2,front,back,left,right
+bindtime = -1
+removetime = -1
+removeongethit = 1
+sprpriority = 2
+
+
+[State -2, KO snd English]
+type = playsnd
+triggerall = stateno != 5950
+trigger1 = !alive && var(8) = 1
+trigger1 = var(8) := 2
+value = 11, 1 
+ignorehitpause = 1
+volumescale = 300
+
+[State -2, ctrlset]
+type = CtrlSet
+trigger1 = roundstate=0 || roundstate=1
+value = 0
+
+[State -2, Explod];State 5052 Twist FX
+type = PlaySnd
+trigger1 = anim=5052 && !(gametime%10) && animelemtime(4)>=0
+trigger2 = anim=1205 && !(gametime%10) && animelemtime(4)>=0
+value = 5052,0
+
+[State -2, Explod];State 5052 Twist FX
+type = Explod
+triggerall = !IsHelper
+triggerall = NumExplod(20152) = 0
+trigger1 = anim=5052 && animelemtime(4)=0
+trigger2 = anim=1205 && animelemtime(4)=0
+anim = 20152
+pos = 0,-50
+postype = P1
+removetime = -1
+;supermovetime = 99999
+sprpriority = 3
+id = 20152
+bindtime = -1
+ownpal = 1
+ignorehitpause = 1
+pausemovetime = -1
+
+[state 17100, Flip KO FX]
+type=explod
+triggerall = !IsHelper
+trigger1 = Anim=5937 && !numexplod(59370) && animelemtime(3)=0
+anim = 5938
+id = 5938
+pos = 0,-50
+postype = P1
+sprpriority = 3
+ownpal = 1
+;supermovetime = -1
+removetime = -1
+persistent = 0
+bindtime = -1
+ignorehitpause = 1
+
+[State 0, Vel X Initialize]
+type = VarSet
+triggerall = NumEnemy
+triggerall = TeamMode != Simul
+triggerall = enemyNear,TeamMode != Simul
+trigger1 = roundstate = 0
+trigger1 = Time = 1
+fvar(5) = 0
+
+[State 0, Vel Y Initialize]
+type = VarSet
+triggerall = NumEnemy
+triggerall = TeamMode != Simul
+triggerall = enemyNear,TeamMode != Simul
+trigger1 = roundstate = 0
+trigger1 = Time = 1
+fvar(6) = 0
+
+[State -2, Save X]
+type = VarSet
+triggerall = NumEnemy
+triggerall = TeamMode != Simul
+triggerall = enemyNear,TeamMode != Simul
+trigger1 = WinKO
+fvar(5)= EnemyNear, Facing * (EnemyNear, GetHitVar(xvel))
+
+[State -2, Save Y]
+type = VarSet
+triggerall = NumEnemy
+triggerall = TeamMode != Simul
+triggerall = enemyNear,TeamMode != Simul
+trigger1 = WinKO
+fvar(6)= EnemyNear, GetHitVar(yvel)
+
+[state -2, winpose decider]
+type = Varset
+triggerall = NumEnemy
+triggerall = TeamMode != Simul
+triggerall = enemyNear,TeamMode != Simul
+trigger1 = roundstate = 0 && time = 1
+var(21) = ifelse(random%4 = 0,1,0)
+
+[state -2, winpose decider]
+type = Varset
+trigger1 = roundstate = 0  && time = 1
+var(49) = var(21)
+
+;Check KO ;Thanks to Splode for coming up with the original concept
+[State -2, Special Projectile]
+type = Projectile
+triggerall = NumEnemy
+triggerall = TeamMode != Simul
+triggerall = enemyNear,TeamMode != Simul
+triggerall = var(21) = 1 && var(51) < 2 && var(49) = 1
+trigger1 = WinKO 
+ProjID = 182000
+projanim = 182000
+postype = p2
+offset = 0, -60
+attr = A, NP
+hitflag = MAF
+guardflag =
+pausetime = 0, 0
+sparkno = -1
+hitsound = -1
+numhits = 0
+air.velocity = fvar(5)/2.0, fvar(6)/2.0
+p2stateno = EnemyNear, StateNo
+
+
+[State 0, Stomp Winpose Enabled]
+type = VarSet
+triggerall = NumEnemy
+triggerall = TeamMode != Simul
+triggerall = enemyNear,TeamMode != Simul
+trigger1 = NumProjID(182000)
+var(21) = 0
+
+[state 0, reset trigger]
+type = VarSet
+triggerall = WinKO
+triggerall = !NumProjID(182000)
+triggerall = var(49) = 1
+trigger1  = movehit = 1
+var(21) = 1
+
+
+
+[State -2, P2 Hit Ground Spark (front)]
+type		= Explod
+triggerall	= NumTarget
+trigger1		= Target,StateNo = 652  && !NumExplod(8400) && Target, Time = 2 ;after jSP
+trigger2            = Target,stateno = 4055 && !NumExplod(8400) && Target, Time = 2
+trigger3            = Target,stateno = 4054 && !NumExplod(8400) && Target, Time = 2
+trigger3            = Target, pos y >= 0 
+persistent	= 0
+ID		= 8400
+anim		= 8400
+postype		= p2
+pos		= -4, -3
+velocity		= 0, 0
+accel		= 0, 0
+removetime	= -2
+sprpriority	= 3
+ignorehitpause	= 1
+persistent = 0
+[State -2, P2 Hit Ground Spark (back)]
+type		= Explod
+triggerall	= NumTarget
+trigger1		= Target,StateNo = 652  && !NumExplod(8401) && Target, Time = 2 ;after jSP
+trigger2            = Target,stateno = 4055 && !NumExplod(8401) && Target, Time = 2 
+trigger3            = Target,stateno = 4054 && !NumExplod(8401) && Target, Time = 2
+trigger3            = Target, pos y >= 0 
+persistent	= 0
+ID		= 8401
+anim		= 8401
+postype		= p2
+pos		= -4, -3
+velocity		= 0, 0
+accel		= 0, 0
+removetime	= -2
+sprpriority	= -3
+ignorehitpause	= 1
+persistent = 0
+
+
+[State -2, P2 Hit Wall Spark (front)]
+type		= Explod
+triggerall	= NumTarget
+trigger1		= Target,StateNo = 2072 && !NumExplod(8402) && Target, Time = 2 ;after EX Hurricane Kick
+trigger2            = target, stateno = 1471 && !NumExplod(8402) && Target, Time = 2
+trigger3            = Target, stateno = 1321 && !NumExplod(8402) && Target, time = 2
+trigger4            = Target, stateno = 1255 && !NumExplod(8402) && Target, time = 2
+ID		= 8402
+anim		= 8402
+pos		= -20, -50
+postype		= p2
+velocity		= 0, 0
+accel		= 0, 0
+removetime	=-2
+sprpriority	= 3
+ignorehitpause	= 1
+persistent	= 0
+facing		=-1
+
+[State 3101, dust FX]
+type = helper
+triggerall = NumTarget
+trigger1 = (time%13)=0
+trigger1 = target, pos y = 0 && target, vel x < -.3
+trigger1 = target, stateno = 804 
+stateno = 10001
+ID = 10001
+postype = p2
+pos = 40,4
+facing = -1
+sprpriority = 5
+ownpal = 1
+
+[state -2 modify target slide dust]
+type = modifyexplod
+trigger1 = !Numtarget
+trigger2 = target, pos y != 0
+removetime = 0
+id = 10001
+
+
+
+[State -2, P2 Hit Wall Spark (back)]
+type		= Explod
+triggerall	= NumTarget
+trigger1		= Target,StateNo = 2072 && !NumExplod(8403)  && Target, Time = 2;after EX Hurricane Kick
+trigger2            = target, stateno = 1471 && !NumExplod(8403) && Target, Time = 2
+trigger3            = (enemy,stateno = 3272 || enemy,stateno = 3274 || enemy,stateno = 3276) && Target, Time = 2
+trigger4            = Target, stateno = 1321 && !NumExplod(8403) && Target, time = 2
+trigger5            = Target, stateno = 1255 && !NumExplod(8403) && Target, time = 2
+ID		= 8403
+anim		= 8403
+pos		= -20, -50
+postype		= p2
+velocity		= 0, 0
+accel		= 0, 0
+removetime	=-2
+sprpriority	=-3
+ignorehitpause	= 1
+persistent	= 0
+facing		=-1
+
+[state -2, atomic wall hit counter]
+type = hitadd
+trigger1            = (enemy,stateno = 3272 || enemy,stateno = 3274 || enemy,stateno = 3276 || enemy, stateno = 3278) 
+value = 1
+
+[state -2, P2 Hit wall atomic back]
+type = Explod
+trigger1            = (enemy,stateno = 3272 || enemy,stateno = 3274 || enemy,stateno = 3276 || enemy, stateno = 3278) 
+ID		= 8403
+anim		= 8403
+pos		= -20, -50
+postype		= p2
+velocity		= 0, 0
+accel		= 0, 0
+removetime	=-2
+sprpriority	=-3
+ignorehitpause	= 1
+persistent	= 0
+facing		=-1
+
+
+[state 17100, Shocked FX]
+type=explod
+trigger1 = (Anim=7696 || anim=9010) && !numexplod(9011)
+anim = 9011
+id = 9011
+pos = 0,0
+postype = P1
+sprpriority = -5
+ownpal = 1
+removetime = -1
+persistent = 0
+bindtime = -1
+ignorehitpause = 1
+
+[state 17100, Shocked FX]
+type = RemoveExplod
+trigger1 = (Anim != 7696 && anim != 9010) && numexplod(9011)
+ID = 9011
+
+
+
+[state -3, remove afterimage]
+type = afterimage
+trigger1 = Movetype = H
+trigger2 = var(51) != 2
+trigger2 = StateNo != [10230,10233]  	;Super Jump
+trigger2 = StateNo != [110,118]  		;air dash
+trigger2 = StateNo != 50
+trigger2 = stateno != 1000                ;Superdash (enhanced)
+trigger2 = stateno != 1050                 ;Superdash (enhanced)
+trigger2 = stateno != 1421                 ;Royal Buster(enhanced)
+trigger2 = stateno != [1200,1202]
+trigger2 = stateno != 1230
+trigger2 = stateno != 2000
+trigger2 = stateno != 2400
+trigger2 = stateno != 55
+trigger2 = stateno !=1520
+trigger2 = stateno != 1253
+trigger3 = stateno = [4001,4002]
+time = 0
+
+
+;===============================================================================
+; ------- Compatibility with V.Akiha by Kohaku --------
+;===============================================================================
+
+[State -2, LifeAdd]
+type = LifeAdd
+triggerall = NumEnemy
+triggerall = Enemy,AuthorName = "Kohaku" && Enemy,Name = "VAkiha_K"
+trigger1 = Enemy,Var(30) = 1
+value = -5
+kill = 0
+
+[State -2, PowerAdd]
+type = PowerAdd
+triggerall = NumEnemy
+triggerall = Enemy,AuthorName = "Kohaku" && Enemy,Name = "VAkiha_K"
+trigger1 = Enemy,Var(30) = 1
+value = -26
+
+
+
+;===============================================================================
+; ------- Emotion Mode Gauge --------
+;===============================================================================
+
+; Emotion MODE GAUGE P1
+[State -2, Pride Gauge]
+type = helper
+triggerall = !NumHelper(2750) && teamside = 1 && !Winko
+trigger1 = var(52) > 0
+ID = 2750
+stateno = 2750
+pos = 20, 0
+postype = left
+name = "emo"
+pausemovetime = 999999
+supermovetime = 999999
+sprpriority = 7
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+size.xscale = 0.5
+size.yscale = 0.5
+
+;Emotion MODE GAUGE P2
+[State -2, Pride Gauge]
+type = helper
+triggerall = !NumHelper(2760) && teamside = 2 && !Winko
+trigger1 = var(52) > 0
+ID = 2760
+stateno = 2760
+pos = 20, 0
+postype = left
+name = "emo"
+pausemovetime = 999999
+supermovetime = 999999
+sprpriority = 7
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+size.xscale = 0.5
+size.yscale = 0.5
+
+;===============================================================================
+; ------- Compatibility with Warachia by Rajaaboy --------
+;===============================================================================
+
+[state -2,RajaaBoy:_Warachia]
+type = lifeadd
+trigger1 = NumEnemy
+trigger1 = enemy,authorname="RajaaBoy"
+trigger1 = enemy,name="RajaaWarachia"
+trigger1 = enemy,var(32)=1||enemy,var(33)=1||enemy,var(34)=1
+value = (-14*enemy,var(32))+(-21*enemy,var(33))+(-28*enemy,var(34))
+kill = 0
+ignorehitpause = 1
+
+[state -2,RajaaBoy:_Warachia]
+type = poweradd
+trigger1 = NumEnemy
+trigger1 = enemy,authorname="RajaaBoy"
+trigger1 = enemy,name="RajaaWarachia"
+trigger1 = enemy,var(32)=1||enemy,var(33)=1||enemy,var(34)=1
+value = 10
+ignorehitpause = 1
+
+;;===============================================================================
+; ------- Super Background Helper Triggers --------
+;===============================================================================
+
+; SUPER BG HELPER
+[State -2, Hyper Kill bg]
+type = helper
+triggerall = winKO && !NumHelper(19875)
+triggerall = var(13) < 2
+triggerall = RoundState = 3
+trigger1 = NumProjId(3000) || NumProjId(3001)	
+ID = 19875
+pos = 20-20*(var(13)=0),-250+250*(var(13)=0)
+postype = left
+stateno = 19875 + 25*var(13)
+helpertype = normal
+name = "superbackground"
+pausemovetime = 999999
+supermovetime = 999999
+sprpriority = -5
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+
+; SUPER BG HELPER - Super DBZ Physic
+[State -2, Hyper Kill bg]
+type = helper
+triggerall = winKO && !NumHelper(19875)
+triggerall = var(13) = 2
+trigger1 = NumProjId(3001) 
+ID = 19875
+pos = 0,0
+postype = left
+stateno = 19885
+helpertype = normal
+name = "superbackground"
+pausemovetime = 999999
+supermovetime = 999999
+sprpriority = -5
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+persistent = 0
+
+; SUPER BG HELPER - Super DBZ Ki
+[State -2, Hyper Kill bg]
+type = helper
+triggerall = winKO && !NumHelper(19875)
+triggerall = var(13) = 2
+triggerall = RoundState = 3
+trigger1 = NumProjId(3000) 
+ID = 19875
+pos =  0,0
+postype = left
+stateno = 19892
+helpertype = normal
+name = "superbackground"
+pausemovetime = 999999
+supermovetime = 999999
+sprpriority = -5
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+persistent = 0
+
+
+
+;=======================================================================
+; External coding for Hyper Pause Fixes (Fighting SyN'S Characters only)
+;=======================================================================
+[State -2, Camera focus on player for Hyper Pause]
+type = ScreenBound
+triggerall = NumEnemy
+triggerall = enemynear,authorname = "ImmortaL -SyN-"
+trigger1 = enemynear,numHelper(4999)
+value = 1
+
+;===============================================================================
+; ------- EMOTION Mode --------
+;===============================================================================
+
+[State -2, EMOTION MODE VARS - Buffer]
+type = varset
+trigger1 = var(52) < 0
+var(52) = 0
+ignorehitpause = 1
+
+[State -2, EMOTION MODE VARS - Zero]
+type = varset
+trigger1 = var(53)<0
+trigger2 = Var(52)<=0
+var(53) = 0
+ignorehitpause = 1
+
+[State -2, EMOTION MODE VARS - Flame]
+type = varset
+trigger1 = var(53)>2100
+var(53) = 2100
+ignorehitpause = 1
+
+;===============================================================================
+; COUNTER HIT (Taken from Vans, who based his on Sander's Method)
+;===============================================================================
+
+[State -2, VarSet];Checks if opponent is in attack state
+type = VarSet
+triggerall = NumEnemy
+trigger1 = enemy, movetype = A
+var(56) = 1
+ignorehitpause = 1
+
+[State -2, VarSet];This resets the condition if counter not succesful and succesful
+type = VarSet
+triggerall = NumEnemy
+trigger1 = enemy, movetype = I || var(57) >= 1  ;Enemy is Idle | Counter was Succesful
+trigger2 = var(57) > 10 && enemy, movetype = H  ;10 ticks passed & enemy is on gethit state
+var(56) = 0
+ignorehitpause = 1
+
+[State -2, VarSet];Counter Hit Succesful
+type = VarSet
+trigger1 = var(56) = 1 && movehit ;Counter Check Ok, Move Hit Succesfully.
+trigger1 = StateNo != [190,199] ;Does not activate during intros.
+trigger1 = StateNo != [800,820] ;Does not activate during throws.
+trigger1 = StateNo != [950,951] ;Don't activate during throws.
+trigger2 = var(56) = 1 && projhit = 1  ;Counter Check Ok, Projectile Hit Succesfully.
+var(57) = 1
+ignorehitpause = 1
+
+[State -2, VarAdd];Counter Hit Timer
+type = VarAdd
+trigger1 = var(57) >= 1 ;Counter was succesful
+var(57) = 1
+ignorehitpause = 1
+
+[State -2, VarSet];Counter Hit Reset
+type = VarSet
+trigger1 = var(57) >= 22 && movehit ;Reset if 22 ticks passed and move hit
+trigger2 = p2movetype != H ;Reset if P2 is no longer in gethit state
+trigger3 = movetype = H ;Reset if P1 is getting hit
+trigger4 = var(57) >= 22 && projhit = 1 ;Reset if 22 ticks passed and projectile hit
+var(57) = 0
+ignorehitpause = 1
+
+[State -2, AssertSpecial];This will award free juggles for Counter Hit.
+type = AssertSpecial
+trigger1 = var(57) > 0
+flag = nojugglecheck
+
+[State -2, EnvColor];This will produce a flash a la KOF2K2
+type = EnvColor
+triggerall = NumEnemy
+triggerall = StateNo != [190,199] ;Does not activate during intros.
+triggerall = StateNo != [800,820] ;Does not activate during throws.
+triggerall = StateNo != [950,951] ;Don't activate during throws.
+triggerall = enemy, movetype = h ;Enemy was indeed HIT, otherwise this'd be dumb.
+trigger1 = var(56) = 1 && movehit  ;Move hit, Ok
+trigger2 = var(56) = 1 && projhit = 1 ;Projectile hit, Ok
+value = 255,255,255
+time = 1
+under = 1
+ignorehitpause = 1
+persistent = 0
+
+[State -2, Explod];Counter Explod for P1 Side.
+type = Explod
+triggerall = NumEnemy
+triggerall = var(56) = 1 && numexplod(13000) = 0 && teamside = 1 ;Counter Ok, Explod has not played, P1 Side
+triggerall = enemy, movetype = h ;Enemy was indeed HIT, otherwise this'd be dumb.
+triggerall = StateNo != [800,820] ;Does not activate during throws.
+triggerall = StateNo != [950,951] ;Don't activate during throws.
+trigger1 = movehit ;Move hits
+trigger2 = projhit = 1 ;Projectile Hits
+anim = 13000
+pos = 10,100
+postype = left  ;p2,front,back,left,right
+removetime = -2
+
+;scale = 0.5,0.5
+sprpriority = 0
+id = 13000
+bindtime = -1
+ontop = 1
+ownpal = 1
+ignorehitpause = 1
+pausemovetime = -1
+
+[State -2, Explod];Counter Explod for P2 Side.
+type = Explod
+triggerall = NumEnemy
+triggerall = var(56) = 1 && numexplod(13000) = 0 && teamside = 2 ;Counter Ok, Explod has not played, P2 Side
+triggerall = enemy, movetype = h ;Enemy was indeed HIT, otherwise this'd be dumb
+triggerall = StateNo != [800,820] ;Does not activate during throws.
+triggerall = StateNo != [950,951] ;Don't activate during throws.
+trigger1 = movehit ;Move hits
+trigger2 = projhit = 1 ;Projectile Hits
+anim = 13001
+pos = -82,100 ;-10-69-3
+postype = right  ;p2,front,back,left,right
+removetime = -2
+
+;scale = 0.5,0.5
+sprpriority = 0
+id = 13000
+bindtime = -1
+ontop = 1
+ownpal = 1
+ignorehitpause = 1
+pausemovetime = -1
+
+
+
+; JUSTICE MODE GAUGE P1
+[State -2, Hope Gauge]
+type = helper
+trigger1 = !NumHelper(2750) && teamside = 1
+trigger1 = var(51) = 1
+ID = 2750
+StateNo = 2750
+pos = 20, 0
+postype = left
+helpertype = normal
+name = "justice1"
+pausemovetime = 999999
+supermovetime = 999999
+sprpriority = 7
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+size.xscale = 0.5
+size.yscale = 0.5
+
+[State -2, Hope Gauge]
+type = helper
+triggerall = !NumHelper(2760) && teamside = 2
+trigger1 = var(51) = 1
+ID = 2760
+StateNo = 2760
+pos = 20, 0
+postype = left
+helpertype = normal
+name = "justice2"
+pausemovetime = 999999
+supermovetime = 999999
+sprpriority = 7
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+size.xscale = 0.5
+size.yscale = 0.5
+
+
+;Palette Selection Code
+[State 0, VarSet]
+type = VarSet
+triggerall = var(5) = 1
+trigger1 = var(58) <= 0
+trigger2 = var(58) > 103;when you add a palette increase this number by 1
+var(58) = 1
+
+[State 0, VarSet]
+type = VarSet
+triggerall = var(5) = 1
+trigger1 = Facing = -1
+trigger1 = P2Name = "SSJ Vegeta Z2"
+trigger1 = enemy, var(58) = var(58)
+var(58) = var(58) + 1
+
+[State 0, VarAdd]
+type = VarAdd
+triggerall = var(5) = 1
+triggerall = RoundState = 1
+triggerall = RoundNo = 1
+triggerall = !NumExplod(21)
+trigger1 = Facing = 1
+trigger1 = command = "fwd"
+trigger2 = Facing = -1
+trigger2 = command = "back"
+var(58) = Cond((P2Name = "SSJ Vegeta Z2") && enemy, var(58) = var(58) + 10,11,Cond((Var(58) >= 56), -93,10));You will edit this portion Cond((Var(58) >= ##), -##,10)) increase the ## by 1
+[State 0, VarAdd]
+type = VarAdd
+triggerall = var(5) = 1
+triggerall = RoundState = 1
+triggerall = RoundNo = 1
+triggerall = !NumExplod(21)
+trigger1 = Facing = 1
+trigger1 = command = "back"
+trigger2 = Facing = -1
+trigger2 = command = "fwd"
+var(58) = Cond((P2Name = "SSJ Vegeta Z2") && enemy, var(58) = var(58) - 10,-11,Cond((Var(58) <= 10), 93,-10));You will edit this portion Cond((Var(58) <= 10), ##,-10) increase the ## by 1
+[State 0, VarAdd]
+type = VarAdd
+triggerall = var(5) = 1
+triggerall = RoundState = 1
+triggerall = RoundNo = 1
+triggerall = !NumExplod(21)
+trigger1 = command = "up"
+var(58) = Cond((P2Name = "SSJ Vegeta Z2") && enemy, var(58) = var(58) + 1,2,Cond((Var(58) >= 103), -102,1));You will edit this portion Cond((Var(58) >= ##), -##,1)) increase the ## by 1
+[State 0, VarAdd]
+type = VarAdd
+triggerall = var(5) = 1
+triggerall = RoundState = 1
+triggerall = RoundNo = 1
+triggerall = !NumExplod(21)
+trigger1 = command = "down"
+var(58) = Cond((P2Name = "SSJ Vegeta Z2") && enemy, var(58) = var(58) - 1,-2,Cond((Var(58) <= 1), 102,-1));You will edit this portion Cond((Var(58) <= 1), ##,-1)) increase the ## by 1
+
+[State 0, Explod]
+type = Explod
+triggerall = !NumExplod(21)
+triggerall = var(5) = 1
+triggerall = RoundState <= 1
+triggerall = RoundNo = 1
+triggerall = Anim = 0
+trigger1 = command = "start"
+anim = 1606
+ID = 21
+removetime = -1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = RoundState = 2
+id = 21
+;End of Palette Selection Code
+;------------------------------
+
+;===============================================================================
+;Remove Explods
+;===============================================================================
+[state -2, removeexplod]
+type = removeexplod
+trigger1 = anim != 900
+id = 9001
+
+[state 801, mash]
+type = removeexplod
+trigger1 = stateno != 801
+id = 2616
+;===============================================================================
+; FIRST ATTACK NOTIFICATION
+;===============================================================================
+
+[State -2, First Attack]
+type = VarSet
+triggerall = Var(27) = 0
+triggerall = RoundState = 2
+trigger1 = p2StateNo = [5000,5199]
+trigger1 = p2movetype = H
+v = 27
+value = 1
+ignorehitpause = 1
+
+[State -2, First Attack - if F1 is pressed]
+type = VarSet
+triggerall = Var(27) = 0
+triggerall = RoundState = [0,1]
+trigger1 = p2StateNo = [5000,5199]
+trigger1 = p2movetype = H
+v = 27
+value = 2
+ignorehitpause = 1
+
+
+[State -2, Explod];P1 Side.
+type = Explod
+trigger1 = var(27)= 1 && numexplod(13100)=0 && teamside = 1
+anim = 13100
+pos = 10,IfElse(numexplod(13000),80,100)
+postype = left  ;p2,front,back,left,right
+removetime = -2
+
+;scale = 0.5,0.5
+sprpriority = 0
+id = 13100
+bindtime = -1
+ontop = 1
+ownpal = 1
+ignorehitpause = 1
+pausemovetime = -1
+persistent = 0
+
+[State -2, Explod];P2 Side.
+type = Explod
+trigger1 = var(27)= 1 && numexplod(13100)=0 && teamside = 2
+anim = 13101
+pos = -117,IfElse(numexplod(13000),80,100)
+postype = right  ;p2,front,back,left,right
+removetime = -2
+
+;scale = 0.5,0.5
+sprpriority = 0
+id = 13100
+bindtime = -1
+ontop = 1
+ownpal = 1
+ignorehitpause = 1
+pausemovetime = -1
+persistent = 0
+
+[State -2, Powaa !!!]
+type = PowerAdd
+trigger1 = Var(27) = 1
+value = 200
+persistent = 0
+
+[State -2, First Attack]
+type = VarSet
+trigger1 = Var(27) = 1
+trigger2 = movetype = H && Var(27) = 0 && StateNo != [150,159]
+v = 27
+value = 2
+
+;----START COPY PASTE FOR -2 to go in chars for compatability---
+
+;this resets the var so he will go to state 5170 correctly in all instances
+ [State -2, System Variable Set]
+type = VarSet
+trigger1 = StateType = S || Statetype = C
+sysvar(0) = 0
+ignorehitpause = 1
+
+[State -2, Sealed by Chizuru's Reigi no Ishizue]
+type = PalFX
+trigger1 = NumProjID(131035)
+trigger1 = GameTime % 2 = 1
+time = 1
+add = 0,0,92
+sinAdd = 0,0,0,0
+color = 0
+invertAll = 0
+color = 256
+ignoreHitPause = 1
+
+;===============Applying various status to opponent outside of custom states================
+[State -2, AssertSpecial]
+type = AssertSpecial
+trigger1 = enemy, NumExplod(99980000);create this explod ID and the opponent will become invisible if compatible
+flag = invisible
+ignorehitpause = 1
+
+[State -2, CtrlSet]
+type = CtrlSet
+trigger1 = enemy, NumExplod(99980001);create this explod ID and the opponent will lose ctrl if compatible
+value = 0
+
+[State -2, CtrlSet]
+type = CtrlSet
+trigger1 = enemy, NumExplod(99980002);create this explod ID and the opponent will gain ctrl if compatible
+value = 1
+
+;===============Pal FX applied by opponent================
+;MUGEN does not allow us to give P2 a PalFX outside of a custom state sp this work around was developed
+;Use these expod ID ranges for their corresponding fx 
+;these are more SNK style with inverted colors
+;99991000 = Fire by O Illusionista
+;99991001 = Ice by O Illusionista
+;99991002 = Green Poison by O Illusionista
+;99991003 = Purple Poison by O Illusionista
+;99991004 = Blue Shock by O Illusionista
+;99991005 = B&W Shock by O Illusionista
+;99991006 = Evil Red by O Illusionista
+;99991007 = Evil Purple by O Illusionista
+;99991008 = Slow Pulse Fire by Elix
+;99991009 = Yellow/Orange Burn by Sander71113
+;99991010 = Blue/Violet/Crimson Burn  by Sander71113
+;99991011 = Red/Blood Burn by Sander71113
+;99991012 = Dust/Gray Burn by Sander71113
+;99991013 = Fade to Darker fade to brighter by Odb718
+;99991014 = Black and White Negative by Odb718
+;99991015 = Rainbow by altoiddealer
+;99991016 = White
+;99991017 = Red
+;99991018 = Blue
+;99991019 = Green
+;99991020 = Yellow
+;99991021 = Pink
+;99991022 = Light Blue
+;99991023 = Black
+
+;these make the fx not inverted more like Capcom
+;99992000 = Fire by O Illusionista
+;99992001 = Ice by O Illusionista
+;99992002 = Green Poison by O Illusionista
+;99992003 = Purple Poison by O Illusionista
+;99992004 = Blue Shock by O Illusionista
+;99992005 = B&W Shock by O Illusionista
+;99992006 = Evil Red by O Illusionista
+;99992007 = Evil Purple by O Illusionista
+;99992008 = Slow Pulse Fire by Elix
+;99992009 = Yellow/Orange Burn by Sander71113
+;99992010 = Blue/Violet/Crimson Burn  by Sander71113
+;99992011 = Red/Blood Burn by Sander71113
+;99992012 = Dust/Gray Burn by Sander71113
+;99992013 = Fade to Darker fade to brighter by Odb718
+;99992014 = Black and White Negative by Odb718
+;99992015 = Rainbow by altoiddealer
+
+[State -2, SNK Fire PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991000)
+time = 1
+add = Ceil(240 + 110 * sin(2 * pi * gametime / 10)),Ceil(50 + 55 * sin(2 * pi * gametime / 10)),Ceil(120 + 85 * sin(2 * pi * gametime / 10))
+mul = 250,224,120 
+color = 0 
+invertall = 1 
+ignorehitpause = 1
+
+[State -2, SNK Ice PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991001)
+time = 1
+add = Ceil(0 + 85 * sin(2 * pi * gametime / 10)),Ceil(50 + 55 * sin(2 * pi * gametime / 10)),Ceil(240 + 110 * sin(2 * pi * gametime / 10))
+mul = 120,224,150 
+color = 0 
+invertall = 1 
+ignorehitpause = 1
+
+[State -2, SNK Green Poison PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991002)
+time = 1
+add = Ceil(0 + 85 * sin(2 * pi * gametime / 10)),Ceil(100 + 110 * sin(2 * pi * gametime / 10)),Ceil(50 + 55 * sin(2 * pi * gametime / 10))
+mul = 20,120,24 
+color = 0 
+invertall = 1 
+ignorehitpause = 1
+
+[State -2, SNK Purple Poison PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991003)
+time = 1
+add = Ceil(100 + 85 * sin(2 * pi * gametime / 10)),Ceil(0 + 110 * sin(2 * pi * gametime / 10)),Ceil(100 + 55 * sin(2 * pi * gametime / 10))
+mul = 120,20,124 
+color = 0 
+invertall = 1 
+ignorehitpause = 1
+
+[State -2, SNK Blue Shock PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991004)
+time = 1
+add = Ceil(100 -80 * sin(2 * pi * gametime / 10)),Ceil(100 -80 * sin(2 * pi * gametime / 10)),Ceil(180 -80 * sin(2 * pi * gametime / 10))
+color = 0 
+invertall = 1
+ignorehitpause = 1
+
+[State -2, SNK B&W Shock PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991005)
+time = 1
+add = Ceil(100 -80 * sin(2 * pi * gametime / 10)),Ceil(100 -80 * sin(2 * pi * gametime / 10)),Ceil(100 -80 * sin(2 * pi * gametime / 10))
+color = 0 
+invertall = 1
+ignorehitpause = 1
+
+[State -2, SNK Evil Red PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991006)
+time = 1
+add = Ceil(0 + 40 * sin(2 * pi * gametime / 10)),Ceil(-200 + 80 * sin(2 * pi * gametime / 10)),Ceil(-200 + 40 * sin(2 * pi * gametime / 10))
+color = 0 
+invertall = 1
+ignorehitpause = 1
+
+[State -2, SNK Evil Purple PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991007)
+time = 1
+add = Ceil(0 + 40 * sin(2 * pi * gametime / 10)),Ceil(-200 + 80 * sin(2 * pi * gametime / 10)),Ceil(0 + 40 * sin(2 * pi * gametime / 10))
+color = 0 
+invertall = 1
+ignorehitpause = 1
+
+[State -2, SNK Slow Pulse Fire PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991008)
+time = 1
+add = Ceil(224 -160 * sin(2 * pi * gametime / 14)),Ceil(68 -160 * sin(2 * pi * gametime / 14)),Ceil(-40 -160 * sin(2 * pi * gametime / 14))
+mul = 256,192,128
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[State -2, SNK Yellow/Orange Burn PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991009)
+time = 1
+add = Ceil(40 + 40 * sin(2 * pi * gametime / 10)),Ceil(-70 + 30 * sin(2 * pi * gametime / 10)),Ceil(-200 + 0 * sin(2 * pi * gametime / 10))
+color     = 0                                             
+invertall = 1   
+ignorehitpause = 1
+
+[State -2, SNK Blue/Violet/Crimson Burn PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991010)
+time = 1
+add = Ceil(-104 + 56 * sin(2 * pi * gametime / 10)),Ceil(-104 + 56 * sin(2 * pi * gametime / 10)),Ceil(7 + 0 * sin(2 * pi * gametime / 10))
+color     = 0
+invertall = 1
+ignorehitpause = 1
+
+[State -2, SNK Red/Blood Burn PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991011)
+time = 1
+add = Ceil(7 + 30 * sin(2 * pi * gametime / 10)),Ceil(-200 + 30 * sin(2 * pi * gametime / 10)),Ceil(-200 + 0 * sin(2 * pi * gametime / 10))
+color     = 0                                            
+invertall = 1  
+ignorehitpause = 1
+
+[State -2, SNK Dust/Gray Burn PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991012)
+time = 1
+add = Ceil(-100 -10 * sin(2 * pi * gametime / 10)),Ceil(-100 -10 * sin(2 * pi * gametime / 10)),Ceil(-100 -10 * sin(2 * pi * gametime / 10))
+color     = 0
+invertall = 1
+ignorehitpause = 1
+
+[State -2, SNK Fade to Darker fade to brighter PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991013)
+time = 1
+add = Ceil(0 -65 * sin(2 * pi * gametime / 26)),Ceil(0 -65 * sin(2 * pi * gametime / 26)),Ceil(0 -65 * sin(2 * pi * gametime / 26))
+mul = 164,164,164
+invertall = 1
+color = 256
+ignorehitpause = 1
+
+[State -2, SNK Black and White Negative PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991014)
+time = 1
+add = Ceil(0 + 55 * sin(2 * pi * gametime / 10)),Ceil(0 + 55 * sin(2 * pi * gametime / 10)),Ceil(0 + 55 * sin(2 * pi * gametime / 10))
+mul = 200,200,200
+invertall = 1
+color = 0 
+ignorehitpause = 1
+
+[State -2, SNK Rainbow PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991015)
+time = 1
+add = Floor(sin(GameTime/8)*64),Floor(sin((GameTime-85)/8)*64),Floor(sin((GameTime-170)/8)*64)
+invertall = 1 
+ignorehitpause = 1
+
+[State 0, White PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991016)
+time = 1
+add = 256,256,256
+mul = 256,256,256
+sinadd = 0,0,0,1
+invertall = 0
+color = 256
+ignorehitpause = 1
+
+[State 0, Red PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991017)
+time = 1
+add = 256,0,0
+mul = 256,0,0
+sinadd = 0,0,0,1
+invertall = 0
+color = 256
+ignorehitpause = 1
+
+[State 0, Blue PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991018)
+time = 1
+add = 0,0,256
+mul = 0,0,256
+sinadd = 0,0,0,1
+invertall = 0
+color = 256
+ignorehitpause = 1
+
+[State 0, Green PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991019)
+time = 1
+add = 0,256,0
+mul = 0,256,0
+sinadd = 0,0,0,1
+invertall = 0
+color = 256
+ignorehitpause = 1
+
+[State 0, Yellow PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991020)
+time = 1
+add = 256,256,0
+mul = 256,256,0
+sinadd = 0,0,0,1
+invertall = 0
+color = 256
+ignorehitpause = 1
+
+[State 0, Pink PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991021)
+time = 1
+add = 256,0,256
+mul = 256,0,256
+sinadd = 0,0,0,1
+invertall = 0
+color = 256
+ignorehitpause = 1
+
+[State 0, Light Blue PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991022)
+time = 1
+add = 0,256,256
+mul = 0,256,256
+sinadd = 0,0,0,1
+invertall = 0
+color = 256
+ignorehitpause = 1
+
+[State 0, Black PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99991023)
+time = 1
+add = 256,256,256
+mul = 0,0,0
+sinadd = 0,0,0,1
+invertall = 0
+color = 256
+ignorehitpause = 1
+
+[State -2, CAPCOM Fire PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992000)
+time = 1
+add = Ceil(240 + 110 * sin(2 * pi * gametime / 10)),Ceil(50 + 55 * sin(2 * pi * gametime / 10)),Ceil(120 + 85 * sin(2 * pi * gametime / 10))
+mul = 250,224,120 
+color = 0 
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Ice PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992001)
+time = 1
+add = Ceil(0 + 85 * sin(2 * pi * gametime / 10)),Ceil(50 + 55 * sin(2 * pi * gametime / 10)),Ceil(240 + 110 * sin(2 * pi * gametime / 10))
+mul = 120,224,150 
+color = 0 
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Green Poison PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992002)
+time = 1
+add = Ceil(0 + 85 * sin(2 * pi * gametime / 10)),Ceil(100 + 110 * sin(2 * pi * gametime / 10)),Ceil(50 + 55 * sin(2 * pi * gametime / 10))
+mul = 20,120,24 
+color = 0 
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Purple Poison PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992003)
+time = 1
+add = Ceil(100 + 85 * sin(2 * pi * gametime / 10)),Ceil(0 + 110 * sin(2 * pi * gametime / 10)),Ceil(100 + 55 * sin(2 * pi * gametime / 10))
+mul = 120,20,124 
+color = 0 
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Blue Shock PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992004)
+time = 1
+add = Ceil(100 -80 * sin(2 * pi * gametime / 10)),Ceil(100 -80 * sin(2 * pi * gametime / 10)),Ceil(180 -80 * sin(2 * pi * gametime / 10))
+color = 0 
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM B&W Shock PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992005)
+time = 1
+add = Ceil(100 -80 * sin(2 * pi * gametime / 10)),Ceil(100 -80 * sin(2 * pi * gametime / 10)),Ceil(100 -80 * sin(2 * pi * gametime / 10))
+color = 0 
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Evil Red PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992006)
+time = 1
+add = Ceil(0 + 40 * sin(2 * pi * gametime / 10)),Ceil(-200 + 80 * sin(2 * pi * gametime / 10)),Ceil(-200 + 40 * sin(2 * pi * gametime / 10))
+color = 0 
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Evil Purple PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992007)
+time = 1
+add = Ceil(0 + 40 * sin(2 * pi * gametime / 10)),Ceil(-200 + 80 * sin(2 * pi * gametime / 10)),Ceil(0 + 40 * sin(2 * pi * gametime / 10))
+color = 0 
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Slow Pulse Fire PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992008)
+time = 1
+add = Ceil(224 -160 * sin(2 * pi * gametime / 14)),Ceil(68 -160 * sin(2 * pi * gametime / 14)),Ceil(-40 -160 * sin(2 * pi * gametime / 14))
+mul = 256,192,128
+color = 0
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Yellow/Orange Burn PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992009)
+time = 1
+add = Ceil(40 + 40 * sin(2 * pi * gametime / 10)),Ceil(-70 + 30 * sin(2 * pi * gametime / 10)),Ceil(-200 + 0 * sin(2 * pi * gametime / 10))
+color     = 0                                        
+invertall = 0  
+ignorehitpause = 1
+
+[State -2, CAPCOM Blue/Violet/Crimson Burn PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992010)
+time = 1
+add = Ceil(-104 + 56 * sin(2 * pi * gametime / 10)),Ceil(-104 + 56 * sin(2 * pi * gametime / 10)),Ceil(7 + 0 * sin(2 * pi * gametime / 10))
+color     = 0
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Red/Blood Burn PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992011)
+time = 1
+add = Ceil(7 + 30 * sin(2 * pi * gametime / 10)),Ceil(-200 + 30 * sin(2 * pi * gametime / 10)),Ceil(-200 + 0 * sin(2 * pi * gametime / 10))
+color     = 0 
+ignorehitpause = 1
+
+[State -2, CAPCOM Dust/Gray Burn PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992012)
+time = 1
+add = Ceil(-100 -10 * sin(2 * pi * gametime / 10)),Ceil(-100 -10 * sin(2 * pi * gametime / 10)),Ceil(-100 -10 * sin(2 * pi * gametime / 10))
+color     = 0
+invertall = 0
+ignorehitpause = 1
+
+[State -2, CAPCOM Fade to Darker fade to brighter PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992013)
+time = 1
+add = Ceil(0 -65 * sin(2 * pi * gametime / 26)),Ceil(0 -65 * sin(2 * pi * gametime / 26)),Ceil(0 -65 * sin(2 * pi * gametime / 26))
+mul = 164,164,164
+invertall = 0
+color = 256
+ignorehitpause = 1
+
+[State -2, CAPCOM Black and White Negative PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992014)
+time = 1
+add = Ceil(0 + 55 * sin(2 * pi * gametime / 10)),Ceil(0 + 55 * sin(2 * pi * gametime / 10)),Ceil(0 + 55 * sin(2 * pi * gametime / 10))
+mul = 200,200,200
+invertall = 0
+color = 0 
+ignorehitpause = 1
+
+[State -2, CAPCOM Rainbow PalFX]
+type = PalFX
+trigger1 = enemy, NumExplod(99992015)
+time = 1
+add = Floor(sin(GameTime/8)*64),Floor(sin((GameTime-85)/8)*64),Floor(sin((GameTime-170)/8)*64)
+invertall = 0
+ignorehitpause = 1
+
+
+;===============poisoning P2 see state 1510 for more info================
+
+;ID ranges include; each represents how much life per tick is lost
+;99990000 = -1
+;99990001 = -2
+;99990002 = -3
+;99990003 = -4
+;99990004 = -5
+;99990005 = -10
+;99990006 = -15
+;99990007 = -20
+;99990008 = -25
+;99990009 = -30
+;ID ranges include; each represents how much life per tick is gained
+;99990010 = +1
+;99990011 = +2
+;99990012 = +3
+;99990013 = +4
+;99990014 = +5
+;99990015 = +10
+;99990016 = +15
+;99990017 = +20
+;99990018 = +25
+;99990019 = +30
+
+;this explod tells how long the duration of poison should last
+[State 0, Explod]
+type = Explod
+trigger1 = NumProjID(99990000)
+anim = 1
+ID = 99990000
+removetime = 300 ;adjusts how long p2 is in poison status
+removeongethit = 1 ;removes poison when you are hit
+ignorehitpause = 1
+
+;this explod tells how long the duration of poison PalFX should last
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990000)
+anim = 1
+ID = 99992003
+removetime = 1 
+ignorehitpause = 1
+
+;ID ranges include; each represents how much life per tick is lost
+;99990020 = -1
+;99990021 = -2
+;99990022 = -3
+;99990023 = -4
+;99990024 = -5
+;99990025 = -10
+;99990026 = -15
+;99990027 = -20
+;99990028 = -25
+;99990029 = -30
+;ID ranges include; each represents how much life per tick is gained
+;99990030 = +1
+;99990031 = +2
+;99990032 = +3
+;99990033 = +4
+;99990034 = +5
+;99990035 = +10
+;99990036 = +15
+;99990037 = +20
+;99990038 = +25
+;99990039 = +30
+
+;this explod tells how frequently the poison should take life
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990000)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990020
+removetime = 1
+
+ 
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990001)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990021
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990002)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990022
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990003)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990023
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990004)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990024
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990005)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990025
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990006)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990026
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990007)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990027
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990008)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990028
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990009)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990029
+removetime = 1
+
+;this explod tells how frequently the poison should give life
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990010)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990030
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990011)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990031
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990012)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990032
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990013)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990033
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990014)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990034
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990015)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990035
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990016)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990036
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990017)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990037
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990018)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990038
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990019)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990039
+removetime = 1
+
+
+
+;===============poisoning yourself see state 1520 for more info================
+
+;ID ranges include; each represents how much life per tick is lost
+;99990040 = -1
+;99990041 = -2
+;99990042 = -3
+;99990043 = -4
+;99990044 = -5
+;99990045 = -10
+;99990046 = -15
+;99990047 = -20
+;99990048 = -25
+;99990049 = -30
+;ID ranges include; each represents how much life per tick is gained
+;99990050 = +1
+;99990051 = +2
+;99990052 = +3
+;99990053 = +4
+;99990054 = +5
+;99990055 = +10
+;99990056 = +15
+;99990057 = +20
+;99990058 = +25
+;99990059 = +30
+
+;this explod tells how long the duration of poison should last
+[State 0, Explod]
+type = Explod
+trigger1 = NumProjID(99990040)
+anim = 1
+ID = 99990040
+removetime = 300
+
+[State 0, RemoveExplod];removes poison when you hit P2
+type = RemoveExplod
+trigger1 = P2MoveType = H
+id = 99990040
+ignorehitpause = 1
+
+;this explod tells how long the duration of poison PalFX should last
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990040)
+anim = 1
+ID = 1509
+removetime = 1
+ignorehitpause = 1
+
+[State 0, RemoveExplod];removes poison PalFX when you hit P2
+type = RemoveExplod
+trigger1 = P2MoveType = H
+id = 1509
+ignorehitpause = 1
+
+;ID ranges include; each represents how much life per tick is lost
+;99990060 = -1
+;99990061 = -2
+;99990062 = -3
+;99990063 = -4
+;99990064 = -5
+;99990065 = -10
+;99990066 = -15
+;99990067 = -20
+;99990068 = -25
+;99990069 = -30
+;ID ranges include; each represents how much life per tick is gained
+;99990070 = +1
+;99990071 = +2
+;99990072 = +3
+;99990073 = +4
+;99990074 = +5
+;99990075 = +10
+;99990076 = +15
+;99990077 = +20
+;99990078 = +25
+;99990079 = +30
+
+;this explod tells how frequently the poison should take or give life
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990040)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990060
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990041)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990061
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990042)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990062
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990043)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990063
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990044)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990064
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990045)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990065
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990046)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990066
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990047)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990067
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990048)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990068
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990049)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990069
+removetime = 1
+
+;this explod tells how frequently the poison should take or give life
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(9999005)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990070
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990051)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990071
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990052)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990072
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990053)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990073
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990054)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990074
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990055)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990075
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990056)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990076
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990057)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990077
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990058)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990078
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990059)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often the poison takes/gives life
+anim = 1
+ID = 99990079
+removetime = 1
+
+;===============it's time to take or give the life from poisoning================
+; opponent poisons you
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990020)
+value = -1
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990021)
+value = -2
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990022)
+value = -3
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990023)
+value = -4
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990024)
+value = -5
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990025)
+value = -10
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990026)
+value = -15
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990027)
+value =-20
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990028)
+value = -25
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990029)
+value = -30
+kill = 0
+
+; opponent heals you
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990030)
+value = 1
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990031)
+value = 2
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990032)
+value = 3
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990033)
+value = 4
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990034)
+value = 5
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990035)
+value = 10
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990036)
+value = 15
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990037)
+value = 20
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990038)
+value = 25
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = enemy, NumExplod(99990039)
+value = 30
+kill = 0
+
+;you poison yourself
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990060)
+value = -1
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990061)
+value = -2
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990062)
+value = -3
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990063)
+value = -4
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990064)
+value = -5
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990065)
+value = -10
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990066)
+value = -15
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990067)
+value = -20
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990068)
+value = -25
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990069)
+value = -30
+kill = 0
+
+;you heal yourself
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990070)
+value = 1
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990071)
+value = 2
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990072)
+value = 3
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990073)
+value = 4
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990074)
+value = 5
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990075)
+value = 10
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990076)
+value = 15
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990077)
+value = 20
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990078)
+value = 25
+kill = 0
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = NumExplod(99990079)
+value = 30
+kill = 0
+
+;===============taking power from P2: this is pretty much identical to poisoning so no examples are given in char================
+
+;ID ranges include; each represents how much meter per tick is lost
+;99990100 = -1
+;99990101 = -2
+;99990102 = -3
+;99990103 = -4
+;99990104 = -5
+;99990105 = -10
+;99990106 = -15
+;99990107 = -20
+;99990108 = -25
+;99990109 = -30
+;ID ranges include; each represents how much meter per tick is gained
+;99990110 = +1
+;99990111 = +2
+;99990112 = +3
+;99990113 = +4
+;99990114 = +5
+;99990115 = +10
+;99990116 = +15
+;99990117 = +20
+;99990118 = +25
+;99990119 = +30
+
+;this explod tells how long the duration of meter drain/give should last
+[State 0, Explod]
+type = null;Explod
+trigger1 = NumProjID(99990100)
+anim = 1
+ID = 99990100
+removetime = 300 ;adjusts how long p2 is meter drain/give status
+removeongethit = 1 ;removes status when you are hit
+
+;ID ranges include; each represents how much meter per tick is lost
+;99990120 = -1
+;99990121 = -2
+;99990122 = -3
+;99990123 = -4
+;99990124 = -5
+;99990125 = -10
+;99990126 = -15
+;99990127 = -20
+;99990128 = -25
+;99990129 = -30
+;ID ranges include; each represents how much meter per tick is gained
+;99990130 = +1
+;99990131 = +2
+;99990132 = +3
+;99990133 = +4
+;99990134 = +5
+;99990135 = +10
+;99990136 = +15
+;99990137 = +20
+;99990138 = +25
+;99990139 = +30
+
+;this explod tells how frequently to take meter
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990100)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990120
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990101)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990121
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990102)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990122
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990103)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990123
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990104)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990124
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990105)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990125
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990106)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990126
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990107)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990127
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990108)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990128
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990109)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990129
+removetime = 1
+
+;this explod tells how frequently to give meter
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990110)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990130
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990111)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990131
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990112)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990132
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990113)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990133
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990114)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990134
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990105)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990135
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990116)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990136
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990117)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990137
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990118)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990138
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990119)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990139
+removetime = 1
+
+;===============poisoning yourself see state 1520 for more info================
+
+;ID ranges include; each represents how much life per tick is lost
+;99990140 = -1
+;99990141 = -2
+;99990142 = -3
+;99990143 = -4
+;99990144 = -5
+;99990145 = -10
+;99990146 = -15
+;99990147 = -20
+;99990148 = -25
+;99990149 = -30
+;ID ranges include; each represents how much life per tick is gained
+;99990150 = +1
+;99990151 = +2
+;99990152 = +3
+;99990153 = +4
+;99990154 = +5
+;99990155 = +10
+;99990156 = +15
+;99990157 = +20
+;99990158 = +25
+;99990159 = +30
+
+;this explod tells how long the duration of taking/giving meter should last
+[State 0, Explod]
+type = Null;Explod
+trigger1 = NumProjID(99990140)
+anim = 1
+ID = 99990140
+removetime = 300
+
+[State 0, RemoveExplod];removes meter status when you hit P2
+type = Null;RemoveExplod
+trigger1 = P2MoveType = H
+id = 99990140
+ignorehitpause = 1
+
+;ID ranges include; each represents how much life per tick is lost
+;99990160 = -1
+;99990161 = -2
+;99990162 = -3
+;99990163 = -4
+;99990164 = -5
+;99990165 = -10
+;99990166 = -15
+;99990167 = -20
+;99990168 = -25
+;99990169 = -30
+;ID ranges include; each represents how much life per tick is gained
+;99990170 = +1
+;99990171 = +2
+;99990172 = +3
+;99990173 = +4
+;99990174 = +5
+;99990175 = +10
+;99990176 = +15
+;99990177 = +20
+;99990178 = +25
+;99990179 = +30
+
+;this explod tells how frequently the status should take or give meter
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990140)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990160
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990141)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990161
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990142)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990162
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990143)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990163
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990144)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990164
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990145)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990165
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990146)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990166
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990147)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990167
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990148)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990168
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990149)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990169
+removetime = 1
+
+;this explod tells how frequently the status should take or give meter
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990150)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990170
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990151)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990171
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990152)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990172
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990153)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990173
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990154)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990174
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990155)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990175
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990156)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990176
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990157)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990177
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990158)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990178
+removetime = 1
+[State 0, Explod]
+type = Explod
+trigger1 = NumExplod(99990159)
+trigger1 = GameTime%15 = 0 ;edit gametime% to change how often it takes/gives meter
+anim = 1
+ID = 99990179
+removetime = 1
+
+;===============it's time to take or give the meter================
+; opponent drains meter
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990120)
+value = -1
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990121)
+value = -2
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990122)
+value = -3
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990123)
+value = -4
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990124)
+value = -5
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990125)
+value = -10
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990126)
+value = -15
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990127)
+value =-20
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990128)
+value = -25
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990129)
+value = -30
+
+
+; opponent gives meter
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990130)
+value = 1
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990131)
+value = 2
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990132)
+value = 3
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990133)
+value = 4
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990134)
+value = 5
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990135)
+value = 10
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990136)
+value = 15
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990137)
+value = 20
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990138)
+value = 25
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = enemy, NumExplod(99990139)
+value = 30
+
+
+;you take your own meter
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990160)
+value = -1
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990161)
+value = -2
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990162)
+value = -3
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990163)
+value = -4
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990164)
+value = -5
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990165)
+value = -10
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990166)
+value = -15
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990167)
+value = -20
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990168)
+value = -25
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990169)
+value = -30
+
+
+;you add to your own meter
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990170)
+value = 1
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990171)
+value = 2
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990172)
+value = 3
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990173)
+value = 4
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990174)
+value = 5
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990175)
+value = 10
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990176)
+value = 15
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990177)
+value = 20
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990178)
+value = 25
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = NumExplod(99990179)
+value = 30
+;---END COPY PASTE CODE FOR -2---
+
+;==========================================================
+[Statedef -3]
+;==========================================================
+[State -3, Wrong StateType] ;DEBUG
+type= null;superpause
+triggerall = roundstate=2
+trigger1= pos y!=0 && statetype!=A && statetype!=L
+time= 99999
+ignorehitpause= 1
+
+;This controller plays a sound everytime the player lands from a jump, or from a back-dash.
+[State -3, Landing Sound]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = StateNo = 52 ;Jump land
+trigger2 = StateNo = 0 && PrevStateNo = 5120
+trigger3 = StateNo = 5201
+value = 40, 0
+
+[state 52, Land FX]
+type = helper
+triggerall = Time = 1
+trigger1 = StateNo = 52
+trigger2 = StateNo = 5201
+name = "LandFX"
+
+StateNo = 17100
+id = 17100
+postype = P1
+ownpal = 1
+keyctrl = 0
+supermovetime = 99999
+pausemovetime = 99999
+
+
+
+
+[State 0, ]
+type = Helper
+triggerall = !numHelper(52100)
+trigger1 = StateNo = 5201
+
+name = "recoverpulser"
+ID = 52100
+StateNo = 52100
+ownpal = 1
+supermovetime = 99999
+pausemovetime = 99999
+
+
+;--------------------------------------
+
+[State -3, GetHitSnd Light]
+type = PlaySnd
+triggerall = alive && (time = 1)
+triggerall = StateNo = 5000||StateNo = 5010||StateNo = 5020||StateNo = 5070||StateNo = 5080
+trigger1 = NumEnemy > 0
+trigger1 = enemynear,hitdefattr = SCA,SA,HA
+trigger2 = GetHitVar(animtype)=0 && random<250
+value = s5000,random%4
+channel = 0
+ignorehitpause = 1
+persistent = 0
+volumescale = 200
+
+[State -3, GetHitSnd Medium]
+type = PlaySnd
+triggerall = alive && (time = 1)
+triggerall = StateNo = 5000||StateNo = 5010||StateNo = 5020||StateNo = 5070||StateNo = 5080
+trigger1 = NumEnemy > 0
+trigger1 = enemynear,hitdefattr = SCA,SA,HA
+trigger2 = GetHitVar(animtype)=1 && random<375
+value = s5000,10+random%5
+channel = 0
+ignorehitpause = 1
+persistent = 0
+volumescale = 200
+
+[State -3, GetHitSnd Hard]
+type = PlaySnd
+triggerall = alive && (time = 1)
+triggerall = StateNo = 5000||StateNo = 5010||StateNo = 5020||StateNo = 5070||StateNo = 5080
+trigger1 = NumEnemy > 0
+trigger1 = enemynear,hitdefattr = SCA,SA,HA
+trigger2 = GetHitVar(animtype)>=2 && random<500
+value = s5000,20+random%6
+channel = 0
+ignorehitpause = 1
+persistent = 0
+volumescale = 200
+
+;--------------------------------------
+
+
+[State -3, Prevent Crossup]
+type = width
+triggerall = NumEnemy
+trigger1 = movetype != H
+trigger1 = facing != enemynear, facing
+edge = 4, 0
+ignorehitpause = 1
+
+[State -3, No walk during turning animation]
+type = VelSet
+trigger1 = anim=5
+x = 0
+
+;-----------------------------------------------------------
+;Timer is frozen when you perform supermoves.
+;So you won't have "Time Over!" while attacking the enemy.
+[State -3, AssertSpecial]
+type        = AssertSpecial
+triggerall    = !WinKO            ;remember to put this otherwise no winpose after the supermove!
+;trigger1        = StateNo = [2710, 2795]
+trigger1        = StateNo = [3000, 3999]
+ignorehitpause    = 1
+persistent    = 1
+flag        = TimerFreeze
+
+
+;--STOP SOUNDS-----------------------------------------------------
+[State -3, StopSND, Power charging]
+type		= StopSND
+trigger1		= StateNo != 900
+trigger1            = stateno != 701
+trigger1            = StateNo != 704
+trigger1		= StateNo != 2800 && StateNo != 2810
+trigger1            = stateno != 3600
+channel		= 3
+persistent	= 0
+
+[State -3, StopSND, Taunt sound]
+type		= StopSND
+trigger1		= (PrevStateNo = 195) && (movetype = H)
+channel		= 4
+persistent	= 0
+
+[State 1001, Power charging]
+type = stopsnd
+triggerall = prevstateno = 900
+trigger1 = movetype = H
+channel = 0
+persistent = 0
+
+[State -3, stopsnd if skip intro]
+type = stopsnd
+triggerall = stateno=0
+trigger1 = prevstateno=[700,709]
+channel = 0
+
+[State -3, stopsnd if skip intro]
+type = stopsnd
+triggerall = stateno=0
+trigger1 = prevstateno=[700,709]
+channel = 17
+
+[State -3, stopsnd if skip intro]
+type = stopsnd
+triggerall = stateno=0
+trigger1 = prevstateno=[700,709]
+channel = 19
+
+[State -3, stopsnd if skip intro]
+type = stopsnd
+triggerall = stateno=0
+trigger1 = prevstateno=[700,709]
+channel = 20
+
+;===============================================================================
+; Slashing Chop / Saving Strike code (Part B)
+;===============================================================================
+[state -3, animelem set frame 1]
+type = VarSet
+trigger1 = StateNo = 1300 && time = 1
+var(23) = 1
+ 
+[state -3, animelem set frame 2]
+type = VarSet
+trigger1 = StateNo = 1300 && animelem = 2
+var(23) = 2
+
+[state -3, animelem set frame 3]
+type = VarSet
+trigger1 = StateNo = 1300 && animelem = 3
+var(23) = 3
+ 
+[State -3, Change to second state]
+type = HitOverride
+trigger1 = StateNo = 1300
+attr = SCA,NA,SA,HA,NP,SP,HP
+slot = 0
+StateNo = 1301
+time = 1
+forceair = 0
+ignorehitpause = 1
+persistent = 1
+ 
+[state -3, VarSet for first state]
+type = VarSet
+trigger1 = StateNo = 1300
+var(20) = 1
+ 
+[state -3, VarSet for second state]
+type = VarSet
+trigger1 = StateNo = 1301
+var(20) = 0
+
+[State -3, health removal in second state]
+type = LifeAdd
+trigger1 = StateNo = 1301
+value = -(GetHitVar(damage))
+kill = 1
+
+
+[State 41, Train]
+type = AfterImage
+triggerall = var(51) = 2   ;Evolution afterimages
+triggerall = stateno != [4001,4002]
+trigger1 = gametime%1000 = 0 && movetype != H
+time= -1
+timegap= 1
+framegap= 4
+length= 10
+palbright= 0,0,0
+palcontrast= 0,0,150
+palpostbright= 0,0,150
+trans= add
+
+[State 1003, Helper]
+type = Helper            ;Evolution particles
+triggerall = var(51) = 2
+triggerall = stateno != [4001,4002]
+trigger1 = gametime%5 = 0 && movetype != H
+helpertype = Normal
+name = "PerseEffect"
+id = 2932
+;pos = ((random%240)-120),((random%240)-120)
+pos =((random%Const(Size.Ground.Front))-5),((random%Const(Size.Height))-50)
+postype = p1
+facing = 1
+stateno = 2932
+keyctrl = 0
+ownpal = 1
+sprpriority=-1
+supermovetime = 9999
+pausemovetime = 9999
+ignorehitpause = 1
+size.xscale = .02 - (.1*.5)
+size.yscale = .02 - (.1*.5)
+
+
+;================================================================================
+; ------- Cheap K.O. system By Warusaki3 & POTS --------
+;===============================================================================
+
+[State -3, Cheap KO]
+type = changestate
+trigger1 = !alive && (StateNo = [5000, 5010])
+trigger1 = (PrevStateNo = [120, 131]) || (PrevStateNo = [140, 141]) || (PrevStateNo = [150, 153])
+value = 5950
+ignorehitpause = 1
+
+[State -2,KO]
+type = VarSet
+triggerall = StateNo = [120,159]
+trigger1 = StateType = S
+ignorehitpause = 1
+fvar(1) = 0
+
+[State -2,KO]
+type = VarSet
+triggerall = StateNo = [120,159]
+trigger1 = StateType = C
+ignorehitpause = 1
+fvar(1) = 1
+
+[State -2,KO]
+type = VarSet
+triggerall = StateNo = [120,159]
+trigger1 = StateType = A
+ignorehitpause = 1
+fvar(1) = 2
+
+
+[State -3, Variable Height]
+type= playerpush
+triggerall= statetype=A && movetype!=H && numenemy
+triggerall= p2bodydist x = [-(enemynear,const(size.ground.back) + enemynear,const(size.ground.front)), 0]; checks if both characters are within each other's width
+trigger1= p2statetype=S
+trigger1= p2dist y >= (enemynear,const(size.height) )
+trigger2= p2statetype=C
+trigger2= p2dist y >= (enemynear,const(size.height) - 48)
+trigger3= p2statetype=L
+trigger3= p2dist y >= 11
+value= 0
+ignorehitpause= 1

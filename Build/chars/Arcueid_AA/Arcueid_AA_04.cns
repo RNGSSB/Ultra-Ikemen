@@ -1,0 +1,1396 @@
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+; -3ステート（ゲーム中に条件が成立すればいつでも開始）
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef -3]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;アルクェイド　ブリュンスタッド　AI設定 （㍻㌢さんのAI説明書を参考にさしてもらいました。）
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,AILv]
+Type     = VarSet
+Trigger1 = 1
+V        = 59
+Value    = 10
+
+[State -3, AI]
+Type       = VarSet
+triggerall = !Ishelper
+TriggerAll = Var(1) != 1&&Var(59) != 0
+TriggerAll = RoundState = [0,2]
+;Trigger13 = 1;				AIを常時オンにする場合、左端の;を削除
+Trigger1   = Command = "CPU01"||Command = "CPU02"||Command = "CPU03"||Command = "CPU04"||Command = "CPU05"
+Trigger2   = Command = "CPU06"||Command = "CPU07"||Command = "CPU08"||Command = "CPU09"||Command = "CPU10"
+Trigger3   = Command = "CPU11"||Command = "CPU12"||Command = "CPU13"||Command = "CPU14"||Command = "CPU15"
+Trigger4   = Command = "CPU16"||Command = "CPU17"||Command = "CPU18"||Command = "CPU19"||Command = "CPU20"
+Trigger5   = Command = "CPU21"||Command = "CPU22"||Command = "CPU23"||Command = "CPU24"||Command = "CPU25"
+Trigger6   = Command = "CPU26"||Command = "CPU27"||Command = "CPU28"||Command = "CPU29"||Command = "CPU30"
+Trigger7   = Command = "CPU31"||Command = "CPU32"||Command = "CPU33"||Command = "CPU34"||Command = "CPU35"
+Trigger8   = Command = "CPU36"||Command = "CPU37"||Command = "CPU38"||Command = "CPU39"||Command = "CPU40"
+Trigger9   = Command = "AI_41"||Command = "AI_42"||Command = "AI_43"||Command = "AI_44"||Command = "AI_45"
+Trigger10  = Command = "AI_46"||Command = "AI_47"||Command = "AI_48"||Command = "AI_49"||Command = "AI_50"
+Trigger11  = NumHelper(9000) != 0
+Trigger11  = Helper(9000),var(1) = 1&&RoundState = [0,2]
+V          = 1
+Value      = 1
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;Varset
+;━━━━━━━━━━━━━━━━━
+[State -3,タッグ用生死判別]
+Type = VarSet
+triggerall = Var(1) = 1
+triggerall = RoundState = 2
+trigger1 = NumEnemy = 1
+trigger2 = NumEnemy = 2
+trigger2 = EnemyNear(0),life > 0
+var(58) = 0
+IgnoreHitPause = 1
+
+[State -3,タッグ用生死判別]
+Type = VarSet
+triggerall = Var(1) = 1
+triggerall = RoundState = 2
+trigger1 = NumEnemy = 2
+trigger1 = EnemyNear(0),life <= 0
+var(58) = 1
+IgnoreHitPause = 1
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;AI起動ヘルパー
+;━━━━━━━━━━━━━━━━━
+[State -3,AI起動用ヘルパー]
+Type       = Helper
+triggerall = !Ishelper
+Trigger1   = NumHelper(9000) = 0&&Var(1) != 1
+Trigger1   = RoundState = 2&&alive&&StateNo = 0
+Stateno    = 9000
+ID         = 9000
+Pos        = 20,-60
+PosType    = P1
+Ownpal     = 1
+Keyctrl    = 1
+SuperMoveTime  = 9999999
+PauseMoveTime  = 9999999
+ignorehitpause = 1
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;			AI関連記述
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;切り替えし
+;PrevStateNo = [120,159] PrevStateNo = [5000,5270] EnemyNear(var(58)),HitDefAttr = SCA,AT;投げ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;ゲージ技切り返し
+[State -3,Lebensende（投げ抜け）]
+Type       = ChangeState
+Value      = 3000
+TriggerAll = Var(1) = 1
+TriggerAll = StateType!=A
+TriggerAll = RoundState=2
+TriggerAll = Ctrl
+TriggerAll = EnemyNear(var(58)),HitDefAttr= SCA,AT,AA,AP
+TriggerAll = power>=3000||Power=Powermax
+TriggerAll = var(3)>=1000
+triggerall = Life <= Lifemax/4
+TriggerAll = Random<=var(59)*100
+TriggerAll = P2BodyDist X = [-10,10]
+TriggerAll = EnemyNear(var(58)),Time>=30
+Trigger1   = EnemyNear(var(58)),Time>=50
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,空想具現化・焔（投げ抜け）]
+Type     = ChangeState
+Value    = 2300
+TriggerAll = Var(1) = 1
+TriggerAll = StateType!=A
+TriggerAll = RoundState=2
+TriggerAll = Ctrl
+TriggerAll = EnemyNear(var(58)),HitDefAttr = SCA,AT
+TriggerAll = EnemyNear(Var(58)),StateType!=A
+TriggerAll = power>=1000||Power=Powermax
+TriggerAll = var(3)>=500
+TriggerAll = Random<=var(59)*100
+TriggerAll = P2BodyDist X = [-5,10]
+TriggerAll = EnemyNear(var(58)),Time>=30
+Trigger1   = EnemyNear(var(58)),Time>=50
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,空想具現化・海（飛び道具抜け）]
+Type       = ChangeState
+Value      = 2400
+TriggerAll = Var(1) = 1
+TriggerAll = StateType!=A
+TriggerAll = RoundState=2
+TriggerAll = Ctrl
+TriggerAll = EnemyNear(var(58)),HitDefAttr= SCA,AP,AT
+TriggerAll = power>=1000||Power=Powermax
+TriggerAll = var(3)>=500
+TriggerAll = Random<=var(59)*100
+TriggerAll = P2BodyDist X = [-10,320]
+TriggerAll = EnemyNear(var(58)),Time>=30
+Trigger1   = EnemyNear(var(58)),Time>=50
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,せーのっ！（飛び道具抜け）]
+Type     = ChangeState
+Value    = 1120
+TriggerAll = Var(1) = 1
+TriggerAll = StateType!=A
+TriggerAll = RoundState=2
+TriggerAll = Ctrl
+TriggerAll = EnemyNear(var(58)),HitDefAttr = SCA,AP
+TriggerAll = power>=1000||Power=Powermax
+TriggerAll = Random<=var(59)*100
+TriggerAll = P2BodyDist X = [-10,320]
+TriggerAll = EnemyNear(var(58)),Time>=30
+Trigger1   = EnemyNear(var(58)),Time>=50
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,喰らい抜けバースト]
+type = ChangeState
+value = ifelse(statetype!=A,750,755)
+triggerall = RoundState = 2
+TriggerAll = Var(1) = 1
+Triggerall = power>=500||Power=Powermax
+triggerall = Var(26) = 0
+triggerall = life > 0 && Life < 300
+TriggerAll = Alive
+triggerall = MoveType = H
+Triggerall = P2MoveType = A
+triggerall = P2bodydist X = [-72,72]
+triggerall = P2bodydist Y = [-65,65]
+TriggerAll = Random <= var(59)*100
+trigger1 = stateno = 5000 && time > 0
+trigger2 = stateno = 5010 && time > 0
+trigger3 = stateno = 5020 && time > 0
+trigger4 = stateno = 5070 && time > 0
+trigger5 = stateno != 5000 && stateno != 5010 && stateno != 5020 && stateno != 5070
+trigger5 = stateno = [5001,5099]
+
+[State -3,シールド(地上)成功]
+Type       = ChangeState
+Value      = 700
+TriggerAll = RoundState = 2
+TriggerAll = Var(1) = 1
+TriggerAll = StateType != A
+Triggerall = P2StateType != A
+Triggerall = P2BodyDist X = [-5,50]
+triggerall = power>=500||Power=Powermax
+Triggerall = Random <= var(59)*100
+Trigger1   = stateno = 160&&time >= 5
+Trigger2   = stateno = 161&&time >= 5
+
+[State -3,シールド(空中)成功]
+Type       = ChangeState
+Value      = 720
+triggerall = RoundState = 2
+TriggerAll = Var(1) = 1
+TriggerAll = StateType = A
+Triggerall = P2BodyDist X = [-5,50]
+triggerall = enemynear(var(58)),pos Y > pos Y
+triggerall = power>=500||Power=Powermax
+Triggerall = Random <= var(59)*100
+Trigger1   = stateno = 162&&time >= 5
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;通常技切り返し
+[State -3,飛べ！・強(対空)]
+type	   = ChangeState
+value	   = ifelse(var(3) >= 500&&power >= 500,2100,1210)
+triggerall = RoundState = 2
+TriggerAll = Var(1) = 1
+TriggerAll = StateType != A
+triggerall = p2stateno != [5100,5350]
+triggerall = p2statetype!=L 
+trigger1 = Ctrl || StateNo = [21,22]
+trigger1 = Random <= var(59)*85
+Trigger1 = P2StateType = A
+Trigger1 = P2MoveType = A||P2MoveType = I
+Trigger1 = P2BodyDist X = [-5,60]
+Trigger1 = P2BodyDist Y = [-85,10]
+
+[State -3,飛べ！・弱(空中)(対空)]
+Type = ChangeState
+Value = 1203
+TriggerAll = RoundState = 2
+TriggerAll = Var(1) = 1
+TriggerAll = StateType = A
+TriggerAll = p2stateno != [5100,5350]
+TriggerAll = p2statetype!=L 
+trigger1 = Ctrl || StateNo = [21,22]
+trigger1 = Random <= var(59)*85
+Trigger1 = P2StateType = A
+Trigger1 = P2MoveType = A||P2MoveType = I
+Trigger1 = P2BodyDist X = [-10,60]
+Trigger1 = P2BodyDist Y = [-85,10]
+
+[State -3,屈パンチ]
+Type       = ChangeState
+value      = 400
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = EnemyNear(Var(58)),StateType=S
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X = [-5,45]
+TriggerAll = P2BodyDist Y >= 10
+Triggerall = ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1   = Random<=Var(59)*85
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,屈パンチ 牽制]
+Type       = ChangeState
+value      = 400
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType != L
+TriggerAll = EnemyNear(Var(58)),MoveType != H
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X = [-5,45]
+TriggerAll = P2BodyDist Y >= -10
+TriggerAll = (EnemyNear(Var(58)),StateNo != [120,159])||EnemyNear(Var(58)),StateType=A
+TriggerAll = Ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1   = Random<=Var(59)*85
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,屈キック]
+Type       = ChangeState
+value      = 410
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = EnemyNear(Var(58)),StateType=S
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X = [-5,50]
+TriggerAll = P2BodyDist Y >= 10
+Triggerall = ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1 = Random<=Var(59)*85
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,屈キック 牽制]
+Type       = ChangeState
+value      = 410
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType != L
+TriggerAll = EnemyNear(Var(58)),MoveType != H
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X = [-5,50]
+TriggerAll = P2BodyDist Y >= 10
+TriggerAll = (EnemyNear(Var(58)),StateNo != [120,159])||EnemyNear(Var(58)),StateType=A
+TriggerAll = Ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1   = Random<=Var(59)*85
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,屈斬り]
+Type       = ChangeState
+value      = 420
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = EnemyNear(Var(58)),StateType=S
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X = [-5,60]
+TriggerAll = P2BodyDist Y >= 10
+Triggerall = ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1 = Random<=Var(59)*85
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,屈斬り 牽制]
+Type       = ChangeState
+value      = 420
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType != L
+TriggerAll = EnemyNear(Var(58)),MoveType != H
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X = [-5,60]
+TriggerAll = P2BodyDist Y >= 10
+TriggerAll = (EnemyNear(Var(58)),StateNo != [120,159])||EnemyNear(Var(58)),StateType=A
+TriggerAll = Ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1   = Random<=Var(59)*85
+Trigger2   = PrevStateNo=[120,159]
+
+[State -3,回り込み (打撃・飛び道具無敵)]
+Type = ChangeState
+Value = 920
+TriggerAll=Var(1) = 1
+TriggerAll=StateType != A
+TriggerAll=ctrl||stateno = 20||stateno = 21||stateno = 22||stateno = 100
+TriggerAll=P2BodyDist X>97||(EnemyNear,AnimTime<=-23&&!EnemyNear,Ctrl)
+TriggerAll=EnemyNear(var(58)),HitDefAttr=SCA,AA,AP
+TriggerAll=InGuardDist
+TriggerAll=Random<=Var(59)*60||Var(59)>8
+TriggerAll=EnemyNear(var(58)),Time>=30||(!Time&&Var(59)>8)||Var(59)>9||EnemyNear(var(58)),Ctrl
+Trigger1 = EnemyNear(var(58)),Time>=50||Var(59)>8
+Trigger2 = PrevStateNo = [5000,5270]
+Trigger3 = (PrevStateNo = [120,159])
+Trigger4 = EnemyNear,Ctrl
+
+[State -3,バクステ(投げ抜け)]
+Type       = ChangeState
+Value      = 105
+TriggerAll = Var(1) = 1
+TriggerAll = StateType != A
+TriggerAll = RoundState = 2
+TriggerAll = ctrl||stateno = 20||stateno = 21||stateno = 22||stateno = 100
+TriggerAll = EnemyNear(var(58)),HitDefAttr=SCA,AT
+TriggerAll = P2BodyDist X=[-5,90]
+TriggerAll = EnemyNear(var(58)),vel x<3
+TriggerAll = EnemyNear(var(58)),MoveType=A
+TriggerAll = Random<=Var(59)*60||Var(59)>8
+TriggerAll = EnemyNear(var(58)),Time>=30||(!Time&&Var(59)>8)||Var(59)>9
+Trigger1   = EnemyNear(var(58)),Time>=50||Var(59)>8
+Trigger2   = (PrevStateNo=[5000,5270])
+Trigger3   = (PrevStateNo=[120,159])
+
+[State -3,ジャンプ(投げ抜け)]
+Type       = ChangeState
+Value      = 40
+TriggerAll = Var(1) = 1
+TriggerAll = StateType!=A
+TriggerAll = RoundState = 2
+TriggerAll = ctrl||stateno = 20||stateno = 21||stateno = 22||stateno = 100
+TriggerAll = EnemyNear(var(58)),HitDefAttr=SCA,AT
+TriggerAll = Random<=Var(59)*60||Var(59)>8
+TriggerAll = EnemyNear(var(58)),Time>=30||(!Time&&Var(59)>8)||Var(59)>9
+Trigger1   = EnemyNear(var(58)),Time>=50||Var(59)>9
+Trigger2   = (PrevStateNo=[5000,5270])
+Trigger3   = (PrevStateNo=[120,159])
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;ガード/ガーキャン行動
+;inguarddist EnemyNear(var(58)),HitDefAttr = SCA,AA;打撃
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[state -3,Lebensende]
+type       = changestate
+value      = 3000
+triggerall = statetype != A
+triggerall = roundstate = 2
+TriggerAll = power>=3000||Power=Powermax
+TriggerAll = var(3)>=1000
+TriggerAll = Var(1) = 1
+triggerAll = RoundState = 2
+triggerall = P2BodyDist X = [0,35]
+triggerall = p2movetype = A
+triggerall = stateno = [150,155]
+Trigger1   = Random<=var(59)*100&&life <= 200
+ignorehitpause = 1
+
+[state -3,空想具現化・地]
+type       = changestate
+value      = 2200
+triggerall = statetype != A
+triggerall = roundstate = 2
+TriggerAll = power>=1000||Power=Powermax
+TriggerAll = var(3)>=500
+TriggerAll = Var(1) = 1
+triggerAll = RoundState = 2
+triggerall = P2BodyDist X = [0,35]
+triggerall = p2movetype = A
+triggerall = stateno = [150,155]
+Trigger1   = Random<=var(59)*100&&life<=550
+ignorehitpause = 1
+
+[State -3,シールド(地上)]
+Type       = ChangeState
+Value      = 160
+TriggerAll = Var(1) = 1
+TriggerAll = Alive=1&&RoundState=2
+TriggerAll = StateType != A
+TriggerAll = p2StateType!=C
+TriggerAll = EnemyNear(Var(58)),MoveType=A
+triggerall = EnemyNear,HitDefAttr = S,AA,AP
+Triggerall = power >= 500
+TriggerAll = PrevStateNo!=[160,162]
+TriggerAll = StateNo!=[160,162]
+TriggerAll = Enemy,NumProj=0
+TriggerAll = (EnemyNear(Var(58)),StateType=A&&EnemyNear(Var(58)),Vel Y>=-1)||(EnemyNear(Var(58)),StateType!=A&&EnemyNear(Var(58)),StateType=S)
+Triggerall = P2BodyDist X = [-5,50]
+Triggerall = P2BodyDist Y = [-80,4]
+Trigger1 = ctrl||StateNo = [21,22]
+Trigger1 = Random<=Var(59)*20
+Trigger1 = InGuardDist
+
+[State -3,シールド(屈)]
+Type       = ChangeState
+Value      = 161
+TriggerAll = Var(1) = 1
+TriggerAll = Alive=1&&RoundState=2
+TriggerAll = StateType != A
+TriggerAll = p2StateType!=S
+TriggerAll = EnemyNear(Var(58)),MoveType=A
+triggerall = EnemyNear,HitDefAttr = C,AA,AP
+Triggerall = power >= 500
+TriggerAll = PrevStateNo!=[160,162]
+TriggerAll = StateNo!=[160,162]
+TriggerAll = Enemy,NumProj=0
+TriggerAll = (EnemyNear(Var(58)),StateType=A&&EnemyNear(Var(58)),Vel Y>=-1)||(EnemyNear(Var(58)),StateType!=A&&EnemyNear(Var(58)),StateType=C)
+Triggerall = P2BodyDist X = [-5,50]
+Trigger1 = ctrl||StateNo = [21,22]
+Trigger1 = Random<=Var(59)*20
+Trigger1 = InGuardDist
+
+[State -3,シールド(空中)]
+Type       = ChangeState
+Value      = 162
+TriggerAll = Var(1) = 1
+TriggerAll = Alive=1&&RoundState=2
+TriggerAll = StateType = A
+TriggerAll = EnemyNear(Var(58)),MoveType=A
+triggerall = EnemyNear,HitDefAttr = A,AA,AP
+Triggerall = power >= 500
+TriggerAll = PrevStateNo!=[160,162]
+TriggerAll = StateNo!=[160,162]
+TriggerAll = Enemy,NumProj=0
+TriggerAll = (EnemyNear(Var(58)),StateType=A&&EnemyNear(Var(58)),Vel Y>=-1)||(EnemyNear(Var(58)),StateType!=A&&EnemyNear(Var(58)),StateType=A)
+Triggerall = P2BodyDist X = [-5,50]
+Triggerall = ctrl||stateno = 40||stateno = 45
+triggerall = Random<=Var(59)*20
+Trigger1 = InGuardDist
+Trigger1 = P2BodyDist Y=[-70,70]
+Trigger1 = EnemyNear(Var(58)),StateType=A
+Trigger2 = P2BodyDist Y=[0,90]
+Trigger2 = EnemyNear(Var(58)),StateType!=A
+Trigger2 = Vel Y>=-1
+IgnoreHitPause=1
+
+[state -3,ガードキャンセル]
+type = changestate
+value = 730
+triggerall = statetype != A
+triggerall = roundstate = 2
+triggerall = power >= 500
+TriggerAll = Var(1) = 1
+triggerAll = RoundState = 2
+triggerall = P2BodyDist X = [0,35]
+triggerall = p2movetype = A
+triggerall = stateno = [150,155]
+Trigger1 = Random <= var(59)*10&&life <= 350
+ignorehitpause = 1
+
+[State -3,ガード開始]
+Type = ChangeState
+Value = 120
+TriggerAll = Var(1) = 1
+TriggerAll = Random<=Var(59)*100
+TriggerAll = RoundState=2
+TriggerAll = ctrl||stateno = 21||stateno = 22||stateno = 100
+TriggerAll = StateNo!=[120,159]
+TriggerAll = StateNo!=[700,730]
+Trigger1 =! EnemyNear(Var(58)),HitDefAttr= ,NT,ST,HT&&!(EnemyNear(Var(58)),StateType=C&&StateType=A)
+Trigger1 = InGuardDist
+Trigger2 = InGuardDist
+Trigger2 = EnemyNear,NumHelper>0 && EnemyNear,NumProj>0
+IgnoreHitPause=1
+
+[State -3,空想具現化 焔]
+Type       = ChangeState
+value      = 2300
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType != L
+TriggerAll = EnemyNear(Var(58)),StateType!=A
+TriggerAll = P2BodyDist X = [-10,10]
+TriggerAll = StateNo=[120,155]
+TriggerAll = power>=1000||Power=Powermax
+TriggerAll = var(3)>=500
+Trigger1   = Random<=Var(59)*100
+Trigger2   = p2StateNo=[120,155]
+
+[State -3,真祖投げ]
+Type = ChangeState
+value = 800
+TriggerAll=Var(1) = 1
+TriggerAll=RoundState = 2
+TriggerAll=StateType != A
+TriggerAll=EnemyNear(Var(58)),StateType != L
+TriggerAll = EnemyNear(Var(58)),StateType!=A
+TriggerAll=P2BodyDist X = [-10,10]
+TriggerAll=StateNo=[120,155]
+Trigger1 = Random<=Var(59)*80
+
+[state -3,バクステ;投げ対策]
+Type = ChangeState
+value = 105
+TriggerAll=Var(1) = 1
+TriggerAll=RoundState = 2
+TriggerAll=StateType != A
+TriggerAll=EnemyNear(var(58)),StateType != L
+TriggerAll=EnemyNear(var(58)),MoveType != H
+TriggerAll=EnemyNear(var(58)),Ctrl||EnemyNear(var(58)),MoveType = A 
+TriggerAll=!InGuardDist
+TriggerAll=P2BodyDist X = [-5,60]
+TriggerAll=!P2BodyDist Y
+TriggerAll=EnemyNear(var(58)),StateType != A
+TriggerAll=Ctrl||StateNo=[10,23]
+Trigger1 = Random <= var(59)*100
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;地上起き攻め 
+;EnemyNear(Var(58)),StateType = L EnemyNear(Var(58)),AnimTime P2bodyDist Y P2bodyDist X
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,邪魔よ！・強]
+Type = ChangeState
+value =  1010
+TriggerAll = Var(1) = 1
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType = L
+TriggerAll = Random <= Var(59)*100
+TriggerAll = Ctrl||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+TriggerAll = P2BodyDist X <= 80
+Trigger1 = EnemyNear(Var(58)),StateNo = 5120
+Trigger1 = EnemyNear(Var(58)),AnimTime = -11
+
+[State -3,屈パンチ]
+Type = ChangeState
+Value = 400
+TriggerAll = Var(1) = 1
+TriggerAll = Random<=Var(59)*60
+TriggerAll = RoundState=2
+TriggerAll = StateType!=A
+TriggerAll = EnemyNear(Var(58)),StateType=L
+TriggerAll = P2BodyDist X<=40
+TriggerAll = Ctrl||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+Trigger1 = EnemyNear(Var(58)),StateNo=5120
+Trigger1 = EnemyNear(Var(58)),AnimTime=-8
+
+[State -3,屈キック]
+Type = ChangeState
+Value = 410
+TriggerAll = Var(1) = 1
+TriggerAll = Random<=Var(59)*60
+TriggerAll = RoundState=2
+TriggerAll = StateType!=A
+TriggerAll = EnemyNear(Var(58)),StateType=L
+TriggerAll = P2BodyDist X<=60
+TriggerAll = Ctrl||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+Trigger1 = EnemyNear(Var(58)),StateNo=5120
+Trigger1 = EnemyNear(Var(58)),AnimTime=-10
+
+[State -3,屈切り]
+Type = ChangeState
+Value = 420
+TriggerAll = Var(1) = 1
+TriggerAll = Random<=Var(59)*60
+TriggerAll = RoundState=2
+TriggerAll = StateType!=A
+TriggerAll = EnemyNear(Var(58)),StateType=L
+TriggerAll = P2BodyDist X<=80
+TriggerAll = Ctrl||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+Trigger1 = EnemyNear(Var(58)),StateNo=5120
+Trigger1 = EnemyNear(Var(58)),AnimTime=-15
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;空中起き攻め(詐欺飛び) 
+;EnemyNear(Var(58)),StateType = L EnemyNear(Var(58)),AnimTime P2bodyDist Y P2bodyDist X 
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,真祖投げ(空中)]
+Type = ChangeState
+Value = 820
+triggerall = RoundState = 2
+TriggerAll = Var(1) = 1
+TriggerAll = !Ishelper
+TriggerAll = StateType = A
+TriggerAll = Random<=var(59)*100
+Trigger1 = P2BodyDist X = [-10,30]
+Trigger1 = P2BodyDist Y = [-40,90]
+Trigger1 = Ctrl = 1
+trigger2 = (stateno = 620)&&(movecontact)&&FrontEdgeDist < 65
+trigger3 = (stateno = 1150)&&(movecontact)&&FrontEdgeDist < 65
+
+[State -3,空中弱攻撃]
+Type = ChangeState
+Value = 600
+triggerall = RoundState = 2
+TriggerAll = Var(1) = 1
+TriggerAll = !Ishelper
+TriggerAll = Inguarddist
+TriggerAll = StateType = A
+TriggerAll = Random<=var(59)*100
+Trigger1 = P2BodyDist X = [-10,30]
+Trigger1 = P2BodyDist Y = [-40,90]
+Trigger1 = Ctrl = 1
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;地上目押し 
+;Prevstateno EnemyNear(Var(58)),Movetype = H EnemyNear(Var(58)),stateno = [120,159]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,屈パンチ]
+type = ChangeState
+value      = 400
+triggerall = Var(1) = 1
+triggerall = RoundState = 2
+triggerall = StateType != A
+triggerall = EnemyNear(Var(58)),StateType!=A
+triggerall = EnemyNear(Var(58)),StateType != L
+Triggerall = !inguarddist
+Triggerall = Random<=Var(59)*100
+triggerall = P2bodydist X = [-5,45]
+triggerall = P2bodydist Y = [-10,40]
+triggerall = Ctrl||stateno = 11||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+trigger1 = EnemyNear(Var(58)),MoveType = H
+Trigger2 = PalNo = [7,12]
+trigger2 = EnemyNear(Var(58)),MoveType != H
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;地上繋ぎ 
+;Movecontact MoveHit MoveGuarded AnimElem = ,>0
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,ジャンプキャンセル]
+Type       = ChangeState
+Value      = 40
+TriggerAll = Var(1) = 1
+TriggerAll = Random<=Var(59)*100
+TriggerAll = RoundState=2
+TriggerAll = StateType!=A
+TriggerAll = !IsHelper
+TriggerAll = !InGuardDist
+TriggerAll = EnemyNear(Var(58)),StateType=A
+TriggerAll = EnemyNear(Var(58)),MoveType=H
+Trigger1   = StateNo = 700&&MoveHit
+Trigger2   = StateNo = 415&&MoveHit
+
+[State -3,屈パンチ]
+Type       = ChangeState
+value      = 400
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),Alive
+TriggerAll = EnemyNear(Var(58)),MoveType=H
+TriggerAll = p2bodydist x = [-5,45]
+TriggerAll = Ctrl||StateNo=11
+Trigger1 = Random<=Var(59)*100
+trigger2 = Stateno = 200&&MoveGuarded
+trigger3 = Stateno = 710
+
+[State -3,屈パンチ]
+type = ChangeState
+value = 401
+triggerall = Var(1) = 1
+triggerall = roundstate = 2
+triggerall = statetype!= A
+triggerall = p2bodydist x = [-5,45]
+Trigger1 = Random <= var(59)*100
+trigger1 = Stateno = 400&&MoveContAct
+
+[State -3,屈キック]
+type = ChangeState
+value = 410
+triggerall = Var(1) = 1
+triggerall = roundstate = 2
+triggerall = statetype!= A
+triggerall = p2bodydist x = [-5,55]
+Trigger1 = Random <= var(59)*100
+trigger1 = Stateno = 401&&MoveContAct
+
+[State -3,屈斬り]
+type = ChangeState
+value = 420
+triggerall = Var(1) = 1
+triggerall = roundstate = 2
+triggerall = statetype!= A
+triggerall = p2bodydist x = [-5,65]
+Trigger1 = Random <= var(59)*100
+trigger1 = Stateno = 410&&MoveContAct
+
+[State -3,Lebensende]
+type = ChangeState
+value = 3000
+triggerall = Var(1) = 1
+triggerall = roundstate = 2
+triggerall = statetype!= A
+TriggerAll = power>=3000||Power=Powermax
+TriggerAll = var(3)>=1000
+triggerall = Life <= Lifemax/4
+Trigger1 = Random <= var(59)*100
+trigger1 = StateNo = 410&&movehit
+trigger2 = StateNo = 1002&&movehit
+trigger3 = StateNo = 220&&movehit
+trigger4 = Stateno = 710
+
+[State -3,ジャンプ蹴り(エリアル始動)]
+type = ChangeState
+value = ifelse(p2bodydist x <50,225,1000)
+triggerall = Var(1) = 1
+triggerall = roundstate = 2
+triggerall = statetype!= A
+Trigger1 = Random <= var(59)*100
+trigger1 = StateNo = 420&&movehit
+trigger2 = StateNo = 1002&&movehit
+trigger3 = StateNo = 220&&movehit
+trigger4 = Stateno = 710
+
+[State -3,追撃.1]
+type = ChangeState
+value = 1001
+triggerall = roundstate = 2
+triggerall = Var(1) = 1
+triggerall = statetype != A
+triggerall = p2bodydist x = [-5,65]
+triggerall = Random<=Var(59)*100
+trigger1 = (Stateno = 1000)&&MoveContAct
+trigger2 = (Stateno = 1010)&&MoveContAct
+
+[State -3,追撃.2]
+type = ChangeState
+value = 1002
+triggerall = roundstate = 2
+triggerall = Var(1) = 1
+triggerall = statetype != A
+triggerall = p2bodydist x = [-5,65]
+triggerall = Random<=Var(59)*100
+trigger1 = (Stateno = 1001)&&MoveContAct
+
+[State -3,追撃.3]
+type = ChangeState
+value = 1003
+triggerall = roundstate = 2
+triggerall = Var(1) = 1
+triggerall = statetype != A
+triggerall = p2bodydist x = [-5,65]
+triggerall = Random<=Var(59)*100
+trigger1 = (Stateno = 1002)&&MoveContAct
+
+[State -3,立パンチ]
+type = ChangeState
+value = 200
+triggerall = Var(1) = 1
+triggerall = roundstate = 2
+triggerall = statetype!= A
+triggerall = p2bodydist x = [-5,45]
+Trigger1 = Random <= var(59)*65
+trigger1 = Stateno = 700&&MoveHit
+
+[State -3,立キック]
+type = ChangeState
+value = 210
+triggerall = Var(1) = 1
+triggerall = roundstate = 2
+triggerall = statetype!= A
+triggerall = p2bodydist x = [-5,50]
+Trigger1 = Random <= var(59)*65
+trigger1 = Stateno = 200&&MoveHit
+
+[State -3,立斬り]
+type = ChangeState
+value = 220
+triggerall = Var(1) = 1
+triggerall = roundstate = 2
+triggerall = statetype!= A
+triggerall = p2bodydist x = [-5,60]
+Trigger1 = Random <= var(59)*65
+trigger1 = Stateno = 210&&MoveHit
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;空中目押し 
+;AnimTime=0 Prevstateno EnemyNear,Movetype = H EnemyNear,stateno = [120,159]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;隙付き
+;EnemyNear,MoveType=I !EnemyNearCtrl EnemyNear,StateType=A
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,Lebensende]
+type = ChangeState
+triggerall = Var(1) = 1
+triggerall = RoundState = 2
+triggerall = StateType != A
+TriggerAll = var(3)>=500
+TriggerAll = life<=lifemax/4
+triggerall = EnemyNear(Var(58)),StateType != L
+Triggerall = !inguarddist
+Triggerall = power>=3000||Power=Powermax
+Triggerall = Random<=var(59)*100
+triggerall = P2bodydist X = [-10,40]
+triggerall = Ctrl||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+TriggerAll = EnemyNear(Var(58)),AnimTime <= -9
+triggerAll = EnemyNear(Var(58)),MoveType = I
+trigger1 = (EnemyNear(Var(58)),StateNo = [200,449])
+Trigger2 = EnemyNear(Var(58)),StateType = A
+Trigger2 = !EnemyNear(Var(58)),Ctrl
+value = 3000
+
+[State -3,空想具現化・海]
+type = ChangeState
+triggerall = Var(1) = 1
+triggerall = RoundState = 2
+triggerall = StateType != A
+TriggerAll = var(3)>=500
+Triggerall = power>=1000||Power=Powermax
+triggerall = EnemyNear(Var(58)),StateType != L
+Triggerall = !inguarddist
+Triggerall = Random<=var(59)*100
+triggerall = P2bodydist X = [-10,320]
+triggerall = Ctrl||stateno = 20||stateno = 21||stateno = 22
+TriggerAll = EnemyNear(Var(58)),AnimTime <= -13
+triggerAll = EnemyNear(Var(58)),MoveType = I
+trigger1 = (EnemyNear(Var(58)),StateNo = [200,449])
+Trigger2 = EnemyNear(Var(58)),StateType = A
+Trigger2 = !EnemyNear(Var(58)),Ctrl
+value = 2400
+
+[State -3,せーのっ！]
+type = ChangeState
+triggerall = Var(1) = 1
+triggerall = RoundState = 2
+triggerall = StateType != A
+TriggerAll = var(3)<500
+Triggerall = power>=1000||Power=Powermax
+triggerall = EnemyNear(Var(58)),StateType != L
+Triggerall = !inguarddist
+Triggerall = Random<=var(59)*100
+triggerall = P2bodydist X = [-10,320]
+triggerall = Ctrl||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+TriggerAll = EnemyNear(Var(58)),AnimTime <= -9
+triggerAll = EnemyNear(Var(58)),MoveType = I
+trigger1 = (EnemyNear(Var(58)),StateNo = [200,449])
+Trigger2 = EnemyNear(Var(58)),StateType = A
+Trigger2 = !EnemyNear(Var(58)),Ctrl
+value = 1120
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;空中繋ぎ 
+;Movecontact MoveHit MoveGuarded AnimElem = ,>0
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,空中弱攻撃]
+type = ChangeState
+value = 600
+triggerall = Var(1) = 1
+triggerall = !Ishelper
+triggerall = roundstate = 2
+triggerall = p2bodydist X = [-10,65]
+triggerall = p2bodydist Y = [-50,90]
+triggerall = statetype = A
+TriggerAll = !IsHelper
+TriggerAll = !InGuardDist
+TriggerAll = EnemyNear(Var(58)),Alive
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),MoveType=H
+Trigger1 = Ctrl = 1||StateNo=40
+Trigger2 = StateNo = 225&&movecontact
+Trigger3 = StateNo = 1210&&movehit
+Trigger4 = StateNo = 1210&&movehit
+
+[State -3,空中中攻撃]
+type = ChangeState
+value = 610
+triggerall = Var(1) = 1
+triggerall = !Ishelper
+TriggerAll = !InGuardDist
+triggerall = roundstate = 2
+triggerall = p2bodydist X = [-10,65]
+triggerall = p2bodydist Y = [-50,90]
+triggerall = statetype = A
+trigger1 = StateNo = 600&&movecontact
+
+[State -3,空中強攻撃]
+type = ChangeState
+value = 620
+triggerall = Var(1) = 1
+triggerall = !Ishelper
+TriggerAll = !InGuardDist
+triggerall = roundstate = 2
+triggerall = p2bodydist X = [-10,70]
+triggerall = p2bodydist Y = [-50,90]
+triggerall = statetype = A
+trigger1 = StateNo = 610&&movecontact
+
+[State -3,飛べ！・弱(空中)]
+type = ChangeState
+value = 1203
+triggerall = Var(1) = 1
+triggerall = !Ishelper
+TriggerAll = !InGuardDist
+triggerall = roundstate = 2
+triggerall = p2bodydist X = [-10,70]
+triggerall = p2bodydist Y = [-50,90]
+triggerall = statetype = A
+trigger1 = StateNo = 620&&movecontact
+
+[State -3,消えろ！　強]
+type = ChangeState
+value = 1211
+triggerall = Var(1) = 1
+triggerall = !Ishelper
+TriggerAll = !InGuardDist
+triggerall = roundstate = 2
+triggerall = p2bodydist X = [-10,70]
+triggerall = p2bodydist Y = [-50,90]
+triggerall = statetype = A
+trigger1 = StateNo = 1203&&movecontact
+trigger2 = StateNo = 1213&&movecontact
+
+[State -3,おしまい！　強]
+type = ChangeState
+value = 1212
+triggerall = Var(1) = 1
+triggerall = !Ishelper
+TriggerAll = !InGuardDist
+triggerall = roundstate = 2
+triggerall = p2bodydist X = [-10,70]
+triggerall = p2bodydist Y = [-50,90]
+triggerall = statetype = A
+trigger1 = StateNo = 1211&&movecontact
+
+[State -3,真祖投げ(空中)]
+type       = ChangeState
+value      = 820
+triggerall = Var(1) = 1
+triggerall = !Ishelper
+TriggerAll = !InGuardDist
+triggerall = roundstate = 2
+triggerall = p2bodydist X = [-10,100]
+triggerall = p2bodydist Y = [-50,90]
+triggerall = statetype = A
+trigger1   = stateno = 1212&&movecontact
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;ぶっぱ
+;EnemyNear,Ctrl EnemyNear,MoveType=A P2BodyDist X
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,空想具現化・海 ぶっぱ]
+type = ChangeState
+value = 2400
+triggerall = Var(1) = 1
+triggerall = RoundState = 2
+TriggerAll = var(3)>=500
+Triggerall = power>=1000||Power=Powermax
+triggerall = Enemynear,statetype != L
+triggerall = statetype != A
+triggerall = Enemynear,statetype != A
+triggerall = ctrl||stateno = 19||stateno = 20||stateno = 21||stateno = 22||stateno = [120,159]
+triggerall = p2bodydist X=[-10,320] 
+triggerall = enemy,Numproj = 0
+trigger1 = Enemynear,hitdefattr = ,AP,AT,AA
+;タッグ用
+trigger2 = numenemy = 2
+trigger2 = Enemynear,alive&&Enemynear,facing = facing
+trigger2 = numpartner
+trigger2 = partner,alive
+trigger2 = partner,movetype = H
+trigger3 = numpartner
+trigger3 = partner,alive
+trigger3 = partner,movetype = H
+trigger4 = Enemynear,movetype = H
+trigger4 = numpartner
+trigger4 = partner,alive
+trigger4 = p2stateno != [120,159]
+
+[State -3,せーのっ！ ぶっぱ]
+type = ChangeState
+value = 1120
+triggerall = Var(1) = 1
+triggerall = RoundState = 2
+triggerall = power>=1000||Power=Powermax
+triggerall = Enemynear,statetype != L
+triggerall = statetype != A
+triggerall = Enemynear,statetype != A
+triggerall = ctrl||stateno = 19||stateno = 20||stateno = 21||stateno = 22||stateno = [120,159]
+triggerall = p2bodydist X=[-10,220] 
+triggerall = enemy,Numproj = 0
+trigger1 = Enemynear,hitdefattr = ,AP,AA
+;タッグ用
+trigger2 = numenemy = 2
+trigger2 = Enemynear,alive&&Enemynear,facing = facing
+trigger2 = numpartner
+trigger2 = partner,alive
+trigger2 = partner,movetype = H
+trigger3 = numpartner
+trigger3 = partner,alive
+trigger3 = partner,movetype = H
+trigger4 = Enemynear,movetype = H
+trigger4 = numpartner
+trigger4 = partner,alive
+trigger4 = p2stateno != [120,159]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;地上移動 
+;Ctrl Random P2bodyDist X
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,しゃがみ(ｶﾞｰﾄﾞ切替も兼ねてる)]
+Type = ChangeState
+value = 11
+Ctrl = 0
+TriggerAll=RoundState=2
+TriggerAll=Var(1) = 1
+TriggerAll=StateType != A
+TriggerAll=fvar(38)=1
+TriggerAll=StateNo=0
+TriggerAll=Ctrl
+Trigger1 = Random <= var(59)*20||var(59)>9
+
+[State -3,しゃがみ解除(ｶﾞｰﾄﾞ切替も兼ねてる)]
+Type = ChangeState
+value = 0
+Ctrl = 1
+TriggerAll=RoundState=2
+TriggerAll=Var(1) = 1
+TriggerAll=StateType != A
+TriggerAll=fvar(38)=2
+TriggerAll=StateNo = 11
+Trigger1 = Random <= var(59)*20||var(59)>9
+
+[State -3,前方ダッシュ]
+Type = ChangeState
+Value = 100
+TriggerAll = Var(1) = 1
+TriggerAll = Random<=Var(59)*100
+TriggerAll = RoundState=2
+TriggerAll = StateType!=A
+TriggerAll = !InGuardDist
+TriggerAll = EnemyNear(Var(58)),Alive
+TriggerAll = StateNo != [100,101]
+TriggerAll = StateNo != [2000,3999]
+Trigger1 = Ctrl
+Trigger1 = P2BodyDist X>90
+Trigger2 = P2BodyDist X>60
+Trigger2 = EnemyNear(Var(58)),MoveType=H
+
+[State -3,バクステ]
+Type     = ChangeState
+Value    = 105
+TriggerAll = Var(1) = 1
+TriggerAll = StateType != A
+TriggerAll = RoundState = 2
+TriggerAll = EnemyNear(Var(58)),StateType = L
+TriggerAll = Ctrl
+TriggerAll = backedgebodydist>62
+Trigger1 = P2BodyDist X<=90
+trigger1 = Random<=var(59)*3
+
+[State -3,地上受身]
+type = ChangeState
+value = 5200
+triggerall = stateno = 5050
+triggerall = roundstate = 2
+triggerall = Var(1) = 1
+triggerall = life>0
+triggerall = !InGuardDist
+triggerall = enemy(var(58)),Numproj = 0
+triggerall = Random<=Var(59)*100
+triggerall = movetype != A
+triggerall = vel y>-10
+triggerall = Pos Y>=-20
+trigger1 = canrecover
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;地上立ち回り技振り 
+;Ctrl Random EnemyNear,Movetype = I inguarddist  P2bodyDist Y P2bodyDist X
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,Lebensende]
+type = ChangeState
+value = 3000
+triggerall = Var(1) = 1
+triggerall = Alive=1&&RoundState=2
+triggerall = statetype != A&&p2statetype!= A
+TriggerAll = life<=lifemax/4
+triggerall = power>=3000||Power=Powermax
+TriggerAll = var(3)>=1000
+triggerall = enemynear(var(58)),statetype != L
+triggerall = enemynear(var(58)),moveType = A
+triggerall = ctrl||stateno = 19||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+triggerall = Random<=Var(59)*100
+triggerall = p2bodydist x = [-10,30]
+triggerall = p2bodydist Y = [-10,30]
+Trigger1 = enemynear(var(58)),time >= 50
+Trigger2 = stateno = 701&&time >= 5
+Trigger3 = stateno = 711&&time >= 5
+trigger4 = Enemynear(var(58)),movetype = H
+trigger4 = stateno = 1002&&MoveContAct||stateno = 220&&MoveContAct||stateno = 420&&MoveContAct
+;タッグ用
+trigger6 = numenemy = 2
+trigger6 = Enemynear,alive&&Enemynear(var(58)),facing = facing
+trigger6 = numpartner
+trigger6 = partner(var(58)),alive
+trigger6 = partner(var(58)),movetype = H
+trigger7 = numpartner
+trigger7 = partner(var(58)),alive
+trigger7 = partner(var(58)),movetype = H
+trigger8 = Enemynear(var(58)),movetype = H
+trigger8 = numpartner
+trigger8 = partner(var(58)),alive
+trigger8 = p2stateno != [120,159]
+
+[State -3,空想具現化・焔]
+Type = ChangeState
+value = 2300
+TriggerAll=Var(1) = 1
+TriggerAll=RoundState = 2
+TriggerAll=StateType != A
+triggerAll = power>=1000||Power=Powermax
+TriggerAll = var(3)>=500
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),StateType!=A
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = P2BodyDist X=[-5,10]
+TriggerAll = Ctrl||StateNo = 100||stateno = 920
+Trigger1 = Random <= var(59)*80
+;ジャスガ切り返し
+trigger2   = PrevStateNo = [950,960]
+trigger2   = Ctrl &&(StateNo = [120,159])
+Trigger2   = Random <= var(58)*40
+Trigger3   = (Stateno = 200)&&MoveGuarded
+Trigger4   = (Stateno = 420)&&MoveGuarded
+Trigger5   = (Stateno = 1002)&&MoveGuarded
+Trigger6   = PrevStateNo=625
+
+[State -3,空想具現化・海]
+type = ChangeState
+value = 2200
+triggerall = Var(1) = 1
+triggerall = Alive=1&&RoundState=2
+triggerall = power>=1000||Power=Powermax
+TriggerAll = var(3)>=500
+TriggerAll = StateType!=A
+TriggerAll = EnemyNear(Var(58)),Alive
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = EnemyNear(Var(58)),StateType!=A
+TriggerAll = EnemyNear(Var(58)),StateNo!=5200 && EnemyNear(Var(58)),StateNo!=5210 
+TriggerAll = EnemyNear(Var(58)),PrevStateNo!=5120
+Triggerall = Enemynear(Var(58)),hitdefattr = SCA,AP
+triggerall = ctrl||stateno = 19||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+triggerall = Random<=Var(59)*100
+trigger1 = p2bodydist x = [-10,320]
+;タッグ用
+trigger2 = numenemy = 2
+trigger2 = Enemynear,alive&&Enemynear(var(58)),facing = facing
+trigger2 = numpartner
+trigger2 = partner(var(58)),alive
+trigger2 = partner(var(58)),movetype = H
+trigger3 = numpartner
+trigger3 = partner(var(58)),alive
+trigger3 = partner(var(58)),movetype = H
+trigger4 = Enemynear(var(58)),movetype = H
+trigger4 = numpartner
+trigger4 = partner(var(58)),alive
+trigger4 = p2stateno != [120,159]
+
+[State -3,せーのっ！]
+type = ChangeState
+value = 1120
+triggerall = Var(1) = 1
+triggerall = Alive=1&&RoundState=2
+triggerall = power>=1000||Power=Powermax
+TriggerAll = StateType!=A
+TriggerAll = EnemyNear(Var(58)),Alive
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = EnemyNear(Var(58)),StateType!=A
+TriggerAll = EnemyNear(Var(58)),StateNo!=5200 && EnemyNear(Var(58)),StateNo!=5210 
+TriggerAll = EnemyNear(Var(58)),PrevStateNo!=5120
+Triggerall = Enemynear(Var(58)),hitdefattr = SCA,AP
+triggerall = ctrl||stateno = 19||stateno = 20||stateno = 21||stateno = 22||stateno = 920
+triggerall = Random<=Var(59)*100
+trigger1 = p2bodydist x = [-10,320]
+;タッグ用
+trigger2 = numenemy = 2
+trigger2 = Enemynear,alive&&Enemynear(var(58)),facing = facing
+trigger2 = numpartner
+trigger2 = partner(var(58)),alive
+trigger2 = partner(var(58)),movetype = H
+trigger3 = numpartner
+trigger3 = partner(var(58)),alive
+trigger3 = partner(var(58)),movetype = H
+trigger4 = Enemynear(var(58)),movetype = H
+trigger4 = numpartner
+trigger4 = partner(var(58)),alive
+trigger4 = p2stateno != [120,159]
+
+[State -3,飛べ！・強 (対空)]
+Type = ChangeState
+value = 1210
+TriggerAll=Var(1) = 1
+TriggerAll=RoundState = 2
+TriggerAll=StateType != A
+TriggerAll=EnemyNear(Var(58)),StateType != L
+TriggerAll=EnemyNear(Var(58)),MoveType != H
+TriggerAll=!InGuardDist
+TriggerAll=P2BodyDist X=[-5,70]
+TriggerAll=P2BodyDist Y>=-65
+TriggerAll=EnemyNear(Var(58)),StateType=A
+TriggerAll=Ctrl||StateNo = [21,22]
+trigger1 = Random<=Var(59)*100
+
+[State -3,真祖投げ]
+Type = ChangeState
+value = 800
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),StateType!=A
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = P2BodyDist X=[-5,10]
+TriggerAll = EnemyNear(Var(58)),StateType!=A
+TriggerAll = Ctrl||StateNo = 100||stateno = 920
+Trigger1 = Random <= var(59)*80
+;ジャスガ切り返し
+trigger2   = PrevStateNo = [950,960]
+trigger2   = Ctrl &&(StateNo = [120,159])
+Trigger2   = Random <= var(58)*40
+Trigger3   = (Stateno = 200)&&MoveGuarded
+Trigger4   = (Stateno = 420)&&MoveGuarded
+Trigger5   = (Stateno = 1002)&&MoveGuarded
+Trigger6   = PrevStateNo=625
+
+[State -3,屈パンチ]
+Type       = ChangeState
+value      = 400
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = EnemyNear(Var(58)),StateType=S
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X-Vel X-EnemyNear(Var(58)),Vel X<=20
+Triggerall = ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1 = Random<=Var(59)*85
+Trigger2 = PalNo = [11,12]
+trigger2 = EnemyNear(Var(58)),MoveType != H
+
+[State -3,屈パンチ 牽制]
+Type       = ChangeState
+value      = 400
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType != L
+TriggerAll = EnemyNear(Var(58)),MoveType != H
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X = [-5,45]
+TriggerAll = P2BodyDist Y >= -10
+TriggerAll = (EnemyNear(Var(58)),StateNo != [120,159])||EnemyNear(Var(58)),StateType=A
+TriggerAll = Ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1   = Random<=Var(59)*85
+Trigger2 = PalNo = [11,12]
+trigger2 = EnemyNear(Var(58)),MoveType != H
+
+[State -3,屈キック]
+Type       = ChangeState
+value      = 410
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = EnemyNear(Var(58)),StateType=S
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X-Vel X-EnemyNear(Var(58)),Vel X<=40
+Triggerall = ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1 = Random<=Var(59)*85
+Trigger2 = PalNo = [11,12]
+trigger2 = EnemyNear(Var(58)),MoveType != H
+
+[State -3,屈キック 牽制]
+Type       = ChangeState
+value      = 410
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType != L
+TriggerAll = EnemyNear(Var(58)),MoveType != H
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X = [-5,55]
+TriggerAll = P2BodyDist Y >= 10
+TriggerAll = (EnemyNear(Var(58)),StateNo != [120,159])||EnemyNear(Var(58)),StateType=A
+TriggerAll = Ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1   = Random<=Var(59)*85
+Trigger2 = PalNo = [11,12]
+trigger2 = EnemyNear(Var(58)),MoveType != H
+
+[State -3,屈斬り]
+Type       = ChangeState
+value      = 420
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType!=L
+TriggerAll = EnemyNear(Var(58)),MoveType!=H
+TriggerAll = EnemyNear(Var(58)),StateType=S
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X-Vel X-EnemyNear(Var(58)),Vel X<=60
+Triggerall = ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1 = Random<=Var(59)*85
+Trigger2 = PalNo = [11,12]
+trigger2 = EnemyNear(Var(58)),MoveType != H
+
+[State -3,屈斬り 牽制]
+Type       = ChangeState
+value      = 420
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType != L
+TriggerAll = EnemyNear(Var(58)),MoveType != H
+TriggerAll = !InGuardDist
+TriggerAll = P2BodyDist X = [-5,55]
+TriggerAll = P2BodyDist Y >= 10
+TriggerAll = (EnemyNear(Var(58)),StateNo != [120,159])||EnemyNear(Var(58)),StateType=A
+TriggerAll = Ctrl||stateno = 21||stateno = 22||StateNo = 52
+Trigger1   = Random<=Var(59)*85
+Trigger2 = PalNo = [11,12]
+trigger2 = EnemyNear(Var(58)),MoveType != H
+
+[State -3,邪魔よ！・弱]
+Type       = ChangeState
+value      = 1000
+TriggerAll = Var(1) = 1
+TriggerAll = RoundState = 2
+TriggerAll = StateType != A
+TriggerAll = EnemyNear(Var(58)),StateType != L
+TriggerAll = EnemyNear(Var(58)),MoveType != H
+TriggerAll =!InGuardDist
+TriggerAll = P2BodyDist X=[-5,20]
+TriggerAll = EnemyNear(Var(58)),StateType=C
+TriggerAll = ctrl||stateno = 21||stateno = 22
+Trigger1 = Random<=Var(59)*100
+Trigger2 = PrevStateNo=900||PrevStateNo=901||PrevStateNo=651||PrevStateNo=1305||PrevStateNo=1401
+Trigger3 = EnemyNear(Var(58)),MoveType = H
+Trigger3 = Stateno = 420&&MoveContAct
+;超反応トリガー
+Trigger4 = PalNo = [9,12]
+Trigger4 = Stateno = 400&&MoveContAct
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;空中移動 
+;Ctrl Random P2bodyDist X
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,立ち回り用　空中ダッシュ]
+Type     = ChangeState
+TriggerAll = Var(1) = 1
+TriggerAll = Var(20)=0
+TriggerAll = Random<=Var(59)*100
+TriggerAll = RoundState=2
+Triggerall = StateType = A
+Triggerall = !inguarddist
+triggerall = StateNo != [110,115]
+TriggerAll = P2BodyDist X>90
+Triggerall = Ctrl
+trigger1   = Random<=Var(59)*5
+Value      = 110
+
+[State -3,立ち回り用　空中バックダッシュ]
+Type     = ChangeState
+Triggerall = Var(1) = 1
+TriggerAll = Var(20)=0
+Triggerall = StateType = A
+Triggerall = !inguarddist
+triggerall = StateNo != [110,115]
+triggerall = backedgebodydist >= 62
+Triggerall = Ctrl
+Trigger1   = P2BodyDist X = [30,180]
+trigger1   = Random<=Var(59)*7
+Value      = 115
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;空中立ち回り技振り 
+;Ctrl Random EnemyNear(var(58)),Movetype = I inguarddist P2bodyDist Y P2bodyDist X
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3,回転アタック(中段崩し)];少し離れてても当たる
+type = ChangeState
+value = 625
+triggerall = Var(1) = 1
+triggerall= roundstate = 2
+triggerall = Statetype = A&&P2MoveType != H
+TriggerAll = P2BodyDist X = [0,110]
+TriggerAll = P2BodyDist Y = [-40,320]
+trigger1 = Random <= var(59)*80
+trigger1 = EnemyNear(var(58)),Statetype=C&&EnemyNear(var(58)),StateNo=[120,159]
+trigger2 = Random <= var(59)*60&&EnemyNear(var(58)),Pos Y <-20
+trigger2 = Ctrl = 1
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

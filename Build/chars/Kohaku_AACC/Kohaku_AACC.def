@@ -1,0 +1,36 @@
+[Info]
+Name = "Kohaku"
+DisplayName = "Kohaku"         
+VersionDate = 1.00
+MugenVersion = 1.1
+Author = "‡H"
+Pal.Defaults = 1
+LocalCoord = 320
+
+[Files]
+Cmd      = Cmd.cns
+Cns      = Kohaku_AACC.cns
+St       = Kohaku_AACC.cns
+St1      = Helper.cns
+St2      = SYSTEM&EX&AD&LA.cns
+St3      = -2.cns
+St4      = AI.cns
+St5      = Config.txt
+Stcommon = Common.cns
+Sprite   = Kohaku_AACC.sff
+Anim     = Kohaku_AACC.air
+Sound    = Kohaku_AACC.snd
+
+[Palette Keymap]
+a = 1
+b = 2
+c = 3
+x = 4
+y = 5
+z = 6
+a2 = 7
+b2 = 8
+c2 = 9
+x2 = 10
+y2 = 11
+z2 = 12

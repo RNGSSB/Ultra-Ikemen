@@ -1,0 +1,37 @@
+
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+; Player information
+[Info]
+name ="Anakaris"
+displayname ="Anakaris"
+versiondate=09/05/2008
+mugenversion = 1.0
+author = "Kong"
+editor       = "REDHOT"
+pal.defaults =1,2,3,4,5,6
+
+
+[Files]
+cmd      = CMND/Anakaris.cmd
+cns      = CNS/Anakaris.cns
+st       = CNS/Anakaris.cns
+st1      = CNS/config.txt
+stcommon = CNS/common1.cns
+sprite   = SPRITES/Anakaris.sff
+anim     = ANIMATIONS/Anakaris.air
+sound    = SOUNDS/Anakaris.snd
+pal1     = PALETTES/Anakaris_01.act
+pal2     = PALETTES/Anakaris_02.act
+pal3     = PALETTES/Anakaris_03.act
+pal4     = PALETTES/Anakaris_04.act
+pal5     = PALETTES/Anakaris_05.act
+pal6     = PALETTES/Anakaris_06.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 
+

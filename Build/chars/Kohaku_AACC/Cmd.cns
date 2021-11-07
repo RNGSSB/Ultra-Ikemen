@@ -1,0 +1,1006 @@
+;-| ボタン配置 |------------------------------------------------
+[Remap]
+x = x    ;簡易ボタン
+y = y    ;簡易ボタン2
+z = z    ;シールド
+a = a    ;弱攻撃
+b = b    ;中攻撃
+c = c    ;強攻撃
+s = s    ;挑発
+
+;-| コマンド |--------------------------------------------------------
+[Command]
+name = "41236c"
+command = ~B, DB, D, DF, F, c
+time = 18
+
+[Command]
+name = "63214c"
+command = ~F, DF, D, DB, B, c
+time = 18
+
+[Command]
+name = "1632143c"
+command = ~DB, F, D, B, DF, c
+time = 35
+
+[Command]
+name = "22222z"
+command = D, D, D, D, D, z
+time = 30
+
+[Command]
+name = "22222c"
+command = D, D, D, D, D, c
+time = 30
+
+[Command]
+name = "2222c"
+command = D, D, D, D, c
+time = 24
+
+[Command]
+name = "623a"
+command = ~F, D, DF, a
+time = 15
+
+[Command]
+name = "623b"
+command = ~F, D, DF, b
+time = 15
+
+[Command]
+name = "623c"
+command = ~F, D, DF, c
+time = 15
+
+[Command]
+name = "236z"
+command = ~D, DF, F, z
+time = 15
+
+[Command]
+name = "236a"
+command = ~D, DF, F, a
+time = 15
+
+[Command]
+name = "236b"
+command = ~D, DF, F, b
+time = 15
+
+[Command]
+name = "236c"
+command = ~D, DF, F, c
+time = 15
+
+[Command]
+name = "214z"
+command = ~D, DB, B, z
+time = 15
+
+[Command]
+name = "214a"
+command = ~D, DB, B, a
+time = 15
+
+[Command]
+name = "214b"
+command = ~D, DB, B, b
+time = 15
+
+[Command]
+name = "214c"
+command = ~D, DB, B, c
+time = 15
+
+[Command]
+name = "22a"
+command = D, D, a
+time = 15
+
+[Command]
+name = "22a"     
+command = D, >~$D, U, >~$U, D, a
+time = 20
+
+[Command]
+name = "22b"
+command = D, D, b
+time = 15
+
+[Command]
+name = "22b"     
+command = D, >~$D, U, >~$U, D, b
+time = 20
+
+[Command]
+name = "22c"
+command = D, D, c
+time = 15
+
+[Command]
+name = "22c"     
+command = D, >~$D, U, >~$U, D, c
+time = 20
+
+[Command]
+name = "22z"
+command = D, D, z
+time = 15
+
+[Command]
+name = "22z"     
+command = D, >~$D, U, >~$U, D, z
+time = 20
+
+[Command]
+name = "jump"    
+command = $D, UF
+time = 11
+
+[Command]
+name = "rjump"    
+command = $D, UB
+time = 11
+
+[Command]
+name = "jump2"    
+command = $D, U
+time = 11
+
+[Command]
+name = "FF"
+command = F, F
+time = 12
+
+[Command]
+name = "FF"
+command = F, >~$F, U, >~$U, F 
+time = 16
+
+[Command]
+name = "BB"
+command = B, B
+time = 12
+
+[Command]
+name = "BB"
+command = B, >~$B, U, >~$U, B
+time = 16
+
+[Command]
+name = "a"
+command = a
+time = 0
+
+[Command]
+name = "b"
+command = b
+time = 0
+
+[Command]
+name = "c"
+command = c
+time = 0
+
+[Command]
+name = "x"
+command = x
+time = 0
+
+[Command]
+name = "y"
+command = y
+time = 0
+
+[Command]
+name = "z"
+command = z
+time = 0
+
+[Command]
+name = "start"
+command = s
+time = 0
+
+[Command]
+Name    = "recovery"
+Command = a
+Time    = 0
+
+[Command]
+Name    = "recovery"
+Command = b
+Time    = 0
+
+[Command]
+Name    = "recovery"
+Command = c
+Time    = 0
+
+[Command]
+Name    = "recovery"
+Command = x
+Time    = 0
+
+[Command]
+Name    = "recovery"
+Command = y
+Time    = 0
+
+[Command]
+Name    = "recovery"
+Command = z
+Time    = 0
+
+[command]
+name = "fwd"
+command = F
+time = 0
+
+[command]
+name = "back"
+command = B
+time = 0
+
+[Command]
+name = "up" 
+command = U
+time = 0
+
+[Command]
+name = "down"
+command = D
+time = 0
+
+[Command]
+name = "ab"
+command = a+b
+time = 0
+
+[Command]
+name = "abc"
+command = a+b+c
+time = 0
+
+[Command]
+name = "az"
+command = a+z
+time = 0
+
+[Command]
+name = "holdfwd"
+command = /$F
+time = 1
+
+[Command]
+name = "holdback"
+command = /$B
+time = 1
+
+[Command]
+name = "holdup" 
+command = /$U
+time = 1
+
+[Command]
+name = "holddown"
+command = /$D
+time = 1
+
+[Command]
+name = "A溜め"
+command = /a
+time = 1
+
+[Command]
+name = "B溜め"
+command = /b
+time = 1
+
+[Command]
+name = "C溜め"
+command = /c
+time = 1
+
+[Command]
+name = "X溜め"
+command = /x
+time = 1
+
+[Command]
+name = "Z溜め"
+command = /z
+time = 1
+
+[Command]
+name = "S溜め"
+command = /s
+time = 1
+
+[Command]
+name = "ABC溜め"
+command = /a+b+c
+time = 1
+
+;-| 超必殺技 |--------------------------------------------------------------
+[Statedef -1]
+;抜刀奥義・賀正箒星
+[State ]
+Type = ChangeState
+Value = 3100
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+Trigger1 = FVar(15) > 0 && Var(2)/100%10 >= 2
+Trigger1 = (StateNo = [900,901]) || (StateNo = [910,911]) || (StateNo = 903 || StateNo = 913) && FVar(26) = 1 && Var(57)%10 = 3
+Trigger2 = Var(57)%10 = 4 && Var(13) = 4 && FVar(23) > 0
+Trigger2 = StateType != A
+Trigger2 = Command = "22222z" || Helper(25000),Var(6) = 406
+Trigger2 = Ctrl || Var(2)/100%10 >= 5 && MoveType != H
+
+;開打靠靭琥珀脚/開打散靭琥珀失脚
+[State ]
+Type = ChangeState
+Value = 3000+(Var(13)=4)*50
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Command = "41236c" || Helper(25000),Var(6) = 203
+Trigger1 = StateType != A && StateNo != [2500,2509]
+Trigger1 = Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H
+
+;-| 必殺技 |----------------------------------------------------------------
+;マジカルアタック・コハポンX
+[State ]
+Type = ChangeState
+Value = 2300
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)%10 != 2 && Var(57)/100%10 != 2
+Trigger1 = Var(48) = 0
+Trigger1 = Command = "1632143c" || Helper(25000),Var(6) = 283
+Trigger1 = StateType != A && StateNo != [2500,2509]
+Trigger1 = FVar(29) >= 1000 && Var(13) = 0 || Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H
+
+;シールドカウンター
+[State ]
+Type = ChangeState
+Value = 905+(StateNo/10%10)*10
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Var(2)/100%10 >= 2 && (StateNo = [900,923]) && StateNo%10= [0,3]
+Trigger1 = (Command = "236z" || Helper(25000),Var(6) = 226) && Var(57)%10 >= 2
+Trigger2 = Var(57)%10 = 2
+Trigger2 = Cond(NumTarget,! Target,IsHelper,0)
+Trigger2 = (StateNo = [900,922]) && (StateNo%10 = 0 || StateNo%10 = 2)
+
+;シールドバンカー
+[State ]
+Type = ChangeState
+Value = 930
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = StateType != A
+TriggerAll = Command = "214z" || Helper(25000),Var(6) = 256
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+Trigger2 = Var(2)/1000%10 = 1 && StateNo = 1100 || Var(54) = 1 && StateNo = 1150 || StateNo = 224 && AnimElem = 7, > 0 && AnimElem = 11, < 0
+
+;お掃除です！A
+[State ]
+Type = ChangeState
+Value = 1500
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = 2 || Var(57)/100%10 = 4
+Trigger1 = Command = "623a" || Helper(25000),Var(6) = 211
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;お掃除です！B
+[State ]
+Type = ChangeState
+Value = 1550
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = 2 || Var(57)/100%10 = 4
+Trigger1 = Command = "623b" || Helper(25000),Var(6) = 212 || Command = "623c" && (Var(13) = 0 && FVar(29) < 1000 || Var(13) = [6,19])
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;お帰りくださいます？
+[State ]
+Type = ChangeState
+Value = 2500
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = 2 || Var(57)/100%10 = 4
+Trigger1 = Command = "623c" || Helper(25000),Var(6) = 213
+Trigger1 = StateType != A && StateNo != [2500,2509]
+Trigger1 = FVar(29) >= 1000 && Var(13) = 0 || Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H
+
+;抜刀・秘密の業物/抜刀・空気撃ちA
+[State ]
+Type = ChangeState
+Value = 1100+(Var(57)/100%10=3)*600
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = [1,3]
+Trigger1 = Command = "236a" || Helper(25000),Var(6) = 221
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H || Var(57)/100%10 = 3 && StateNo = 224 && AnimElem = 7, > 0 && AnimElem = 11, < 0
+
+;抜刀・秘密の業物/抜刀・空気撃ちB
+[State ]
+Type = ChangeState
+Value = 1150+(Var(57)/100%10=3)*600
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = [1,3]
+Trigger1 = Command = "236b" || Helper(25000),Var(6) = 222 || Command = "236c" && (Var(13) = 0 && FVar(29) < 1000 || Var(13) = [6,19])
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H || (Var(57)/100%10 = [1,2]) && Var(2)/1000%10 = 1 && StateNo = 1100 || Var(57)/100%10 = 3 && StateNo = 224 && AnimElem = 7, > 0 && AnimElem = 11, < 0
+
+;抜刀・秘密の業物EX/抜刀・鳴動重ね撃ち
+[State ]
+Type = ChangeState
+Value = 2100+(Var(57)/100%10=3)*600
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = [1,3]
+Trigger1 = Command = "236c" || Helper(25000),Var(6) = 223
+Trigger1 = StateType != A && StateNo != [2500,2509]
+Trigger1 = FVar(29) >= 1000 && Var(13) = 0 || Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H
+
+;抜刀準備・秘密の業物
+[State ]
+Type = ChangeState
+Value = 1900
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = 4
+Trigger1 = Command = "236a" || Command = "236b" || Command = "236c" || Helper(25000),Var(6) = [221,223]
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;アンバーコロシアム・アッパー/琥珀マグナムアッパー
+[State ]
+Type = ChangeState
+Value = 1300+(Var(57)/100%10=2||Var(57)/100%10=4)*50
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Command = "63214c" || Helper(25000),Var(6) = 233
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;マジカルアンバーミサイル/抜刀準備・無礼免A
+[State ]
+Type = ChangeState
+Value = 1200+(Var(57)/100%10=3)*600
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = [1,3]
+Trigger1 = Command = "214a" || Helper(25000),Var(6) = 251
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;マジカルアンバーミサイル/抜刀準備・無礼免B
+[State ]
+Type = ChangeState
+Value = 1210+(Var(57)/100%10=3)*640
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = [1,3]
+Trigger1 = Command = "214b" || Helper(25000),Var(6) = 252 || Command = "214c" && (Var(13) = 0 && FVar(29) < 1000 || Var(13) = [6,19])
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;マジカルアンバーミサイル/抜刀準備・無礼免EX
+[State ]
+Type = ChangeState
+Value = 2200+(Var(57)/100%10=3)*600
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = [1,3]
+Trigger1 = Command = "214c" || Helper(25000),Var(6) = 253
+Trigger1 = StateType != A && StateNo != [2500,2509]
+Trigger1 = FVar(29) >= 1000 && Var(13) = 0 || Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H
+
+;現代医学の犠牲者です。
+[State ]
+Type = ChangeState
+Value = 2020
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = (Var(57)/100%10 = 1 || Var(57)/100%10 = 3) && NumHelper(1005)+NumHelper(1055)+NumHelper(2005)+NumHelper(2015)+NumHelper(2025) = 0 || Var(57)/100%10 = 4 && NumHelper(2025) = 0
+Trigger1 = Command = "22222c" || Helper(25000),Var(6) = 273
+Trigger1 = StateType != A && StateNo != [2500,2509]
+Trigger1 = FVar(29) >= 1500 && Var(13) = 0 || Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H
+
+;ジョニー
+[State ]
+Type = ChangeState
+Value = 2010
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = (Var(57)/100%10 = 1 || Var(57)/100%10 = 3) && NumHelper(1005)+NumHelper(1055)+NumHelper(2005)+NumHelper(2015)+NumHelper(2025) = 0 || Var(57)/100%10 = 4 && NumHelper(2015) = 0
+Trigger1 = Command = "2222c" || Helper(25000),Var(6) = 263
+Trigger1 = StateType != A && StateNo != [2500,2509]
+Trigger1 = FVar(29) >= 1500 && Var(13) = 0 || Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H
+
+;こんなん育ててみました♪/対戦に潤いを。Z
+[State ]
+Type = ChangeState
+Value = 1010
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Command = "22z" || Helper(25000),Var(6) = 126
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;こんなん育ててみました♪/対戦に潤いを。A
+[State ]
+Type = ChangeState
+Value = 1000+(Var(57)/100%10=2)*600
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = (Var(57)/100%10 = 1 || Var(57)/100%10 = 3) && NumHelper(1005)+NumHelper(1055)+NumHelper(2005)+NumHelper(2015)+NumHelper(2025) = 0 || Var(57)/100%10 = 2 || Var(57)/100%10 = 4 && NumHelper(1005) = 0
+Trigger1 = Command = "22a" || Helper(25000),Var(6) = 121
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;こんなん育ててみました♪/対戦に潤いを。B
+[State ]
+Type = ChangeState
+Value = 1050+(Var(57)/100%10=2)*600
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = (Var(57)/100%10 = 1 || Var(57)/100%10 = 3) && NumHelper(1005)+NumHelper(1055)+NumHelper(2005)+NumHelper(2015)+NumHelper(2025) = 0 || Var(57)/100%10 = 2 && (NumHelper(1655) = 0 || Cond(NumHelper(1655)>0,Helper(1655),Anim=1657,0)) || Var(57)/100%10 = 4 && NumHelper(1055) = 0
+Trigger1 = Command = "22b" || Helper(25000),Var(6) = 122 || Command = "22c" && (Var(13) = 0 && FVar(29) < 1000 || Var(13) = [6,19])
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;こんなん育ててみました♪/対戦に潤いを。EX
+[State ]
+Type = ChangeState
+Value = 2000+(Var(57)/100%10=2)*600
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = (Var(57)/100%10 = 1 || Var(57)/100%10 = 3) && NumHelper(1005)+NumHelper(1055)+NumHelper(2005)+NumHelper(2015)+NumHelper(2025) = 0 || Var(57)/100%10 = 2 && (NumHelper(2605) = 0 || Cond(NumHelper(2605)>0,Helper(2605),Anim=2607,0)) || Var(57)/100%10 = 4 && NumHelper(2005) = 0
+Trigger1 = Command = "22c" || Helper(25000),Var(6) = 123
+Trigger1 = StateType != A && StateNo != [2500,2509]
+Trigger1 = FVar(29) >= 1000 && Var(13) = 0 || Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H
+
+;ムービング☆スターA
+[State ]
+Type = ChangeState
+Value = 1400+(Var(57)/100%10=3)
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = (Var(57)/100%10 = [2,3]) && Pos Y < -35.75 || Var(57)/100%10 = 4
+Trigger1 = Command = "236a" || Helper(25000),Var(6) = 221
+Trigger1 = StateType = A && (StateNo != [1250,1269]) && (StateNo != [1400,1499]) && StateNo != 2250 && StateNo != 2400
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;ムービング☆スターB
+[State ]
+Type = ChangeState
+Value = 1450+(Var(57)/100%10=3)
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = (Var(57)/100%10 = [2,3]) && Pos Y < -35.75 || Var(57)/100%10 = 4
+Trigger1 = Command = "236b" || Helper(25000),Var(6) = 222 || Command = "236c" && (Var(13) = 0 && FVar(29) < 1000 || Var(13) = [6,19])
+Trigger1 = StateType = A && (StateNo != [1250,1269]) && (StateNo != [1400,1499]) && StateNo != 2250 && StateNo != 2400
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;ムービング☆スターEX
+[State ]
+Type = ChangeState
+Value = 2400
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = (Var(57)/100%10 = [2,3]) && Pos Y < -35.75 || Var(57)/100%10 = 4
+Trigger1 = Command = "236c" || Helper(25000),Var(6) = 223
+Trigger1 = StateType = A && (StateNo != [1250,1269]) && StateNo != 2250 && StateNo != 2400
+Trigger1 = FVar(29) >= 1000 && Var(13) = 0 || Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H && (StateNo != [1400,1499]) || Var(2)/100%10 = 1 && StateNo = [1400,1499]
+
+;空中マジカルアンバーミサイルA
+[State ]
+Type = ChangeState
+Value = 1250
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = [1,3]
+Trigger1 = Command = "214a" || Helper(25000),Var(6) = 251
+Trigger1 = StateType = A && (StateNo != [1250,1269]) && (StateNo != [1400,1499]) && StateNo != 2250 && StateNo != 2400
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;マジカル☆ミサイルスコール
+[State ]
+Type = ChangeState
+Value = 1260
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = [1,3]
+Trigger1 = Command = "214b" || Helper(25000),Var(6) = 252 || Command = "214c" && (Var(13) = 0 && FVar(29) < 1000 || Var(13) = [6,19])
+Trigger1 = StateType = A && (StateNo != [1250,1269]) && (StateNo != [1400,1499]) && StateNo != 2250 && StateNo != 2400
+Trigger1 = Ctrl || Var(2)/100%10 >= 2 && MoveType != H
+
+;空中マジカルアンバーミサイルEX
+[State ]
+Type = ChangeState
+Value = 2250
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)/100%10 = [1,3]
+Trigger1 = Command = "214c" || Helper(25000),Var(6) = 253
+Trigger1 = StateType = A && (StateNo != [1250,1269]) && StateNo != 2250 && StateNo != 2400
+Trigger1 = FVar(29) >= 1000 && Var(13) = 0 || Var(13) = [1,5]
+Trigger1 = Ctrl || Var(2)/100%10 >= 1 && MoveType != H && (StateNo != [1400,1499]) || Var(2)/100%10 = 1 && StateNo = [1400,1499]
+
+;-| システム |--------------------------------------------------------------
+;前ハイジャンプ
+[State ]
+Type = ChangeState
+Value = 41
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Var(11)%10 = [0,(Var(57)%10=4)*3]
+Trigger1 = Command = "jump" && (SysVar(4) = [0,10]) || Helper(25000),Var(6) = 150
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 = 5 && MoveType != H
+Trigger2 = (Command = "jump" || Helper(25000),Var(6) = 150) && P2Dist X >= 0 || (Command = "rjump" || Helper(25000),Var(6) = 130) && P2Dist X < 0
+Trigger2 = Var(51) <= 1 && StateType = A
+Trigger2 = Ctrl || Var(2)/100%10 >= 3 && MoveType != H || Var(2) > 0 && StateNo = 840 || Var(2)/100%10 = 1 && (StateNo = 1260 || StateNo = 2400)
+
+;ニュートラルハイジャンプ
+[State ]
+Type = ChangeState
+Value = 42
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Var(11)%10 = 0
+Trigger1 = Command = "jump2" && (SysVar(4) = [0,10]) || Helper(25000),Var(6) = 140
+Trigger1 = StateType != A
+Trigger1 = Ctrl || Var(2)/100%10 = 5 && MoveType != H
+
+;ジャンプ
+[State ]
+Type = ChangeState
+Value = 40
+TriggerAll = Var(59) = 0
+TriggerAll = StateType != A
+TriggerAll = Command = "holdup"
+Trigger1 = Ctrl || Var(2)/100%10 = 5 && MoveType != H
+Trigger2 = Var(10) = 0
+Trigger2 = Var(2)/100 = 14 && MoveType != H || Var(2)/100%10 = 3 && ((StateNo = [900,901]) || (StateNo = [910,911])) || Var(2)/100%10 = 2 && StateNo = 905
+Trigger3 = Var(10) = 0 && Var(2)/1000 = 1 && ((StateNo = [200,209]) || (StateNo = [400,409]) || (StateNo = [1500,1501]) || StateNo = 2500)
+Trigger4 = Var(10) = 0 && (Var(2)/100 = 12 && (StateNo = 242 || (StateNo = [250,251])) || Var(54) = 1 && Var(57)/100%10 = 1 && StateNo = 1150 || Var(2)/100 = 4 && StateNo = 1360 || Var(54) = 1 && (StateNo = [1920,1922]) || Var(2)/100 = 1 && StateNo = 2501)
+
+;２段ジャンプ
+[State ]
+Type = ChangeState
+Value = 45
+TriggerAll = Var(59) = 0
+TriggerAll = StateType = A
+TriggerAll = Command = "holdup"
+TriggerAll = Var(51) <= 1 && Var(11)%10 = [0,(Var(57)%10=4)*3]
+Trigger1 = Ctrl || Var(2)/100%10 >= 3 && MoveType != H || Var(2) > 0 && StateNo = 840 || Var(2)/100%10 = 1 && StateNo = 1260 || Var(2)/100%10 = 1 && StateNo = 2400
+
+;ダッシュ
+[State ]
+Type = ChangeState
+Value = 100
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "FF" || Command = "holdfwd" && (Command = "ab" || Command = "y") && Command != "holddown" && Command != "holdup" || Helper(25000),Var(6) = 100
+TriggerAll = StateType != A
+Trigger1 = Ctrl
+
+;バックステップ
+[State ]
+Type = ChangeState
+Value = 105
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = StateType != A
+TriggerAll = Command = "BB" || Command = "holdback" && (Command = "ab" || Command = "y") && Command != "holddown" && Command != "holdup" || Helper(25000),Var(6) = 110
+Trigger1 = Ctrl || Var(2)/100%10 = 5 && MoveType != H
+
+;空中ダッシュ
+[State ]
+Type = ChangeState
+Value = 110
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "FF" || Command = "holdfwd" && (Command = "ab" || Command = "y") && Command != "holddown" && Command != "holdup" || Helper(25000),Var(6) = 100
+TriggerAll = Var(11)/10%10 = [0,(Var(57)%10=4)*2]
+TriggerAll = Pos Y < -35.75 || Var(57)%10 = 4
+TriggerAll = StateType = A
+Trigger1 = Ctrl || (Var(57)%10 != 3 || Var(57)%10 = 3 && (StateNo != [610,699])) && Var(2)/100%10 >= 3 && MoveType != H
+
+;空中バックダッシュ
+[State ]
+Type = ChangeState
+Value = 115
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "BB" || Command = "holdback" && (Command = "ab" || Command = "y") && Command != "holddown" && Command != "holdup" || Helper(25000),Var(6) = 110
+TriggerAll = Var(11)/10%10 = [0,(Var(57)%10=4)*2]
+TriggerAll = Pos Y < -35.75 || Var(57)%10 = 4
+TriggerAll = StateType = A
+Trigger1 = Ctrl || Var(2)/100%10 = 5 && MoveType != H && StateNo != 760 && StateNo != [920,929]
+
+;避け
+[State ]
+Type = ChangeState
+Value = 750
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)%10 != 3
+Trigger1 = Command = "holddown" && Command != "holdfwd" && Command != "holdback" && (Command = "ab" || Command = "x" || Command = "y") || ((Helper(25000),Var(6) = [4,5]) || Helper(25000),Var(6) = 8) && Helper(25000),Var(7) = 2
+Trigger1 = StateType != A
+Trigger1 = Ctrl || (Var(2)/100%10 = 5 || Var(2)/100%10 = 3 && (StateNo != [200,209]) && (StateNo != [400,409]) && (StateNo != [900,919])) && MoveType != H
+
+;空中避け
+[State ]
+Type = ChangeState
+Value = 760
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Var(57)%10 != 3
+TriggerAll = Command = "holddown" && Command != "holdfwd" && Command != "holdback" && (Command = "ab" || Command = "x" || Command = "y") || ((Helper(25000),Var(6) = [4,5]) || Helper(25000),Var(6) = 8) && Helper(25000),Var(7) = 2
+TriggerAll = StateType = A && StateNo != 760
+Trigger1 = Ctrl || Var(2)/100%10 = 5 && MoveType != H
+Trigger2 = FVar(29) >= 500 || Var(13) = [1,5]
+Trigger2 = Var(2)/100%10 >= 3
+Trigger2 = StateNo = [600,699]
+Trigger3 = Var(2)/100%10 >= 2
+Trigger3 = StateNo = [900,929]
+
+;投げ
+[State ]
+Type = ChangeState
+Value = 800+(Statetype=A)*20
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = (Command = "holdfwd" || Command = "holdback") && Command != "holddown" && Command != "holdup" && (Command = "az" || Command = "x") || (Helper(25000),Var(6) = 4 || Helper(25000),Var(6) = 10) && (Helper(25000),Var(7) = [4,6])
+Trigger1 = StateType != A
+Trigger1 = Ctrl || (Var(2)/100%10 = 3 || Var(2)/100%10 = 5) && MoveType != H
+Trigger2 = Statetype = A
+Trigger2 = Ctrl || (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100 = 14 || Var(2)/100 = 24) && MoveType != H
+Trigger3 = Statetype = A
+Trigger3 = Var(2) > 0 && StateNo = 840 || Var(2)/100%10 = 1 && StateNo = 1260 || Var(2)/100%10 = 4 && (StateNo = [1400,1499]) || Var(2)/100%10 = 1 && StateNo = 2400
+
+;ゲージ溜め
+[State ]
+Type = ChangeState
+Value = 850
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Var(57)%10 = 3
+Trigger1 = Var(13) = 0 && FVar(29) <= 3000
+Trigger1 = Command = "abc" || Command = "x" && Command != "holddown" && Command != "holdfwd" && Command != "holdback" || Helper(25000),Var(6) = 9 || Helper(25000),Var(6) = 4 && Helper(25000),Var(7) = 0
+Trigger1 = StateType != A
+Trigger1 = Ctrl || (Var(2)/100%10 = 5 || Var(2)/100%10 = 3 && (StateNo != [900,903]) && (StateNo != [910,913])) && MoveType != H
+
+;イニシアティブヒート
+[State ]
+Type = ChangeState
+Value = 950
+TriggerAll = Var(59) = 0
+TriggerAll = Var(57)%10 = 3
+TriggerAll = Var(13) = 1 || Var(13) = 5
+TriggerAll = Command = "abc" || Command = "x" && Command != "holddown" && Command != "holdfwd" && Command != "holdback"
+TriggerAll = StateNo != 950
+Trigger1 = (StateNo != [200,209]) && (StateNo != [400,409]) && StateNo != [600,609]
+Trigger1 = Var(2)/100%10 >= 1 && (MoveType = A || (StateNo = [900,923]) && (StateNo%10= [0,3]) || (StateNo = [1400,1401]) && AnimElem = 10, <= 0 || (StateNo = [1450,1451]) && AnimElem = 16, <= 0)
+Trigger2 = (StateNo = [200,209]) || (StateNo = [400,409]) || StateNo = [600,609]
+Trigger2 = Var(2)/100%10 >= 4
+IgnoreHitPause = 1
+
+;強制開放
+[State ]
+Type = ChangeState
+Value = 960+(StateType=A)*10
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "abc" || Command = "x" && Command != "holddown" && Command != "holdfwd" && Command != "holdback" || Helper(25000),Var(6) = 9 || Helper(25000),Var(6) = 4 && Helper(25000),Var(7) = 0
+Trigger1 = StateType != A && ((Var(13) = 1 || Var(13) = 5) && Var(57)%10 != 2 || FVar(29) >= 1000 && Var(13) = 0 && (Var(57)%10 = 1 || Var(57)%10 = 4))
+Trigger1 = Ctrl || (Var(2)/100%10 = 3 || Var(2)/100%10 = 5) && MoveType != H
+Trigger2 = StateType = A && Var(57)%10 = 4 && ((Var(13) = 1 || Var(13) = 5) || FVar(29) >= 1000 && Var(13) = 0)
+Trigger2 = Ctrl || (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100 = 14) && MoveType != H
+
+;シールド
+[State ]
+Type = ChangeState
+Value = 900+(StateType=A)*20+Cond(StateType!=A&&(Command="holddown"||(Helper(25000),Var(7)=[1,3])),10,0)
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "z" || Command = "x" || Helper(25000),Var(6) = 6 || Helper(25000),Var(6) = 4
+Trigger1 = Ctrl || Var(2)/100%10 = 3 && MoveType != H && StateNo != 1250 && StateNo != 2250 || Var(2)/100%10 = 5 && MoveType != H
+Trigger2 = Var(2)/100%10 = 2 && StateNo%10!= 5 && StateNo = [900,929]
+Trigger3 = StateNo = 224 && AnimElem = 7, > 0 && AnimElem = 11, < 0
+
+;-| 通常技 |----------------------------------------------------------------
+;H6A
+[State ]
+Type = ChangeState
+Value = 230+(StateNo=230)
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Var(57)/10%10 = 2
+TriggerAll = Command != "holddown" && Command = "holdfwd" && (Command = "a" || Command = "x") || (Helper(25000),Var(6) = 1 || Helper(25000),Var(6) = 4) && Helper(25000),Var(7) = 6
+Trigger1 = StateNo = 201 && Time = [4,15]
+Trigger2 = StateNo = 230 && Time = [8,22]
+
+;4B
+[State ]
+Type = ChangeState
+Value = 240+(Var(57)/10%10=3)*2
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Var(57)/10%10 != 2
+TriggerAll = Command != "holddown" && Command = "holdback" && Command = "b" || Helper(25000),Var(6) = 2 && Helper(25000),Var(7) = 4
+TriggerAll = StateType != A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [200,219]) || StateNo = 230 || (StateNo = [400,419])))) && MoveType != H
+Trigger2 = Var(23)%10 = 0
+
+;6C
+[State ]
+Type = ChangeState
+Value = 250+(Var(57)/10%10=4)
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Var(57)/10%10 = 1 || Var(57)/10%10 = 4
+TriggerAll = Command != "holddown" && Command = "holdfwd" && Command = "c" || Helper(25000),Var(6) = 3 && Helper(25000),Var(7) = 6
+TriggerAll = StateType != A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [200,249]) || (StateNo = [400,429])))) && MoveType != H
+Trigger2 = Var(23)/10%10 = 0
+
+;5A
+[State ]
+Type = ChangeState
+Value = 199+Var(57)/10%10
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command != "holddown" && (Command = "a" || Command = "x") || (Helper(25000),Var(6) = 1 || Helper(25000),Var(6) = 4) && Helper(25000),Var(7) != [1,3]
+TriggerAll = StateType != A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && Var(57)%10 != 3) && MoveType != H
+Trigger2 = Var(20)%10 = 0
+Trigger3 = (StateNo = [200,209]) || StateNo = [400,409]
+Trigger3 = Var(2)/100%10 = [3,4]
+
+;5B
+[State ]
+Type = ChangeState
+Value = 210+(Var(57)/10%10=3)*2+(Var(57)/10%10=4)*3
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command != "holddown" && Command = "b" || Helper(25000),Var(6) = 2 && (Helper(25000),Var(7) != [1,3])
+TriggerAll = StateType != A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [200,209]) || StateNo = 230 || (StateNo = [400,409])))) && MoveType != H
+Trigger2 = Var(21)%10 = 0
+
+;5C
+[State ]
+Type = ChangeState
+Value = 220+(Var(57)/10%10=2)+(Var(57)/10%10=3)*2+(Var(57)/10%10=4)*5
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command != "holddown" && Command = "c" || Helper(25000),Var(6) = 3 && Helper(25000),Var(7) != [1,3]
+TriggerAll = StateType != A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [200,219]) || (StateNo = [230,249]) || (StateNo = [400,419])))) && MoveType != H
+Trigger2 = Var(22)%10 = 0
+
+;3C
+[State ]
+Type = ChangeState
+Value = 430
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Var(57)/10%10 = 3
+TriggerAll = Command = "holddown" && Command = "holdfwd" && Command = "c" || Helper(25000),Var(6) = 3 && Helper(25000),Var(7) = 3
+TriggerAll = StateType != A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [200,249]) || (StateNo = [400,429])))) && MoveType != H
+Trigger2 = Var(23)/10%10 = 0
+
+;2A
+[State ]
+Type = ChangeState
+Value = 400+(Var(57)/10%10=3)+(Var(57)/10%10=4)*2
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "holddown" && (Command = "a" || Command = "x") || (Helper(25000),Var(6) = 1 || Helper(25000),Var(6) = 4) && Helper(25000),Var(7) = [1,3]
+TriggerAll = Statetype != A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && Var(57)%10 != 3) && MoveType != H
+Trigger2 = Var(20)/10%10 = 0
+Trigger3 = (StateNo = [200,209]) || StateNo = [400,409]
+Trigger3 = Var(2)/100%10 = [3,4]
+
+;2B
+[State ]
+Type = ChangeState
+Value = 409+Var(57)/10%10
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "holddown" && Command = "b" || Helper(25000),Var(6) = 2 && (Helper(25000),Var(7) = [1,3])
+TriggerAll = StateType != A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [200,219]) || StateNo = 230 || (StateNo = [400,409])))) && MoveType != H
+Trigger2 = Var(21)/10%10 = 0
+
+;2C
+[State ]
+Type = ChangeState
+Value = 420+(Var(57)/10%10=4)*2
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "holddown" && Command = "c" || Helper(25000),Var(6) = 3 && (Helper(25000),Var(7) = [1,3])
+TriggerAll = StateType != A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [200,219]) || (StateNo = [230,249]) || (StateNo = [400,419])))) && MoveType != H
+Trigger2 = Var(22)/10%10 = 0
+
+;J1C
+[State ]
+Type = ChangeState
+Value = 630
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Var(57)/10%10 = 1 || Var(57)/10%10 = 4
+TriggerAll = Command = "holdback" && Command = "holddown" && Command = "c" || Helper(25000),Var(6) = 3 && Helper(25000),Var(7) = 1
+TriggerAll = StateType = A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [600,629]) || (StateNo = [1400,1499])))) && MoveType != H
+Trigger3 = Var(2) > 0 && StateNo = 840
+
+;JA
+[State ]
+Type = ChangeState
+Value = 600+(Var(57)/10%10=3)+(Var(57)/10%10=4)*2
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "a" || Command = "x" || Helper(25000),Var(6) = 1 || Helper(25000),Var(6) = 4
+TriggerAll = StateType = A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && Var(57)%10 != 3) && MoveType != H
+Trigger2 = Var(20)/100 = 0
+Trigger3 = (StateNo = [600,609]) || StateNo = 1250 || StateNo = 2250
+Trigger3 = Var(2)/100%10 = 3
+Trigger4 = (StateNo = [600,609]) || (StateNo = [1400,1499])
+Trigger4 = Var(2)/100%10 = 4
+Trigger5 = Var(2) > 0 && StateNo = 840
+
+;JB
+[State ]
+Type = ChangeState
+Value = 610+(Var(57)/10%10=4)
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "b" || Helper(25000),Var(6) = 2
+TriggerAll = StateType = A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [600,609]) || (StateNo = [1400,1499])))) && MoveType != H
+Trigger2 = Var(21)/100 = 0
+Trigger3 = Var(2) > 0 && StateNo = 840
+
+;JC
+[State ]
+Type = ChangeState
+Value = 620+(Var(57)/10%10=[2,3])*2+(Var(57)/10%10=4)*4
+TriggerAll = Var(59) = 0 && NumHelper(25000)
+TriggerAll = Command = "c" || Helper(25000),Var(6) = 3
+TriggerAll = StateType = A
+Trigger1 = Ctrl
+Trigger2 = (Var(2)/100%10 = 3 || Var(2)/100%10 = 5 || Var(2)/100%10 = 4 && (Var(57)%10 != 3 || Var(57)%10 = 3 && ((StateNo = [600,619]) || (StateNo = [1400,1499])))) && MoveType != H
+Trigger2 = Var(22)/100 = 0
+Trigger3 = Var(2) > 0 && StateNo = 840
+
+;-| システム |--------------------------------------------------------------
+;しゃがみ歩き
+[State ]
+Type = ChangeState
+Value = 30
+Trigger1 = Var(59) = 0
+Trigger1 = Var(57)%10 = 1 || Var(57)%10 = 4
+Trigger1 = Command = "holddown" && Command = "holdfwd"
+Trigger1 = StateType = C && Anim != 6
+Trigger1 = Ctrl
+
+;挑発
+[State ]
+Type = ChangeState
+Value = 195
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Command != "holddown" && Command = "start" || Helper(25000),Var(6) = 7 && Helper(25000),Var(7) != [1,3]
+Trigger1 = StateType != A && RoundState = [2,3]
+Trigger1 = Ctrl || (Var(2)/100%10 = [4,5]) && MoveType != H
+
+;遠野家乗っ取り計画
+[State ]
+Type = ChangeState
+Value = 196
+Trigger1 = Var(59) = 0 && NumHelper(25000)
+Trigger1 = Command = "holddown" && Command = "start" || Helper(25000),Var(6) = 7 && Helper(25000),Var(7) = [1,3]
+Trigger1 = StateType != A && RoundState = 2
+Trigger1 = Ctrl || Var(2)/100%10 = 5 && MoveType != H
+
+;ガード
+[State ]
+Type = ChangeState
+Value = 120
+Trigger1 = Var(59) = 0
+Trigger1 = Command = "holdback"
+Trigger1 = InGuardDist && StateNo != 760 && StateNo != [920,923]
+Trigger1 = Ctrl || Var(2)/100%10 = 5 && MoveType != H
+
+;歩行
+[State ]
+Type = ChangeState
+Value = 20
+Trigger1 = Var(59) = 0
+Trigger1 = Command != "holddown" && (Command = "holdfwd" || Command = "holdback")
+Trigger1 = StateNo = [10,12]

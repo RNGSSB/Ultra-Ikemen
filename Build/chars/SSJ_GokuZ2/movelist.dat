@@ -1,0 +1,41 @@
+<#f0f000>:Command Normals:</>
+  Backdash Attack       _B_B^P or _B_B^K
+
+  Uppercut(LAUNCH)        _D^HP
+
+  Boomerang Kick(BOUNCE)        (in air) ^HK or _B^HK
+
+  Wing Kick        _F_F^HK
+
+  360 Splits Kick       _D^HK
+
+<#f0f000>:Target Combos:</>
+  Flurry Uppercut       ^HP,^HP
+
+  Blur Max Kick Combo       ^HK,^HK,^HK
+
+<#f0f000>:Special Moves:</>
+  Ki Blast (*3) (BOUNCE) (EX)      _D_DF_F^P
+
+  Blast Fist (EX)       _F_D_DF^P
+
+  Slash-Down Kick (EX)       (in air) _D_DF_F^K
+
+  Teleport(AIR) (EX only)       _D_DB_B^P or ^K
+
+<#f0f000>:Super Moves:</>
+  Kamehameha (AIR) (HOLD)
+    LVL 1   _D_DF_F_D_DF_F^P
+    LVL 2   _D_DF_F_D_DF_F^P_+^P
+    LVL 3   _D_DF_F_D_DF_F^3P
+  Super Sonic Rush
+    LVL 1   _D_DF_F_D_DF_F^K
+    LVL 2   _D_DF_F_D_DF_F^K_+^K
+
+  Hyper Rush (POWER)
+    LVL 3   _D_DF_F_DF_D_DB_B^K
+
+<#f0f000>:Power Mode:</>
+  Blue Mode    _D_D^MP_+^MK
+    then Pursuit Attack (AIR)   _U,_D,_B, or _F^MP_+^MK
+    or God Bind     _D_D^MP+^MK

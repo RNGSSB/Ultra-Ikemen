@@ -1,0 +1,27 @@
+
+; Player information
+[Info]
+name = "Captain Commando"        ;Name of character
+displayname ="Captain Commando" ;Name of character to display
+versiondate = 6/7/2016    ;Version date of character
+mugenversion = 1.0   ;Version of M.U.G.E.N character works on
+author = "Splode & DarkWolf13-MvC2"         ;Character author name
+edited = "REDHOT"
+pal.defaults = 1,2,3,4,5,6      ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd     = CMND/CaptainCommando.cmd   ;Command set
+cns     = CNS/CaptainCommando.cns   ;Constants
+st      = CNS/CaptainCommando.cns   ;States
+st1 = CNS/config.txt
+stcommon = CNS/common1.cns ;Common states
+sprite  = SPRITES/CaptainCommando.sff   ;Sprite
+anim    = ANIMATIONS/CaptainCommando.air   ;Animation
+sound   = SOUNDS/CaptainCommando.snd   ;Sound
+pal1    = PALETTES/CaptainCommando_01.act  ;Palettes (can have up to 12)
+pal2    = PALETTES/CaptainCommando_02.act
+pal3    = PALETTES/CaptainCommando_03.act
+pal4    = PALETTES/CaptainCommando_04.act
+pal5    = PALETTES/CaptainCommando_05.act
+pal6    = PALETTES/CaptainCommando_06.act

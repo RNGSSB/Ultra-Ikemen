@@ -1,0 +1,58 @@
+<#f0f000>:Command Normals:</>
+  Leg Day (HOLD)       (in air) ^LK
+
+  Slaps       _B^MP
+
+  Glasgow Kiss (LAUNCH) (HOLD)        _D^HP
+
+  Power Dunk        (in air) _D^HP
+
+  The Boot        _F^HK
+
+  Calf Kick       _B^HK
+
+  Dash Kick       _F_F^HK
+
+<#f0f000>:Target Combos:</>
+  Triple Threat       _F^MK,^MK,^MK
+
+<#f0f000>:Special Moves:</>
+  Taking Out The Trash(GRAB)        (in air)^LP_+^LK
+
+  Blitz Ball        _F^MP
+
+  Crossfire (EX)        _D_DB_B^P
+    then Energy Blast   ^P
+    or Comet Stomp    ^K
+
+  Blitz Deadend       _D_DF_F^P
+
+  Violence Hold (GRAB) (EX)        _F_D_DF^P
+
+  Ballistic Kiss (HOLD) (AIR) (EX)        _D_DF_F^K
+
+  Graceful Revolution (EX)        _D_DB_B^K
+
+<#f0f000>:Super Moves:</>
+  Infinty Bullet
+    LVL 1   (in air) _D_DF_F_D_DF_F^P
+
+  Power Breaker
+    LVL 1   _D_DF_F_D_DF_F^P
+    LVL 2   _D_DF_F_D_DF_F^P_+^P
+
+  Cascade
+    LVL 1   _D_DB_B_D_DB_B^P
+
+  Eternal Revolution Engine (GRAB)
+    LVL 1   _D_DB_B_D_DB_B^K
+
+  Clockwork Overdrive
+    LVL 2   _D_DF_F_D_DF_F^K_+^K
+
+  Overdrive Deadly Breaker (POWER)
+    LVL 3   _D_DF_F_DF_D_DB_B^P
+
+<#f0f000>:Power Mode:</>
+  Cold Mode   _D_D^MP_+^MK
+    then Accel Dance    _D_D^MP_+^MK

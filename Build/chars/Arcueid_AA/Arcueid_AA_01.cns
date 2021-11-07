@@ -1,0 +1,2485 @@
+;==============================================================================
+; 通常攻撃技
+;==============================================================================
+;弱攻撃
+[Statedef 200]
+type     = S
+movetype = A
+physics  = S
+juggle   = 1
+ctrl     = 0
+anim     = 200
+poweradd = 0
+
+[State -1, Arcueid Voice]
+type     = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+value    = s13,0+random%2
+channel  = 0
+
+[State 200, Sound Effect]
+type     = PlaySnd
+trigger1 = AnimElem = 3
+value    = s0,0
+
+[State 200, Hit]
+type = HitDef
+trigger1 = AnimElem = 4
+trigger1 = MoveType = A
+attr              = S, NA
+damage            = 40, 0
+animtype          = Light
+getpower          = 30, 30*.85
+hitflag           = MAF
+guardflag         = MA
+priority          = 3
+pausetime         = 6,7
+sparkno           = -1
+sparkxy           = -10,-55
+guard.sparkno     = s6005
+hitsound          = s1, 0
+guardsound        = s1, 10
+ground.type       = High
+ground.slidetime  = 10
+ground.hittime    = 10
+ground.velocity   = -2
+airguard.velocity = -2,-2.3
+air.velocity      = -1.8,-5
+yaccel            = .48
+
+[State 200, Hit]
+type = Projectile
+trigger1 = AnimElem = 4
+trigger1 = MoveType != A
+projID            = 200
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr              = S, NA
+damage            = 30, 0
+animtype          = Light
+getpower          = 30, 30*.85
+hitflag           = MAF
+guardflag         = M
+priority          = 3
+pausetime         = 6,7
+sparkno           = -1
+sparkxy           = -10,-55
+guard.sparkno     = s6005
+hitsound          = s1, 0
+guardsound        = s1, 10
+ground.type       = High
+ground.slidetime  = 10
+ground.hittime    = 10
+ground.velocity   = -2.6
+airguard.velocity = -2.5,-2.3
+air.velocity      = -1.8,-5
+yaccel            = .48
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6000
+ID = 6000
+Name = "HitSpark"
+Pos = 51,-73
+PosType = P1
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(4) = 0
+anim = 201
+scale = 1,1
+postype = p1
+pos = 0,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 200
+
+[State -1, VarSet4]
+Type = VarSet
+Trigger1 = MoveHit
+FV = 22
+value = 0.75
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 200, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;==============================================================================
+;中攻撃
+[Statedef 210]
+type     = S
+movetype = A
+physics  = S
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 210
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = time = 0
+V = 21
+value = 1 + var(21)
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(6) = 0
+value = s13,2+random%3
+channel = 0
+
+[State 210, SE]
+type = PlaySnd
+trigger1 = AnimElem = 7
+value = s0,1
+
+[State 210, 移動速度]
+type = VelSet
+trigger1 = ((AnimElemTime(7) > 0) && (AnimElemTime(13) < 0))
+x = 3
+
+[State -1]
+Type     = Helper
+trigger1 = AnimElem = 2
+trigger1 = Var(3) != 0
+Stateno  = 7000
+ID       = 7000
+Pos      = 0,0
+PosType  = P1
+Ownpal   = 1
+Keyctrl  = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 210, Hit]
+type = HitDef
+trigger1 = AnimElem = 8
+triggerall = MoveType = A
+attr             = S, NA
+animtype         = Medium
+damage           = 55,0
+getpower         = 60,60*.85
+hitflag          = MAF
+guardflag        = MA
+priority         = 3
+pausetime        = 8,8
+sparkno          = -1
+sparkxy          = -10,-60
+guard.sparkno    = s6005
+hitsound         = s1, 3
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 13
+ground.hittime   = 13
+ground.velocity  = -3
+air.velocity     = -2,-3
+yaccel            = .48
+
+[State 210, Hit]
+type = Projectile
+trigger1 = AnimElem = 8
+triggerall = MoveType != A
+projID            = 210
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = S, NA
+animtype         = Medium
+damage           = ifelse(Var(3)!=0,80,70), 0
+getpower         = 60,60*.85
+hitflag          = MAF
+guardflag        = H
+priority         = 2
+pausetime        = 8,8
+sparkno          = -1
+sparkxy          = -10,-60
+guard.sparkno    = s6005
+hitsound         = s1, 3
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 13
+ground.hittime   = 13
+ground.velocity  = -7
+air.velocity     = -2,-6
+yaccel            = .48
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6003
+ID = 6003
+Name = "HitSpark"
+Pos = 57,-39
+PosType = P1
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(6) = 0
+anim = 211
+scale = 1,1
+postype = p1
+pos = 0,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 210
+
+[State -1, VarSet4]
+Type = VarSet
+Trigger1 = MoveHit
+FV = 22
+value = 0.8
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 210, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;==============================================================================
+;打ち上げ
+[Statedef 415]
+type     = S
+movetype = A
+physics  = S
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 415
+velset   = 0,0
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(5) = 0
+value = s13,20
+channel = 0
+
+[State 415, SE]
+type = PlaySnd
+trigger1 = AnimElemTime(7) = 0
+value = s0,2
+
+[State -1]
+Type     = Helper
+trigger1 = AnimElem = 4
+trigger1 = Var(3) != 0
+Stateno  = 7000
+ID       = 7005
+Pos      = 0,0
+PosType  = P1
+Ownpal   = 1
+Keyctrl  = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[state -1,attackdist]
+Type     = AttackDist
+Trigger1 = StateTime = 0
+Value    = 130
+
+[State 415, Hit]
+type = HitDef
+trigger1 = AnimElem = 10
+attr              = S, SA
+damage            = 70,7
+getpower          = 0, 0*.85
+animtype          = Up
+hitflag           = MAF
+guardflag         = MA
+priority          = 3, hit
+pausetime         = 9,9
+sparkno           = -1
+guard.sparkno     = s6005
+hitsound          = s1, 6
+guardsound        = s1, 10
+ground.type       = High
+air.type          = High
+ground.slidetime  = 17
+guard.slidetime   = 17
+ground.hittime    = 17
+air.hittime       = 17
+ground.velocity   = 0,-11
+guard.velocity    = -12
+airguard.velocity = -3,-4.5
+air.velocity      = -1,-10
+yaccel            = .48
+kill              = 1
+guard.kill        = 0
+fall              = 1
+air.fall          = 1
+fall.recover      = 0
+fall.recovertime  = -1
+envshake.time     = 22
+envshake.ampl     = 7
+envshake.freq     = 176
+
+[State 415, Hit]
+type = Projectile
+trigger1 = AnimElem = 10
+triggerall = MoveType != A
+projID            = 415
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = S, NA
+animtype         = medium
+damage           = 50,0
+getpower         = 100, 85
+hitflag          = MAF
+guardflag        = MA
+priority         = 3
+pausetime        = 9,9
+sparkno          = -1
+sparkxy          = -10,-65
+guard.sparkno    = s6005
+hitsound         = s1, 2
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 13
+ground.hittime   = 13
+ground.velocity  = 0,-9
+guard.velocity   = -6
+air.velocity     = -1,-7
+yaccel           = .48
+fall             = 1
+fall.recovertime = 47
+envshake.time    = 22
+envshake.ampl    = 7
+envshake.freq    = 176
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6003
+ID = 6003
+Name = "HitSpark"
+Pos = 0,-65
+PosType = P2
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(6) = 0
+anim = 416
+scale = 1,1
+postype = p1
+pos = 0,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 415
+
+[State -1, VarSet4]
+Type = VarSet
+Trigger1 = MoveHit
+FV = 24
+value = 0.8 * fvar(24)
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 415, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;==============================================================================
+; 強攻撃
+;==============================================================================
+[Statedef 220]
+type     = S
+movetype = A
+physics  = S
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 220
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(5) = 0
+value = s13,5+random%3
+channel = 0
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = time = 0
+V = 19
+value = 1 + var(19)
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 220, SE]
+type = PlaySnd
+trigger1 = AnimElemTime(6) = 0
+value = s0,2
+
+
+[State 220, Vel]
+type = VelSet
+trigger1 = ((AnimElemTime(2) > 0) && (AnimElemTime(7) < 0))
+x = 3
+
+[State 220, Vel]
+type = VelSet
+trigger1 = ((AnimElemTime(11) > 0) && (AnimElemTime(14) < 0))
+x = -1
+
+[State -1]
+Type     = Helper
+trigger1 = AnimElem = 1
+Stateno  = 7000
+ID       = 7001
+Pos      = 0,0
+PosType  = P1
+Ownpal   = 1
+Keyctrl  = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 220, Hit]
+type = HitDef
+trigger1 = AnimElem = 7
+triggerall = MoveType = A
+attr              = S, NA
+animtype          = Hard
+damage            = 70,0
+getpower          = 100,85
+hitflag           = MAF
+guardflag         = MA
+priority          = 3
+pausetime         = 10,13
+sparkno           = -1
+sparkxy           = -10,-70
+guard.sparkno     = s6005
+hitsound          = s1, 2
+guardsound        = s1, 10
+ground.type       = High
+ground.slidetime  = 16
+ground.hittime    = 16
+ground.velocity   = -2
+airguard.velocity = -3,-5
+air.velocity      = -1.8,-7
+envshake.time     = 9
+envshake.ampl     = 6
+envshake.freq     = 100
+yaccel            = .48
+
+[State 220, Hit]
+type = Projectile
+trigger1 = AnimElem = 7
+triggerall = MoveType != A
+projID            = 220
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr              = S, NA
+animtype          = Hard
+damage            = 0, 0
+getpower          = 100,85
+hitflag           = MAF
+guardflag         = M
+priority          = 3
+pausetime         = 10,13
+sparkno           = -1
+sparkxy           = -10,-70
+guard.sparkno     = s6005
+hitsound          = s1, 2
+guardsound        = s1, 10
+ground.type       = High
+ground.slidetime  = 16
+ground.hittime    = 16
+ground.velocity   = -11
+airguard.velocity = -3,-5
+air.velocity      = -1.8,-7
+envshake.time     = 9
+envshake.ampl     = 6
+envshake.freq     = 100
+yaccel            = .48
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6004
+ID = 6004
+Name = "HitSpark"
+Pos = 71,-69
+PosType = P1
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(5) = 0
+anim = 221
+scale = 1,1
+postype = p1
+pos = 0,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 220
+
+[State -1]
+type = TargetState
+value = 208
+triggerall = EnemyNear,Statetype = A
+Trigger1 = MoveHit
+Trigger1 = EnemyNear,StateNo != [208,209]
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 220, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;==============================================================================
+;　ジャンプ蹴り
+;==============================================================================
+[Statedef 225]
+type     = S
+movetype = A
+physics  = S
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 225
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = Time = 0
+V = 20
+value = 0
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = Time = 0
+V = 22
+value = 0
+
+[State -1, StateTypeSet]
+Type = StateTypeSet
+Trigger1 = Time = 10
+StateType = A
+MoveType = A
+Physics = A
+
+[State -1, VelSet]
+Type = VelSet
+Trigger1 = Time = 10
+x = 3
+y = -8
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+value = s13,14+random%2
+channel = 0
+
+[State 110, SE]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = s2, 11
+
+[State 215, Hit-2]
+type = HitDef
+trigger1 = AnimElem = 6
+triggerall = MoveType = A
+attr             = S, NA
+animtype         = Hard
+damage           = 35, 0
+getpower         = 90,90*.85
+hitflag          = MAF
+guardflag        = H
+priority         = 3
+pausetime        = 9, 9
+sparkno          = -1
+sparkxy          = -10,-20
+guard.sparkno    = s6005
+hitsound         = s1, 4
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 12
+ground.hittime   = 19
+ground.velocity  = -2.5,-8
+guard.velocity   = -5
+air.velocity     = -2.2,-8
+Fall             = 1
+Air.Fall         = 1   
+Fall.Recover     = 1
+Fall.RecoverTime = 25
+
+[State 215, Hit-2]
+type = HitDef
+trigger1 = AnimElem = 7
+triggerall = MoveType = A
+attr             = A, NA
+animtype         = Hard
+damage           = 40, 0
+getpower         = 35,35*.85
+hitflag           = MAF
+guardflag         = H
+priority         = 3
+pausetime        = 9, 9
+sparkno          = -1
+sparkxy          = -10,-20
+guard.sparkno     = s6005
+hitsound         = s1, 4
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 12
+ground.hittime   = 19
+ground.velocity  = -2.5,-8
+guard.velocity   = -5
+air.velocity     = -2.2,-8
+Fall             = 1
+Air.Fall         = 1   
+Fall.Recover     = 1
+Fall.RecoverTime = 25
+
+[State 215, Hit]
+type = Projectile
+trigger1 = AnimElem = 6
+trigger2 = AnimElem = 7
+triggerall = MoveType != A
+projID            = 215
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = A, NA
+animtype         = Hard
+damage           = 0, 0
+getpower         = 90,90*.85
+hitflag          = MAF
+guardflag        = H
+priority         = 4
+pausetime        = 9, 9
+sparkno          = -1
+sparkxy          = -10,-20
+guard.sparkno    = s6005
+hitsound         = s1, 4
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 12
+ground.hittime   = 19
+ground.velocity  = -2.5,-8
+guard.velocity   = -5
+air.velocity     = -2.2,-8
+Fall             = 1
+Air.Fall         = 1   
+Fall.Recover     = 1
+Fall.RecoverTime = 25
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6003
+ID = 6003
+Name = "HitSpark"
+Pos = 27,-66
+PosType = P1
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 2) && (MoveHit))
+Stateno = 6004
+ID = 6004
+Name = "HitSpark"
+Pos = 53,-85
+PosType = P1
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1, Explod]
+Type = Explod
+Trigger1 = AnimElem = 5
+Anim = 227
+ID = 227
+Postype = P1
+Pos = 0,0
+Ownpal = 1
+Scale = 1,1
+SprPriority = 8
+IgnoreHitPause = 1
+
+[State -1, VarSet4]
+Type = VarSet
+Trigger1 = MoveHit
+FV = 24
+value = 0.9 * fvar(24)
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 600, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 650
+;==============================================================================
+;　しゃがみ弱攻撃
+;==============================================================================
+[Statedef 400]
+type     = C
+movetype = A
+physics  = C
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 400
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+value = s13,0+random%2
+channel = 0
+
+[State 400, SE]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = s0,0
+
+[State 400, Hit]
+type = HitDef
+trigger1 = AnimElem = 4
+triggerall = MoveType = A
+attr             = C, NA
+damage           = 40, 0
+animtype         = Light
+getpower         = 30,26
+priority         = 3
+hitflag          = MAF
+guardflag        = L
+pausetime        = 8,11
+sparkno          = -1
+sparkxy          = -2,-5
+guard.sparkno    = s6005
+hitsound         = s1, 0
+guardsound       = s1, 10
+ground.type      = Low
+ground.slidetime = 4
+ground.hittime   = 15
+ground.velocity  = -2
+air.velocity     = -1.3,-3
+down.velocity    = -4,0
+down.hittime     = 20
+
+[State 400, Hit]
+type = Projectile
+trigger1 = AnimElem = 4
+triggerall = MoveType != A
+projID            = 400
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = C, NA
+damage           = 0, 0
+animtype         = Light
+getpower         = 30,26
+priority         = 2
+hitflag          = MAF
+guardflag        = L
+pausetime        = 8,11
+sparkno          = -1
+sparkxy          = -2,-5
+guard.sparkno    = s6005
+hitsound         = s1, 0
+guardsound       = s1, 10
+ground.type      = Low
+ground.slidetime = 4
+ground.hittime   = 15
+ground.velocity  = -3
+air.velocity     = -1.3,-3
+down.velocity    = -4,0
+down.hittime     = 20
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6000
+ID = 6000
+Name = "HitSpark"
+Pos = 0,-34
+PosType = P2
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(3) = 0
+anim = 402
+scale = 1,1
+postype = p1
+pos = 0,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 400
+
+[State -1]
+type = ChangeState
+value = 401
+triggerall = command = "a"
+triggerall = command = "holddown"
+Trigger1 = MoveContAct
+
+[State -1, VarSet4]
+Type = VarSet
+Trigger1 = MoveHit
+FV = 22
+value = 0.8
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 400, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+;==============================================================================
+;　しゃがみ弱攻撃
+;==============================================================================
+[Statedef 401]
+type     = C
+movetype = A
+physics  = C
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 401
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+value = s13,2+random%2
+channel = 0
+
+[State 400, SE]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = s0,0
+
+[State 400, Hit]
+type = HitDef
+trigger1 = AnimElem = 6
+triggerall = MoveType = A
+attr             = C, NA
+damage           = 40, 0
+animtype         = Light
+getpower         = 30,30*.85
+priority         = 3
+hitflag           = MAF
+guardflag         = L
+pausetime        = 8,11
+sparkno          = -1
+sparkxy          = -2,-5
+guard.sparkno     = s6005
+hitsound         = s1, 0
+guardsound       = s1, 10
+ground.type      = Low
+ground.slidetime = 4
+ground.hittime   = 15
+ground.velocity  = -2
+air.velocity     = -1.3,-3
+down.velocity    = -4,0
+down.hittime     = 20
+
+[State 401, Hit]
+type = Projectile
+trigger1 = AnimElem = 6
+triggerall = MoveType != A
+projID            = 401
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = C, NA
+damage           = 0, 0
+animtype         = Light
+getpower         = 30,26
+priority         = 3
+hitflag          = MAF
+guardflag        = L
+pausetime        = 8,11
+sparkno          = -1
+sparkxy          = -2,-5
+guard.sparkno    = s6005
+hitsound         = s1, 0
+guardsound       = s1, 10
+ground.type      = Low
+ground.slidetime = 4
+ground.hittime   = 15
+ground.velocity  = -3
+air.velocity     = -1.3,-3
+down.velocity    = -4,0
+down.hittime     = 20
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6000
+ID = 6000
+Name = "HitSpark"
+Pos = 0,-20
+PosType = P2
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(4) = 0
+anim = 402
+scale = 1,1
+postype = p1
+pos = 0,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 400
+
+[State -1]
+type = ChangeState
+value = 400
+triggerall = command = "a"
+triggerall = command = "holddown"
+Trigger1 = MoveContAct
+
+[State 400, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+;==============================================================================
+;　しゃがみ中攻撃
+;==============================================================================
+[Statedef 410]
+type     = C
+movetype = A
+physics  = C
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 410
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = time = 0
+V = 21
+value = 10 + var(21)
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 410, SE]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = s0,1
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+value = s13,2+random%3
+channel = 0
+
+[State 410, Speed]
+type = VelSet
+trigger1 = ((AnimElemTime(3) > 0) && (AnimElemTime(10) < 0))
+x = 0.6
+
+[State 410, Hit]
+type = HitDef
+trigger1 = AnimElem = 7
+triggerall = MoveType = A
+attr             = C, NA
+animtype         = Medium
+damage           = 55
+getpower         = 70,70*.85
+hitflag          = MAFD
+guardflag        = L
+priority         = 3
+pausetime        = 7,8
+sparkno          = -1
+sparkxy          = -10,-10
+guard.sparkno     = s6005
+hitsound         = s1, 1
+guardsound       = s1, 10
+ground.type      = Low
+ground.slidetime = 13
+ground.hittime   = 13
+ground.velocity  = -3
+air.velocity     = -1.6,-7.2
+
+[State 410, Hit]
+type = Projectile
+trigger1 = AnimElem = 7
+triggerall = MoveType != A
+projID            = 410
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = C, NA
+animtype         = Medium
+damage           = 0, 0
+getpower         = 70,70*.85
+hitflag          = MAFD
+guardflag        = L
+priority         = 2
+pausetime        = 7,8
+sparkno          = -1
+sparkxy          = -10,-10
+guard.sparkno     = s6005
+hitsound         = s1, 1
+guardsound       = s1, 10
+ground.type      = Low
+ground.slidetime = 13
+ground.hittime   = 13
+ground.velocity  = -8
+air.velocity     = -1.6,-7.2
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6003
+ID = 6003
+Name = "HitSpark"
+Pos = 0,-12
+PosType = P2
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1, VarSet4]
+Type = VarSet
+Trigger1 = MoveHit
+FV = 22
+value = 0.70
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 410, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+;==============================================================================
+;　しゃがみ強攻撃
+;==============================================================================
+[Statedef 420]
+type     = C
+movetype = A
+physics  = C
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 420
+velset   = 0,0
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+value = s13,5+random%3
+channel = 0
+
+[State 420, SE]
+type = PlaySnd
+trigger1 = AnimElemTime(6) = 0
+value = s0,2
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = time = 0
+V = 19
+value = 10 + var(19)
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type     = Helper
+trigger1 = AnimElem = 1
+trigger1 = Var(3) != 0
+Stateno  = 7000
+ID       = 7002
+Pos      = 0,0
+PosType  = P1
+Ownpal   = 1
+Keyctrl  = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[state -1,attackdist]
+Type     = AttackDist
+Trigger1 = StateTime = 0
+Value    = 130
+
+[State 420, Hit]
+type = HitDef
+trigger1 = AnimElem = 7
+triggerall = MoveType = A
+attr             = C, NA
+animtype         = Hard
+damage           = 70
+getpower         = 100,100*.85
+hitflag          = MAFD
+guardflag        = L
+priority         = 3
+pausetime        = 10,11
+sparkno          = -1
+sparkxy          = -10,-20
+guard.sparkno     = s6005
+hitsound         = s1, 3
+guardsound       = s1, 10
+ground.type      = Trip
+ground.slidetime = 16
+ground.hittime   = 16
+ground.velocity  = -0.3,-3.5
+guard.velocity   = -5
+air.velocity     = -0.3,-3.5
+fall             = 1
+air.fall         = 1
+fall.recover     = 0
+envshake.time = 8
+envshake.ampl = 6
+envshake.freq = 100
+
+[State 420, Hit]
+type = Projectile
+trigger1 = AnimElem = 7
+triggerall = MoveType != A
+projID            = 420
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = C, NA
+animtype         = Hard
+damage           = 0,0
+getpower         = 100,100*.85
+hitflag          = MAFD
+guardflag        = L
+priority         = 4
+pausetime        = 10,11
+sparkno          = -1
+sparkxy          = -10,-20
+guard.sparkno     = s6005
+hitsound         = s1, 3
+guardsound       = s1, 10
+ground.type      = Trip
+ground.slidetime = 16
+ground.hittime   = 16
+ground.velocity  = -0.5,-3.5
+guard.velocity   = -5
+air.velocity     = -0.5,-3.5
+fall             = 1
+air.fall         = 1
+fall.recover     = 0
+envshake.time = 8
+envshake.ampl = 6
+envshake.freq = 100
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6004
+ID = 6004
+Name = "HitSpark"
+Pos = 0,-15
+PosType = P2
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(6) = 0
+anim = 421
+scale = 1,1
+postype = p1
+pos = 60,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 420
+
+[State -1, VarSet4]
+Type = VarSet
+Trigger1 = MoveHit
+FV = 22
+value = 0.70
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 420, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+;==============================================================================
+;　ジャンプ弱攻撃
+;==============================================================================
+[Statedef 600]
+type     = A
+movetype = A
+physics  = A
+juggle   = 1
+poweradd = 10
+ctrl     = 0
+anim     = 600
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+value = s13,0+random%2
+channel = 0
+
+[State 600, SE]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = s0,0
+
+[State 600, Hit]
+type = HitDef
+trigger1 = AnimElem = 4
+triggerall = MoveType = A
+attr             = A, NA
+animtype         = Light
+damage           = 40,0
+getpower         = 30,30*.85
+hitflag          = MAFD
+guardflag        = HA
+priority         = 3
+pausetime        = 6,7
+sparkno          = -1
+sparkxy          = -10,-45
+guard.sparkno     = s6005
+hitsound         = s1, 1
+guardsound       = s1, 10
+ground.type      = high
+ground.slidetime = 11
+ground.hittime   = 11
+ground.velocity  = -4
+air.velocity     = -0.5,-5.6
+airguard.velocity = -2,-4
+yaccel           = .48
+kill             = 1
+guard.kill       = 0
+fall             = 0
+air.fall         = 1
+fall.recover     = ifelse(P2MoveType = A,0,1)
+fall.recovertime = 23
+
+[State 600, Hit]
+type = Projectile
+trigger1 = AnimElem = 4
+triggerall = MoveType != A
+projID            = 600
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = A, NA
+animtype         = Light
+damage           = 0, 0
+getpower         = 30,30*.85
+hitflag          = MAFD
+guardflag        = HA
+priority         = 3
+pausetime        = 6,7
+sparkno          = -1
+sparkxy          = -10,-45
+guard.sparkno     = s6005
+hitsound         = s1, 1
+guardsound       = s1, 10
+ground.type      = high
+ground.slidetime = 11
+ground.hittime   = 11
+ground.velocity  = -4
+air.velocity     = -0.8,-5.6
+airguard.velocity = -2,-4
+yaccel           = .48
+kill             = 1
+guard.kill       = 0
+fall             = 0
+air.fall         = 1
+fall.recover     = ifelse(P2MoveType = A,0,1)
+fall.recovertime = 23
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6000
+ID = 6000
+Name = "HitSpark"
+Pos = 44,-55
+PosType = P1
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(3) = 0
+anim = 601
+scale = 1,1
+postype = p1
+pos = 0,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 600
+
+[State 600, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 650
+;==============================================================================
+;　ジャンプ中攻撃
+;==============================================================================
+[Statedef 610]
+type     = A
+movetype = A
+physics  = A
+juggle   = 1
+poweradd = 20
+ctrl     = 0
+anim     = 610
+
+[State 610, SE]
+type = PlaySnd
+trigger1 = AnimElemTime(2) = 0
+trigger2 = AnimElemTime(6) = 0
+value = s0,1
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+value = s13,2+random%3
+channel = 0
+
+[State -1]
+Type     = Helper
+trigger1 = AnimElem = 1
+Stateno  = 7000
+ID       = 7003
+Pos      = 0,0
+PosType  = P1
+Ownpal   = 1
+Keyctrl  = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 610, Hit]
+type = HitDef
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 7
+triggerall = MoveType = A
+attr             = A, NA
+animtype         = Hard
+damage           = 35, 0
+getpower         = 50,50*.85
+guardflag        = HA
+priority         = 3
+pausetime        = 8,9
+sparkno          = -1
+sparkxy          = -10,-20
+guard.sparkno     = s6005
+hitsound         = s1, 4
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 11
+ground.hittime   = 11
+ground.velocity  = -5
+guard.velocity   = -8
+air.velocity     = -1.3,-6.4
+airguard.velocity = -2,-4
+yaccel           = .48
+kill             = 1
+guard.kill       = 0
+fall             = 0
+air.fall         = 1
+fall.recover     = ifelse(P2MoveType = A,0,1)
+fall.recovertime = 25
+
+[State 610, Hit]
+type = Projectile
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 7
+triggerall = MoveType != A
+projID            = 610
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = A, NA
+animtype         = Hard
+damage           = 50, 0
+getpower         = 50,50*.85
+guardflag        = HA
+priority         = 4
+pausetime        = 8,9
+sparkno          = -1
+sparkxy          = -10,-20
+guard.sparkno     = s6005
+hitsound         = s1, 4
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 11
+ground.hittime   = 11
+ground.velocity  = -5
+guard.velocity   = -8
+air.velocity     = -1.5,-6.4
+airguard.velocity = -2,-4
+yaccel           = .48
+kill             = 1
+guard.kill       = 0
+fall             = 0
+air.fall         = 1
+fall.recover     = ifelse(P2MoveType = A,0,1)
+fall.recovertime = 25
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6003
+ID = 6003
+Name = "HitSpark"
+Pos = 55,-76
+PosType = P1
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 2) && (MoveHit))
+Stateno = 6003
+ID = 6003
+Name = "HitSpark"
+Pos = 62,-33
+PosType = P1
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(2) = 0
+anim = 611
+scale = 1,1
+postype = p1
+pos = 0,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 610
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(6) = 0
+anim = 612
+scale = 1,1
+postype = p1
+pos = 0,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 610
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = time = 0
+V = 21
+value = 100 + var(21)
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 610, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 650
+;==============================================================================
+;　ジャンプ強攻撃
+;==============================================================================
+[Statedef 620]
+type     = A
+movetype = A
+physics  = A
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 620
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+value = s13,5+random%3
+channel = 0
+
+[State 620, SE]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = s0,1
+
+[State -1]
+Type     = Helper
+trigger1 = AnimElem = 1
+trigger1 = Var(3) != 0
+Stateno  = 7000
+ID       = 7004
+Pos      = 0,0
+PosType  = P1
+Ownpal   = 1
+Keyctrl  = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Hit]
+type = HitDef
+trigger1 = AnimElem = 5
+triggerall = MoveType = A
+attr             = A, NA
+animtype         = Hard
+damage           = 70,0
+getpower         = 100,100*.85
+guardflag        = HA
+priority         = 3
+pausetime        = 8,8
+sparkno          = -1
+sparkxy          = -5,-50
+guard.sparkno     = s6005
+hitsound         = s1, 4
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 11
+ground.hittime   = 11
+ground.velocity  = -7
+guard.velocity   = -8.5
+air.velocity     = -1.5,-9
+airguard.velocity = -3.2,-4.5
+down.velocity    = -6,-2.5
+yaccel           = .48
+kill             = 1
+guard.kill       = 0
+fall             = 0
+air.fall         = 1
+fall.recover     = ifelse(P2MoveType = A,0,1)
+fall.recovertime = 33
+
+[State 620, Hit]
+type = Projectile
+trigger1 = AnimElem = 5
+triggerall = MoveType != A
+projID            = 620
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = A, NA
+animtype         = Hard
+damage           = 0,0
+getpower         = 100,100*.85
+guardflag        = HA
+priority         = 4
+pausetime        = 8,8
+sparkno          = -1
+sparkxy          = -5,-50
+guard.sparkno     = s6005
+hitsound         = s1, 4
+guardsound       = s1, 10
+ground.type      = High
+ground.slidetime = 11
+ground.hittime   = 11
+ground.velocity  = -7
+guard.velocity   = -8.5
+air.velocity     = -1.5,-9
+airguard.velocity = -3.2,-4.5
+down.velocity    = -6,-2.5
+yaccel           = .48
+kill             = 1
+guard.kill       = 0
+fall             = 0
+air.fall         = 1
+fall.recover     = ifelse(P2MoveType = A,0,1)
+fall.recovertime = 33
+
+[State -1, VarSet8]
+Type = VarAdd
+trigger1 = MoveHit
+V = 25
+value = 1
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1]
+Type = Helper
+Trigger1 = ((HitCount = 1) && (MoveHit))
+Stateno = 6004
+ID = 6004
+Name = "HitSpark"
+Pos = 55,-88
+PosType = P1
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(4) = 0
+anim = 621
+scale = 1,1
+postype = p1
+pos = 0,-15
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 620
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = time = 0
+V = 19
+value = 100 + var(19)
+IgnoreHitPause = 1
+Persistent = 0
+
+[State -1, VarSet4]
+Type = VarSet
+Trigger1 = MoveHit
+FV = 24
+value = 0.9 * fvar(24)
+IgnoreHitPause = 1
+Persistent = 0
+
+[State 620, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 650
+;==============================================================================
+; 回転攻撃
+;==============================================================================
+[Statedef 625]
+type     = A
+movetype = A
+physics  = A
+juggle   = 1
+poweradd = 0
+ctrl     = 0
+anim     = 625
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+value = s13,1
+channel = 0
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(13) = 0
+value = s13,21
+channel = 0
+
+[State 620, SE]
+type = PlaySnd
+trigger1 = AnimElemTime(13) = 0
+value = s0,1
+
+[State 625,無敵]
+type = NotHitBy
+trigger1 = 1
+value = ,AP
+
+[State 753, 移動速度]
+type = VelSet
+trigger1 = Time = [0,3]
+y = -5.2
+
+[State 753, 速度加算]
+type = VelAdd
+trigger1 = Time >= 4
+Trigger1 = Vel Y < 9
+y = -0.15
+
+[State 753, 移動速度]
+type = VelSet
+triggerall = time > 25
+trigger1 = MoveHit = 1 && NumTarget != 0
+x = -1.4
+y = -4.8
+Persistent = 0
+
+[State 620, Hit]
+type = HitDef
+trigger1 = AnimElem = 3
+Trigger2 = AnimElem = 5
+Trigger3 = AnimElem = 7
+Trigger4 = AnimElem = 9
+Trigger5 = AnimElem = 11
+Trigger6 = AnimElem = 13
+triggerall = MoveType = A
+attr             = A, NA
+animtype         = Hard
+damage           = 12, 1
+getpower         = 30, 30*.85
+hitflag          = MAFD
+guardflag        = HA
+priority         = 3
+pausetime        = 3,3
+sparkno          = -1
+sparkxy          = -5,-50
+guard.sparkno    = s6005
+hitsound         = -1
+guardsound       = -1
+ground.type      = High
+ground.slidetime = 15
+ground.hittime   = 15
+ground.velocity  = -1,-6
+guard.velocity   = -3
+air.velocity     = -1,-3
+airguard.velocity = -2,-4
+down.velocity    = -6,-2.5
+yaccel           = 0.48
+kill             = 1
+fall             = 1
+air.fall         = 1
+fall.recover     = ifelse(p2movetype = A,0,1)
+fall.recovertime = 23
+
+[State 620, Hit]
+type = HitDef
+trigger1 = AnimElem = 15
+trigger1 = MoveType = A
+attr             = A, NA
+animtype         = Hard
+damage           = 8,0
+getpower         = 80, 80*.85
+guardflag        = HA
+priority         = 4
+pausetime        = 10,10
+sparkno          = -1
+sparkxy          = -5,-50
+guard.sparkno     = s6005
+hitsound         = -1;s1, 4
+guardsound       = -1;s1, 10
+ground.type      = High
+ground.slidetime = 15
+ground.hittime   = 15
+ground.velocity  = -8,12
+guard.velocity   = -6
+air.velocity     = -8,12
+airguard.velocity = -5,-4.5
+down.velocity    = -8,-2.5
+yaccel           = 0.48
+kill             = 1
+fall             = 1
+air.fall         = 1
+fall.recover     = 0
+
+[State 625, Hit]
+type = Projectile
+trigger1 = AnimElem = 3
+Trigger2 = AnimElem = 5
+Trigger3 = AnimElem = 7
+Trigger4 = AnimElem = 9
+Trigger5 = AnimElem = 11
+Trigger6 = AnimElem = 13
+triggerall = MoveType != A
+projID            = 625
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = A, NA
+animtype         = Hard
+damage           = 0, 0
+getpower         = 30, 30*.85
+hitflag          = MAF
+guardflag        = HA
+priority         = 3
+pausetime        = 3,3
+sparkno          = -1
+sparkxy          = -5,-50
+guard.sparkno    = s6005
+hitsound         = -1;s1, 4
+guardsound       = -1;s1, 10
+ground.type      = High
+ground.slidetime = 15
+ground.hittime   = 15
+ground.velocity  = -1,-6
+guard.velocity   = -3
+air.velocity     = -1,-3
+airguard.velocity = -2,-4
+down.velocity    = -6,-2.5
+yaccel           = 0.48
+kill             = 1
+fall             = 1
+air.fall         = 1
+fall.recover     = ifelse(p2movetype = A,0,1)
+fall.recovertime = 23
+
+[State 625, Hit]
+type = Projectile
+trigger1 = AnimElem = 15
+triggerall = MoveType != A
+projID            = 625
+projanim          = 2402
+projremovetime    = 10
+projpriority      = 16
+projsprpriority   = 0
+projedgebound     = 10000
+ignorehitpause    = 1
+pasusemovetime    = 10, 45
+Projhits          = 1
+projremove        = 0
+attr             = A, NA
+animtype         = Hard
+damage           = 0,0
+getpower         = 80, 80*.85
+guardflag        = HA
+priority         = 4
+pausetime        = 10,10
+sparkno          = -1
+sparkxy          = -5,-50
+guard.sparkno     = s6005
+hitsound         = -1;s1, 4
+guardsound       = -1;s1, 10
+ground.type      = High
+ground.slidetime = 15
+ground.hittime   = 15
+ground.velocity  = -8,12
+guard.velocity   = -6
+air.velocity     = -8,12
+airguard.velocity = -5,-4.5
+down.velocity    = -8,-2.5
+yaccel           = 0.48
+kill             = 1
+fall             = 1
+air.fall         = 1
+fall.recover     = 0
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = NumTarget > 0
+Trigger1 = MoveContact
+Trigger1 = Var(26) = [0,2]
+V = 26
+Value = 3
+
+[State -1, VarSet8]
+Type = PlaySnd
+TriggerAll = NumTarget > 0
+Trigger1   = MoveHit
+Trigger1 = Var(26) = 3
+value = s1, 4
+channel = 4
+
+[State -1, VarSet8]
+Type = PlaySnd
+TriggerAll = NumTarget > 0
+Trigger1   = MoveGuarded
+Trigger1 = Var(26) = 3
+value = s1, 10
+channel = 4
+
+[State -1]
+Type = Helper
+TriggerAll = NumTarget > 0
+Trigger1   = MoveHit
+Trigger1 = Var(26) = 3
+Stateno = 6004
+ID = 6004
+Name = "HitSpark"
+Pos = -5+random%10,-70-random%40
+PosType = P2
+Ownpal = 1
+Keyctrl = 0
+IgnoreHitPause = 1
+Persistent = 7
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1, VarSet8]
+Type = VarAdd
+TriggerAll = NumTarget > 0
+Trigger1   = MoveHit
+Trigger1 = Var(26) = 3
+V = 25
+value = 1
+IgnoreHitPause = 1
+
+[State -1]
+Type = MoveHitReset
+Trigger1 = MoveContact
+Trigger1 = Var(26) = 3
+IgnoreHitPause = 1
+
+[State -1, VarSet]
+Type = VarSet
+Trigger1 = NumEnemy > 0
+Trigger1 = !MoveContact
+Trigger2 = Var(26) = 3
+V = 26
+Value = 0
+
+[State 620, Effect]
+type = Explod
+trigger1 = AnimElemTime(13) = 0
+anim = 626
+scale = 1,1
+postype = p1
+pos = -13,0
+sprpriority = 4
+supermove = 1
+bindtime = -1
+ownpal = 1
+ID = 625
+
+[State 620, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 650
+;==============================================================================
+; その他
+;==============================================================================
+;空中技終了後・空中制御可能状態
+;==============================================================================
+[Statedef 650]
+type     = A
+movetype = I
+physics  = A
+ctrl     = 1
+anim     = 650
+
+[State 1800,ステ移行.1]
+Type     = ChangeState
+trigger1 = ((Time > 0) && (Pos Y >= 0))
+value    = 52
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　投げ技
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　地上投げ（中）
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 800]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+velset   = 0,0
+ctrl     = 0
+anim     = 800
+sprpriority = 2
+
+[State 800,ヒット定義]
+type        = HitDef
+Trigger1    = AnimElem = 2
+attr        = S, NT
+hitflag     = M- 
+priority    = 1, Miss
+hitsound    = s1,0
+sparkno     = -1
+sprpriority = 1
+p1facing    = 1
+p2facing    = 1
+p1stateno   = 415;700
+p2stateno   = 805
+guard.dist = 0
+fall = 1
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(5) = 0
+value = s13,12+random%2
+channel = 0
+
+[State 800, Change]
+type     = ChangeState
+Trigger1 = AnimTime = 0
+value    = 0
+ctrl     = 1
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;相手ステ
+[Statedef 805]
+type     = S
+movetype = H
+physics  = S
+velset   = 0,0
+
+[State 805,待機モーション]
+type     = ChangeAnim2
+Trigger1 = Time = 0
+value    = 805
+
+[State 805,ベクトル] 
+type     = VelAdd
+Trigger1 = AnimTime = 0
+x        = -2
+y        = -2
+
+[State 805,ステ返却]
+type     = SelfState
+Trigger1 = time>=30
+value    = 5030
+ctrl     = 1
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　空中投げ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 820]
+type     = A
+movetype = A
+physics  = A
+juggle   = 0
+ctrl     = 0
+anim     = 820
+sprpriority = 2
+
+[State 810, Throw Hit]
+type = HitDef
+Trigger1 = Time = 0
+attr        = A, NT
+hitflag     = AF
+priority    = 2, Miss
+hitsound    = s1,0
+sparkno     = -1
+sprpriority = 1
+p1facing    = ifelse(command="holdfwd",-1,ifelse(command="holdback",1,-1))
+p2facing    = 1
+p1stateno   = 821
+p2stateno   = 824
+guard.dist = 0
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(5) = 0
+value = s13,12+random%2
+channel = 0
+
+[State 810, Change]
+type = ChangeState
+Trigger1 = AnimTime = 0
+value = 650
+ctrl = 1
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　空中投げ・成功（相手掴み）
+;━━━━━━━━━━━━━━━━
+[Statedef 821]
+type     = A
+movetype = A
+physics  = N
+anim     = 821
+poweradd = 0
+ctrl     = 0
+velset   = 0,0
+
+[State -1, Arcueid Voice]
+type = PlaySnd
+trigger1 = AnimElemTime(1) = 0
+value = s13,10
+channel = 0
+
+[State 804, 無敵]
+type = NotHitBy
+trigger1 = 1
+value = SCA,AA,AT,AP
+time = 3
+
+[State 804, 押さない]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 811, Speed]
+type = VelSet
+trigger1 = time = 1
+x = 1
+y = -1.5
+
+[State 811, Speed]
+type = VelAdd
+trigger1 = time > 2
+y = 0.45
+
+[State 811, Bind-1]
+type = TargetBind
+trigger1 = Time > 0
+pos = 41,-79
+
+[State 811, Change]
+type = ChangeState
+trigger1 = ((Time > 5) && (Vel Y > 0) && (Pos Y >= -20))
+value = 822
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　空中投げ・成功（着地後）
+;━━━━━━━━━━━━━━━━
+[Statedef 822]
+type     = S
+movetype = A
+physics  = N
+anim     = 822
+poweradd = 0
+ctrl     = 0
+velset   = 0,0
+
+[State 811, Target Damage]
+type = TargetLifeAdd
+trigger1 = time = 0
+value = -(Enemynear,const(data.Life)/14)
+
+[State 804, 無敵]
+type = NotHitBy
+trigger1 = 1
+value = SCA,AA,AT,AP
+time = 3
+
+[State 804, 押さない]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 805, 状態変更]
+type = StateTypeSet
+trigger1 = Time > 6
+StateType = A
+MoveType = I
+IgnoreHitPause = 1
+Persistent = 1
+
+[State 805, 軸位置]
+type = PosSet
+trigger1 = Time = [0,4]
+y = 0
+
+[State 805, 移動速度]
+type = VelSet
+trigger1 = Time = [0,5]
+x = 0
+y = 0
+
+[State 805, 移動速度]
+type = VelSet
+trigger1 = Time = 7
+x = 1
+y = -2.8
+
+[State 805, 速度加算]
+type = VelAdd
+trigger1 = Time > 8
+y = 0.2
+
+[State 811, 1]
+type = TargetBind
+trigger1 = animelemtime(2) < 0
+pos = 40,-60
+
+[State 811, 1]
+type = TargetBind
+trigger1 = animelemtime(2) >= 0
+trigger1 = animelemtime(3) < 0
+pos = 35,-30
+
+[State 811, 1]
+type = TargetBind
+trigger1 = animelemtime(3) >= 0
+trigger1 = animelemtime(4) < 0
+pos = 30,0
+
+[State -1]
+type = TargetState
+trigger1 = animelemtime(4) = 0
+value = 825
+
+[State 811, Change]
+type = ChangeState
+trigger1 = ((Time > 9) && (Vel Y > 0) && (Pos Y >= 0))
+value = 52
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　空中投げ・相手側1
+;━━━━━━━━━━━━━━━━
+[Statedef 824]
+type     = A
+movetype = H
+physics  = N
+velset   = 0,0
+
+[State 806, ]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 812, P2Anim]
+type = ChangeAnim2
+Trigger1 = Time = 0
+value = 5820
+
+[State 813, SpeedAdd]
+type = VelAdd
+triggerall = Time > 0
+triggerall = Pos Y < 0
+trigger1 = EnemyNear,AuthorName = "Shiroto" && EnemyNear,Name = "Akaitsuki" && EnemyNear,MoveType = H
+trigger2 = EnemyNear,AuthorName = "Shiroto" && EnemyNear,Name = "Arcueid Brunestud" && EnemyNear,MoveType = H
+trigger3 = EnemyNear,AuthorName = "Sion_Love_nameless" && EnemyNear,Name = "Arcueid Brunestud" && EnemyNear,MoveType = H
+y = 0.4
+
+[State 813, Change Self]
+type = SelfState
+trigger1 = ((Time > 0) && (Vel Y > 0) && (Pos Y >= 0))
+value = 5100
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　空中投げ・相手側2
+;━━━━━━━━━━━━━━━━
+[Statedef 825]
+type     = S
+movetype = H
+physics  = N
+
+[State 812, P2Anim]
+type = ChangeAnim2
+Trigger1 = Time = 0
+value = 5820
+
+[State 813, SpeedAdd]
+type = VelSet
+trigger1 = Time = 0
+y = 10
+[State 813, SpeedAdd]
+type = VelAdd
+trigger1 = Time > 0
+trigger1 = Pos Y < 0
+y = 0.4
+
+[State 813, Change Self]
+type = SelfState
+trigger1 = ((Time > 0) && (Vel Y > 0) && (Pos Y >= 0))
+value = 5100
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

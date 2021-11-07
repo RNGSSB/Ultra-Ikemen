@@ -1,0 +1,72 @@
+{
+  "modes": {
+    "training": {
+      "playtime": 0
+    },
+    "arcade": {
+      "playtime": 1669.03,
+      "clear": 2,
+      "clearcount": {
+        "spider-man": 2
+      },
+      "ranking": [
+        {
+          "score": 724900,
+          "time": 432.37,
+          "name": "AAA",
+          "chars": [
+            "spider-man"
+          ],
+          "tmode": 0,
+          "ailevel": 5,
+          "win": 6,
+          "lose": 0,
+          "consecutive": 6
+        },
+        {
+          "score": 650800,
+          "time": 463.72,
+          "name": "AAA",
+          "chars": [
+            "spider-man"
+          ],
+          "tmode": 0,
+          "ailevel": 5,
+          "win": 6,
+          "lose": 0,
+          "consecutive": 6
+        },
+        {
+          "score": 356700,
+          "time": 381.27,
+          "name": "AAA",
+          "chars": [
+            "jotaro"
+          ],
+          "tmode": 0,
+          "ailevel": 5,
+          "win": 4,
+          "lose": 1,
+          "consecutive": 4
+        },
+        {
+          "score": 249500,
+          "time": 391.67,
+          "name": "AAA",
+          "chars": [
+            "neco-arc[doburoku]"
+          ],
+          "tmode": 0,
+          "ailevel": 5,
+          "win": 2,
+          "lose": 1,
+          "consecutive": 2
+        }
+      ]
+    },
+    "freebattle": {
+      "playtime": 144.39
+    }
+  },
+  "playtime": 1813.42
+}

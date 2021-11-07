@@ -1,0 +1,58 @@
+<#f0f000>:Command Normals:</>
+  Backdash Attack       _B_B^P or _K
+
+  Uppercut(LAUNCH)        _D^HP
+
+  Boomerang Kick(BOUNCE)        (in air) ^HK or _B^HK
+
+  Cartwheel Kick        _F_F^HK
+
+
+  Medium Punch Chain     ^MP,^MP or ^MK,^MP
+
+<#f0f000>:Special Moves:</>
+  Flik Flak      _B_B,_B
+
+  Ki Blast (*3)       _D_DF_F^P
+
+  Dragon Dash (EX)        _D_DB_B^P
+    then Dragon Tail    ^LP
+    or Flash Kick   ^MP
+    or Dragon Upper   ^HP
+    or Dash Cancel    ^K
+
+  Hurricane Kick (AIR) (EX)       _D_DB_B^K
+    then Blur Kick    _F^K
+    or Boomerang Kick   _B^K
+
+  Slash-Down Kick (EX)       (in air) _D_DF_F^K
+
+  Snap Kick  (EX)       (charge) _D,_U^K
+
+  Turtle Flip (EX)     _D_DF_F^K
+      then Slash-Down Kick    _D^K
+      or Swoop Kick   ^K
+      or Appetite (GRAB)    ^P
+
+<#f0f000>:Super Moves:</>
+  Kamehameha (AIR) (HOLD)
+    LVL 1   _D_DF_F_D_DF_F^P
+    LVL 2   _D_DF_F_D_DF_F^P_+^P
+
+  Final Meteor Kick (AIR) (BOUNCE)
+    LVL 1   _D_DF_F_D_DF_F^K
+    LVL 2   _D_DF_F_D_DF_F^K_+^K
+    LVL 3   _D_DF_F_D_DF_F^3K
+
+  Kaioken Install
+    LVL 1   _D_DB_B_D_DB_B^P
+    LVL 2   _D_DB_B_D_DB_B^P+^P
+    LVL 3   _D_DB_B_D_DB_B^3P
+
+  Kaioken Attack (POWER)
+    LVL 3   _D_DF_F_DF_D_DB_B^K
+
+<#f0f000>:Power Mode:</>
+  Hope Mode   _D_D^MP_+^MK
+    then Hope Charge (AIR)    ^MP_+^MK
+    or Spirit Bomb    _D_D^MP_+^MK

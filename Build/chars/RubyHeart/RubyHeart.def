@@ -1,0 +1,28 @@
+[Info]
+name = "Ruby Heart"
+displayname = "Ruby Heart"
+versiondate = 5,24,2012
+mugenversion = 1.0
+author = "mouser-MvC2"
+editor       = "REDHOT"
+pal.defaults = 1,2,3,4,5,6
+
+[Files]
+cmd      = CMND/RubyHeart.cmd
+cns      = CNS/RubyHeart.cns
+st       = CNS/RubyHeart.cns
+st1      = CNS/config.txt
+stcommon = CNS/common1.cns
+sprite   = SPRITES/RubyHeart.sff
+anim     = ANIMATIONS/RubyHeart.air
+sound    = SOUNDS/RubyHeart.snd
+pal1     = PALETTES/RubyHeart_01.act
+pal2     = PALETTES/RubyHeart_02.act
+pal3     = PALETTES/RubyHeart_03.act
+pal4     = PALETTES/RubyHeart_04.act
+pal5     = PALETTES/RubyHeart_05.act
+pal6     = PALETTES/RubyHeart_06.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

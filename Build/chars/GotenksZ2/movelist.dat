@@ -1,0 +1,82 @@
+<#f0f000>:Command Normals:</>
+  Flurry Punch (HOLD)       ^MP
+
+  Spin-Spin Punch (HOLD)        ^HP
+
+  Spin-Spin Upper (HOLD) (LAUNCH)        _B^HP
+
+  Nut Crusher       _D^HP
+
+  Power Slide       _D^HK
+
+  Stand on You        (in air) ^HK
+
+  Charging Bull         _F_F^HP
+
+<#f0f000>:Target Combos:</>
+  Can-Can Dance       ^MK,^MK
+
+  Fantastical Footwork        ^HK,^HK
+
+  Cossack Dance       _D^MK,^MK,^MK
+
+<#f0f000>:Special Moves:</>
+  Miracle Blast (*2) (EX)       (in air) _D_DF_F^P
+
+  Insult! (EX)        (charge) _B,_F^P
+
+  Dynamite Headcrusher (AIR) (EX)       (charge) _D,_U^K
+
+  Dynamic Entry!        (in air) _D_DB_B^LP
+
+  Ballerina Tornado!        (in air) _D_DB_B^MP
+
+  Superman!       (in air)_D_DB_B^HP
+
+  Wolf Fang Fist Slasher!(EX only)       (in air) _D_DB_B^LP+^MP or _D_DB_B^LP+HP
+
+  Wolf Fang Fist Kicker! (EX only)        (in air) _D_DB_B^MP+^HP
+
+  Hero Stance       _D_DB_B^P
+    then Dynamic Entry!       ^LP
+    or Ballerina Tornado! (HOLD)       ^MP
+    or Superman!        ^HP
+    or Wolf Fang Fist Slasher!      ^LP+^MP or ^LP+^HP
+    or Wolf Fang Fist Kicker!       ^MP+^HP
+
+<#f0f000>:Super Moves:</>
+  Die Die Missiles (AIR)
+    LVL 1   _D_DF_F_D_DF_F^P
+    LVL 2   _D_DF_F_D_DF_F^P_+^P
+
+  Super Volley Serve Attack!
+    LVL 1   _D_DB_B_F^P
+
+  Galactica Donut/Beach Ball
+    LVL 1   _D_DB_B_D_DB_B^P
+    LVL 2   _D_DB_B_D_DB_B^P_+^P
+
+  Ghost Bros
+    LVL 1   _D_DF_F_D_DF_F^K
+    LVL 2   _D_DF_F_D_DF_F^K_+^K
+      then Go Go Ghost!   (charge)_B,_F^P
+      or Ghost Fire(EX only)   ^LP+^LK or ^MP+^MK or ^HP+^HK
+      or Ghost Headcrusher    (charge) _D,_U^K
+      or Ghost Mine (AIR)   __D_DB_B^K
+        then Get Back Here!   _D_D^K
+      or Air Ghost Fire !   (in air) _D_DF_F^K
+
+  Super Saiyan 3
+    LVL 3   _D_DB_B_D_DB_B^K
+      then Cataclysm Flick   ^HK
+      or Spinball    ^HK
+      or Star Blast   _D^LK
+      or Victory Blast   _D^MP
+      or Victory Pound   _D^HP
+      or Ghost Buddy   _D^K
+      or Dimensional Portal (POWER)    (charge) _B,_F^P
+      or Exit Burst   _D_D^MK_+^MK
+
+<#f0f000>:Power Mode:</>
+  Super Saiyan 2    _D_D^MP_+^MK
+    then Exit   _D_D^MP_+^MK

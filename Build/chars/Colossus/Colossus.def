@@ -1,0 +1,28 @@
+;--| 基本情報 |----------------------------
+
+[Info]
+Name         = "Colossus"
+DisplayName  = "Colossus"
+versiondate = 4/24/2015   ;Version date of character
+mugenversion = 1.0  ;Version of M.U.G.E.N character works on
+Author       = "Iwakick & DarkWolf13-MvC2"
+Edit         = "REDHOT"
+Pal.Defaults = 1,2,3,4,5,6
+
+;--| 必要なファイルの設定 |----------------
+
+[Files]
+Cmd     = CMND/Colossus.cmd
+Cns     = CNS/Colossus.cns
+St      = CNS/Colossus.cns 
+st1     = CNS/config.txt
+StCommon= CNS/common1.cns
+Sprite  = SPRITES/Colossus.sff
+Anim    = ANIMATIONS/Colossus.air
+Sound   = SOUNDS/Colossus.snd
+pal1    =PALETTES/Colossus_01.act
+pal2    =PALETTES/Colossus_02.act
+pal3    =PALETTES/Colossus_03.act
+pal4    =PALETTES/Colossus_04.act
+pal5    =PALETTES/Colossus_05.act
+pal6    =PALETTES/Colossus_06.act

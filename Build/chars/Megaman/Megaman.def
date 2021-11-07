@@ -1,0 +1,36 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+
+[Info]
+name = "Megaman"           ;Name of character
+displayname = "Megaman"   ;Name of character to display
+versiondate = 02,14,2002    ;Version date of character
+mugenversion = 1.0
+author = "Jin Kazama"       ;Character author name
+editor = "REDHOT"
+pal.defaults = 1,2,3,4,5,6
+
+
+[Files]
+cmd      = CMND/Megaman.cmd
+cns      = CNS/Megaman.cns
+st       = CNS/Megaman.cns
+st1      = CNS/config.txt
+stcommon = CNS/common1.cns
+sprite   = SPRITES/Megaman.sff
+anim     = ANIMATIONS/Megaman.air
+sound    = SOUNDS/Megaman.snd
+pal1     = PALETTES/Megaman_01.act
+pal2     = PALETTES/Megaman_02.act
+pal3     = PALETTES/Megaman_03.act
+pal4     = PALETTES/Megaman_04.act
+pal5     = PALETTES/Megaman_05.act
+pal6     = PALETTES/Megaman_06.act
+
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

@@ -1,0 +1,33 @@
+; Definition file for sodom
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Juggernaut"        ;Name of character
+displayname = "Juggernaut" ;Name of character to display
+versiondate = 07,23,2001    ;Version date of character
+mugenversion = 1.0
+author = "Splode"         ;Character author name
+Editor = "REDHOT"
+pal.defaults =  1,2,3,4,5,6
+
+; Files for the player
+[Files]
+cmd      = CMND/Juggernaut.cmd
+cns      = CNS/Juggernaut.cns
+st       = CNS/Juggernaut.cns
+st1      = CNS/config.txt
+stcommon = CNS/common1.cns
+sprite   = SPRITES/Juggernaut.sff
+anim     = ANIMATIONS/Juggernaut.air
+sound    = SOUNDS/Juggernaut.snd
+pal1     = PALETTES/Juggernaut_01.act
+pal2     = PALETTES/Juggernaut_02.act
+pal3     = PALETTES/Juggernaut_03.act
+pal4     = PALETTES/Juggernaut_04.act
+pal5     = PALETTES/Juggernaut_05.act
+pal6     = PALETTES/Juggernaut_06.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

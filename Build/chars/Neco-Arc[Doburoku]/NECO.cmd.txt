@@ -1,0 +1,1924 @@
+;-| ボタン配置 |-----------------------------------------------------
+[Remap]
+x = x
+y = y
+z = z
+a = a
+b = b
+c = c
+s = s
+
+;-| 標準化 |-------------------------------------------------------
+[Defaults]
+command.time = 15
+command.buffer.time = 1
+
+;-| CPUアルゴリズム用コマンド |------------------------------
+[Command]
+name = "cpu1"
+command = a,U,D,F,F,B,B,D,U,U
+time = 1
+[Command]
+name = "cpu2"
+command = b,U,D,F,B,F,B,D,U,D
+time = 1
+[Command]
+name = "cpu3"
+command = c,U,D,B,F,B,F,D,U,B
+time = 1
+[Command]
+name = "cpu4"
+command = x,U,D,B,F,F,B,D,U,F
+time = 1
+[Command]
+name = "cpu5"
+command = y,U,D,F,F,B,B,D,U,a
+time = 1
+[Command]
+name = "cpu6"
+command = z,U,D,F,B,F,B,D,U,b
+time = 1
+[Command]
+name = "cpu7"
+command = s,U,D,B,F,B,F,D,U,c
+time = 1
+[Command]
+name = "cpu8"
+command = b,U,D,B,F,F,B,D,U,x
+time = 1
+[Command]
+name = "cpu9"
+command = c,U,D,F,B,F,B,D,U,y
+time = 1
+[Command]
+name = "cpuA"
+command = y,U,D,B,F,B,F,D,U,z
+time = 1
+[Command]
+name = "cpuB"
+command = z,U,D,B,F,F,B,D,U,s
+time = 1
+[Command]
+name = "cpuC"
+command = U,D,F,F,B,B,D,U,a+x
+time = 1
+[Command]
+name = "cpuD"
+command = U,D,F,B,F,B,D,U,b+y
+time = 1
+[Command]
+name = "cpuE"
+command = U,D,B,F,B,F,D,U,c+z
+time = 1
+[Command]
+name = "cpuF"
+command = U,D,s,B,F,F,B,s,D,U
+time = 1
+
+;------------------------------------------------------------------------------
+;-| 超必殺技 |-----------------------------------------------------------------
+
+[Command]
+name = "アークドライブ"
+command = ~B, DB, D, DF, F, a
+time = 20
+
+[Command]
+name = "アナザーアークドライブ"
+command = ~F, DF, D, DB, B, a
+time = 20
+
+;------------------------------------------------------------------------------
+;-| 必殺技 |-------------------------------------------------------------------
+
+[Command]
+name = "upper_A"
+command = ~F, D, DF, y
+time = 14
+
+[Command]
+name = "upper_B"
+command = ~F, D, DF, x
+time = 14
+
+[Command]
+name = "upper_C"
+command = ~F, D, DF, a
+time = 14
+
+[Command]
+name = "236_A"
+command = ~D, DF, F, y
+time = 12
+
+[Command]
+name = "236_B"
+command = ~D, DF, F, x
+time = 12
+
+[Command]
+name = "236_C"
+command = ~D, DF, F, a
+time = 12
+
+[Command]
+name = "214_A"
+command = ~D, DB, B, y
+time = 12
+
+[Command]
+name = "214_B"
+command = ~D, DB, B, x
+time = 12
+
+[Command]
+name = "214_C"
+command = ~D, DB, B, a
+time = 12
+
+[Command]
+name = "214_D"
+command = ~D, DB, B, b
+time = 22
+
+[Command]
+name = "DDDD_C"
+command = ~D, D, D, D, a
+time = 30
+buffer.time = 2
+
+[Command]
+name = "DD_A"
+command = ~D, D, y
+time = 12
+
+[Command]
+name = "DD_B"
+command = ~D, D, x
+time = 12
+
+[Command]
+name = "DD_C"
+command = ~D, D, a
+time = 12
+
+;------------------------------------------------------------------------------
+;-| キー２回連続入力 |---------------------------------------------------------
+
+[Command]
+name = "jump"    
+command = ~$D,$UF
+time = 8
+
+[Command]
+name = "jump"    
+command = ~$DB,$UF
+time = 8
+
+[Command]
+name = "FF"
+command = F, F
+time = 10
+
+[Command]
+name = "BB"
+command = B, B
+time = 10
+
+;------------------------------------------------------------------------------
+;-| 特殊 |-----------------------------------------------------------------
+
+[Command]
+name = "recovery"
+command = a
+time = 1
+
+[Command]
+name = "recovery"
+command = b
+time = 1
+
+[Command]
+name = "recovery"
+command = c
+time = 1
+
+[Command]
+name = "recovery"
+command = x
+time = 1
+
+[Command]
+name = "recovery"
+command = y
+time = 1
+
+[Command]
+name = "recovery"
+command = z
+time = 1
+
+[Command]
+name = "解放"
+command = y+x+a
+time = 1
+
+[Command]
+name = "避け"
+command = y+x
+time = 1
+
+[Command]
+name = "投げ"
+command = y+b
+time = 1
+
+;------------------------------------------------------------------------------
+;-| 方向キー＋ボタン |---------------------------------------------------------
+[Command]
+name = "down_c"
+command = /$DF,a
+time = 1
+
+;------------------------------------------------------------------------------
+;-| ボタン単発 |---------------------------------------------------------------
+[Command]
+name = "a"
+command = a
+time = 1
+
+[Command]
+name = "b"
+command = b
+time = 1
+
+[Command]
+name = "c"
+command = c
+time = 1
+
+[Command]
+name = "x"
+command = x
+time = 1
+
+[Command]
+name = "y"
+command = y
+time = 1
+
+[Command]
+name = "z"
+command = z
+time = 1
+
+[Command]
+name = "start"
+command = s
+time = 1
+
+;------------------------------------------------------------------------------
+;-| キー押しっぱなし |-----------------------------------------------------
+
+[Command]
+name = "holdfwd"
+command = /$F
+time = 1
+
+[Command]
+name = "holdback"
+command = /$B
+time = 1
+
+[Command]
+name = "holdup"
+command = /$U
+time = 1
+
+[Command]
+name = "holddown"
+command = /$D
+time = 1
+
+[Command]
+name = "hold_a"
+command = /$y
+time = 1
+
+[Command]
+name = "hold_b"
+command = /$x
+time = 1
+
+[Command]
+name = "hold_c"
+command = /$a
+time = 1
+
+[Command]
+name = "hold_d"
+command = /$b
+time = 1
+
+;==============================================================================
+; 技を実行するための条件の設定（ステートエントリー）
+;==============================================================================
+
+[Statedef -1]
+
+;-| アークドライブ |-----------------------------------------------------
+
+;ドーンオブザキャット
+[State -1]
+type = ChangeState
+value = 3400
+triggerall = command = "アークドライブ"
+triggerall = statetype != A
+triggerall = var(6) = 1 || var(6) = 2
+trigger1 = ctrl
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 3400
+triggerall = command = "アークドライブ"
+triggerall = statetype != A
+triggerall = var(6) = 1 || var(6) = 2
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;番長猫屋敷
+[State -1]
+type = ChangeState
+value = 3500
+triggerall = command = "アークドライブ"
+triggerall = statetype != A
+triggerall = var(6) = 3
+trigger1 = ctrl
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 3500
+triggerall = command = "アークドライブ"
+triggerall = statetype != A
+triggerall = var(6) = 3
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;にゃんぷしーろーるAC
+[State -1]
+type = ChangeState
+value = 3000
+triggerall = command = "アナザーアークドライブ"
+triggerall = statetype != A
+triggerall = var(6) = 1 || var(6) = 2 || var(6) = 3
+trigger1 = ctrl
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 3000
+triggerall = command = "アナザーアークドライブ"
+triggerall = statetype != A
+triggerall = var(6) = 1 || var(6) = 2 || var(6) = 3
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;EXダミアン
+[State -1]
+type = ChangeState
+value = 1110
+triggerall = command = "DDDD_C"
+triggerall = statetype != A
+triggerall = var(6) = 1 || var(6) = 2 || var(6) = 3
+trigger1 = ctrl
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 1110
+triggerall = command = "DDDD_C"
+triggerall = statetype != A
+triggerall = var(6) = 1 || var(6) = 2 || var(6) = 3
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;-| アバドンフレア |---------------------------------------------------------
+
+;A
+[State -1]
+type = ChangeState
+value = 1100
+triggerall = (command = "DD_A")
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 1100
+triggerall = (command = "DD_A")
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;-| アバドン |-----------------------------------------------------
+
+;B
+[State -1]
+type = ChangeState
+value = 1000
+triggerall = (command = "DD_B")
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 1000
+triggerall = (command = "DD_B")
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+[State -1]
+type = ChangeState
+value = 1000
+triggerall = (command = "DD_C")
+triggerall = statetype != A
+triggerall = power < 1000 && Var(6) = 0
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 1000
+triggerall = (command = "DD_C")
+triggerall = statetype != A
+triggerall = power < 1000 && Var(6) = 0
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;EX
+[State -1]
+type = ChangeState
+value = 2400
+triggerall = (command = "DD_C")
+triggerall = statetype != A
+triggerall = power >= 1000 || Var(6) > 0
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2400
+triggerall = (command = "DD_C")
+triggerall = statetype != A
+triggerall = power >= 1000 || Var(6) > 0
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;-| ネコエステ |-----------------------------------------------------
+
+;A
+[State -1]
+type = ChangeState
+value = 2500
+triggerall = (command = "upper_A")
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2500
+triggerall = (command = "upper_A")
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;B
+[State -1]
+type = ChangeState
+value = 2510
+triggerall = (command = "upper_B")
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2510
+triggerall = (command = "upper_B")
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+[State -1]
+type = ChangeState
+value = 2510
+triggerall = (command = "upper_C")
+triggerall = power < 1000 && Var(6) = 0
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2510
+triggerall = (command = "upper_C")
+triggerall = power < 1000 && Var(6) = 0
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;EX
+[State -1]
+type = ChangeState
+value = 2520
+triggerall = (command = "upper_C")
+triggerall = power >= 1000 || Var(6) > 0
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2520
+triggerall = (command = "upper_C")
+triggerall = power >= 1000 || Var(6) > 0
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;-| 混沌ビーム |-----------------------------------------------------
+
+;A
+[State -1]
+type = ChangeState
+value = 2300
+triggerall = (command = "236_A")
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2300
+triggerall = (command = "236_A")
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;B
+[State -1]
+type = ChangeState
+value = 2310
+triggerall = (command = "236_B")
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2310
+triggerall = (command = "236_B")
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+[State -1]
+type = ChangeState
+value = 2310
+triggerall = (command = "236_C")
+triggerall = statetype != A
+triggerall = power < 1000 && Var(6) = 0
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2310
+triggerall = (command = "236_C")
+triggerall = statetype != A
+triggerall = power < 1000 && Var(6) = 0
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;EX
+[State -1]
+type = ChangeState
+value = 2320
+triggerall = (command = "236_C")
+triggerall = statetype != A
+triggerall = power >= 1000 || Var(6) > 0
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2320
+triggerall = (command = "236_C")
+triggerall = statetype != A
+triggerall = power >= 1000 || Var(6) > 0
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;-| ゴモラン |-----------------------------------------------------
+
+;A
+[State -1]
+type = ChangeState
+value = 2100
+triggerall = (command = "236_A")
+triggerall = statetype = A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2100
+triggerall = (command = "236_A")
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;B
+[State -1]
+type = ChangeState
+value = 2110
+triggerall = (command = "236_B")
+triggerall = statetype = A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2110
+triggerall = (command = "236_B")
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+[State -1]
+type = ChangeState
+value = 2110
+triggerall = (command = "236_C")
+triggerall = power < 1000 && Var(6) = 0
+triggerall = statetype = A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2110
+triggerall = (command = "236_C")
+triggerall = power < 1000 && Var(6) = 0
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;EX
+[State -1]
+type = ChangeState
+value = 2120
+triggerall = (command = "236_C")
+triggerall = power >= 1000 || Var(6) > 0
+triggerall = statetype = A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = (stateno = 2000) && AnimElem = 3, >= 0
+trigger4 = (stateno = 2010) && AnimElem = 3, >= 0
+trigger5 = (stateno = 2100) && AnimElem = 10, >= 0
+trigger6 = (stateno = 2110) && AnimElem = 8, >= 0
+
+[State -1]
+type = ChangeState
+value = 2120
+triggerall = (command = "236_C")
+triggerall = power >= 1000 || Var(6) > 0
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;-| ワンワン |-----------------------------------------------------
+
+;A
+[State -1]
+type = ChangeState
+value = 2000
+triggerall = (command = "214_A")
+triggerall = statetype = A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2000
+triggerall = (command = "214_A")
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;B
+[State -1]
+type = ChangeState
+value = 2010
+triggerall = (command = "214_B")
+triggerall = statetype = A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2010
+triggerall = (command = "214_B")
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+[State -1]
+type = ChangeState
+value = 2010
+triggerall = (command = "214_C")
+triggerall = power < 1000 && Var(6) = 0
+triggerall = statetype = A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2010
+triggerall = (command = "214_C")
+triggerall = power < 1000 && Var(6) = 0
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;EX
+[State -1]
+type = ChangeState
+value = 2020
+triggerall = (command = "214_C")
+triggerall = power >= 1000 || Var(6) > 0
+triggerall = statetype = A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = (stateno = 2000) && AnimElem = 3, >= 0
+trigger4 = (stateno = 2010) && AnimElem = 3, >= 0
+trigger5 = (stateno = 2100) && AnimElem = 10, >= 0
+trigger6 = (stateno = 2110) && AnimElem = 8, >= 0
+
+[State -1]
+type = ChangeState
+value = 2020
+triggerall = (command = "214_C")
+triggerall = power >= 1000 || Var(6) > 0
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;-| 黄泉返り |-----------------------------------------------------
+
+;A
+[State -1]
+type = ChangeState
+value = 2200
+triggerall = (command = "214_A")
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2200
+triggerall = (command = "214_A")
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;B
+[State -1]
+type = ChangeState
+value = 2210
+triggerall = (command = "214_B")
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2210
+triggerall = (command = "214_B")
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;C
+[State -1]
+type = ChangeState
+value = 2220
+triggerall = (command = "214_C")
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 2220
+triggerall = (command = "214_C")
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;-| 特殊攻撃 |-----------------------------------------------------
+
+;地上投げ
+[State -1]
+type = ChangeState
+value = 800
+triggerall = command = "投げ" || command = "c" && command != "holddown"
+triggerall = statetype != A
+triggerall = command = "holdfwd" || command = "holdback"
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+;シールドバンカー
+[State -1]
+type = ChangeState
+value = 760
+triggerall = command = "214_D"
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 760
+triggerall = command = "214_D"
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger11 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;-| 特殊動作 |-----------------------------------------------------
+
+;解放
+[State -1]
+type = ChangeState
+value = 699
+triggerall = (command = "解放") || (command = "z")
+triggerall = command != "holddown"
+triggerall = power < 3000
+triggerall = var(6) = 1
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+
+[State -1]
+type = ChangeState
+value = 700
+triggerall = (command = "解放") || (command = "z")
+triggerall = command != "holddown"
+triggerall = power < 3000
+triggerall = power >= 1000
+triggerall = var(6) = 0
+triggerall = statetype != A
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+
+;シールド
+[State -1]
+type = ChangeState
+value = 701
+triggerall = command = "b" && command != "214_D"
+trigger1 = ctrl = 1
+trigger2 = StateNo = 701 || StateNo = 706
+trigger2 = MoveHit = [1,15]
+trigger3 = Var(5) = 0
+trigger3 = HitCount = 0 && P2StateNo != [120,155]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0 || (stateno = 600) && AnimElem = 3, >= 0
+
+;避け
+[State -1]
+type = ChangeState
+value = 750
+triggerall = command = "holddown"
+triggerall = (command = "避け") || (command = "z")
+triggerall = command != "holdfwd" && command != "holdback"
+triggerall = statetype != A
+trigger1 = ctrl = 1
+
+;-| 基本動作 |-----------------------------------------------------
+;ダッシュ
+[State -1]
+type = ChangeState
+value = 100
+trigger1 = command = "FF"
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;バックステップ
+[State -1]
+type = ChangeState
+value = 105
+triggerall = command = "BB"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = statetype != A
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+
+;空中前ダッシュ
+[State -1]
+type = ChangeState
+value = 103
+triggerall = command = "FF"
+triggerall = statetype = A
+triggerall = stateno != 105
+triggerall = var(4) != 0
+triggerall = Pos Y <= -30
+trigger1 = ctrl
+trigger1 = stateno != 103
+trigger1 = stateno != 108
+trigger2 = ctrl
+trigger2 = stateno = 103
+trigger2 = time > 14
+trigger3 = ctrl
+trigger3 = stateno = 108
+trigger3 = time > 14
+trigger4 = StateNo = 701 || StateNo = 706
+trigger4 = MoveHit = [1,15]
+trigger5 = (stateno = 2110) && AnimElem = 9
+
+;空中後ろダッシュ
+[State -1]
+type = ChangeState
+value = 108
+triggerall = command = "BB"
+triggerall = statetype = A
+triggerall = stateno != 105
+triggerall = var(4) != 0
+triggerall = Pos Y <= -30
+trigger1 = ctrl
+trigger1 = stateno != 103
+trigger1 = stateno != 108
+trigger2 = ctrl
+trigger2 = stateno = 103
+trigger2 = time > 14
+trigger3 = ctrl
+trigger3 = stateno = 108
+trigger3 = time > 14
+trigger4 = StateNo = 701 || StateNo = 706
+trigger4 = MoveHit = [1,15]
+trigger5 = (stateno = 2110) && AnimElem = 9
+
+;-| レバー入れ攻撃 |-----------------------------------------------------
+
+;ネコワンツースリー
+[State -1]
+type = ChangeState
+value = 230
+triggerall = command = "y" && command = "holdfwd"
+triggerall = command != "holddown"
+triggerall = statetype = S
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = ((Var(16) -64) %128) != 0 && ((Var(16) -65) %128) != 0 && ((Var(16) -66) %128) != 0 && ((Var(16) -67) %128) != 0 && ((Var(16) -68) %128) != 0 && ((Var(16) -69) %128) != 0 && ((Var(16) -70) %128) != 0 && ((Var(16) -71) %128) != 0
+trigger3 = ((Var(16) -72) %128) != 0 && ((Var(16) -73) %128) != 0 && ((Var(16) -74) %128) != 0 && ((Var(16) -75) %128) != 0 && ((Var(16) -76) %128) != 0 && ((Var(16) -77) %128) != 0 && ((Var(16) -78) %128) != 0 && ((Var(16) -79) %128) != 0
+trigger3 = ((Var(16) -80) %128) != 0 && ((Var(16) -81) %128) != 0 && ((Var(16) -82) %128) != 0 && ((Var(16) -83) %128) != 0 && ((Var(16) -84) %128) != 0 && ((Var(16) -85) %128) != 0 && ((Var(16) -86) %128) != 0 && ((Var(16) -87) %128) != 0
+trigger3 = ((Var(16) -88) %128) != 0 && ((Var(16) -89) %128) != 0 && ((Var(16) -90) %128) != 0 && ((Var(16) -91) %128) != 0 && ((Var(16) -92) %128) != 0 && ((Var(16) -93) %128) != 0 && ((Var(16) -94) %128) != 0 && ((Var(16) -95) %128) != 0
+trigger3 = ((Var(16) -96) %128) != 0 && ((Var(16) -97) %128) != 0 && ((Var(16) -98) %128) != 0 && ((Var(16) -99) %128) != 0 && ((Var(16) -100) %128) != 0 && ((Var(16) -101) %128) != 0 && ((Var(16) -102) %128) != 0 && ((Var(16) -103) %128) != 0
+trigger3 = ((Var(16) -104) %128) != 0 && ((Var(16) -105) %128) != 0 && ((Var(16) -106) %128) != 0 && ((Var(16) -107) %128) != 0 && ((Var(16) -108) %128) != 0 && ((Var(16) -109) %128) != 0 && ((Var(16) -110) %128) != 0 && ((Var(16) -111) %128) != 0
+trigger3 = ((Var(16) -112) %128) != 0 && ((Var(16) -113) %128) != 0 && ((Var(16) -114) %128) != 0 && ((Var(16) -115) %128) != 0 && ((Var(16) -116) %128) != 0 && ((Var(16) -117) %128) != 0 && ((Var(16) -118) %128) != 0 && ((Var(16) -119) %128) != 0
+trigger3 = ((Var(16) -120) %128) != 0 && ((Var(16) -121) %128) != 0 && ((Var(16) -122) %128) != 0 && ((Var(16) -123) %128) != 0 && ((Var(16) -124) %128) != 0 && ((Var(16) -125) %128) != 0 && ((Var(16) -126) %128) != 0 && ((Var(16) -127) %128) != 0
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 230
+triggerall = command = "y" && command = "holdfwd"
+triggerall = command != "holddown"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -64) %128) != 0 && ((Var(16) -65) %128) != 0 && ((Var(16) -66) %128) != 0 && ((Var(16) -67) %128) != 0 && ((Var(16) -68) %128) != 0 && ((Var(16) -69) %128) != 0 && ((Var(16) -70) %128) != 0 && ((Var(16) -71) %128) != 0
+triggerall = ((Var(16) -72) %128) != 0 && ((Var(16) -73) %128) != 0 && ((Var(16) -74) %128) != 0 && ((Var(16) -75) %128) != 0 && ((Var(16) -76) %128) != 0 && ((Var(16) -77) %128) != 0 && ((Var(16) -78) %128) != 0 && ((Var(16) -79) %128) != 0
+triggerall = ((Var(16) -80) %128) != 0 && ((Var(16) -81) %128) != 0 && ((Var(16) -82) %128) != 0 && ((Var(16) -83) %128) != 0 && ((Var(16) -84) %128) != 0 && ((Var(16) -85) %128) != 0 && ((Var(16) -86) %128) != 0 && ((Var(16) -87) %128) != 0
+triggerall = ((Var(16) -88) %128) != 0 && ((Var(16) -89) %128) != 0 && ((Var(16) -90) %128) != 0 && ((Var(16) -91) %128) != 0 && ((Var(16) -92) %128) != 0 && ((Var(16) -93) %128) != 0 && ((Var(16) -94) %128) != 0 && ((Var(16) -95) %128) != 0
+triggerall = ((Var(16) -96) %128) != 0 && ((Var(16) -97) %128) != 0 && ((Var(16) -98) %128) != 0 && ((Var(16) -99) %128) != 0 && ((Var(16) -100) %128) != 0 && ((Var(16) -101) %128) != 0 && ((Var(16) -102) %128) != 0 && ((Var(16) -103) %128) != 0
+triggerall = ((Var(16) -104) %128) != 0 && ((Var(16) -105) %128) != 0 && ((Var(16) -106) %128) != 0 && ((Var(16) -107) %128) != 0 && ((Var(16) -108) %128) != 0 && ((Var(16) -109) %128) != 0 && ((Var(16) -110) %128) != 0 && ((Var(16) -111) %128) != 0
+triggerall = ((Var(16) -112) %128) != 0 && ((Var(16) -113) %128) != 0 && ((Var(16) -114) %128) != 0 && ((Var(16) -115) %128) != 0 && ((Var(16) -116) %128) != 0 && ((Var(16) -117) %128) != 0 && ((Var(16) -118) %128) != 0 && ((Var(16) -119) %128) != 0
+triggerall = ((Var(16) -120) %128) != 0 && ((Var(16) -121) %128) != 0 && ((Var(16) -122) %128) != 0 && ((Var(16) -123) %128) != 0 && ((Var(16) -124) %128) != 0 && ((Var(16) -125) %128) != 0 && ((Var(16) -126) %128) != 0 && ((Var(16) -127) %128) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 420) && AnimElemNo(0) = [2,3]
+ignorehitpause = 1
+
+;レバー下押し空中B
+[State -1]
+type = ChangeState
+value = 630
+triggerall = command = "x" && command = "holddown"
+triggerall = statetype = A
+trigger1 = ctrl
+
+[State -1]
+type = ChangeState
+value = 630
+triggerall = command = "x" && command = "holddown"
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;レバー下押し空中C
+[State -1]
+type = ChangeState
+value = 640
+triggerall = command = "a" && command = "holddown"
+triggerall = statetype = A
+trigger1 = ctrl
+
+[State -1]
+type = ChangeState
+value = 640
+triggerall = command = "a" && command = "holddown"
+triggerall = statetype = A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;-| 基本攻撃　地上 |-----------------------------------------------------
+;立ちA
+[State -1]
+type = ChangeState
+value = 200
+triggerall = command = "y"
+triggerall = command != "holddown"
+triggerall = statetype = S
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0
+trigger4 = ((Var(16) -1) %2) != 0
+trigger4 = (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 200
+triggerall = command = "y"
+triggerall = command != "holddown"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -1) %2) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger2 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger4 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger5 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger6 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger7 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger8 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger10 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;立ちB
+[State -1]
+type = ChangeState
+value = 212
+triggerall = command = "x"
+triggerall = command != "holddown"
+triggerall = statetype = S
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = ((Var(16) -2) %4) != 0 && ((Var(16) -3) %4) != 0
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 212
+triggerall = command = "x"
+triggerall = command != "holddown"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -2) %4) != 0 && ((Var(16) -3) %4) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger3 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger6 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger7 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger8 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger9 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+
+;立ちC
+[State -1]
+type = ChangeState
+value = 222
+triggerall = command = "a" && command != "holdfwd"
+triggerall = command != "holddown"
+triggerall = statetype = S
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = ((Var(16) -4) %8) != 0 && ((Var(16) -5) %8) != 0 && ((Var(16) -6) %8) != 0 && ((Var(16) -7) %8) != 0
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 222
+triggerall = command = "a" && command != "holdfwd"
+triggerall = command != "holddown"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -4) %8) != 0 && ((Var(16) -5) %8) != 0 && ((Var(16) -6) %8) != 0 && ((Var(16) -7) %8) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger6 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger7 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger8 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger9 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;しゃがみA
+[State -1]
+type = ChangeState
+value = 400
+triggerall = command = "y"
+triggerall = command = "holddown"
+triggerall = statetype = C
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = (stateno = 400) && AnimElem = 3, >= 0
+trigger4 = ((Var(16) -8) %16) != 0 && ((Var(16) -9) %16) != 0 && ((Var(16) -10) %16) != 0 && ((Var(16) -11) %16) != 0 && ((Var(16) -12) %16) != 0 && ((Var(16) -13) %16) != 0 && ((Var(16) -14) %16) != 0 && ((Var(16) -15) %16) != 0
+trigger4 = (stateno = 200) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 400
+triggerall = command = "y"
+triggerall = command = "holddown"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -8) %16) != 0 && ((Var(16) -9) %16) != 0 && ((Var(16) -10) %16) != 0 && ((Var(16) -11) %16) != 0 && ((Var(16) -12) %16) != 0 && ((Var(16) -13) %16) != 0 && ((Var(16) -14) %16) != 0 && ((Var(16) -15) %16) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger7 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger8 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger10 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;しゃがみB
+[State -1]
+type = ChangeState
+value = 413
+triggerall = command = "x"
+triggerall = command = "holddown"
+triggerall = statetype = C
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = ((Var(16) -16) %32) != 0 && ((Var(16) -17) %32) != 0 && ((Var(16) -18) %32) != 0 && ((Var(16) -19) %32) != 0 && ((Var(16) -20) %32) != 0 && ((Var(16) -21) %32) != 0 && ((Var(16) -22) %32) != 0 && ((Var(16) -23) %32) != 0
+trigger3 = ((Var(16) -24) %32) != 0 && ((Var(16) -25) %32) != 0 && ((Var(16) -26) %32) != 0 && ((Var(16) -27) %32) != 0 && ((Var(16) -28) %32) != 0 && ((Var(16) -29) %32) != 0 && ((Var(16) -30) %32) != 0 && ((Var(16) -31) %32) != 0
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 413
+triggerall = command = "x"
+triggerall = command = "holddown"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -16) %32) != 0 && ((Var(16) -17) %32) != 0 && ((Var(16) -18) %32) != 0 && ((Var(16) -19) %32) != 0 && ((Var(16) -20) %32) != 0 && ((Var(16) -21) %32) != 0 && ((Var(16) -22) %32) != 0 && ((Var(16) -23) %32) != 0
+triggerall = ((Var(16) -24) %32) != 0 && ((Var(16) -25) %32) != 0 && ((Var(16) -26) %32) != 0 && ((Var(16) -27) %32) != 0 && ((Var(16) -28) %32) != 0 && ((Var(16) -29) %32) != 0 && ((Var(16) -30) %32) != 0 && ((Var(16) -31) %32) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 420) && AnimElemNo(0) = [2,3]
+trigger8 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;しゃがみC
+[State -1]
+type = ChangeState
+value = 420
+triggerall = command = "a"
+triggerall = command = "holddown" && command != "holdfwd"
+triggerall = statetype = C
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = ((Var(16) -32) %64) != 0 && ((Var(16) -33) %64) != 0 && ((Var(16) -34) %64) != 0 && ((Var(16) -35) %64) != 0 && ((Var(16) -36) %64) != 0 && ((Var(16) -37) %64) != 0 && ((Var(16) -38) %64) != 0 && ((Var(16) -39) %64) != 0
+trigger3 = ((Var(16) -40) %64) != 0 && ((Var(16) -41) %64) != 0 && ((Var(16) -42) %64) != 0 && ((Var(16) -43) %64) != 0 && ((Var(16) -44) %64) != 0 && ((Var(16) -45) %64) != 0 && ((Var(16) -46) %64) != 0 && ((Var(16) -47) %64) != 0
+trigger3 = ((Var(16) -48) %64) != 0 && ((Var(16) -49) %64) != 0 && ((Var(16) -50) %64) != 0 && ((Var(16) -51) %64) != 0 && ((Var(16) -52) %64) != 0 && ((Var(16) -53) %64) != 0 && ((Var(16) -54) %64) != 0 && ((Var(16) -55) %64) != 0
+trigger3 = ((Var(16) -56) %64) != 0 && ((Var(16) -57) %64) != 0 && ((Var(16) -58) %64) != 0 && ((Var(16) -59) %64) != 0 && ((Var(16) -60) %64) != 0 && ((Var(16) -61) %64) != 0 && ((Var(16) -62) %64) != 0 && ((Var(16) -63) %64) != 0
+trigger3 = (stateno = 200) && AnimElem = 3, >= 0 || (stateno = 400) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 420
+triggerall = command = "a"
+triggerall = command = "holddown" && command != "holdfwd"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -32) %64) != 0 && ((Var(16) -33) %64) != 0 && ((Var(16) -34) %64) != 0 && ((Var(16) -35) %64) != 0 && ((Var(16) -36) %64) != 0 && ((Var(16) -37) %64) != 0 && ((Var(16) -38) %64) != 0 && ((Var(16) -39) %64) != 0
+triggerall = ((Var(16) -40) %64) != 0 && ((Var(16) -41) %64) != 0 && ((Var(16) -42) %64) != 0 && ((Var(16) -43) %64) != 0 && ((Var(16) -44) %64) != 0 && ((Var(16) -45) %64) != 0 && ((Var(16) -46) %64) != 0 && ((Var(16) -47) %64) != 0
+triggerall = ((Var(16) -48) %64) != 0 && ((Var(16) -49) %64) != 0 && ((Var(16) -50) %64) != 0 && ((Var(16) -51) %64) != 0 && ((Var(16) -52) %64) != 0 && ((Var(16) -53) %64) != 0 && ((Var(16) -54) %64) != 0 && ((Var(16) -55) %64) != 0
+triggerall = ((Var(16) -56) %64) != 0 && ((Var(16) -57) %64) != 0 && ((Var(16) -58) %64) != 0 && ((Var(16) -59) %64) != 0 && ((Var(16) -60) %64) != 0 && ((Var(16) -61) %64) != 0 && ((Var(16) -62) %64) != 0 && ((Var(16) -63) %64) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 210) && AnimElemNo(0) = [3,4]
+trigger3 = (stateno = 211) && AnimElemNo(0) = [3,4]
+trigger4 = (stateno = 220) && AnimElemNo(0) = [2,3]
+trigger5 = (stateno = 221) && AnimElemNo(0) = [3,4]
+trigger6 = (stateno = 400) && AnimElemNo(0) = [2,3]
+trigger7 = (stateno = 410) && AnimElemNo(0) = [2,6]
+trigger8 = (stateno = 411) && AnimElemNo(0) = [2,9]
+trigger9 = (stateno = 412) && AnimElemNo(0) = [2,9]
+trigger10 = (stateno = 235) && AnimElemNo(0) = [5,6]
+ignorehitpause = 1
+
+;-| 基本攻撃　空中 |-----------------------------------------------------
+;空中A
+[State -1]
+type = ChangeState
+value = 600
+triggerall = command = "y"
+triggerall = statetype = A
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 600
+triggerall = command = "y"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -1) %2) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 610) && AnimElemNo(0) = [3,4]
+trigger2 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;空中B
+[State -1]
+type = ChangeState
+value = 610
+triggerall = command = "x"
+triggerall = statetype = A
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = ((Var(16) -2) %4) != 0 && ((Var(16) -3) %4) != 0
+trigger3 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 610
+triggerall = command = "x"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -2) %4) != 0 && ((Var(16) -3) %4) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 620) && AnimElemNo(0) = [4,5]
+ignorehitpause = 1
+
+;空中C
+[State -1]
+type = ChangeState
+value = 620
+triggerall = command = "a"
+triggerall = statetype = A
+trigger1 = ctrl
+trigger2 = StateNo = 701
+trigger2 = MoveHit = [1,15]
+trigger3 = ((Var(16) -4) %8) != 0 && ((Var(16) -5) %8) != 0 && ((Var(16) -6) %8) != 0 && ((Var(16) -7) %8) != 0
+trigger3 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 620
+triggerall = command = "a"
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = ((Var(16) -4) %8) != 0 && ((Var(16) -5) %8) != 0 && ((Var(16) -6) %8) != 0 && ((Var(16) -7) %8) != 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElemNo(0) = [2,3]
+trigger2 = (stateno = 610) && AnimElemNo(0) = [3,4]
+ignorehitpause = 1
+
+;-| 2段ジャンプ |-----------------------------------------------------
+
+[State -1]
+type = ChangeState
+value = 45
+triggerall = command = "holdup"
+triggerall = command != "holddown"
+triggerall = statetype = A
+triggerall = Pos Y <= -22
+triggerall = Var(8) = 0
+triggerall = Var(17) = 0
+trigger1 = Anim = 41 && AnimElem = 2, >= 0
+trigger1 = ctrl
+trigger2 = Anim = 42 && AnimElem = 2, >= 0
+trigger2 = ctrl
+trigger3 = Anim = 43 && AnimElem = 2, >= 0
+trigger3 = ctrl
+trigger4 = Anim = 51 && AnimElem = 2, >= 0
+trigger4 = ctrl
+trigger5 = (stateno = 51) && Time >= 1
+trigger5 = ctrl
+trigger6 = Anim = 5040
+trigger6 = ctrl
+trigger7 = (stateno = 5210) && Time >= 1
+trigger7 = ctrl
+trigger8 = (stateno = 600) && AnimElem = 3, >= 0
+trigger9 = (stateno = 103) && Time >= 21
+trigger10 = (stateno = 108) && Time >= 21
+trigger11 = StateNo = 701 || StateNo = 706
+trigger11 = MoveHit = [1,15]
+trigger12 = (stateno = 2110) && AnimElem = 9, >= 0
+
+;-| ダッシュキャンセル |-----------------------------------------------------
+
+;地上
+[State -1]
+type = ChangeState
+value = 105
+triggerall = command = "BB"
+triggerall = statetype != A
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElem = 2, >= 0
+trigger2 = (stateno = 210) && AnimElem = 3, >= 0
+trigger3 = (stateno = 211) && AnimElem = 3, >= 0
+trigger4 = (stateno = 220) && AnimElem = 2, >= 0
+trigger5 = (stateno = 221) && AnimElem = 3, >= 0
+trigger6 = (stateno = 400) && AnimElem = 2, >= 0
+trigger7 = (stateno = 410) && AnimElem = 2, >= 0
+trigger8 = (stateno = 411) && AnimElem = 2, >= 0
+trigger9 = (stateno = 412) && AnimElem = 2, >= 0
+trigger10 = (stateno = 420) && AnimElem = 2, >= 0
+trigger11 = (stateno = 235) && AnimElem = 5, >= 0
+ignorehitpause = 1
+
+[State -1]
+type = ChangeState
+value = 105
+triggerall = command = "BB"
+triggerall = statetype != A
+trigger1 = Var(5) = 0
+trigger1 = HitCount = 0 && P2StateNo != [120,155]
+trigger1 = (stateno = 200) && AnimElem = 3, >= 0
+
+;空中
+[State -1]
+type = ChangeState
+value = 103
+triggerall = command = "FF"
+triggerall = statetype = A
+triggerall = Pos Y <= -30
+triggerall = var(4) != 0
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElem = 2, >= 0
+trigger2 = (stateno = 610) && AnimElem = 3, >= 0
+trigger3 = (stateno = 620) && AnimElem = 4, >= 0
+ignorehitpause = 1
+
+[State -1]
+type = ChangeState
+value = 103
+triggerall = command = "FF"
+triggerall = statetype = A
+triggerall = Pos Y <= -30
+triggerall = var(4) != 0
+trigger1 = Var(5) = 0
+trigger1 = HitCount = 0 && P2StateNo != [120,155]
+trigger1 = (stateno = 600) && AnimElem = 3, >= 0
+
+[State -1]
+type = ChangeState
+value = 108
+triggerall = command = "BB"
+triggerall = statetype = A
+triggerall = Pos Y <= -30
+triggerall = var(4) != 0
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElem = 2, >= 0
+trigger2 = (stateno = 610) && AnimElem = 3, >= 0
+trigger3 = (stateno = 620) && AnimElem = 4, >= 0
+ignorehitpause = 1
+
+[State -1]
+type = ChangeState
+value = 108
+triggerall = command = "BB"
+triggerall = statetype = A
+triggerall = Pos Y <= -30
+triggerall = var(4) != 0
+trigger1 = Var(5) = 0
+trigger1 = HitCount = 0 && P2StateNo != [120,155]
+trigger1 = (stateno = 600) && AnimElem = 3, >= 0
+
+;-| ジャンプキャンセル |-----------------------------------------------------
+
+;地上
+[State -1]
+type = ChangeState
+value = 40
+triggerall = command = "holdup"
+triggerall = command != "holddown"
+triggerall = statetype != A
+triggerall = Var(9) = 0
+triggerall = Var(12) != 0
+triggerall = HitCount > 0
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 200) && AnimElem = 2, >= 0
+trigger2 = (stateno = 210) && AnimElem = 3, >= 0
+trigger3 = (stateno = 211) && AnimElem = 3, >= 0
+trigger4 = (stateno = 220) && AnimElem = 2, >= 0
+trigger5 = (stateno = 221) && AnimElem = 3, >= 0
+trigger6 = (stateno = 400) && AnimElem = 2, >= 0
+trigger7 = (stateno = 410) && AnimElem = 2, >= 0
+trigger8 = (stateno = 411) && AnimElem = 2, >= 0
+trigger9 = (stateno = 412) && AnimElem = 2, >= 0
+trigger10 = (stateno = 420) && AnimElem = 2, >= 0
+trigger11 = (stateno = 235) && AnimElem = 5, >= 0
+ignorehitpause = 1
+
+;空中
+[State -1]
+type = ChangeState
+value = 45
+triggerall = command = "holdup"
+triggerall = command != "holddown"
+triggerall = statetype = A
+triggerall = Var(17) = 0
+triggerall = Var(8) = 0
+triggerall = Var(5) != 0
+triggerall = HitCount > 0 || P2StateNo = [120,155]
+triggerall = HitPauseTime = 0
+trigger1 = (stateno = 600) && AnimElem = 2, >= 0
+trigger2 = (stateno = 610) && AnimElem = 3, >= 0
+trigger3 = (stateno = 620) && AnimElem = 4, >= 0
+ignorehitpause = 1
+

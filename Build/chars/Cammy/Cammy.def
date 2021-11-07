@@ -1,0 +1,29 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Cammy"
+displayname = "Cammy"
+versiondate = 12,27,2007
+mugenversion = 1.0
+author = "mouser-MvC2"
+Editor = "REDHOT"
+pal.defaults = 1,2,3,4,5,6
+
+[Files]
+cmd     = CMND/Cammy.cmd   ;Command set
+cns      = CNS/Cammy.cns
+st       = CNS/Cammy.cns
+st1      = CNS/config.txt
+stcommon = CNS/common1.cns
+sprite   = SPRITES/Cammy.sff
+anim     = ANIMATIONS/Cammy.air
+sound    = SOUNDS/Cammy.snd
+pal1     = PALETTES/Cammy_01.act
+pal2     = PALETTES/Cammy_02.act
+pal3     = PALETTES/Cammy_03.act
+pal4     = PALETTES/Cammy_04.act
+pal5     = PALETTES/Cammy_05.act
+pal6     = PALETTES/Cammy_06.act

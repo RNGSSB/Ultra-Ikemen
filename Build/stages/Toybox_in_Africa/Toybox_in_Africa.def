@@ -1,0 +1,204 @@
+;--------------------------------------------------------
+[Info]
+ ;Name of the stage.
+name			= "Toybox in Africa"
+displayname		= "Toybox in Africa" ;Name to display
+versiondate		= 03,07,2019    ;Version date of stage (MM,DD,YYYY or X.XX)
+mugenversion	= 1.1          ;Version of M.U.G.E.N stage works on (X.XX)
+author			= "Ace-Million"         ;Modified by Beter
+
+[Camera]
+startx			= 0
+starty			= 0
+boundleft		= -780
+boundright		= 760
+boundhigh		= -2100
+boundlow		= 0
+;verticalfollow	= 1.0	;ignored in 1.1
+;floortension	= 100	;ignored in 1.1
+tension = 180 ;50
+tensionhigh	= 240	;Y Pos camera start to go up (from up to player pos)
+tensionlow	= 30	;Y Pos Camera start to zoom out
+startzoom		= 1
+zoomin		= 0.84
+zoomout		= 0.78
+verticalfollow = 1.2
+
+
+[PlayerInfo]
+p1startx		= -280
+p1starty		= 0
+p1startz		= 0
+p1facing		= 1
+
+p2startx		= 280
+p2starty		= 0
+p2startz		= 0
+p2facing		= -1
+
+leftbound		= -2500
+rightbound		= 2500
+topbound		= 0
+botbound		= 0
+
+[Scaling]
+topz			= 0
+botz			= 50
+topscale		= 1
+botscale		= 1.2
+
+[Bound]
+screenleft		= 80
+screenright		= 80
+
+[StageInfo]
+zoffset			= 0				;Calculatred
+zoffsetlink		= 30
+autoturn		= 1
+resetBG			= 0  
+localcoord		= 1280,720
+xscale			= 1
+yscale			= 1
+xshear			= 0
+;--------------------------------------------------------
+[Reflection]
+intensity		= 0
+
+[Shadow]
+intensity		= 96
+color			= 0,0,0
+yscale			= 0.3
+fade.range		= 0,0
+
+;--------------------------------------------------------
+
+[Music]
+bgmusic			= stages\Toybox_in_Africa.mp3
+bgm.loop		= 1
+bgmloopstart	= 656669
+bgmloopend		= -1
+bgmvolume		= 100
+
+;========================================================
+[BGdef]
+ ;Filename of sprite data
+spr				= Toybox_in_Africa.sff
+debugbg			= 0
+
+;--------------------------------------------------------------------
+[BG G1 Far]
+type		= normal
+spriteno	= 0, 1
+start		= 0, 140
+delta		= 0.2, 0.2
+trans		= none
+mask		= 0
+velocity	= 0,0
+tile		= 0,0
+tilespacing = 0,0
+scalestart	= 4,4
+ID			= 1
+
+[BG G1 Waterfall] ;animation
+type		= anim
+actionno	= 1
+start		= 0, 140
+delta		= 0.2, 0.2
+velocity	= 0
+scalestart	= 4,4
+ID			= 1
+
+[BG G2 Far Bush]
+type  = normal
+spriteno = 1,0
+start = -80, -220
+delta = 0.35, 0.6
+velocity = 0,0
+scalestart	= 4,4
+mask = 1
+ID = 2
+
+[BG G3 Left Tree]
+type		= normal
+spriteno	= 3,0
+start		= -680, 496
+delta		= 0.6, 0.7
+velocity	= 0,0
+scalestart	= 4,4
+mask		= 1
+id			= 3
+
+[BG G3 Right Tree]
+type		= normal
+spriteno	= 3,1
+start		= 1340, 496
+delta		= 0.6, 0.7
+velocity	= 0,0
+scalestart	= 4,4
+mask		= 1
+id			= 3
+
+[BG G3 Firecamp] ;animation
+type		= anim
+actionno	= 2
+start		= -680, 496
+delta		= 0.6, 0.7
+velocity	= 0
+scalestart	= 4,4
+mask		= 1
+id			= 3
+
+
+[BG Floor Parallax]
+type		= parallax
+spriteno	= 30,0
+start		= 0,602
+trans		= none
+mask		= 1
+delta		= 0.79, 1
+xscale		= 0.79, 1.21
+scalestart	= 6,6
+ID			= 30
+
+[BG Floor Botton]
+type  = normal
+spriteno = 30,1
+start = 0, 698
+delta = 1.21, 1
+trans = none
+mask = 1
+velocity = 0,0
+tile = 0,0
+tilespacing = 0,0
+scalestart = 6,6
+ID = 31
+
+;======================= Animations =======================
+;Wallfall
+[Begin Action 1]
+0,10, 0,0, 3
+0,11, 0,0, 3
+0,12, 0,0, 3
+0,13, 0,0, 3
+0,14, 0,0, 3
+0,15, 0,0, 3
+0,16, 0,0, 3
+0,17, 0,0, 3
+0,18, 0,0, 3
+0,19, 0,0, 3
+0,20, 0,0, 3
+0,21, 0,0, 3
+
+; Fire Camp
+[Begin Action 2] ;Firecamp
+2,0, 0,0, 3
+2,1, 0,0, 3
+2,2, 0,0, 3
+2,3, 0,0, 3
+2,4, 0,0, 3
+2,5, 0,0, 3
+2,6, 0,0, 3
+2,7, 0,0, 3
+2,8, 0,0, 3
+2,9, 0,0, 3
+

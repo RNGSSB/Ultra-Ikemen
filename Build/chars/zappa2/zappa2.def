@@ -1,0 +1,32 @@
+[Info]
+name = "zappa"
+displayname = "ZAPPA"
+versiondate = 12,31,2006
+mugenversion = 04,14,2002
+author = "muteki"
+pal.defaults = 1
+
+[Files]
+cmd     = zappa.cmd   ;Command set
+cns     = zappa_const.txt   ;Constants
+st      = zappa.cns   ;States
+st2     = AI.txt
+stcommon = common1.cns ;Common states
+sprite  = zappa.sff   ;Sprite
+anim    = zappa.air   ;Animation
+sound   = zappa.snd   ;Sound
+pal1    = zappa01.act
+pal2    = zappa02.act
+pal3    = zappa03.act
+pal4    = zappa04.act
+pal5    = zappa05.act
+pal6    = zappa06.act
+pal7    = zappa07.act
+pal8    = zappa08.act
+pal9    = zappa09.act
+pal10    = zappa10.act
+pal11    = zappa11.act
+pal12    = zappa12.act
+
+[Arcade]
+

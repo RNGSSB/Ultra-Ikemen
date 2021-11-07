@@ -1,0 +1,54 @@
+<#f0f000>:Command Normals:</>
+  Uppercut (LAUNCH)       _D^HP
+
+  Raccoon Elbow         (in air) _D^MP
+
+  Reverse Breaker Kick        (in air)_B^MK
+
+  Breaker Kick (HOLD)       _F^HK
+
+  Sliding Kick        _D^HK
+
+<#f0f000>:Special Moves:</>
+  Surprise Flash        _F_F^HP
+
+  Saiyan Step       _F_D_DF
+    then Super Dash (EX)    _F^P or _D_DF_F^P+^P
+    or Straight Shooter   _F^K
+    or Royal God Fist     _B^P
+    or Savage Grounder    _B^K
+    or Royal Rekka    (EX only) _D_DB_B^P+^P
+
+  Super Dash (EX)       _D_DF_F^P
+
+  Royal Rekka (EX)        _D_DB_B^P then ^P,^P
+
+  Grounder        (in air) _D_DB_B^P
+
+  Straight Shooter (AIR)        _D_DF_F^K
+
+<#f0f000>:Super Moves:</>
+  Atomic Burst (HOLD)
+    LVL 1   _D_DB_B_F^P
+
+  Niagara Pummel
+    LVL 1   (in air) _D_DB_B_F^P
+
+  Saiyan Rave
+    LVL 1   _D_DB_B_D_DB_B^P
+      then ^P,^K,^K,^P
+
+    LVL 2   _D_DB_B_D_DB_B^P+^P
+      then ^LP,^LP,^LK,^LK,^MP,^MK,^HP,^HK
+        then Dirty Bomb _D_DB_B^P
+        or LVL 1 Fingerbang Blast _D_DB_B^K
+
+  Fun Time Bingo Dance
+    LVL 3   _F,^HP,^MP,^LP,_F
+
+  Elite Assault (POWER)
+    LVL 3   _D_DB_B_D_DB_B^K
+
+<#f0f000>:Power Mode:</>
+  Blue Mode    _D_D^MP_+^MK
+    then Beyond Blue    _D_D^MP+^MK

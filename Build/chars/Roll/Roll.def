@@ -1,0 +1,30 @@
+; Definition file for Roll
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Roll"               ;Name of character
+displayname = "Roll"        ;Name of character to display
+versiondate = 04,14,2001    ;Version date of character
+mugenversion = 1.0          ;Version of M.U.G.E.N character works on
+author = "Thomas Hsieh"     ;Character author name
+Editor = "REDHOT"
+pal.defaults = 1,2,3,4,5,6
+
+; Files for the player
+[Files]
+cmd     = CMND/Roll.cmd   ;Command set
+cns      = CNS/Roll.cns
+st       = CNS/Roll.cns
+st1      = CNS/config.txt
+stcommon = CNS/common1.cns
+sprite   = SPRITES/Roll.sff
+anim     = ANIMATIONS/Roll.air
+sound    = SOUNDS/Roll.snd
+pal1     = PALETTES/Roll_01.act
+pal2     = PALETTES/Roll_02.act
+pal3     = PALETTES/Roll_03.act
+pal4     = PALETTES/Roll_04.act
+pal5     = PALETTES/Roll_05.act
+pal6     = PALETTES/Roll_06.act
+

@@ -1,0 +1,14 @@
+charcol.3 = 0
+startup.load = 1
+opt.tooltips = 1
+opt.dropmode = 0
+opt.alwaysbackup = 1
+mugen.exe = C:\Users\RNG\Desktop\Ultra Ikemen\Ikemen_GO.exe
+mugen.hires = 0
+opt.showempty = 1
+vselect.version = 1.3.10.2
+opt.width = 974
+opt.height = 1087
+opt.top = 0
+opt.left = 1911
+opt.maximize = 1

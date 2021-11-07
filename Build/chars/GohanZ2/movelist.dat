@@ -1,0 +1,48 @@
+<#f0f000>:Command Normals:</>
+  Launcher Kick (LAUNCH)        _D^HK or _F_F^HK
+
+  Elbow Drop (HOLD)         (in air) _D^MP
+
+  Butterfly Smash (BOUNCE)        (in air) ^HP
+
+  Omni Kicks (BOUNCE)        (in air) Any Direction_+^HK
+
+  Slashing Kick         _F_F^MK
+
+<#f0f000>:Target Combos:</>
+  Medium Kick Chain (AIR)       ^MK,^MK or ^MP,^MK
+
+  Medium Punch Chain     (in air) ^MP,^MP or ^MK,^MP
+
+  Wing Kick       ^HK,^HK
+
+<#f0f000>:Special Moves:</>
+  Ki Blast (*2) (EX)       _D_DF_F^P
+
+  Hurricane Kick (EX)       _D_DB_B^K
+
+  Rising Hurricane Kick (EX)        _F_D_DF^K
+
+  Diving Kick Flurry (EX)      (in air) _D_DF_F^K
+
+<#f0f000>:Super Moves:</>
+  Masenko (HOLD)
+    LVL 1   _D_DB_B_D_DB_B^P
+    LVL 2   _D_DB_B_D_DB_B^P_+^P
+
+  Soaring Dragon Strike
+    LVL 1   _D_DB_B_F^P
+    LVL 2   _D_DB_B_F^P_+^P
+
+  Super Kamehameha (AIR)
+    LVL 2   _D_DF_F_D_DF_F^P_+^P
+
+  Super Thunder Flurry Kick
+    LVL 1   (in air) _D_DB_B_D_DB_B^K
+    LVL 2   (in air) _D_DB_B_D_DB_B^K+^K
+
+  Gekiretsu Ranbu (POWER)
+    LVL 3   _D_DB_B_F^K
+
+<#f0f000>:Power Mode:</>
+  Unleashed Mode    _D_D^MP_+^MK

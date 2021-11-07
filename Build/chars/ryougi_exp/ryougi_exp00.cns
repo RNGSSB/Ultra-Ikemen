@@ -1,0 +1,3546 @@
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　項目
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+; 100                   :ダッシュ
+; 105                   :バックステップ
+; 115                   :空中ダッシュ
+; 900                   :魔力解放
+; 920                   :ハイジャンプ
+; 960                   ;ゲージ溜め
+; 970                   :EX回避
+; 6600                  :General-Purpose Object
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　前ダッシュ ( 開始 )
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 100]
+type        = S
+physics     = N
+movetype    = I
+anim        = 100
+ctrl        = 1
+
+[State -1]
+type = CtrlSet
+trigger1 = var(1) != 0
+value = 0
+
+[State -1]
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+flag2= NoAutoTurn
+
+[State -1]
+type = PlaySnd
+trigger1 = random%3 = 0
+trigger1 = AnimElemTime(4) = 0
+value = s12, 0
+channel = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+value = s2, 9
+
+[State -1]
+Type = PosSet
+trigger1 = 1
+y = 0
+
+[State -1]
+type = VelSet
+trigger1 = AnimElemTime(5) >= 0
+x = ifelse(var(9)%10<=2,6.2+var(9)%10*0.3,ifelse(var(9)%10=3,7.5,8.2))
+y = 0
+
+[State -1]
+type = Explod
+trigger1 = AnimElemTime(5) = 0
+anim = 11200
+ID = 11200
+pos = 0, 0
+postype = P1
+ownpal = 1
+scale = 0.5, 0.5
+removeongethit = 1
+sprpriority = 5
+ignorehitpause = 1
+persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+type = Explod
+trigger1 = AnimElemTime(5) = 0
+anim = 11200
+ID = 11200
+pos = 0, 0
+postype = P1
+ownpal = 1
+scale = 0.5, 0.5
+removeongethit = 1
+sprpriority = 5
+trans = Sub
+ignorehitpause = 1
+persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+type = Explod
+trigger1 = AnimElemTime(14)>=0
+anim = 11200
+ID = 11200
+pos = 0, 0
+postype = P1
+ownpal = 1
+scale = 0.25, 0.25
+vel = -2, 0
+removeongethit = 1
+sprpriority = 5
+ignorehitpause = 1
+persistent = 24
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+type = Explod
+trigger1 = AnimElemTime(14)>=0
+anim = 11200
+ID = 11200
+pos = 0, 0
+postype = P1
+ownpal = 1
+scale = 0.25, 0.25
+vel = -2, 0
+removeongethit = 1
+sprpriority = 5
+trans = Sub
+ignorehitpause = 1
+persistent = 24
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+type = ChangeState
+triggerAll = var(1) = 0
+triggerAll = ((var(9)%10=[0,3])&&(Time>4-var(9)%10*1))||var(9)%10>3||Time>10
+trigger1 = command != "holdfwd"&&command!="hold_a"
+trigger2 = RoundState != 2
+value = 101
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　前ダッシュ ( 終了 )
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 101]
+type        = S
+physics     = S
+movetype    = I
+anim        = 101
+ctrl        = 1
+
+[State -1]
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+flag2= NoAutoTurn
+
+[State -1]
+Type = PosSet
+trigger1 = 1
+y = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+value = s2, 3
+
+[State -1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　バックステップ [ 開始 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 105]
+type        = S
+physics     = N
+anim        = 105
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = random%2 = 0
+trigger1 = AnimElemTime(1) = 0
+value = s12, 0
+channel = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+Type = PosSet
+trigger1 = AnimElemTime(5) < 0
+y = 0
+
+[State -1]
+type = StateTypeSet
+trigger1 = AnimElemTime(5) = 0
+statetype = A
+physics = N
+movetype = I
+
+[State -1]
+type = VelSet
+trigger1 = AnimElemTime(5) = 0
+x = ifelse(var(9)%10<=2,-6.2,ifelse(var(9)%10=3,-7.2,-9.2))
+y = -3.5
+
+[State -1]
+type = VelAdd
+trigger1 = AnimElemTime(5) > 0
+y = 0.45
+
+[State -1]
+type = ChangeState
+trigger1 = AnimElemTime(5) > 0
+trigger1 = Pos Y >= 0
+value = 106
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　バックステップ [ 終了 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 106]
+type        = S
+physics     = N
+anim        = 106
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = NotHitBy
+trigger1 = var(16)%10>0||var(16)/10%10>0
+trigger1 = Time < 1*(var(16)%10+var(16)/10%10)
+value = SCA
+
+[State -1]
+Type = PosSet
+trigger1 = 1
+y = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = Time = 0
+value = s2, 8
+
+[State -1]
+type = CtrlSet
+trigger1 = Time >= 8
+value = 1
+
+[State -1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　空中ダッシュ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 110]
+type        = A
+physics     = N
+anim        = 110
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+flag2= NoAutoTurn
+
+[State -1]
+type = VelSet
+trigger1 = AnimElemTime(1) = 0
+x = ifelse(var(9)%10<=2,3.8,ifelse(var(9)%10=3,4.6,5.2))
+y = -1.5
+
+[State -1]
+type = VelAdd
+trigger1 = AnimElemTime(1) > 0 && AnimElemTime(8) < 0
+x = 0.04
+
+[State -1]
+type = VelAdd
+trigger1 = AnimElemTime(5) >= 0
+trigger2 = Anim != 110
+y = 0.45
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimElemTime(1) = 0
+value = s2, 9
+
+[State -1]
+type = Helper
+trigger1 = AnimElemTime(1) = 0
+Stateno = 6100
+ID = 6100
+pos = 38, -75
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = CtrlSet
+trigger1 = var(9)%10<=5
+trigger1 = Time >= 15-var(9)%10*3
+trigger2 = var(9)%10>5
+value = 1
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 0
+trigger1 = Pos Y >= 0
+value = 52
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　空中バックダッシュ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 115]
+type        = A
+physics     = N
+anim        = 115
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+flag2= NoAutoTurn
+
+[State -1]
+type = VelSet
+trigger1 = AnimElemTime(1) = 0
+x = ifelse(var(9)%10<=2,-3.5,ifelse(var(9)%10=3,-3.8,-4))
+y = -1.5
+
+[State -1]
+type = VelAdd
+trigger1 = AnimElemTime(1) > 0 && AnimElemTime(5) < 0
+x = -0.05
+
+[State -1]
+type = VelAdd
+trigger1 = AnimElemTime(5) >= 0
+trigger2 = Anim != 110
+y = 0.45
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimElemTime(1) = 0
+value = s2, 9
+
+[State -1]
+type = Helper
+trigger1 = AnimElemTime(1) = 0
+Stateno = 6100
+ID = 6100
+pos = -28, -65
+postype = P1
+ownpal = 1
+facing = -1
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = CtrlSet
+trigger1 = var(9)%10<=5
+trigger1 = Time >= 15-var(9)%10*3
+trigger2 = var(9)%10>5
+value = 1
+
+[State -1]
+type = ChangeState
+trigger1 = Pos Y >= 0
+trigger1 = Time > 0
+value = 52
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　空中ハイジャンプ ( 開始 )
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 915]
+type        = A
+physics     = N
+movetype    = I
+anim        = 41
+velset      = 0, 0
+ctrl        = 0
+facep2      = 1
+
+[State -1]
+type = NotHitBy
+trigger1 = AnimElemTime(1) <= 0 || var(16)/10%10>0
+trigger2 = var(16)%10>0
+trigger2 = Time <= 3*var(16)%10
+value = SCA
+
+[State -1]
+type = VelSet
+trigger1 = Time = 3
+x = 3.5
+y = -10
+
+[State -1]
+type = PlaySnd
+trigger1 = Time = 3
+value = s2, 14
+
+[State -1]
+type = PlaySnd
+trigger1 = Time = 3
+value = s2, 11
+
+[State -1]
+type = StateTypeSet
+trigger1 = Time = 3
+statetype = A
+physics = A
+movetype = I
+
+[State -1]
+type = VelAdd
+trigger1 = Time > 18
+y = 0.05
+
+[State -1]
+type = CtrlSet
+trigger1 = Time >= 3
+value = 1
+
+[State -1]
+type = Helper
+trigger1 = Time = 3
+Stateno = 6120
+ID = 6120
+pos = -8, -8
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 650
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ハイジャンプ ( 開始 )
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 920]
+type        = S
+anim        = 40
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = var(16)%10>0||var(16)/10%10>0
+value = SCA
+
+[State -1]
+type = ChangeState
+trigger1 = Time = 0
+value = 40
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ハイジャンプ ( 飛び込み時 )
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 921]
+type        = S
+physics     = S
+anim        = 921
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State -1]
+type = VelSet
+trigger1 = AnimTime = 0
+x = ifelse(var(9)%10<=2,5,6)
+y = -10
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimTime = 0
+value = s2, 14
+
+[State -1]
+Type = Explod
+trigger1 = AnimTime = 0
+anim = 10070
+ID = 10070
+pos = -16, 12
+postype = P1
+scale = 1, 0.8
+ownpal = 1
+sprpriority = 5
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+Type = Explod
+trigger1 = AnimTime = 0
+anim = 10070
+ID = 10070
+pos = -16, 12
+postype = P1
+scale = 1, 0.8
+ownpal = 1
+sprpriority = 5
+trans = Sub
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+Type = Explod
+trigger1 = AnimTime = 0
+anim = 10100
+ID = 10100
+pos = -22, 14
+postype = P1
+scale = 0.4, 0.4
+ownpal = 1
+sprpriority = -3
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 922
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ハイジャンプ ( 空中時 )
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 922]
+type        = A
+physics     = A
+anim        = 42
+ctrl        = 1
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimElemTime(1) = 1
+value = s2, 11
+
+[State -1]
+type = VelAdd
+trigger1 = AnimElemTime(1) > 0
+y = 0.05
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ラージジャンプ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 925]
+type        = S
+anim        = 40
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = var(16)%10>0||var(16)/10%10>0
+value = SCA
+
+[State -1]
+type = ChangeState
+trigger1 = Time = 0
+value = 40
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ラージジャンプ [ 飛び込み時 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 926]
+type        = S
+physics     = S
+anim        = 926
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State -1]
+type = VelSet
+trigger1 = AnimTime = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = ifelse(Helper(8040),var(30)<=0,const(velocity.jump.y)*1.288,const(velocity.jump.y)*1.124)
+
+[State -1]
+Type = Explod
+trigger1 = AnimTime = 0
+anim = 10060
+ID = 10060
+pos = 0, 4
+postype = P1
+ownpal = 1
+sprpriority = 2
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+Type = Explod
+trigger1 = AnimTime = 0
+anim = 10060
+ID = 10060
+pos = 0, 4
+postype = P1
+ownpal = 1
+sprpriority = 1
+trans = Sub
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 927
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ラージジャンプ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 927]
+type        = A
+physics     = A
+anim        = 41
+ctrl        = 1
+
+[State -1]
+type = VelSet
+trigger1 = Time > 0
+x = ifelse(sysvar(1)=0, const(velocity.airjump.neu.x), ifelse(sysvar(1)=1, const(velocity.airjump.fwd.x), const(velocity.airjump.back.x)))
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimElemTime(1) = 1
+value = s2, 14
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　強制HEAT
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 900]
+type        = S
+physics     = S
+movetype    = A
+anim        = 900
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = Time<24||var(16)%10>2||var(16)/10%10>0||NumHelper(3900)>0
+trigger2 = var(16)%10=[1,2]
+trigger2 = Time<24+var(16)%10*2
+value = SCA
+
+[State -1]
+type = VarSet
+trigger1 = Time = 0
+v = 33
+value = 1
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = PalFX
+trigger1 = AnimElemTime(3) >= 3
+time = 1
+add = -6*AnimTime,-6*AnimTime,-6*AnimTime
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+value = s12, 210
+channel = 0
+
+[State -1]
+type = Helper
+trigger1 = AnimElemTime(4) = 0
+Stateno = 6210
+ID = 6210
+pos = -3, -68
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+type = Projectile
+trigger1 = AnimElem = 4
+ProjID              = 900
+projanim            = 4900
+projremove          = 0
+projremovetime      = 8
+projedgebound       = 900
+projpriority        = 2147483647
+velocity            = 0, 0
+offset              = 0, 0
+postype             = P1
+attr                = A, SA
+animtype            = Hard
+hitflag             = MAF
+damage              = 0, 0
+getpower            = 0, 0
+givepower           = 0, 0
+priority            = 7, hit
+pausetime           = 0, 0
+guard.pausetime     = 0, 0
+sparkno             = -1
+guard.sparkno       = -1
+hitsound            = -1
+guardsound          = -1
+ground.type         = High
+ground.slidetime    = 16
+guard.slidetime     = 16
+ground.hittime      = 16
+air.hittime         = 16
+ground.velocity     = 0, 0
+guard.velocity      = 0
+airguard.velocity   = 0, 0
+air.velocity        = -0, 0
+down.velocity       = 0, 0
+yaccel              = .48
+fall                = 1
+fall.recover        = 0
+p2facing            = 1
+p2stateno           = 6661
+ID                  = 900
+
+[State -1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　BLOOD HEAT
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 910]
+type        = S
+physics     = S
+movetype    = A
+anim        = 910
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = Time<24||var(16)%10>2||var(16)/10%10>0||NumHelper(3900)>0
+trigger2 = var(16)%10=[1,2]
+trigger2 = Time<24+var(16)%10*2
+value = SCA
+
+[State -1]
+type = VarSet
+trigger1 = Time = 0
+v = 33
+value = -1
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = VarAdd
+trigger1 = var(32) < 602
+trigger1 = Time = 20
+v = 32
+value = 30
+ignorehitpause = 1
+
+[State -1]
+type = VarSet
+trigger1 = var(32) >= 602
+v = 32
+value = 602
+ignorehitpause = 1
+
+[State -1]
+type = Afterimage
+trigger1 = Time= 0
+trans = add
+timegap = 1
+framegap = 1
+length = 3
+time = 99999
+palcolor    = 256
+paladd      = 128,0,0
+palbright   = 256,0,0
+palcontrast = 256,0,0
+
+[State -1]
+type = PalFX
+trigger1 = AnimElemTime(3) >= 3
+time = 1
+add = -6*AnimTime,-6*AnimTime,-6*AnimTime
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+value = s12, 200
+channel = 0
+
+[State -1]
+type = Helper
+trigger1 = AnimElemTime(4) = 0
+Stateno = 6210
+ID = 6210
+pos = -3, -68
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+type = Projectile
+trigger1 = AnimElem = 4
+ProjID              = 900
+projanim            = 4900
+projremove          = 0
+projremovetime      = 8
+projedgebound       = 900
+projpriority        = 2147483647
+velocity            = 0, 0
+offset              = 0, 0
+postype             = P1
+attr                = A, SA
+animtype            = Hard
+hitflag             = MAF
+damage              = 0, 0
+getpower            = 0, 0
+givepower           = 0, 0
+priority            = 7, hit
+pausetime           = 0, 0
+guard.pausetime     = 0, 0
+sparkno             = -1
+guard.sparkno       = -1
+hitsound            = -1
+guardsound          = -1
+ground.type         = High
+ground.slidetime    = 16
+guard.slidetime     = 16
+ground.hittime      = 16
+air.hittime         = 16
+ground.velocity     = 0, 0
+guard.velocity      = 0
+airguard.velocity   = 0, 0
+air.velocity        = -0, 0
+down.velocity       = 0, 0
+yaccel              = .48
+fall                = 1
+fall.recover        = 0
+p2facing            = 1
+p2stateno           = 6661
+ID                  = 900
+
+[State -1] 
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　UNLIMITED ( 地上 )
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 930]
+type        = S
+physics     = S
+movetype    = A
+anim        = 930
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = VarSet
+trigger1 = Anim = 930
+trigger1 = Time = 0
+v = 33
+value = -2
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+Type = SuperPause
+trigger1 = Anim = 930
+trigger1 = AnimElemTime(1) = 0
+time = 103
+movetime = 103
+sound    = s2,0
+anim     = -1
+darken   = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+type = Afterimage
+trigger1 = Anim = 930
+trigger1 = Time = 0
+trans = add
+timegap = 1
+framegap = 1
+length = 3
+time = 99999
+palcolor    = 256
+palbright   = 128,128,256
+palcontrast = 128,128,256
+
+[State -1]
+Type = ChangeAnim
+trigger1 = Anim = 930
+trigger1 = Time >= 103
+value = 931
+persistent = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 930
+trigger1 = Time = 8
+value = s14, 30
+persistent = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 930
+trigger1 = Time = 92
+value = s14, 31
+persistent = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 930
+trigger1 = AnimElemTime(1) = 0
+value = s3, 28
+persistent = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 931
+trigger1 = AnimElemTime(1) = 0
+value = s2, 10
+persistent = 0
+
+[State -1]
+type = Projectile
+trigger1 = Anim = 931
+trigger1 = AnimElem = 1
+ProjID              = 900
+projanim            = 4900
+projremove          = 0
+projremovetime      = 8
+projedgebound       = 900
+projpriority        = 2147483647
+velocity            = 0, 0
+offset              = 0, 0
+postype             = P1
+attr                = A, SA
+animtype            = Hard
+hitflag             = MAF
+damage              = 0, 0
+getpower            = 0, 0
+givepower           = 0, 0
+priority            = 7, hit
+pausetime           = 0, 0
+guard.pausetime     = 0, 0
+sparkno             = -1
+guard.sparkno       = -1
+hitsound            = -1
+guardsound          = -1
+ground.type         = High
+ground.slidetime    = 16
+guard.slidetime     = 16
+ground.hittime      = 16
+air.hittime         = 16
+ground.velocity     = 0, 0
+guard.velocity      = 0
+airguard.velocity   = 0, 0
+air.velocity        = -0, 0
+down.velocity       = 0, 0
+yaccel              = .48
+fall                = 1
+fall.recover        = 0
+p2facing            = 1
+p2stateno           = 6661
+ID                  = 900
+
+[State -1] 
+type = ChangeState
+trigger1 = Anim = 931
+trigger1 = AnimTime = 0
+trigger2 = Time > 140
+value = 0
+ctrl = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　UNLIMITED ( 空中 )
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 931]
+type        = A
+physics     = N
+movetype    = A
+anim        = 940
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = SuperPause
+trigger1 = Anim = 940
+trigger1 = AnimElemTime(1) = 0
+time = 107
+movetime = 107
+sound    = s2,0
+anim     = -1
+darken   = 0
+
+[State -1]
+type = VarSet
+trigger1 = Anim = 940
+trigger1 = Time = 0
+v = 23
+value = 0
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = VarSet
+trigger1 = Anim = 940
+trigger1 = Time = 0
+v = 33
+value = -2
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = Anim = 940
+trigger2 = Anim = 941 && AnimElemTime(3) <= 0
+value = SCA
+
+[State -1]
+type = Afterimage
+trigger1 = Anim = 940
+trigger1 = Time = 0
+trans = add
+timegap = 1
+framegap = 1
+length = 3
+time = 99999
+palcolor    = 256
+palbright   = 128,128,256
+palcontrast = 128,128,256
+
+[State -1]
+Type = ChangeAnim
+trigger1 = Anim = 940
+trigger1 = Time > 107
+value = 941
+persistent = 0
+
+[State -1]
+type = CtrlSet
+trigger1 = Anim = 941
+trigger1 = AnimElemTime(3) = 0
+value = 1
+
+[State -1]
+type = StateTypeSet
+trigger1 = Anim = 941
+trigger1 = AnimElemTime(5) = 0
+physics = A
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 940
+trigger1 = Time = 8
+value = s14, 30
+channel = 0
+persistent = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 940
+trigger1 = Time = 92
+value = s14, 31
+channel = 0
+persistent = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 940
+trigger1 = AnimElemTime(1) = 0
+value = s3, 28
+persistent = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 941
+trigger1 = AnimElemTime(1) = 0
+value = s2, 10
+persistent = 0
+
+[State -1]
+type = Projectile
+trigger1 = Anim = 941
+trigger1 = AnimElem = 1
+ProjID              = 900
+projanim            = 4900
+projremove          = 0
+projremovetime      = 8
+projedgebound       = 900
+projpriority        = 2147483647
+velocity            = 0, 0
+offset              = 0, 0
+postype             = P1
+attr                = A, SA
+animtype            = Hard
+hitflag             = MAF
+damage              = 0, 0
+getpower            = 0, 0
+givepower           = 0, 0
+priority            = 7, hit
+pausetime           = 0, 0
+guard.pausetime     = 0, 0
+sparkno             = -1
+guard.sparkno       = -1
+hitsound            = -1
+guardsound          = -1
+ground.type         = High
+ground.slidetime    = 16
+guard.slidetime     = 16
+ground.hittime      = 16
+air.hittime         = 16
+ground.velocity     = 0, 0
+guard.velocity      = 0
+airguard.velocity   = 0, 0
+air.velocity        = -0, 0
+down.velocity       = 0, 0
+yaccel              = .48
+fall                = 1
+fall.recover        = 0
+p2facing            = 1
+p2stateno           = 6661
+ID                  = 900
+
+[State -1]
+type = ChangeState
+trigger1 = Anim = 941
+trigger1 = AnimTime = 0
+trigger2 = Time > 200
+value = 650
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ゲージ溜め
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 960]
+type        = S
+physics     = S
+movetype    = I
+anim        = 960
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = VarSet
+trigger1 = Time = 0
+v = 57
+value = 0
+ignorehitpause = 1
+
+[State -1]
+Type = VarAdd
+trigger1 = 1
+v = 57
+value = 1
+ignorehitpause = 1
+
+[State -1]
+Type = NotHitBy
+trigger1 = var(16)%10=1&&var(57)%12=0
+trigger2 = var(16)%10=2&&var(57)%11=0
+trigger3 = var(16)%10=3&&var(57)%10=0
+trigger4 = var(16)%10=4&&var(57)%9=0
+trigger5 = var(16)%10=5&&var(57)%8=0
+trigger6 = var(16)%10=6&&var(57)%7=0
+trigger7 = var(16)%10=7&&var(57)%6=0
+trigger8 = var(16)%10=8&&var(57)%5=0
+trigger9 = var(16)%10=9&&var(57)%4=0
+trigger10 = var(16)/10%10>0&&var(57)%3=0
+value = SCA
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 960
+trigger1 = AnimElemTime(2) = 0
+value = s12, 300
+channel = 0
+
+[State -1]
+type = PlaySnd
+trigger1 = Anim = 960
+trigger1 = AnimElemTime(4) = 0
+value = s2, 12
+persistent = 0
+
+[State -1]
+type = Explod
+trigger1 = Anim = 960
+trigger1 = AnimElemTime(4) = 0
+anim = 10500
+ID = 10500
+bindtime = -1
+pos = -4, 0
+postype = P1
+ownpal = 1
+removetime = -1
+removeongethit = 1
+sprpriority = 5
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = Explod
+trigger1 = Anim != 960
+anim = 10501
+ID = 10501
+pos = 0, 0
+postype = P1
+ownpal = 1
+removeongethit = 1
+sprpriority = 5
+ignorehitpause = 1
+persistent = 0
+
+[State -1]
+type = PowerAdd
+trigger1 = var(46)=0&&fvar(19)=0&&Anim=960&&Time>=7
+value = var(7)%10+(var(7)/100000000%10*2)+4+3*(Time>=57)+4*(Time>=107)+3*(Time>=157)+4*(Time>=207)+3*(Time>=257)
+
+[State -1]
+type = VarAdd
+trigger1 = var(32)>0&&var(32)<602&&var(33)!=0&&var(46)=0&&Time>=7
+v = 32
+value = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = var(43)<1000&&fvar(19)=0&&Anim=960&&Time>=7
+v = 43
+value = 1+var(7)/100000000%10*1+1+(Time>=57)*2+(Time>=107)*2+(Time>=157)*2+(Time>=207)*3+(Time>=257)*3+(Time>=307)*3+(Time>=357)*3+(Power>=PowerMax)*2
+
+[State -1]
+Type = VarAdd
+trigger1 = fvar(19)>0&&fvar(20)>0
+fv = 19
+value = -2-var(7)/100000000%10*1-1-(Time>=57)*1-(Time>=107)*2-(Time>=157)*1-(Time>=207)*2-(Time>=257)*2-(Time>=307)*2-(Time>=357)*2-(Power>=PowerMax)*1
+
+[State -1]
+Type = VarAdd
+trigger1 = var(46) > 0
+v = 46
+value = -1-var(7)/100000000%10*1-1-(Time>=57)*1-(Time>=107)*1-(Time>=157)*1-(Time>=207)*1-(Time>=257)*2-(Time>=307)*2-(Time>=357)*2
+
+[State -1]
+type = ChangeAnim
+triggerAll = Anim = 960
+triggerAll = Time>=10-var(9)%10*1
+trigger1 = RoundState!=2||(var(33)!=0&&var(43)>=1000&&var(46)=0)||(var(1)=0&&(Command!="hold_x"&&Command!="hold_y"))
+trigger2 = TeamMode = Simul
+trigger2 = ifelse(((Partner,ID)<ID),(Power>= PowerMax),Power>= (Partner,PowerMax))
+trigger2 = var(43)>=1000&&var(46)=0
+value = 961
+
+[State -1]
+type = CtrlSet
+triggerAll = Anim = 961
+trigger1 = var(9)%10>4||var(12)%10>8
+trigger2 = var(9)%10=[1,4]
+trigger2 = Time <= 5-(var(9)%10*1)
+value = 1
+
+[State -1]
+type = ChangeState
+trigger1 = Anim = 961
+trigger1 = AnimTime = 0
+value = ifelse(StateType!=A,0,650)
+ctrl = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　サーキットスパーク ( 空中 )
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 970]
+type        = U
+physics     = U
+movetype    = A
+anim        = ifelse(StateType!=A,970,971)
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+trigger1 = LifeMax*0.25 <= Life
+value = s23, 0
+channel = 0
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+trigger1 = LifeMax*0.25 > Life
+value = s23, 1
+channel = 0
+
+[State -1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+type = PalFX
+trigger1 = Time = [13,27]
+time = 1
+add = ceil(256*cos((Time-12)*0.10472)),ceil(256*cos((Time-12)*0.10472)),ceil(256*cos((Time-12)*0.10472))
+
+[State -1]
+type = BGPalFX
+trigger1 = Time <= 10
+time = 1
+add = 0,0,0
+mul = ceil(256-Time*16.5),ceil(256-Time*16.5),ceil(256-Time*16.5)
+
+[State -1]
+type = BGPalFX
+trigger1 = Time = [11,29]
+time = 1
+add = 0,0,0
+mul = 86,86,86
+
+[State -1]
+type = BGPalFX
+trigger1 = Time = [30,38]
+time = 1
+add = 0,0,0
+mul = ceil(86+(Time-24)*7.5),ceil(86+(Time-24)*7.5),ceil(86+(Time-24)*7.5)
+
+[State -1]
+type = EnvShake
+trigger1 = AnimElemTime(4) = 0
+time = 1
+ampl = 2
+freq = 30
+
+[State -1]
+type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+value = s3, 72
+
+[State -1]
+type = StateTypeSet
+trigger1 = StateType = A
+trigger1 = AnimElemTime(1) = 0
+statetype = A
+physics = N
+movetype = I
+
+[State -1]
+type = StateTypeSet
+trigger1 = StateType = A
+trigger1 = AnimElemTime(7) = 0
+statetype = A
+physics = A
+movetype = I
+
+[State -1]
+Type = Helper
+trigger1 = AnimElemTime(4) = 0
+Stateno = 6300
+ID = 6300
+pos = 8, -13
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = ifelse(StateType=A,650,0)
+ctrl = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ガードブレイク
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6610]
+type        = U
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = StateTypeSet
+trigger1 = StateType=A||StateType=L||Alive=0
+statetype = A
+physics = N
+movetype = H
+
+[State -1]
+Type = EnvShake
+trigger1 = Time = 1
+time = 10
+ampl = 5
+freq = 90
+
+[State -1]
+type = OffSet
+trigger1 = Time%2=0
+x = 1
+persistent = 4
+
+[State -1]
+type = OffSet
+trigger1 = Time%2=1
+x = -1
+persistent = 4
+
+[State -1]
+type = ChangeAnim
+trigger1 = 1
+value = ifelse(StateType=S,5002,ifelse(StateType=C,5022,5030))
+
+[State -1]
+type = ChangeState
+trigger1 = EnemyNear,HitPauseTime = 0
+trigger1 = Time > 0
+value = 6611
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ガードブレイク
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6611]
+type        = U
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = StateTypeSet
+trigger1 = StateType=A||StateType=L||Alive=0
+statetype = A
+physics = N
+movetype = H
+
+[State -1]
+type = OffSet
+trigger1 = Time < 20
+x = ifelse(Time%2=0,4,-4)
+persistent = 4
+
+[State -1]
+type = OffSet
+trigger1 = Time = [20,29]
+x = ifelse(Time%2=0,3,-3)
+persistent = 4
+
+[State -1]
+type = OffSet
+trigger1 = Time = [30,39]
+x = ifelse(Time%2=0,2,-2)
+persistent = 3
+
+[State -1]
+type = OffSet
+trigger1 = Time = [40,59]
+x = ifelse(Time%2=0,1,-1)
+persistent = 2
+
+[State -1]
+type = ChangeAnim
+trigger1 = 1
+value = ifelse(StateType=S,5002,ifelse(StateType=C,5022,5030))
+
+[State -1]
+type = SelfState
+trigger1 = Time >= 60
+value = ifelse(StateType=S,5000,ifelse(StateType=C,5010,5020))
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　足払い [ 相手側 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6620]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+Type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+Type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+trigger2 = !SelfAnimExist(5035)
+trigger2 = Anim = 5030
+trigger2 = AnimTime = 0
+value = 5050
+
+[State -1]
+Type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = -1.4
+y = -3.2
+
+[State -1]
+type = VelAdd
+trigger1 = Time > 4
+y = 0.35
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y>0
+triggerAll = Time>=28||Time>4&&Pos Y>=0
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 4
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 5100
+
+[State -1]
+type = SelfState
+trigger1 = Time > 100
+value = 5020
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　足払い [ 相手側 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6625]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+Type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+Type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+trigger2 = !SelfAnimExist(5035)
+trigger2 = Anim = 5030
+trigger2 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = VelSet
+trigger1 = Time = 0
+x = -4.8
+y = -6.2
+
+[State -1]
+type = VelAdd
+trigger1 = Time > 0
+y = 0.35
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y>0
+triggerAll = Time>=28||Time>0&&Pos Y>=0
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 0
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 5100
+
+[State -1]
+type = SelfState
+trigger1 = Time > 100
+value = 5020
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6630]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = VelSet
+trigger1 = Time > 4
+x = -10-Time*0.2
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 10
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 20
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6631
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 壁衝突波紋エフェクト用 - Normal]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6631]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 12
+ampl = 3
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+Type = Width
+trigger1 = Time < 9
+edge = -const(size.air.front),-const(size.air.back)
+ignorehitpause = 1
+
+[State -1]
+Type = Width
+trigger1 = Time >= 9
+trigger1 = const(size.air.back)-(Time-9) > -30
+edge = 0,-const(size.air.back)+(Time-9)
+ignorehitpause = 1
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+x = -25
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = 1
+y = -4.8
+
+[State -1]
+type = VelAdd
+trigger1 = Time >= 8
+x = -0.04
+y = 0.38
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y>0
+triggerAll = Time>=28||Time>4&&Pos Y>=0
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = SelfState
+trigger1 = Time > 4
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 5100
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6632]
+type        = U
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 10
+ampl = 3
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 0,1
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 4
+x = -14
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 4
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+value = 6633
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 壁衝突波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6633]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 12
+ampl = 3
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+x = -25
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = 1.2
+y = -7.8
+
+[State -1]
+type = VelAdd
+trigger1 = Time >= 8
+x = -0.04
+y = 0.42
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y>0
+triggerAll = Time>=42||Time>4&&Pos Y>=0
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = SelfState
+trigger1 = Time > 4
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 5100
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6634]
+type        = U
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = VelSet
+trigger1 = Time > 4
+x = -10-Time*0.4
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 10
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 20
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6635
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 壁衝突波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6635]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 12
+ampl = 3
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+Type = Width
+trigger1 = Time < 9
+edge = -const(size.air.front),-const(size.air.back)
+ignorehitpause = 1
+
+[State -1]
+Type = Width
+trigger1 = Time >= 9
+trigger1 = const(size.air.back)-(Time-9) > -30
+edge = 0,-const(size.air.back)+(Time-9)
+ignorehitpause = 1
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+x = -25
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = 1
+y = -5.8
+
+[State -1]
+type = VelAdd
+trigger1 = Time >= 8
+x = -0.04
+y = 0.38
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y>0
+triggerAll = Time>=42||Time>4&&Pos Y>=0
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = SelfState
+trigger1 = Time > 4
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 5100
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6636]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = VelSet
+trigger1 = Time > 4
+x = -15-Time*0.2
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 10
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 20
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6637
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 壁衝突波紋エフェクト用 - Normal]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6637]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 12
+ampl = 3
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+Type = Width
+trigger1 = Time < 9
+edge = -const(size.air.front),-const(size.air.back)
+ignorehitpause = 1
+
+[State -1]
+Type = Width
+trigger1 = Time >= 9
+trigger1 = const(size.air.back)-(Time-9) > -30
+edge = 0,-const(size.air.back)+(Time-9)
+ignorehitpause = 1
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+x = -25
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = 1
+y = -4.8
+
+[State -1]
+type = VelAdd
+trigger1 = Time >= 8
+x = -0.04
+y = 0.48
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y>0
+triggerAll = Time>=28||Time>4&&Pos Y>=0
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = SelfState
+trigger1 = Time > 4
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 5100
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6650]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y < -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time = 10
+x = -10
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 10
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 20
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6651
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 壁衝突波紋エフェクト用 - Normal]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6651]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 12
+ampl = 3
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+Type = Width
+trigger1 = Time < 9
+edge = -const(size.air.front),-const(size.air.back)
+ignorehitpause = 1
+
+[State -1]
+Type = Width
+trigger1 = Time >= 9
+trigger1 = const(size.air.back)-(Time-9) > -30
+edge = 0,-const(size.air.back)+(Time-9)
+ignorehitpause = 1
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+x = -25
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = 1
+y = -5.8
+
+[State -1]
+type = VelAdd
+trigger1 = Time >= 8
+x = -0.04
+y = ifelse(Time<24,0.38,0.45)
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y>0&&Pos Y>=5
+triggerAll = Time>4
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = SelfState
+trigger1 = Time > 4
+trigger1 = (Vel Y > 0) && (Pos Y >= 5)
+value = 5100
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 壁衝突波紋エフェクト用 - Normal]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6652]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 12
+ampl = 3
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 4
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 4
+value = 5061
+
+[State -1]
+Type = Width
+trigger1 = Time < 9
+edge = -const(size.air.front),-const(size.air.back)
+ignorehitpause = 1
+
+[State -1]
+Type = Width
+trigger1 = Time >= 9
+trigger1 = const(size.air.back)-(Time-9) > -30
+edge = 0,-const(size.air.back)+(Time-9)
+ignorehitpause = 1
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+x = -25
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = 1
+y = -4.8
+
+[State -1]
+type = VelAdd
+trigger1 = Time >= 8
+x = -0.04
+y = ifelse(Time<12,0.3,ifelse(TIme<20,0.2,0.3))
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = (Pos Y >= 0 &&Time >= 30) || (Time >= 38 && Vel Y > 0)
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = SelfState
+trigger1 = Time > 12
+trigger1 = (Vel Y > 0) && (Pos Y >= 5)
+value = 5100
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 壁衝突波紋エフェクト用 - Normal]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6653]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 12
+ampl = 3
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 4
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 4
+value = 5061
+
+[State -1]
+Type = Width
+trigger1 = Time < 9
+edge = -const(size.air.front),-const(size.air.back)
+ignorehitpause = 1
+
+[State -1]
+Type = Width
+trigger1 = Time >= 9
+trigger1 = const(size.air.back)-(Time-9) > -30
+edge = 0,-const(size.air.back)+(Time-9)
+ignorehitpause = 1
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+x = -25
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = 1
+y = -4.8
+
+[State -1]
+type = VelAdd
+trigger1 = Time >= 8
+x = -0.04
+y = ifelse(Time<12,0.3,ifelse(TIme<20,0.2,0.3))
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y > 0
+triggerAll = Time >= 30 || Time >4&&Pos Y>0
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = SelfState
+trigger1 = Time > 4
+trigger1 = (Vel Y > 0) && (Pos Y >= 5)
+value = 5100
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　月に画く [ 相手側 - 壁衝突波紋エフェクト用 - Normal]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6655]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 12
+ampl = 4
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+Type = Width
+trigger1 = Time < 9
+edge = -const(size.air.front),-const(size.air.back)
+ignorehitpause = 1
+
+[State -1]
+Type = Width
+trigger1 = Time >= 9
+trigger1 = const(size.air.back)-(Time-9) > -30
+edge = 0,-const(size.air.back)+(Time-9)
+ignorehitpause = 1
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+x = -25
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = 2
+y = -8.8
+
+[State -1]
+type = VelAdd
+trigger1 = Time >= 8
+y = ifelse(Time<8,0.38,ifelse(Time<18,0.68,0.78))
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y > 0
+triggerAll = Time >= 38 || Time > 4 && Pos Y >= 5
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = SelfState
+trigger1 = Time > 4
+trigger1 = (Vel Y > 0) && (Pos Y >= 15)
+value = 5100
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　月に画く [ 相手側 - 壁衝突波紋エフェクト用 - Normal]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6656]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 1
+time = 16
+ampl = 5
+freq = 90
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+Type = Width
+trigger1 = Time < 9
+edge = -const(size.air.front),-const(size.air.back)
+ignorehitpause = 1
+
+[State -1]
+Type = Width
+trigger1 = Time >= 9
+trigger1 = const(size.air.back)-(Time-9) > -30
+edge = 0,-const(size.air.back)+(Time-9)
+ignorehitpause = 1
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+x = -25
+
+[State -1]
+type = VelSet
+trigger1 = Time = 4
+x = 2
+y = -5.8
+
+[State -1]
+type = VelAdd
+trigger1 = Time >= 8
+x = -0.01
+y = ifelse(Time<12,0.38,0.58)
+
+[State -1]
+type = SelfState
+triggerAll = Alive
+triggerAll = Vel Y>0
+triggerAll = Time>36||Time>8&&Pos Y>=5
+trigger1 = Command != "holdup" || Command = "recovery"
+value = ifelse(Pos Y>=-20,5201,5210)
+
+[State -1]
+type = SelfState
+trigger1 = Time > 4
+trigger1 = (Vel Y > 0) && (Pos Y >= 15)
+value = 5100
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6660]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y < -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 10
+x = -10
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 4
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 20
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6631
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6661]
+type        = U
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y < -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 4
+x = -14-Time*0.2
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 10
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 20
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6631
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6662]
+type        = U
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y < -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 10
+x = -12-Time*0.2
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 10
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 20
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6631
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6663]
+type        = U
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y < -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 10
+x = -12-Time*0.2
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 10
+y = 10
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 10
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 20
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6652
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6670]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y < -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 10
+x = -10
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 10
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 20
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6651
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6671]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y < -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 4
+x = -14
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 4
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 4
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+value = 6651
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6672]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y < -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 4
+x = -14-Time*0.02
+y = 0
+
+[State -1]
+Type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 4
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 10
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+trigger3 = Time > 30
+trigger3 = FrontEdgeDist <= 7 || BackEdgeDist <= 7
+trigger4 = Time > 40
+trigger4 = FrontEdgeDist <= 8 || BackEdgeDist <= 8
+value = 6651
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6673]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time < 10
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time < 10
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y < -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 8
+x = -14-Time*0.02
+y = 0
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 8
+trigger1 = FrontEdgeDist <= 3 || BackEdgeDist <= 3
+trigger2 = Time > 14
+trigger2 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+trigger3 = Time > 30
+trigger3 = FrontEdgeDist <= 7 || BackEdgeDist <= 7
+trigger4 = Time > 40
+trigger4 = FrontEdgeDist <= 8 || BackEdgeDist <= 8
+value = 6651
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6680]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 8
+x = -14-Time*0.5
+y = -0.5
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 8
+trigger1 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+trigger2 = Time > 14
+trigger2 = FrontEdgeDist <= 7 || BackEdgeDist <= 7
+trigger3 = Time > 30
+trigger3 = FrontEdgeDist <= 8 || BackEdgeDist <= 8
+trigger4 = Time > 40
+trigger4 = FrontEdgeDist <= 9 || BackEdgeDist <= 9
+value = 6655
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　吹き飛ばし [ 相手側 - 水平吹き飛び波紋エフェクト用 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 6681]
+type        = A
+physics     = N
+movetype    = H
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5030
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5030
+trigger1 = AnimTime = 0
+value = 5035
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 5035
+trigger1 = AnimTime = 0
+value = 5050
+
+[State -1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(5030)&&!SelfAnimExist(5035)
+trigger1 = Time = 0
+value = 5061
+
+[State -1]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50
+y = ifelse(Pos Y<-50,50,ifelse(Pos Y<-25,25,10))
+
+[State -1]
+type = PosAdd
+trigger1 = Time = 0
+trigger1 = Pos Y > -50 && Pos Y < -100
+y = ifelse(Pos Y<-100,100,ifelse(Pos Y<-70,80,60))
+
+[State -1]
+type = VelSet
+trigger1 = Time >= 4
+x = -14-Time*0.5
+y = -0.5
+
+[State -1]
+type = SelfState
+trigger1 = Time > 200
+value = 5020
+
+[State -1]
+type = ChangeState
+trigger1 = Time > 4
+trigger1 = FrontEdgeDist <= 6 || BackEdgeDist <= 6
+trigger2 = Time > 10
+trigger2 = FrontEdgeDist <= 7 || BackEdgeDist <= 7
+trigger3 = Time > 26
+trigger3 = FrontEdgeDist <= 8 || BackEdgeDist <= 8
+trigger4 = Time > 36
+trigger4 = FrontEdgeDist <= 9 || BackEdgeDist <= 9
+value = 6655
+
+[State -1]
+Type = DestroySelf
+trigger1 = IsHelper

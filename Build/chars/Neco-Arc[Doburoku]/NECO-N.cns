@@ -1,0 +1,2740 @@
+;==============================================================================
+; 通常攻撃
+;==============================================================================
+;-| 立ちA |---------------------------------------------------------
+[Statedef 200]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+velset   = 0,0
+ctrl     = 0
+anim     = 200
+poweradd = 0
+sprpriority = 2
+
+[State 200, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 3, < 0
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*350/11)
+animtype = Light
+guardflag = M
+hitflag = MAFD
+priority = 3, Hit
+pausetime = 6,Ceil(ifelse(P2StateType=A,8,6)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 6,6
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,0
+guardsound = s16,8
+ground.type = Low
+ground.slidetime = 13
+ground.hittime  = 13
+guard.slidetime = 13
+guard.ctrltime = 13
+ground.velocity = -3.5,0
+guard.velocity = -3.5
+airguard.velocity = -3.9,-1.2
+air.type = High
+air.velocity = -3.1,-6.65
+down.velocity = -4.65,-2.75
+yaccel = .55
+air.hittime = 11
+fall = 0
+air.fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),11)
+getpower = 35, Ceil(35*0.85)
+givepower = 11, 5
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 200, 音を鳴らす]
+type = PlaySnd
+trigger1 = Time = 0
+value = s15,0
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 200, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+trigger1 = PrevStateNo != 200
+v = 16
+value = 1
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;-| 立ちB_BEなし |---------------------------------------------------------
+
+[Statedef 210]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+velset   = 0,0
+anim     = 210
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = s2,1
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 210, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 3, >= 0 && AnimElem = 4, < 0
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*850/11)
+priority  = 3, Hit
+animtype  = up
+hitflag = MAFD
+guardflag = M
+pausetime = 8,Ceil(ifelse(P2StateType=A,10,8)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 8,8
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,1
+guardsound = s16,8
+ground.type = High
+ground.slidetime = 13
+ground.hittime  = 13
+guard.slidetime = 13
+guard.ctrltime = 13
+ground.velocity = 0,-12.15
+guard.velocity = -3.5
+air.type = High
+air.hittime = 29
+fall = 1
+air.fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(12.15*(12.15/0.55)-0.5*0.55*((12.15/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(12.15/0.55)),29)
+airguard.velocity = -3.9,-1.2
+air.velocity = 0,-12.15
+down.velocity = -4.65,-2.75
+yaccel = .55
+getpower = 70, Ceil(70*0.85)
+givepower = 21, 11
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 210, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 2
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+; 立ちB_BE最大
+
+[Statedef 211]
+type     = S
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 211
+
+[State 211]
+type = VelSet
+trigger1 = Animelemtime(2) = 0
+x = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 211]
+type = VelAdd
+trigger1 = AnimElem = 2, < 0
+x = -0.15
+ignorehitpause = 1
+
+[State 211, PlaySnd]
+type = PlaySnd
+trigger1 = Animelemtime(2) = 0
+value = s8,14
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 211, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2, = -1
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 211, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 3, >= 0 && AnimElem = 4, < 0
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*1350/11)
+priority  = 3, Hit
+animtype  = Hard
+hitflag = MAFD
+guardflag = M
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = High
+ground.slidetime = 16
+ground.hittime  = 16
+guard.slidetime = 16
+guard.ctrltime = 16
+ground.velocity = -2.7,-10.95
+guard.velocity = -4.65
+air.type = High
+fall = 1
+air.fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(8.6*(8.6/0.55)-0.5*0.55*((8.6/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(8.6/0.55)),50)
+airguard.velocity = -3.9,-1.2
+air.velocity = -2.7,-10.95
+down.velocity = -4.65,-2.75
+yaccel = .55
+air.hittime = 50
+getpower = 120, Ceil(120*0.85)
+givepower = 36, Ceil(36*0.5)
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 211, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 2
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+; 立ちB_BE分岐
+
+[Statedef 212]
+type     = S
+physics  = N
+ctrl     = 0
+velset   = 0,0
+anim     = 212
+
+[State 212]
+type = VelSet
+trigger1 = Time = 0
+x = 4.53
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 212]
+type = VelAdd
+trigger1 = 1
+x = -0.15
+ignorehitpause = 1
+
+[State 212, ステート変更]
+type = ChangeState
+trigger1 = Command != "hold_b"
+trigger1 = Time >= 1
+value = 210
+
+[State 212, PlaySnd]
+type = PlaySnd
+trigger1 = Command = "hold_b"
+trigger1 = AnimTime = 0
+value = s16,2
+channel = 6
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 212]
+type = Explod
+trigger1 = Command = "hold_b"
+trigger1 = AnimTime = 0
+anim = 8371
+id = 8371
+postype = p1
+pos = 8,-16
+ownpal = 1
+removetime = -2
+scale = 0.5,0.5
+sprpriority = 9
+persistent = 0
+removeongethit = 0
+ignorehitpause = 1
+supermovetime = 0
+pausemovetime = 0
+
+[State 212, ステート変更]
+type = ChangeState
+trigger1 = Command = "hold_b"
+trigger1 = AnimTime = 0
+value = 211
+
+;-| 立ちC_BEなし |---------------------------------------------------------
+
+[Statedef 220]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+velset   = 0,0
+anim     = 220
+
+[State 220, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = s15,2
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 220, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 3, < 0
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*1200/11)
+priority  = 3, Hit
+animtype  = Midium
+hitflag = MAFD
+guardflag = M
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,6
+guardsound = s16,8
+ground.type = Low
+ground.slidetime = 19
+ground.hittime  = 19
+ground.velocity = -6.25
+guard.velocity = -3.5
+guard.slidetime = 13
+guard.ctrltime = 13
+air.type = Low
+fall = 0
+air.fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),11)
+airguard.velocity = -3.9,-1.2
+air.velocity = -3.1,-6.65
+down.velocity = -4.65,-2.75
+yaccel = .55
+air.hittime = 11
+getpower = 80, Ceil(80*0.85)
+givepower = 24, 12
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 220, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 4
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+; 立ちC_BE最大
+
+[Statedef 221]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 221
+
+[State 221, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = s16,2
+channel = 6
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 221]
+type = Explod
+trigger1 = Time = 0
+anim = 8371
+id = 8371
+postype = p1
+pos = 5,-14
+ownpal = 1
+removetime = -2
+scale = 0.5,0.5
+sprpriority = 9
+persistent = 0
+removeongethit = 0
+ignorehitpause = 1
+supermovetime = 0
+pausemovetime = 0
+
+[State -1]
+type = Helper
+trigger1 = Time = 0
+stateno = 225
+id = 225
+pos = 0,0
+postype = P1
+keyctrl = 0
+ownpal = 1
+size.xscale = 1
+size.yscale = 1
+persistent = 0
+ignorehitpause = 0
+supermovetime = 0
+pausemovetime = 0
+
+[State 221]
+type = VelSet
+trigger1 = Animelemtime(2) = 0
+x = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 221, PlaySnd]
+type = PlaySnd
+trigger1 = Animelemtime(2) = 0
+value = s8,15
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 221, PlaySnd]
+type = PlaySnd
+trigger1 = Animelemtime(2) = 0
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 221, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 3, >= 0 && AnimElem = 4, < 0
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*800/11)
+priority  = 3, Hit
+animtype  = Hard
+hitflag = MAFD
+guardflag = M
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,6
+guardsound = s16,8
+ground.type = High
+ground.slidetime = 16
+ground.hittime  = 16
+guard.slidetime = 16
+guard.ctrltime = 16
+ground.velocity = -10.9,0
+guard.velocity = -4.65
+air.type = High
+fall = 1
+air.fall = 1
+fall.recover = 1
+airguard.velocity = -3.9,-1.2
+air.velocity = -4.65,-2.75
+down.velocity = -4.65,-2.75
+yaccel = .55
+air.hittime = 30
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(8.6*(8.6/0.55)-0.5*0.55*((8.6/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(8.6/0.55)),30)
+getpower = 100, Ceil(100*0.85)
+givepower = 30, Ceil(30*0.5)
+p2stateno = ifelse((P2StateType = L), 5000, ifelse((Var(40) = 1), 5000, 900))
+p2getp1state = ifelse((P2StateType = L), 0, ifelse((Var(40) = 1), 0, 1))
+envshake.time = 18
+envshake.ampl = 4
+envshake.freq = 80
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 221, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 4
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+; 立ちC_BE分岐
+
+[Statedef 222]
+type     = S
+physics  = N
+ctrl     = 0
+velset   = 0,0
+anim     = 222
+
+[State 222]
+type = VelSet
+trigger1 = Time = 0
+x = 1.95
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 222, ステート変更]
+type = ChangeState
+trigger1 = Command != "hold_c"
+trigger1 = Time >= 2
+value = 220
+
+[State 222, ステート変更]
+type = ChangeState
+trigger1 = Command = "hold_c"
+trigger1 = AnimTime = 0
+value = 221
+
+;------------------
+[Statedef 225]
+type = A
+movetype = I
+physics = N
+ctrl = 0
+anim = 225
+velset = 0,0
+sprpriority = 7
+
+[State 225, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA, NA, NP, NT, SA, SP, ST, HA, HP, HT
+time = 1
+
+[State 225, 特殊効果]
+type = AssertSpecial
+trigger1 = 1
+flag = NoShadow
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 225]
+type = Trans
+trigger1 = Time >= 10
+trans = AddAlpha
+alpha = 256-19*(Time-9),19*(Time-9)
+
+[State 225]
+type = AngleDraw
+trigger1 = 1
+scale = 0.4 + 0.2*ifelse(Time>=3, 3, Time),0.4 + 0.2*ifelse(Time>=3, 3, Time)
+
+[State 225]
+type = DestroySelf
+trigger1 = Time = 23
+trigger2 = Root,MoveType = H
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+;-| しゃがみA |---------------------------------------------------------
+
+[Statedef 400]
+type     = C
+movetype = A
+physics  = C
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 400
+sprpriority = 2
+
+[State 400, PlaySnd]
+type = PlaySnd
+trigger1 = Animelemtime(2) = 0
+value = s15,0
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 400, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 3, < 0
+attr = C, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*350/11)
+priority  = 3, Hit
+animtype  = Light
+hitflag = MAFD
+guardflag = M
+pausetime = 6,Ceil(ifelse(P2StateType=A,8,6)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 6,6
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,0
+guardsound = s16,8
+ground.type = Low
+ground.slidetime = 13
+ground.hittime  = 13
+guard.slidetime = 13
+guard.ctrltime = 13
+ground.velocity = -3.5
+guard.velocity = -3.5
+airguard.velocity = -3.9,-1.2
+air.velocity = -3.1,-6.65
+down.velocity = -4.65,-2.75
+yaccel = .55
+fall = 0
+air.fall = 1
+fall.recover = 1
+air.hittime = 12
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),12)
+getpower = 35, Ceil(35*0.85)
+givepower = 10, Ceil(10*0.5)
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 400, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+trigger1 = PrevStateNo != 400
+v = 16
+value = 8
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;-| しゃがみB_BEなし |---------------------------------------------------------
+
+[Statedef 410]
+type     = C
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 410
+sprpriority = 2
+
+[State 410]
+type = VelSet
+trigger1 = Time = 0
+x = 3.36
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 410]
+type = VelAdd
+trigger1 = AnimElem = 5, < 0
+x = -0.15
+
+[State 410]
+type = VelSet
+trigger1 = AnimElem = 5
+x = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 410, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s2,2
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 410, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State -1]
+type = Helper
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 5, < 0
+stateno = 415
+id = 415
+pos = -16,-8
+postype = P1
+keyctrl = 0
+ownpal = 1
+persistent = 4
+ignorehitpause = 1
+
+[State 410, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 5, < 0
+attr = C, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*750/11)
+priority  = 3, Hit
+animtype  = Midium
+hitflag = MAFD
+guardflag = MA
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,1
+guardsound = s16,8
+ground.type = Low
+air.type = Low
+ground.slidetime = 16
+ground.hittime  = 16
+guard.slidetime = 13
+guard.ctrltime = 13
+airguard.ctrltime = 7
+ground.velocity = -4.65,0
+ground.cornerpush.veloff = 0
+guard.velocity = -3.5
+airguard.velocity = -3.9,-1.2
+air.velocity = -3.1,-6.65
+down.velocity = -4.65,-2.75
+yaccel = .55
+fall = 0
+air.fall = 1
+fall.recover = 1
+air.hittime = 12
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(8.6*(8.6/0.55)-0.5*0.55*((8.6/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(8.6/0.55)),12)
+getpower = 80, Ceil(80*0.85)
+givepower = 24, Ceil(24*0.5)
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 410, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 16
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+; しゃがみB_溜めあり
+
+[Statedef 411]
+type     = C
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 411
+
+[State 411]
+type = VelSet
+trigger1 = Time = 0
+x = 4.53
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 411]
+type = VelAdd
+trigger1 = AnimElem = 8, < 0
+x = -0.15
+
+[State 411]
+type = VelSet
+trigger1 = AnimElem = 8
+x = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 411, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s2,2
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 411, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State -1]
+type = Helper
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 8, < 0
+stateno = 415
+id = 415
+pos = -16,-8
+postype = P1
+keyctrl = 0
+ownpal = 1
+persistent = 4
+ignorehitpause = 1
+
+[State 411, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 8, < 0
+attr = C, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*900/11)
+priority  = 3, Hit
+animtype  = Hard
+hitflag = MAFD
+guardflag = L
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = Low
+air.type = Low
+ground.slidetime = 19
+ground.hittime  = 19
+guard.slidetime = 19
+guard.ctrltime = 19
+airguard.ctrltime = 7
+ground.velocity = -6.25,0
+ground.cornerpush.veloff = 0
+guard.velocity = -6.25
+airguard.velocity = -3.9,-1.2
+air.velocity = -0.95,-8.6
+down.velocity = -4.65,-2.75
+yaccel = .55
+fall = 0
+air.fall = 1
+fall.recover = 1
+air.hittime = 20
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(8.6*(8.6/0.55)-0.5*0.55*((8.6/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(8.6/0.55)),20)
+getpower = 100, Ceil(100*0.85)
+givepower = 30, Ceil(30*0.5)
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 411, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 16
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+; しゃがみB_BE最大
+
+[Statedef 412]
+type     = C
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 412
+
+[State 412, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = s16,2
+channel = 6
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 412]
+type = Explod
+trigger1 = Time = 0
+anim = 8371
+id = 8371
+postype = p1
+pos = 12,-9
+ownpal = 1
+removetime = -2
+scale = 0.5,0.5
+sprpriority = 9
+persistent = 0
+removeongethit = 0
+ignorehitpause = 1
+supermovetime = 0
+pausemovetime = 0
+
+[State 412]
+type = VelSet
+trigger1 = Time = 0
+x = 8.27
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 412]
+type = VelAdd
+trigger1 = AnimElem = 8, < 0
+x = -0.3
+
+[State 412]
+type = VelSet
+trigger1 = AnimElem = 8
+x = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 412, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s2,2
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 412, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State -1]
+type = Helper
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 8, < 0
+stateno = 415
+id = 415
+pos = -16,-8
+postype = P1
+keyctrl = 0
+ownpal = 1
+persistent = 4
+ignorehitpause = 1
+
+[State 412, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 8, < 0
+attr = C, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*1050/11)
+priority  = 3, Hit
+animtype  = Hard
+hitflag = MAFD
+guardflag = L
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = High
+air.type = High
+ground.slidetime = 18
+ground.hittime  = 18
+guard.slidetime = 19
+guard.ctrltime = 19
+airguard.ctrltime = 7
+ground.velocity = -3.15,0
+ground.cornerpush.veloff = 0
+guard.velocity = -6.25
+airguard.velocity = -3.9,-1.2
+air.velocity = -4.65,-2.75
+down.velocity = -4.65,-2.75
+yaccel = .55
+fall = 0
+air.fall = 1
+fall.recover = 1
+air.hittime = 30
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(8.6*(8.6/0.55)-0.5*0.55*((8.6/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(8.6/0.55)),30)
+getpower = 120, Ceil(120*0.85)
+givepower = 36, Ceil(36*0.5)
+p2stateno = ifelse((P2StateType != A), 5000, ifelse((Var(40) = 1), 5000, 910))
+p2getp1state = ifelse((P2StateType != A), 0, ifelse((Var(40) = 1), 0, 1))
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 412, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 16
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+; しゃがみB_BE分岐
+
+[Statedef 413]
+type     = C
+physics  = N
+ctrl     = 0
+velset   = 0,0
+anim     = 413
+
+[State 413, ステート変更]
+type = ChangeState
+trigger1 = Command != "hold_b"
+trigger1 = Time >= 3 && Time < 16
+value = 410
+
+[State 413, ステート変更]
+type = ChangeState
+trigger1 = Command != "hold_b"
+trigger1 = Time >= 16 && AnimTime != 0
+value = 411
+
+[State 413, ステート変更]
+type = ChangeState
+trigger1 = Command = "hold_b"
+trigger1 = AnimTime = 0
+value = 412
+
+;------------------
+[Statedef 415]
+type = A
+movetype = I
+physics = N
+ctrl = 0
+anim = 8020
+velset = 0,0
+sprpriority = 8
+
+[State 415, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA, NA, NP, NT, SA, SP, ST, HA, HP, HT
+time = 1
+
+[State 415, 特殊効果]
+type = AssertSpecial
+trigger1 = 1
+flag = NoShadow
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 415, Alpha]
+type = VarAdd
+trigger1 = Time >= 8
+v = 16
+value = 7
+
+[State 415]
+type = Trans
+trigger1 = Time < 8
+trans = AddAlpha
+alpha = 160,256
+
+[State 415]
+type = Trans
+trigger1 = Time >= 8
+trans = AddAlpha
+alpha = 160-Var(16),256
+
+[State 415]
+type = VarRandom
+trigger1 = Time = 0
+v = 40
+range = 0,359
+
+[State 415]
+type = VarRandom
+trigger1 = Time = 0
+v = 41
+range = 0,1
+
+[State 415]
+type = AngleDraw
+trigger1 = 1
+
+[State 415]
+type = AngleSet
+trigger1 = Time = 0
+value = Var(40)
+
+[State 415]
+type = AngleAdd
+trigger1 = 1
+value = (2 + ifelse(random <= 499,0,1)) *ifelse(Var(41) = 0,1,-1)
+
+[State 415]
+type = VarSet
+trigger1 = Time = 0
+fv = 1
+value = random % 20
+
+[State 415]
+type = VarSet
+trigger1 = Time = 0
+fv = 2
+value = random % 2
+
+[State 415]
+type = VelSet
+trigger1 = 1
+x = -0.015 - FVar(1)/10
+
+[State 415]
+type = VelAdd
+trigger1 = 1
+y = -0.03 - FVar(2)/20
+
+[State 415, このヘルパーを消す]
+type = DestroySelf
+trigger1 = Time >= 31
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+;-| しゃがみC |---------------------------------------------------------
+
+[Statedef 420]
+type     = C
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+velset   = 0,0
+anim     = 420
+sprpriority = 2
+
+[State 420]
+type = VelSet
+trigger1 = AnimElem = 2
+x = 8.55
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 420]
+type = VelSet
+trigger1 = AnimElem = 3
+x = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 420, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = HitPauseTime > 0 && AnimElemTime(2) + (10 - HitPauseTime) >= 3
+value = s2,7
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 420, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 420, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 3, < 0
+attr = C, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*1000/11)
+priority  = 3, Hit
+animtype  = Midium
+hitflag = MAFD
+guardflag = L
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = Trip
+air.type = Trip
+ground.slidetime = 19
+ground.hittime  = 19
+guard.slidetime = 19
+guard.ctrltime = 19
+ground.velocity = -0.35,-4.7
+guard.velocity = -6.25
+airguard.velocity = -3.9,-1.2
+air.velocity = -0.35,-4.7
+down.velocity = -4.65,-2.75
+fall = 1
+air.fall = 1
+fall.recover = 0
+yaccel = .55
+air.hittime = 20
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(8.6*(8.6/0.55)-0.5*0.55*((8.6/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(8.6/0.55)),20)
+getpower = 100, Ceil(100*0.85)
+givepower = 30, Ceil(30*0.5)
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 420, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 32
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;-| ジャンプA |---------------------------------------------------------
+[Statedef 600]
+type     = A
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 600
+sprpriority = 2
+
+[State 600, PlaySnd]
+type = PlaySnd
+trigger1 = Animelemtime(2) = 0
+value = s2,0
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 600, PlaySnd]
+type = PlaySnd
+trigger1 = Animelemtime(2) = 0
+value = s16,29
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 600, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 3, < 0
+attr = A, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*250/11)
+priority  = 3, Hit
+animtype  = Light
+hitflag = MAFD
+guardflag = MA
+pausetime = 6,Ceil(ifelse(P2StateType=A,8,6)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 6,6
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,0
+guardsound = s16,8
+ground.type = High
+air.type = High
+ground.slidetime = 13
+ground.hittime  = 13
+guard.slidetime = 13
+guard.ctrltime = 13
+airguard.ctrltime = 7
+ground.velocity = -3.5
+guard.velocity = -3.5
+airguard.velocity = -3.9,-1.2
+air.velocity = -3.9,-6.65
+down.velocity = -4.65,-2.75
+yaccel = .55
+fall = 0
+air.fall = 1
+fall.recover = 1
+air.hittime = 11
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),11)
+getpower = 30, Ceil(30*0.85)
+givepower = 9, 5
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 600, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 51
+ctrl = 1
+
+[State 600]
+type = Gravity
+trigger1 = Var(18) = 0
+
+[State 600]
+type = VelAdd
+trigger1 = Var(18) != 0
+y = .55
+
+[State 600]
+type = ChangeState
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 52
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+trigger1 = PrevStateNo != 600
+v = 16
+value = 1
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;-| ジャンプB |---------------------------------------------------------
+
+[Statedef 610]
+type     = A
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 610
+sprpriority = 2
+
+[State 610, PlaySnd]
+type = PlaySnd
+trigger1 = Animelemtime(3) = 0
+value = s2,0
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 610, PlaySnd]
+type = PlaySnd
+trigger1 = Animelemtime(3) = 0
+value = s16,29
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 610, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 3, >= 0 && AnimElem = 4, < 0
+attr = A, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*600/11)
+priority  = 3, Hit
+animtype  = Light
+hitflag = MAFD
+guardflag = HA
+pausetime = 8,Ceil(ifelse(P2StateType=A,10,8)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 8,8
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,4
+guardsound = s16,8
+ground.type = Low
+air.type = Low
+ground.slidetime = 16
+ground.hittime  = 16
+guard.slidetime = 13
+guard.ctrltime = 13
+airguard.ctrltime = 7
+ground.velocity = -4.65
+guard.velocity = -3.5
+airguard.velocity = -3.9,-1.2
+air.velocity = -3.1,-6.65
+down.velocity = -4.65,-2.75
+yaccel = .55
+fall = 0
+air.fall = 1
+fall.recover = 1
+air.hittime = 12
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),12)
+getpower = 80, Ceil(80*0.85)
+givepower = 24, Ceil(24*0.5)
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 610, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 51
+ctrl = 0
+
+[State 610]
+type = Gravity
+trigger1 = Var(18) = 0
+
+[State 610]
+type = VelAdd
+trigger1 = Var(18) != 0
+y = .55
+
+[State 610]
+type = ChangeState
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 52
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 2
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;-| ジャンプC |---------------------------------------------------------
+
+[Statedef 620]
+type     = A
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 620
+sprpriority = 2
+
+[State 620, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = s2,7
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 620, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 620, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 4, >= 0 && AnimElem = 5, < 0
+attr = A, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*800/11)
+priority  = 3, Hit
+animtype  = Hard
+hitflag = MAFD
+guardflag = HA
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,6
+guardsound = s16,8
+ground.type = High
+air.type = High
+ground.slidetime = 18
+ground.hittime  = 18
+guard.slidetime = 16
+guard.ctrltime = 16
+airguard.ctrltime = 7
+ground.velocity = -3.1
+guard.velocity = -4.65
+airguard.velocity = -3.9,-1.2
+air.velocity = -0.95,-8.6
+down.velocity = -4.65,-2.75
+yaccel = .55
+fall = 0
+air.fall = 1
+fall.recover = 1
+air.hittime = 20
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(8.6*(8.6/0.55)-0.5*0.55*((8.6/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(8.6/0.55)),20)
+getpower = 110, Ceil(110*0.85)
+givepower = 33, Ceil(33*0.5)
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 620, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 51
+ctrl = 0
+
+[State 620]
+type = Gravity
+trigger1 = Var(18) = 0
+
+[State 620]
+type = VelAdd
+trigger1 = Var(18) != 0
+y = .55
+
+[State 620]
+type = ChangeState
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 52
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 4
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;-| ネコワンツースリー |---------------------------------------------------------
+
+[Statedef 230]
+type     = S
+physics  = S
+ctrl     = 0
+velset   = 0,0
+anim     = 230
+
+[State 230, ステート変更]
+type = ChangeState
+trigger1 = Command != "hold_a"
+trigger1 = Time >= 2
+value = 231
+
+[State 230, ステート変更]
+type = ChangeState
+trigger1 = Command = "hold_a"
+trigger1 = AnimTime = 0
+value = 232
+
+;------------------
+;ワン
+[Statedef 231]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+velset   = 0,0
+anim     = 231
+
+[State 231, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 231]
+type = VelSet
+trigger1 = AnimElemNo(0) = 3
+x = 7.8
+ignorehitpause = 1
+
+[State 231]
+type = VelSet
+trigger1 = AnimElem = 4
+x = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 231, ヒット定義]
+type = HitDef
+trigger1 = AnimElemNo(0) = 4
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*400/11)
+priority  = 3, Hit
+animtype  = Midium
+hitflag = MAFD
+guardflag = MA
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = High
+ground.slidetime = 18
+ground.hittime  = 18
+ground.velocity = -0.0039
+guard.velocity = -3.5
+guard.slidetime = 13
+guard.ctrltime = 13
+air.type = High
+fall = 0
+air.fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),20)
+airguard.velocity = -3.9,-1.2
+air.velocity = -0.95,-8.6
+down.velocity = -4.65,-2.75
+yaccel = .55
+air.hittime = 20
+getpower = 60, Ceil(80*0.85)
+givepower = 18, Ceil(18*0.5)
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -2.74
+airguard.cornerpush.veloff = -2.74
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 231, ステート変更]
+type = ChangeState
+triggerall = command = "x" && command = "holdfwd"
+triggerall = command != "holddown"
+trigger1 = HitCount = 1 || MoveGuarded
+trigger1 = HitPauseTime = 0 && AnimElemNo(0) = [4,5]
+value = 233
+ctrl = 0
+ignorehitpause = 1
+
+[State 231, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 64
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveHit
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+;ワン_BE
+[Statedef 232]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+velset   = 0,0
+anim     = 232
+
+[State 232, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = s16,2
+channel = 6
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 232]
+type = Explod
+trigger1 = Time = 0
+anim = 8371
+id = 8371
+postype = p1
+pos = -5,-22
+ownpal = 1
+removetime = -2
+scale = 0.5,0.5
+sprpriority = 9
+persistent = 0
+removeongethit = 0
+ignorehitpause = 1
+supermovetime = 0
+pausemovetime = 0
+
+[State 232, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 232]
+type = VelSet
+trigger1 = AnimElemNo(0) = 2
+x = 9.75
+ignorehitpause = 1
+
+[State 232]
+type = VelSet
+trigger1 = AnimElem = 3
+x = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 232, ヒット定義]
+type = HitDef
+trigger1 = AnimElemNo(0) = 3
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*1000/11)
+priority  = 3, Hit
+animtype  = Hard
+hitflag = MAFD
+guardflag = M
+pausetime = 15,Ceil(ifelse(P2StateType=A,17,15)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 15,15
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = High
+ground.slidetime = 18
+ground.hittime  = 18
+ground.velocity = -0.0039
+guard.velocity = -3.5
+guard.slidetime = 13
+guard.ctrltime = 13
+air.type = High
+fall = 0
+air.fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),20)
+airguard.velocity = -3.9,-1.2
+air.velocity = -0.95,-8.6
+down.velocity = -4.65,-2.75
+yaccel = .55
+air.hittime = 20
+getpower = 120, Ceil(120*0.85)
+givepower = 36, Ceil(36*0.5)
+envshake.time = 18
+envshake.ampl = 4
+envshake.freq = 80
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -4.1
+airguard.cornerpush.veloff = -4.1
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 232, ステート変更]
+type = ChangeState
+triggerall = command = "x" && command = "holdfwd"
+triggerall = command != "holddown"
+trigger1 = HitCount = 0 && !MoveGuarded
+trigger1 = AnimElem = 3, > 1 && AnimElem = 4, < 0
+trigger2 = HitCount = 1 || MoveGuarded
+trigger2 = HitPauseTime = 0 && AnimElemNo(0) = 3
+trigger3 = AnimElemNo(0) = 4
+value = 234
+ctrl = 0
+ignorehitpause = 1
+
+[State 232, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 232, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveContact
+v = 16
+value = 64
+persistent = 0
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveHit
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+;ツー
+[Statedef 233]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 233
+
+[State 233, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 233]
+type = VelSet
+trigger1 = AnimElem = 1, >= 5 && AnimElem = 2, < 0
+x = 7.8
+ignorehitpause = 1
+
+[State 233]
+type = VelSet
+trigger1 = AnimElem = 2
+x = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 233, ヒット定義]
+type = HitDef
+trigger1 = AnimElemNo(0) = 2
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*400/11)
+priority  = 3, Hit
+animtype  = Midium
+hitflag = MAFD
+guardflag = MA
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = High
+ground.slidetime = 18
+ground.hittime  = 18
+ground.velocity = -0.0039
+guard.velocity = -3.5
+guard.slidetime = 13
+guard.ctrltime = 13
+air.type = High
+fall = 0
+air.fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),20)
+airguard.velocity = -3.9,-1.2
+air.velocity = -0.95,-8.6
+down.velocity = -4.65,-2.75
+yaccel = .55
+air.hittime = 20
+getpower = 60, Ceil(80*0.85)
+givepower = 18, Ceil(18*0.5)
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -2.74
+airguard.cornerpush.veloff = -2.74
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 233, ステート変更]
+type = ChangeState
+triggerall = command = "a" && command = "holdfwd"
+triggerall = command != "holddown"
+trigger1 = HitCount = 1 || MoveGuarded
+trigger1 = HitPauseTime = 0 && AnimElemNo(0) = [2,3]
+value = 235
+ctrl = 0
+ignorehitpause = 1
+
+[State 233, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveHit
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+;ツー_BE
+[Statedef 234]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 234
+
+[State 234, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 234]
+type = VelSet
+trigger1 = AnimElem = 1, >= 5 && AnimElem = 2, < 0
+x = 7.8
+ignorehitpause = 1
+
+[State 234]
+type = VelSet
+trigger1 = AnimElem = 2
+x = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 234, ヒット定義]
+type = HitDef
+trigger1 = AnimElemNo(0) = 2
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*400/11)
+priority  = 3, Hit
+animtype  = Midium
+hitflag = MAFD
+guardflag = MA
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = High
+ground.slidetime = 18
+ground.hittime  = 18
+ground.velocity = -0.0039
+guard.velocity = -3.5
+guard.slidetime = 13
+guard.ctrltime = 13
+air.type = High
+fall = 0
+air.fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),20)
+airguard.velocity = -3.9,-1.2
+air.velocity = -0.95,-8.6
+down.velocity = -4.65,-2.75
+yaccel = .55
+air.hittime = 20
+getpower = 60, Ceil(80*0.85)
+givepower = 18, Ceil(18*0.5)
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -2.74
+airguard.cornerpush.veloff = -2.74
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 234, ステート変更]
+type = ChangeState
+triggerall = command = "a" && command = "holdfwd"
+triggerall = command != "holddown"
+trigger1 = HitCount = 1 || MoveGuarded
+trigger1 = HitPauseTime = 0 && AnimElemNo(0) = [2,3]
+value = 235
+ctrl = 0
+ignorehitpause = 1
+
+[State 234, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveHit
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+;スリー
+[Statedef 235]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 235
+
+[State 235, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = s2,1
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 235, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = s15,1
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 235]
+type = VelSet
+trigger1 = AnimElemNo(0) = 4
+x = 9.75
+ignorehitpause = 1
+
+[State 235]
+type = VelSet
+trigger1 = AnimElem = 5
+x = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 235, ヒット定義]
+type = HitDef
+trigger1 = AnimElemNo(0) = 5
+attr = S, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*600/11)
+priority  = 3, Hit
+animtype  = up
+hitflag = MAFD
+guardflag = MA
+pausetime = 15,Ceil(ifelse(P2StateType=A,17,15)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 15,15
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = High
+ground.slidetime = 13
+ground.hittime  = 13
+ground.velocity = 0,-12.15
+guard.velocity = -3.5
+guard.slidetime = 13
+guard.ctrltime = 13
+air.type = High
+fall = 1
+air.fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(6.65*(6.65/0.55)-0.5*0.55*((6.65/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(6.65/0.55)),30)
+airguard.velocity = -3.9,-1.2
+air.velocity = 0,-12.15
+down.velocity = -4.65,-2.75
+yaccel = .55
+air.hittime = 30
+getpower = 120, Ceil(120*0.85)
+givepower = 36, Ceil(36*0.5)
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -4.1
+airguard.cornerpush.veloff = -4.1
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 235, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;-| レバー下押し空中B |---------------------------------------------------------
+
+[Statedef 630]
+type     = A
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 630
+sprpriority = 2
+
+[State 630, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 3, >= 0
+attr = A, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*900/11)
+priority  = 3, Hit
+animtype  = Hard
+hitflag = MAFD
+guardflag = MA
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = High
+air.type = High
+ground.slidetime = 19
+ground.hittime  = 19
+guard.slidetime = 19
+guard.ctrltime = 19
+airguard.ctrltime = 7
+ground.velocity = -0.95,-8.6
+guard.velocity = -6.25
+airguard.velocity = -3.9,-1.2
+air.velocity = -0.95,-8.6
+down.velocity = -4.65,-2.75
+yaccel = .55
+fall = 1
+air.fall = 1
+fall.recover = 1
+air.hittime = 20
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(8.6*(8.6/0.55)-0.5*0.55*((8.6/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(8.6/0.55)),20)
+getpower = 100, Ceil(100*0.85)
+givepower = 30, Ceil(30*0.5)
+envshake.time = 10
+envshake.ampl = 5
+envshake.freq = 80
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 630]
+type = VelSet
+trigger1 = AnimElem = 2, < 0
+x = 0
+y = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 630]
+type = VelAdd
+trigger1 = AnimElem = 2, >= 0
+y = .75
+
+[State 630]
+type = ChangeState
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 631
+ctrl = 0
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+
+;------------------
+[Statedef 631]
+type    = C
+physics = C
+ctrl = 0
+anim = 631
+velset = 0,0
+
+[State 631]
+type = VelSet
+trigger1 = Time = 0
+x = 0
+y = 0
+
+[State 631]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State -1]
+type = Explod
+trigger1 = Time = 0
+anim = 8580
+id = 8580
+postype = p1
+pos = -3,0
+ownpal = 1
+removetime = -2
+scale = 0.5,0.5
+sprpriority = 0
+persistent = 0
+removeongethit = 0
+ignorehitpause = 1
+supermovetime = 0
+pausemovetime = 0
+
+[State -1]
+type = EnvShake
+trigger1 = Time = 3
+time = 8
+freq = 80
+ampl = 4
+
+[State 630, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 3
+value = s8,11
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 630, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 3
+value = s16,13
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 631 && AnimElemNo(0) = 3 && Command != "hold_b"
+value = 632
+
+[State 631]
+type = ChangeState
+trigger1 = Anim = 631 && Time >= 66
+value = 11
+ctrl = 1
+
+[State 631]
+type = ChangeState
+trigger1 = Anim = 632 && AnimTime = 0
+value = 0
+ctrl = 1
+
+;-| レバー下押し空中C |---------------------------------------------------------
+
+[Statedef 640]
+type     = A
+movetype = A
+physics  = N
+juggle   = 0
+poweradd = 0
+ctrl     = 0
+anim     = 640
+sprpriority = 2
+
+[State 640, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = HitPauseTime > 0 && AnimElemTime(2) + (10 - HitPauseTime) >= 3
+value = s2,0
+channel = 1
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 640, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = HitPauseTime > 0 && AnimElemTime(2) + (10 - HitPauseTime) >= 3
+value = s16,29
+channel = 3
+lowpriority = 0
+persistent = 0
+ignorehitpause = 1
+supermovetime = 9999
+pausemovetime = 9999
+
+[State 640, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 2, >= 0 && AnimElem = 3, < 0
+attr = A, NA
+damage = Ceil(FVar(0)*ifelse(Var(15) < 3125,1.15,1.00)*1100/11)
+priority  = 3, Hit
+animtype  = Hard
+hitflag = MAFD
+guardflag = HA
+pausetime = 10,Ceil(ifelse(P2StateType=A,12,10)*(1+Var(29)%10*0.5))+ifelse(Var(29)=2,1,0)
+guard.pausetime = 10,10
+sparkno = -1
+guard.sparkno = s8140
+sparkxy = -15 + (Random%20)*ifelse(Random<=499,1,-1),64 + floor(ifelse(p2bodydist y > 0, p2bodydist y, -p2bodydist y)/10)+(Random%20)*ifelse(Random<=499,1,-1)
+hitsound = s14,2
+guardsound = s16,8
+ground.type = High
+air.type = High
+ground.slidetime = 18
+ground.hittime  = 18
+guard.slidetime = 16
+guard.ctrltime = 16
+airguard.ctrltime = 7
+ground.velocity = -3.1,0
+guard.velocity = -4.65
+airguard.velocity = -3.9,-1.2
+air.velocity = -4.65,-2.75
+down.velocity = -4.65,-2.75
+yaccel = .55
+fall = 0
+air.fall = 1
+fall.recover = 1
+air.hittime = 40
+fall.recovertime = ifelse(Var(29)!=0,Ceil((2*(8.6*(8.6/0.55)-0.5*0.55*((8.6/0.55)**2)-(enemynear,Pos Y))/0.55)**0.5+(8.6/0.55)),40)
+getpower = 130, Ceil(130*0.85)
+givepower = 39, Ceil(39*0.5)
+p2stateno = ifelse((P2StateType != A), 5000, ifelse((Var(40) = 1), 5000, 910))
+p2getp1state = ifelse((P2StateType != A), 0, ifelse((Var(40) = 1), 0, 1))
+envshake.time = 18
+envshake.ampl = 4
+envshake.freq = 80
+id = 0 + ifelse(Var(15) < 3125,1,0)
+persistent = 0
+
+[State 640, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 51
+ctrl = 0
+
+[State 640]
+type = Gravity
+trigger1 = Var(18) = 0
+
+[State 640]
+type = VelAdd
+trigger1 = Var(18) != 0
+y = .55
+
+[State 640]
+type = ChangeState
+trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+value = 52
+
+[State -1]
+type = VarAdd
+trigger1 = MoveHit
+v = 12
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -1]
+type = MoveHitReset
+trigger1 = MoveContact
+persistent = 1
+ignorehitpause = 1
+

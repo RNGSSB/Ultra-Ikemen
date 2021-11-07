@@ -1,0 +1,39 @@
+; Definition file for player
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Sakura"        ;Name of character
+displayname = "Sakura" ;Name of character to display
+;versiondate =    ;Version date of character
+mugenversion = 1.0
+author = "Beximus"      ;Character author name
+editor       = "REDHOT"
+pal.defaults = 1,2,3,4,5,6,7,8,9,10,11,12
+
+
+[Files]
+cmd      = CMND/Sakura.cmd
+cns      = CNS/Sakura.cns
+st       = CNS/Sakura.cns
+st1      = CNS/config.txt
+stcommon = CNS/common1.cns
+sprite   = SPRITES/Sakura.sff
+anim     = ANIMATIONS/Sakura.air
+sound    = SOUNDS/Sakura.snd
+pal1     = PALETTES/Sakura_01.act
+pal2     = PALETTES/Sakura_02.act
+pal3     = PALETTES/Sakura_03.act
+pal4     = PALETTES/Sakura_04.act
+pal5     = PALETTES/Sakura_05.act
+pal6     = PALETTES/Sakura_06.act
+pal7     = PALETTES/Sakura_07.act
+pal8     = PALETTES/Sakura_08.act
+pal9     = PALETTES/Sakura_09.act
+pal10     = PALETTES/Sakura_10.act
+pal11     = PALETTES/Sakura_11.act
+pal12     = PALETTES/Sakura_12.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

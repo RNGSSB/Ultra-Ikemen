@@ -1,0 +1,42 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Gouki"
+displayname = "Akuma"
+versiondate = 5,24,2012
+mugenversion = 14,04,2002
+author = "mouser-MvC2"
+edited = "REDHOT"
+pal.defaults =  1,2,3,4,5,6
+
+[ja.Info]
+name = "Gouki"
+displayname = "Gouki"
+versiondate = 5,24,2012
+mugenversion = 14,04,2002
+author = "mouser-MvC2"
+edited = "REDHOT"
+pal.defaults = 1,4,7,10
+
+[Files]
+sprite = SPRITES/Akuma.sff
+anim = ANIMATIONS/Akuma.air
+sound = SOUNDS/Akuma.snd
+cmd = CMND/Akuma.cmd
+cns = CNS/Akuma.cns
+stcommon = CNS/common1.cns
+st = CNS/Akuma.cns
+st1 = CNS/config.txt
+pal1 = PALETTES/Akuma_01.act
+pal2 = PALETTES/Akuma_02.act
+pal3 = PALETTES/Akuma_03.act
+pal4 = PALETTES/Akuma_04.act
+pal5 = PALETTES/Akuma_05.act
+pal6 = PALETTES/Akuma_06.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

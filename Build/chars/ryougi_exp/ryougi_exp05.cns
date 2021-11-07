@@ -1,0 +1,4026 @@
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　[Statedef -2]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef -2]
+
+[State -2]
+type = VarAdd
+triggerAll = MoveType = A
+trigger1 = PrevStateNo!=1000&&(StateNo=[1001,1005])&&Time=1
+fv = 1
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = ChangeAnim
+triggerAll = StateType=S&&MoveType=I
+triggerAll = (NumHelper(7000)>0||NumHelper(7010)>0||NumHelper(7020)>0)&&(Helper(7000),StateNo=7090||Helper(7010),StateNo=7090||Helper(7020),StateNo=7090)
+trigger1 = StateNo=0||StateNo=20||StateNo=101
+value = 3400
+elem = 1
+ignorehitpause = 1
+
+[State -2]
+Type = ChangeAnim
+triggerAll = StateType=C&&MoveType=I
+triggerAll = (NumHelper(7000)>0||NumHelper(7010)>0||NumHelper(7020)>0)&&(Helper(7000),StateNo=7090||Helper(7010),StateNo=7090||Helper(7020),StateNo=7090)
+trigger1 = StateNo=11
+value = 3401
+elem = 1
+ignorehitpause = 1
+
+[State -2]
+Type = ChangeAnim
+triggerAll = StateType=A&&MoveType=I
+triggerAll = (NumHelper(7000)>0||NumHelper(7010)>0||NumHelper(7020)>0)&&(Helper(7000),StateNo=7090||Helper(7010),StateNo=7090||Helper(7020),StateNo=7090)
+trigger1 = StateNo=50||StateNo=110||StateNo=115||StateNo=650||StateNo=922||StateNo=927
+value = 3402
+elem = 1
+ignorehitpause = 1
+
+[State -2]
+type = Helper
+triggerAll = Alive
+triggerAll = RoundState!=2
+triggerAll = NumHelper(29000)=0&&NumHelper(29050)=0&&NumHelper(29100)=0&&NumHelper(29200)=0&&NumHelper(29300)=0&&NumHelper(29350)=0
+triggerAll = EnemyNear,Alive=0
+trigger1 = StateNo=1716||(StateNo=[1820,1824])||StateNo=2001&&AnimElemTime(26)>0||StateNo=2300||StateNo=2320
+Stateno = 29350
+ID = 29350
+pos = 0, 0
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = Helper
+triggerAll = Alive
+triggerAll = RoundState!=2
+triggerAll = NumHelper(29000)=0&&NumHelper(29050)=0&&NumHelper(29100)=0&&NumHelper(29200)=0&&NumHelper(29300)=0&&NumHelper(29350)=0
+triggerAll = EnemyNear,Alive=0
+trigger1 = (StateNo=[1020,1021])||StateNo=1025||StateNo=1120||StateNo=1222||StateNo=1420||StateNo=1520||StateNo=1722||StateNo=1820||StateNo=1921||StateNo=1925
+trigger2 = StateNo=1022&&AnimElemTime(3)>=0&&AnimElemTime(6)<0
+trigger3 = StateNo=2300||StateNo=2900
+trigger4 = StateNo=[1821,1824]
+Stateno = 29300
+ID = 29300
+pos = 0, 0
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = Helper
+triggerAll = Alive
+triggerAll = WinKo
+triggerAll = Life >= LifeMax
+triggerAll = NumHelper(29100)=0&&NumHelper(29200)=0&&NumHelper(29300)=0&&NumHelper(29350)=0
+trigger1 = RoundState = 4
+trigger1 = StateNo!=181&&(StateNo!=[3000,3103])&&Anim!=3005
+Stateno = 29200
+ID = 29200
+pos = 0, 0
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = PlaySnd
+triggerAll = Alive
+triggerAll = random%12<=8
+triggerAll = Time = 0
+trigger1 = StateNo=5000||StateNo=5010||StateNo=5020||StateNo=5070
+value = s21, 0+random%4
+channel = 0
+
+[State -2]
+Type = PlaySnd
+triggerAll = Alive
+triggerAll = random%4 = 0
+triggerAll = Time = 1
+trigger1 = StateNo=5120
+value = s22, 1+random%2
+channel = 0
+
+[State -2]
+Type = PlaySnd
+triggerAll = Alive
+triggerAll = random%12<=2
+triggerAll = Time = 1
+trigger1 = (StateNo=[5200,5201])||StateNo=5210||StateNo=[5220,5222]
+value = s22, 0
+channel = 0
+
+[State -2]
+type = TargetState
+triggerAll = MoveHit = 1
+triggerAll = P2StateType = L
+trigger1 = (StateNo=[200,225])||StateNo=410
+value = 6620
+ignorehitpause = 1
+
+[State -2]
+type = Helper
+triggerAll = Alive
+triggerAll = NumHelper(6250) = 0
+triggerAll = EnemyNear,Ctrl=0&&EnemyNear,Time=1&&P2MoveType=H&&P2StateType=A
+triggerAll = EnemyNear,Anim=5030||EnemyNear,Anim=5035||EnemyNear,Anim=5050||EnemyNear,Anim=5061
+trigger1 = P2StateNo=6631||P2StateNo=6633||P2StateNo=6635||P2StateNo=6637||(P2StateNo=[6651,6656])
+Stateno = 6250
+ID = 6250
+pos = 0, 0
+postype = P2
+ownpal = 1
+ignorehitpause = 1
+
+[State -2]
+Type = Explod
+trigger1 = NumTarget(720)>0&&Target(720),Time>0&&Target(720),Time%6=0&&Target(720),Vel X<0&&Target(720),StateNo=6661
+trigger2 = NumTarget(900)>0&&Target(900),Time>0&&Target(900),Time%6=0&&Target(900),Vel X<0&&Target(900),StateNo=6661
+anim = 11000
+ID = 11000
+pos = 0,ifelse(NumTarget(720),-Ceil(Target(720),Pos Y),-Ceil(Target(900),Pos Y))
+postype = P2
+ownpal = 1
+sprpriority = 3
+trans = add
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = NumTarget(720)>0&&Target(720),Time>0&&Target(720),Time%6=0&&Target(720),Vel X<0&&Target(720),StateNo=6661
+trigger2 = NumTarget(900)>0&&Target(900),Time>0&&Target(900),Time%6=0&&Target(900),Vel X<0&&Target(900),StateNo=6661
+anim = 11000
+ID = 11000
+pos = 0,ifelse(NumTarget(720),-Ceil(Target(720),Pos Y),-Ceil(Target(900),Pos Y))
+postype = P2
+ownpal = 1
+sprpriority = 3
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = NumTarget(255)>0&&Target(255),Time>0&&Target(255),Time%6=0&&Target(255),Vel X<0&&Target(255),StateNo=1831
+trigger2 = NumTarget(260)>0&&Target(260),Time>0&&Target(260),Time%6=0&&Target(260),Vel X<0&&Target(260),StateNo=6672
+anim = 11000
+ID = 11000
+pos = 0,ifelse(NumTarget(255),-Ceil(Target(255),Pos Y),-Ceil(Target(260),Pos Y))
+postype = P2
+ownpal = 1
+sprpriority = 3
+trans = add
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = NumTarget(255)>0&&Target(255),Time>0&&Target(255),Time%6=0&&Target(255),Vel X<0&&Target(255),StateNo=1831
+trigger2 = NumTarget(260)>0&&Target(260),Time>0&&Target(260),Time%6=0&&Target(260),Vel X<0&&Target(260),StateNo=6672
+anim = 11000
+ID = 11000
+pos = 0,ifelse(NumTarget(255),-Ceil(Target(255),Pos Y),-Ceil(Target(260),Pos Y))
+postype = P2
+ownpal = 1
+sprpriority = 3
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = NumTarget(1500)>0&&Target(1500),Time>0&&Target(1500),Time%6=0&&Target(1500),Vel X<0&&Target(1500),Pos Y>-100&&Target(1500),StateNo=6672
+trigger2 = NumTarget(1520)>0&&Target(1520),Time>0&&Target(1520),Time%6=0&&Target(1520),Vel X<0&&Target(1520),Pos Y>-100&&Target(1520),StateNo=6672
+trigger3 = NumTarget(1925)>0&&Target(1925),Time>0&&Target(1925),Time%6=0&&Target(1925),Vel X<0&&Target(1925),Pos Y>-100&&Target(1925),StateNo=6672
+anim = 11000
+ID = 11000
+pos = 0,ifelse(NumTarget(1500),-Ceil(Target(1500),Pos Y),ifelse(NumTarget(1520),-Ceil(Target(1520),Pos Y),-Ceil(Target(1925),Pos Y)))
+postype = P2
+ownpal = 1
+sprpriority = 3
+trans = add
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = NumTarget(1500)>0&&Target(1500),Time>0&&Target(1500),Time%6=0&&Target(1500),Vel X<0&&Target(1500),Pos Y>-100&&Target(1500),StateNo=6672
+trigger2 = NumTarget(1520)>0&&Target(1520),Time>0&&Target(1520),Time%6=0&&Target(1520),Vel X<0&&Target(1520),Pos Y>-100&&Target(1520),StateNo=6672
+trigger3 = NumTarget(1925)>0&&Target(1925),Time>0&&Target(1925),Time%6=0&&Target(1925),Vel X<0&&Target(1925),Pos Y>-100&&Target(1925),StateNo=6672
+anim = 11000
+ID = 11000
+pos = 0,ifelse(NumTarget(1500),-Ceil(Target(1500),Pos Y),ifelse(NumTarget(1520),-Ceil(Target(1520),Pos Y),-Ceil(Target(1925),Pos Y)))
+postype = P2
+ownpal = 1
+sprpriority = 3
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = ModifyExplod
+trigger1 = RoundState!=2||(StateNo=960&&Anim=961)||StateNo!=960
+ID = 10500
+removetime = 6
+sprpriority = 5
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = StopSnd
+trigger1 = StateNo=960&&Anim=961
+channel = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　SPECIAL GAUGE
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = Helper
+trigger1 = NumHelper(8040) = 0
+StateNo = 8040
+ID = 8040
+pos = 0, 0
+postype = back
+ownpal = 1
+SuperMoveTime = 99999999
+PauseMoveTime = 99999999
+
+[State -2]
+type = Helper
+trigger1 = NumHelper(8100) = 0
+trigger1 = var(17)%10=[1,8]
+StateNo = 8100
+ID = 8100
+pos = 0, 0
+postype = back
+ownpal = 1
+SuperMoveTime = 99999999
+PauseMoveTime = 99999999
+
+[State -2]
+type = Helper
+trigger1 = NumHelper(8200)=0
+trigger1 = var(13)/1000%10>0
+StateNo = 8200
+ID = 8200
+pos = 0, 0
+postype = back
+ownpal = 1
+SuperMoveTime = 99999999
+PauseMoveTime = 99999999
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　残像
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = Afterimage
+triggerAll = RoundState=2
+triggerAll = var(32)>0&&var(33)=-2
+trigger1 = (StateNo=0||StateNo=52||StateNo=650)&&MoveType=I
+trans = add
+timegap = 1
+framegap = 1
+length = 3
+time = 99999
+palcolor    = 256
+palbright   = 128,128,256
+palcontrast = 128,128,256
+
+[State -2]
+type = Afterimage
+triggerAll = RoundState=2
+triggerAll = var(32)>0&&var(33)=-1
+trigger1 = (StateNo=0||StateNo=52||StateNo=650)&&MoveType=I
+trans = add
+timegap = 1
+framegap = 1
+length = 3
+time = 99999
+palcolor    = 256
+paladd      = 128,0,0
+palbright   = 256,0,0
+palcontrast = 256,0,0
+
+[State -2]
+Type = Afterimage
+trigger1 = var(32) = 0
+trigger2 = MoveType!=H
+trigger2 = (StateNo=[450,460])||(StateNo=[1100,1120])||(StateNo=[1200,1201])||StateNo=1210||StateNo=1220||(StateNo=[1400,1420])||(StateNo=[1520,1521])||(StateNo=[1710,1711])||(StateNo=[1715,1716])||(StateNo=[1820,1825])||(StateNo=[1920,1925])
+trigger3 = MoveType!=H
+trigger3 = StateNo=2300||StateNo=2320||(StateNo=[2500,2502])||(StateNo=[2520,2521])||StateNo=2900||(StateNo=[2910,2911])||(StateNo=[3000,3004])||(StateNo=[3100,3104])
+time = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Skill Control [ Judgment ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = VarRangeSet
+triggerAll = Alive
+triggerAll = MoveType != H
+triggerAll = Time=[0,1]
+trigger1 = (StateNo=[200,435])||(StateNo=[600,630])||StateNo=720||StateNo=800||(StateNo=[810,811])||StateNo=820
+trigger2 = StateNo=1000||StateNo=1010||StateNo=1020||StateNo=1100||StateNo=1110||StateNo=1120||StateNo=1200||StateNo=1210||StateNo=1220||StateNo=1300||StateNo=1310||StateNo=1320||StateNo=1400||StateNo=1410||StateNo=1420
+trigger3 = StateNo=1500||StateNo=1510||StateNo=1520||StateNo=1600||StateNo=1610||StateNo=1620||StateNo=1700||StateNo=1710||StateNo=1720||StateNo=1800||StateNo=1810||StateNo=1820||StateNo=1900||StateNo=1910||StateNo=1920
+trigger4 = StateNo=2000||StateNo=2010||StateNo=2100||StateNo=2110||StateNo=2200
+trigger5 = StateNo=2300||StateNo=2310||StateNo=2320||StateNo=2400||StateNo=2410||StateNo=2420||StateNo=2500||StateNo=2510||StateNo=2520||StateNo=2600||StateNo=2610||StateNo=2620
+trigger6 = StateNo=2700||StateNo=2710||StateNo=2720||StateNo=2800||StateNo=2810||StateNo=2820||StateNo=2900||StateNo=2910||StateNo=2920||StateNo=3000||StateNo=3100
+value = 0
+first = 55
+last = 59
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = MoveType!=H
+triggerAll = MoveContact||MoveReversed
+trigger1 = (StateNo=[200,435])||(StateNo=[600,630])||StateNo=720||StateNo=800||(StateNo=[810,811])||StateNo=820
+trigger2 = StateNo=1000||StateNo=1010||StateNo=1020||StateNo=1100||StateNo=1110||StateNo=1120||StateNo=1200||StateNo=1210||StateNo=1220||StateNo=1300||StateNo=1310||StateNo=1320||StateNo=1400||StateNo=1410||StateNo=1420
+trigger3 = StateNo=1500||StateNo=1510||StateNo=1520||StateNo=1600||StateNo=1610||StateNo=1620||StateNo=1700||StateNo=1710||StateNo=1720||StateNo=1800||StateNo=1810||StateNo=1820||StateNo=1900||StateNo=1910||StateNo=1920
+trigger4 = StateNo=2000||StateNo=2010||StateNo=2100||StateNo=2110||StateNo=2200
+trigger5 = StateNo=2300||StateNo=2310||StateNo=2320||StateNo=2400||StateNo=2410||StateNo=2420||StateNo=2500||StateNo=2510||StateNo=2520||StateNo=2600||StateNo=2610||StateNo=2620
+trigger6 = StateNo=2700||StateNo=2710||StateNo=2720||StateNo=2800||StateNo=2810||StateNo=2820||StateNo=2900||StateNo=2910||StateNo=2920||StateNo=3000||StateNo=3100
+v = 59
+value = ifelse(var(59)!=2&&MoveGuarded,1,2)
+ignorehitpause = 1
+
+[State -2]
+type = VarRangeSet
+triggerAll = MoveType != H
+triggerAll = Time=[0,1]
+trigger1 = StateNo=850||(StateNo=[1001,1005])||(StateNo=[1021,1022])||StateNo=1025||StateNo=1711||(StateNo=[1715,1716])||StateNo=1925||StateNo=2521||StateNo=2911
+value = 0
+first = 55
+last = 59
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+trigger1 = StateNo=811&&Time>=30
+v = 59
+value = 2
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+trigger1 = StateNo=200&&Anim=201&&AnimElemTime(2)=0
+trigger2 = StateNo=200&&Anim=202&&AnimElemTime(2)=0
+trigger3 = StateNo=420&&AnimElemTime(2)<0
+trigger4 = StateNo=850&&MoveReversed
+trigger5 = (StateNo=[1821,1824])&&AnimElemTime(3)<0
+v = 59
+value = 0
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = MoveType != H
+triggerAll = MoveHit || MoveReversed
+trigger1 = StateNo=850||(StateNo=[1001,1005])||(StateNo=[1021,1022])||StateNo=1025||StateNo=1715||(StateNo=[1821,1824])||StateNo=1921||StateNo=1925||(StateNo=[2301,2302])
+trigger2 = StateNo=1201&&MoveType=A
+v = 59
+value = 2
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = MoveType != H
+trigger1 = StateNo=2521&&AnimElemTime(3)>0
+trigger2 = StateNo=1410&&ProjHitTime(1410)=0
+trigger3 = (StateNo=[1710,1716])&&(ProjHitTime(1710)=0||ProjHitTime(1715)=0)
+trigger4 = StateNo=2900&&ProjHitTime(7500)=0
+v = 59
+value = 2
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = var(59) != 2
+triggerAll = MoveType != H
+triggerAll = MoveContact
+trigger1 = StateNo=850||(StateNo=[1001,1005])||(StateNo=[1021,1022])||StateNo=1025||StateNo=1921||StateNo=1925||(StateNo=[2301,2302])
+trigger2 = StateNo=1715||(StateNo=[1821,1824])
+v = 59
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo = 625 || StateNo = 801 || StateNo = 821
+trigger1 = var(25) > 20
+trigger1 = var(25) := 20
+trigger2 = fvar(24) < 0.5
+trigger2 = fvar(24) := 0.5
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=1020||StateNo=1120||StateNo=1220||StateNo=1320||StateNo=1420||StateNo=1520||StateNo=1620||StateNo=1720||StateNo=1820||StateNo=1920
+trigger1 = var(25) > 20
+trigger1 = var(25) := 20
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = (StateNo=[1000,1900])||StateNo=2320
+trigger1 = var(25) > 20
+trigger1 = var(25) := 20
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=2521
+trigger1 = var(25) > 22
+trigger1 = var(25) := 22
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=[1000,1005]
+trigger1 = var(25) > 19
+trigger1 = var(25) := 19
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=250&&AnimElemTime(3)<0||StateNo=255&&AnimElemTime(4)<0||StateNo=260&&AnimElemTime(6)<0||StateNo=270&&AnimElemTime(6)<0||StateNo=1800&&AnimElemTime(4)<0||StateNo=1810&&AnimElemTime(4)<0
+trigger1 = var(25) > 19
+trigger1 = var(25) := 19
+trigger2 = fvar(24) < 0.38
+trigger2 = fvar(24) := 0.38
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=1022&&AnimElemTime(3)<0||StateNo=1420&&AnimElemTime(10)<0||StateNo=2300
+trigger1 = var(25) > 18
+trigger1 = var(25) := 18
+trigger2 = fvar(24) < 0.38
+trigger2 = fvar(24) := 0.38
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = (StateNo=[1020,1021])||StateNo=1025||StateNo=1120||StateNo=1201&&AnimElemTime(4)<0||(StateNo=[1220,1222])||((StateNo=[1500,1520])&&AnimElemTime(6)<0)||(StateNo=[1820,1824])
+trigger1 = var(25) > 18
+trigger1 = var(25) := 18
+trigger2 = fvar(24) < 0.4
+trigger2 = fvar(24) := 0.4
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=1711
+trigger1 = var(25) > 17
+trigger1 = var(25) := 17
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=1000&&AnimElemTime(9)<0||StateNo=1001&&AnimElemTime(2)<0||StateNo=1002&&AnimElemTime(3)<0||StateNo=1003&&AnimElemTime(10)<0||StateNo=1004&&AnimElemTime(5)<0||StateNo=1005&&AnimElemTime(6)<0
+trigger1 = var(25) > 17
+trigger1 = var(25) := 17
+trigger2 = fvar(24) < 0.38
+trigger2 = fvar(24) := 0.38
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=1722
+trigger1 = var(25) > 17
+trigger1 = var(25) := 17
+trigger2 = fvar(24) < 0.42
+trigger2 = fvar(24) := 0.42
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=1520&&AnimElemTime(6)<0
+trigger1 = var(25) > 17
+trigger1 = var(25) := 17
+trigger2 = fvar(24) < 0.43
+trigger2 = fvar(24) := 0.43
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=[851,852]
+trigger1 = var(25) > 16
+trigger1 = var(25) := 16
+trigger2 = fvar(24) < 0.42
+trigger2 = fvar(24) := 0.42
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo = 2501
+trigger1 = var(25) > 20
+trigger1 = var(25) := 20
+trigger2 = fvar(24) < 1
+trigger2 = fvar(24) := 1
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo = 2900
+trigger1 = var(25) > 14
+trigger1 = var(25) := 14
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = var(58)%10=0
+triggerAll = StateNo = [2001,2002]
+trigger1 = var(25) > 17-var(10)/100%10*1
+trigger1 = var(25) := 17-var(10)/100%10*1
+trigger2 = fvar(24) < 0.4+var(10)/100%10*0.006
+trigger2 = fvar(24) := 0.4+var(10)/100%10*0.006
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = var(58)%10>0
+triggerAll = StateNo = [2001,2002]
+trigger1 = var(25) > 18-var(10)/100%10*1
+trigger1 = var(25) := 18-var(10)/100%10*1
+trigger2 = fvar(24) < 0.39+var(10)/100%10*0.006
+trigger2 = fvar(24) := 0.39+var(10)/100%10*0.006
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = ((StateNo=[2000,2010])&&var(58)!=0)||(StateNo=2101&&var(57)!=0)
+trigger1 = var(25) > 18-var(10)/100%10*1
+trigger1 = var(25) := 18-var(10)/100%10*1
+trigger2 = fvar(24) < 0.4+var(10)/100%10*0.006
+trigger2 = fvar(24) := 0.4+var(10)/100%10*0.006
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo = 3003
+trigger1 = var(25) > 17-var(10)/100%10*1
+trigger1 = var(25) := 17-var(10)/100%10*1
+trigger2 = fvar(24) < 0.45+var(10)/100%10*0.006
+trigger2 = fvar(24) := 0.45+var(10)/100%10*0.006
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = StateNo=2911
+trigger1 = var(25) > 20-var(10)/100%10*1
+trigger1 = var(25) := 20-var(10)/100%10*1
+trigger2 = fvar(24) < 0.34+var(10)/100%10*0.006
+trigger2 = fvar(24) := 0.34+var(10)/100%10*0.006
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Skill Control [ Restriction ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = Time = 1
+trigger1 = StateNo = 220 || StateNo = 420
+v = 19
+value = ifelse(StateNo=220,var(19)+1,var(19)+10)
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = Time = 1
+trigger1 = StateNo = [600,620]
+v = 19
+value = ifelse(StateNo<610,var(19)+100,ifelse(StateNo<620,var(19)+1000,var(19)+10000))
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = Time = 1
+trigger1 = StateNo = 210 || StateNo = 410
+v = 21
+value = ifelse(StateNo=210,var(21)+1,var(21)+10)
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo = 215
+trigger1 = var(26) := var(26)+1
+trigger2 = StateNo = [225,230]
+trigger2 = var(26) := var(26)+10
+trigger3 = StateNo = 415
+trigger3 = var(26) := var(26)+100
+trigger4 = StateNo = 425
+trigger4 = var(26) := var(26)+1000
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(26)%10=0||var(26)/10%10=0||var(26)/100%10=0
+trigger1 = StateNo = 415
+trigger1 = MoveHit && (P2MoveType = H && (P2StateNo != [120,159]))
+trigger2 = var(59) > 1
+trigger2 = Time > 0
+trigger2 = StateNo = 1500 || StateNo = 1510 || StateNo = 1520
+trigger2 = P2MoveType=H&&(P2StateNo!=[120,159])
+trigger3 = var(59) > 1
+trigger3 = (StateNo = [1821,1823])
+trigger3 = P2MoveType=H&&(P2StateNo!=[120,159])
+v = 26
+value = var(26)+111
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(19)/100%10=0||var(19)/1000%10=0||var(19)/10000%10=0
+trigger1 = Time > 0
+trigger1 = var(59) > 1
+trigger1 = StateNo = 1500 || StateNo = 1510 || StateNo = 1520
+trigger1 = P2MoveType=H&&(P2StateNo!=[120,159])
+v = 19
+value = var(19)+11100
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(19)%10=0||var(19)/10%10=0||var(19)/100%10=0||var(19)/1000%10=0||var(19)/10000%10=0
+trigger1 = StateNo=1201||(StateNo=[1821,1823])
+trigger2 = StateNo=2300||StateNo=2320||(StateNo=[2500,2501])||(StateNo=[2520,2521])||(StateNo=[2910,29111])
+v = 19
+value = var(19)+11111
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(21)%10=0||var(21)/10%10=0
+trigger1 = StateNo=1201||(StateNo=[1821,1823])
+trigger2 = StateNo=2300||StateNo=2320||(StateNo=[2500,2501])||(StateNo=[2520,2521])||(StateNo=[2910,29111])
+v = 21
+value = 11
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Skill Control [ Restriction - Large ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = Null
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo = 1000
+trigger1 = var(27) := var(27)+1
+trigger2 = StateNo = 1001
+trigger2 = var(27) := var(27)+10
+trigger3 = StateNo = 1002
+trigger3 = var(27) := var(27)+100
+trigger4 = StateNo = 1003
+trigger4 = var(27) := var(27)+1000
+trigger5 = StateNo = 1004
+trigger5 = var(27) := var(27)+10000
+trigger6 = StateNo = 1005
+trigger6 = var(27) := var(27)+100000
+trigger7 = StateNo = 1020 || StateNo = 1025
+trigger7 = var(27) := var(27)+1000000
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(27)%10=0||var(27)/10%10=0||var(27)/100%10=0||var(27)/1000%10=0||var(27)/10000%10=0||var(27)/100000%10=0
+trigger1 = StateNo=1201||StateNo=2300||StateNo=2320||(StateNo=[2500,2501])||(StateNo=[2520,2521])||(StateNo=[2910,29111])
+v = 27
+value = var(27)+1111111
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo = 250
+trigger1 = var(30) := var(30)+1
+trigger2 = StateNo = 255 || StateNo = 1000 || StateNo=1020
+trigger2 = var(30) := var(30)+10
+trigger3 = StateNo = 260
+trigger3 = var(30) := var(30)+100
+trigger4 = StateNo = 270
+trigger4 = var(30) := var(30)+1000
+trigger5 = StateNo = 280 || StateNo= 470
+trigger5 = var(30) := var(30)+10000
+trigger6 = StateNo=1800||StateNo=1810
+trigger6 = var(30) := var(30)+100000
+trigger7 = StateNo = 1820
+trigger7 = var(30) := var(30)+1100000
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(30)/1000%10=0
+trigger1 = StateNo=1300
+v = 30
+value = var(30)+1000
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(30)%10=0||var(30)/1000%10=0
+trigger1 = StateNo=1500||StateNo=1510||StateNo=1520
+v = 30
+value = var(30)+1001
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(30)%10=0||var(30)/100%10=0||var(30)/1000%10=0
+trigger1 = StateNo=1921||StateNo=1925
+v = 30
+value = var(30)+1101
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(30)/100000%10<2
+trigger1 = StateNo=1800&&StateType=A||StateNo=1810
+v = 30
+value = var(30)+100000
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo = 2300
+trigger1 = var(31) := var(31)+1
+trigger2 = StateNo = 2320
+trigger2 = var(31) := var(31)+10
+trigger3 = StateNo = 2520
+trigger3 = var(31) := var(31)+100
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = Time = 1
+trigger1 = StateNo=1100||StateNo=1110||StateNo=1120
+fv = 2
+value = ifelse((StateNo=[1100,1110]),fvar(2)+1,fvar(2)+4)
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = fvar(2)=0||fvar(2)=2
+trigger1 = StateNo=450
+fv = 2
+value = fvar(2)+1
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = Time = 1
+trigger1 = StateNo=1200||StateNo=1210||StateNo=1220
+fv = 3
+value = ifelse((StateNo=[1200,1210]),fvar(3)+1,fvar(3)+4)
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = fvar(3)<4
+trigger1 = StateNo=1921||StateNo=1925
+trigger2 = StateNo=2300||StateNo=2320||(StateNo=[2500,2501])||(StateNo=[2520,2521])||(StateNo=[2910,29111])
+fv = 3
+value = 3
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo=1400||StateNo=1410||StateNo=1420
+fv = 4
+value = ifelse((StateNo=[1400,1410]),fvar(4)+1,fvar(4)+4)
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+triggerAll = fvar(4)<4
+trigger1 = (StateNo=[1820,1824])||(StateNo=[1901,1902])||StateNo=1921||StateNo=1925
+trigger2 = fvar(3)>0&&(StateNo=270||(StateNo=[1500,1520]))
+trigger3 = StateNo=2300||StateNo=2320||(StateNo=[2500,2501])||(StateNo=[2520,2521])||(StateNo=[2910,29111])
+fv = 4
+value = 3
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = Time = 1
+trigger1 = StateNo=1500||StateNo=1510||StateNo=1520
+fv = 5
+value = ifelse((StateNo=[1500,1510]),fvar(5)+1,fvar(5)+4)
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+trigger1 = (var(22)>0||var(24)>0)&&(fvar(5)=0||fvar(5)=2)
+trigger1 = StateType = A
+trigger2 = StateNo=2300||StateNo=2320||(StateNo=[2500,2501])||(StateNo=[2520,2521])||(StateNo=[2910,29111])
+fv = 5
+value = fvar(5)+1
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo=1600||StateNo=1610||StateNo=1620
+fv = 6
+value = ifelse((StateNo=[1600,1610]),fvar(6)+1,fvar(6)+4)
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo=1700||StateNo=1710||StateNo=1720
+fv = 7
+value = ifelse((StateNo=[1700,1710]),fvar(7)+1,fvar(7)+4)
+ignorehitpause = 1
+
+[State -2]
+type = VarAdd
+triggerAll = MoveType = A
+triggerAll = fvar(7)<4
+trigger1 = (StateNo=[1821,1823])||(StateNo=[1901,1902])||StateNo=1921||StateNo=1925
+fv = 7
+value = 1
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+triggerAll = fvar(7)<4
+trigger1 = StateNo=1716
+trigger2 = StateNo=2300||StateNo=2320||(StateNo=[2500,2501])||(StateNo=[2520,2521])||(StateNo=[2910,29111])
+fv = 7
+value = 3
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo=1300||StateNo=1310||StateNo=1320
+trigger2 = (var(22)>0||var(24)>0)&&(fvar(8)=0||fvar(8)=2)
+trigger2 = StateType = A
+fv = 8
+value = fvar(8)+1
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = Time = 1
+trigger1 = StateNo=270&&(fvar(8)=0||fvar(8)=2)
+fv = 8
+value = fvar(8)+1
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+triggerAll = fvar(8)<4
+trigger1 = StateNo=1921||StateNo=1925
+trigger2 = StateNo=2300||StateNo=2320||(StateNo=[2500,2501])||(StateNo=[2520,2521])||(StateNo=[2910,29111])
+fv = 8
+value = 3
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType = A
+triggerAll = Time = 1
+triggerAll = fvar(2) = 0 || fvar(2) = 2
+trigger1 = StateNo=1500&&StateType=A&&var(9)%10<5&&fvar(5)>0
+trigger2 = (StateNo = [1821,1823])
+fv = 2
+value = fvar(2)+1
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+trigger1 = RoundState!=2||MoveType=H||(P2MoveType!=H||EnemyNear,Ctrl=1)&&((StateNo=[0,109])||StateNo=650||(StateNo=[800,820])||(StateNo=[2000,3100]))
+trigger1 = var(27):=0
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = MoveType != H
+triggerAll = var(19)/100%10>0||var(19)/1000%10>0||var(19)/10000%10>0
+trigger1 = StateNo=[110,115]
+v = 19
+value = ifelse(var(19)/10000%10>0,var(19)-10000,ifelse(var(19)/1000%10>0,var(19)-1000,var(19)-100))
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+trigger1 = RoundState!=2||MoveType=H||(P2MoveType!=H||EnemyNear,Ctrl=1)&&((StateNo=[0,109])||StateNo=650||(StateNo=[800,820])||(StateNo=[2000,3100]))
+trigger1 = var(19):=0||var(21):=0||var(26):=0||var(30):=0||fvar(2):=0||fvar(3):=0||fvar(4):=0||fvar(5):=0||fvar(6):=0||fvar(7):=0||fvar(8):=0
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+trigger1 = RoundState!=2||MoveType=H||(P2MoveType!=H||EnemyNear,Ctrl=1)&&((StateNo=[0,109])||StateNo=650||(StateNo=[800,820]))
+trigger1 = var(31):=0
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Skill Control [ Exclusive Skill ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = VarRangeSet
+triggerAll = MoveType != H
+triggerAll = Time=[0,1]
+trigger1 = StateNo=[1821,1824]
+value = 0
+first = 57
+last = 59
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = MoveType != H
+triggerAll = Anim = 1850
+triggerAll = Time = 1
+trigger1 = StateNo = 1821
+trigger1 = var(55) := var(55)+1
+trigger2 = StateNo = 1822
+trigger2 = var(55) := var(55)+10
+trigger3 = StateNo = 1823
+trigger3 = var(55) := var(55)+100
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = MoveType != H
+trigger1 = StateNo=[1820,1824]
+trigger1 = AnimElemTime(2) < 0
+fv = 1
+value = 0
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = MoveType != H
+trigger1 = StateNo = [1821,1823]
+trigger1 = AnimElemTime(3) = 2
+fv = 1
+value = 1
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　High Jump [ Air ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+triggerAll = MoveType!=H&&StateType=A
+trigger1 = StateNo=915||var(22)>0||var(23)>0
+v = 24
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState!=2||(MoveType=H&&(StateNo!=[120,159]))||StateNo=626||(StateNo=[820,821])||StateNo=921||StateNo=926||StateNo=5210||(StateNo=[5220,5222])||(StateType!=A&&(StateNo=[0,52]))
+v = 24
+value = 0
+ignorehitpause = 1
+
+[State -2]
+type = Null
+triggerAll = MoveType != H
+trigger1 = StateNo=915
+trigger1 = var(22) := 1 || var(23) := 1
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = StateNo=915
+trigger1 = var(19) := 0 || var(21) := 0
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Pattern Management
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = ChangeState
+triggerAll = Command = "holdup"
+triggerAll = var(1)=0
+triggerAll = var(59)>0
+triggerAll = MoveType!=H&&StateType!=A
+trigger1 = MoveHit&&(StateNo=415)
+value = 40
+ctrl = 1
+
+[State -2]
+Type = ChangeState
+triggerAll = !Ishelper
+triggerAll = Command = "holdup"
+triggerAll = var(1)=0
+triggerAll = var(22)=0
+triggerAll = StateType=A
+trigger1 = MoveContact&&(StateNo=[600,620])
+value = 45
+ctrl = 1
+
+[State -2]
+Type = VarRangeSet
+trigger1 = var(24) = 0
+trigger1 = RoundState!=2||(MoveType=H&&(StateNo!=[120,159]))||StateNo=626||(StateNo=[820,821])||StateNo=921||StateNo=926||StateNo=5210||(StateNo=[5220,5222])||(StateType!=A&&(StateNo=[0,52]))
+value = 0
+first = 22
+last = 23
+ignorehitpause = 1
+
+[State -2]
+type = Null
+triggerAll = MoveType!=H&&Time=1
+triggerAll = PrevStateNo!=40&&PrevStateNo!=925
+trigger1 = var(1)=0&&StateNo=50
+trigger1 = var(22) := var(22)+1
+trigger2 = StateNo=110||StateNo=115
+trigger2 = var(23) := var(23)+1
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = var(1)=1
+triggerAll = MoveType!=H&&Time=1
+trigger1 = StateNo=50
+v = 22
+value = 1
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Skill Control [ Jump - Dash - Skill ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = VarSet
+triggerAll = MoveType!=H&&(StateNo!=[120,159])
+triggerAll = Time=[0,1]
+trigger1 = var(1)=0&&(StateNo=40||StateNo=45||StateNo=927)
+trigger2 = StateNo=50
+trigger3 = StateNo!=40&&StateNo!=45&&StateNo!=50
+sysvar(1) = 0
+
+[State -2]
+type = VarSet
+triggerAll = StateNo=40||StateNo=45||StateNo=50
+triggerAll = Time=[0,1]
+trigger1 = var(1)=0&&command="holdfwd"
+trigger2 = var(1)=1
+sysvar(1) = 1
+
+[State -2]
+type = VarSet
+triggerAll = StateNo=40||StateNo=45||StateNo=50
+triggerAll = Time=[0,1]
+trigger1 = var(1)=0&&command="holdback"
+sysvar(1) = -1
+
+[State -2]
+type = VarSet
+triggerAll = StateNo=927
+trigger1 = var(1)=0&&command="holdfwd"
+trigger2 = var(1)=1&&P2BodyDist X>=-10
+sysvar(1) = 1
+
+[State -2]
+type = VarSet
+triggerAll = StateNo=927
+trigger1 = var(1)=0&&command="holdback"
+trigger2 = var(1)=1&&P2BodyDist X<-10
+sysvar(1) = -1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Projectile
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = TargetState
+trigger1 = ProjHitTime(1410)=0&&StateNo=1410&&AnimElemTime(7)>2
+value = 1430
+ID = 1410
+ignorehitpause = 1
+
+[State -2]
+Type = TargetState
+trigger1 = ProjHitTime(1710)=0
+value = ifelse(StateNo=1710&&AnimElemTime(11)<0,1741,1742)
+ID = 1710
+ignorehitpause = 1
+
+[State -2]
+Type = TargetState
+trigger1 = ProjHitTime(1715)=0
+value = 1742
+ID = 1715
+ignorehitpause = 1
+
+[State -2]
+Type = TargetState
+trigger1 = ProjHitTime(7500)=0
+trigger1 = StateNo=2900&&AnimElemTime(2)>=110
+value = 2930
+ID = 7500
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = ProjHitTime(900)=0
+v = 25
+value = 15
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = ProjHitTime(900)=0
+fv = 24
+value = 0.5*fvar(24)
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = ProjHitTime(7500)=0
+v = 25
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = ProjHitTime(1410)=0
+v = 25
+value = 10
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = ProjHitTime(1710)=0
+v = 25
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = ProjHitTime(1710)=0
+fv = 24
+value = 0.925*fvar(24)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = ProjHitTime(1410)=0||ProjHitTime(7500)=0
+fv = 24
+value = 0.5*fvar(24)
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = ProjHitTime(1715)=0
+v = 25
+value = 4
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = ProjHitTime(1715)=0
+fv = 24
+value = 0.8*fvar(24)
+ignorehitpause = 1
+
+[State -2]
+Type = Helper
+trigger1 = ProjHitTime(7500)=0
+Stateno = 6559
+ID = 6559
+pos = const(size.mid.pos.x)-20+random%30, const(size.mid.pos.y)-30+random%50
+postype = P2
+ownpal = 1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = Explod
+trigger1 = ProjHitTime(7500)=0
+anim = 11400
+ID = 11400
+pos = const(size.mid.pos.x)-20+random%30, const(size.mid.pos.y)-30+random%50
+postype = P2
+ownpal = 1
+scale = 0.425,0.425
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = Explod
+trigger1 = ProjHitTime(1710)=0||ProjHitTime(1715)=0
+anim = 11400
+ID = 11400
+pos = const(size.mid.pos.x)-20+random%30, const(size.mid.pos.y)-30+random%50
+postype = P2
+ownpal = 1
+facing = ifelse(random>=500,1,-1)
+vfacing = ifelse(random>=500,1,-1)
+scale = 0.425+(random>=500)*0.1,0.425+(random>=500)*0.1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(1410)=0
+anim = 6450
+ID = 6450
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.4, 0.4
+sprpriority = 4
+trans = add
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(1410)=0
+anim = 6450
+ID = 6450
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.4, 0.4
+sprpriority = 4
+trans = add
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(1410)=0
+anim = 6460
+ID = 6460
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.4, 0.4
+sprpriority = -2
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(1410)=0
+anim = 6450
+ID = 6450
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.4, 0.4
+facing = -1
+sprpriority = 4
+trans = add
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(1410)=0
+anim = 6450
+ID = 6450
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.4, 0.4
+facing = -1
+sprpriority = 4
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(1410)=0
+anim = 6460
+ID = 6460
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.4, 0.4
+facing = -1
+sprpriority = -2
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Helper
+trigger1 = ProjHitTime(1410)=0
+StateNo = 6390
+ID = 6390
+pos = const(size.mid.pos.x)-20+random%30, ifelse(P2StateType!=A,const(size.mid.pos.y)+random%20,const(size.mid.pos.y)-30+random%30)
+postype = P2
+ownpal = 1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = PlaySnd
+trigger1 = ProjHitTime(1410) = 4
+value = s1, 100
+
+[State -2]
+Type = PlaySnd
+trigger1 = ProjHitTime(1410)=0
+value = s1, 111
+
+[State -2]
+Type = PlaySnd
+trigger1 = ProjHitTime(1410)=0
+value = s1, 140
+
+[State -2]
+Type = PlaySnd
+trigger1 = var(55)%4=0
+trigger1 = ProjHitTime(7500)=0
+value = s3, 12
+
+[State -2]
+Type = PlaySnd
+trigger1 = ProjHitTime(7500)=0
+value = s1, 111
+
+[State -2]
+Type = PlaySnd
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+value = s3, 133
+
+[State -2]
+Type = PlaySnd
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+value = s1, 50
+
+[State -2]
+Type = PlaySnd
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+value = s1, 113
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+anim = 6500
+ID = 6500
+bindtime = -1
+pos = 122, 180
+postype = back
+ownpal = 1
+sprpriority = 999
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+anim = 6510
+ID = 6510
+bindtime = -1
+pos = 122, 180
+postype = back
+ownpal = 1
+sprpriority = 999
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = Explod
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+anim = 13600
+ID = 13600
+pos = const(size.mid.pos.x),const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.6, 0.6
+sprpriority = 8
+trans = add
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = Explod
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+anim = 13600
+ID = 13600
+pos = const(size.mid.pos.x),const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.6, 0.6
+sprpriority = 8
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+anim = 6710
+ID = 6710
+bindtime = -1
+pos = 160, 180
+postype = back
+ownpal = 1
+scale = 0.8, 0.8
+sprpriority = -2
+trans = add
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+anim = 6710
+ID = 6710
+bindtime = -1
+pos = 160, 180
+postype = back
+ownpal = 1
+scale = 0.8, 0.8
+sprpriority = -2
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+anim = 6451
+ID = 6451
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.5, 0.5
+sprpriority = 3
+trans =add
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+anim = 29500
+ID = 29500
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.5, 0.5
+sprpriority = 4
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = Explod
+trigger1 = ProjHitTime(7500)=0&&AnimElemTime(2)>110
+anim = 11080
+ID = 11080
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+scale = 0.45, 0.45
+sprpriority = 4
+trans = Sub
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+Type = EnvShake
+trigger1 = ProjHitTime(1710)=0
+time = 12
+ampl = 5
+freq = 90
+ignorehitpause = 1
+
+[State -1]
+Type = EnvShake
+trigger1 = ProjHitTime(7500)=0
+time = 16
+ampl = 4
+freq = 90
+
+[State -1]
+Type = Pause
+trigger1 = ProjHitTime(1410)=0
+Time = 3
+
+[State -2]
+Type = Explod
+triggerAll = NumEnemy
+triggerAll = Helper(8040),var(40) > 0
+trigger1 = StateNo!=1020&&StateNo!=1120&&StateNo!=1220&&StateNo!=1320&&StateNo!=1420&&StateNo!=1520&&StateNo!=1620&&StateNo!=1720&&StateNo!=1820&&StateNo!=1920&&StateNo!=2000&&StateNo!=2010&&StateNo!=2100&&StateNo!=2110&&StateNo!=3000
+trigger1 = Enemy(0),Time%4=0
+anim = 10900
+ID = 10900
+pos = ifelse(random>=500,const(size.mid.pos.x)+random%40,const(size.mid.pos.x)-random%40),const(size.mid.pos.y)+random%50
+postype = P2
+scale = 0.7, 0.7
+ownpal = 1
+random = 15, 15
+vel = 0, -0.5-random%26*0.1
+sprpriority = 5
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+triggerAll = NumEnemy
+triggerAll = Helper(8040),var(40) > 0
+trigger1 = StateNo!=1020&&StateNo!=1120&&StateNo!=1220&&StateNo!=1320&&StateNo!=1420&&StateNo!=1520&&StateNo!=1620&&StateNo!=1720&&StateNo!=1820&&StateNo!=1920&&StateNo!=2000&&StateNo!=2010&&StateNo!=2100&&StateNo!=2110&&StateNo!=3000
+trigger1 = Enemy(0),Time%4=0
+anim = 10910
+ID = 10910
+pos = ifelse(random>=500,const(size.mid.pos.x)+random%40,const(size.mid.pos.x)-random%40),const(size.mid.pos.y)+random%50
+postype = P2
+ownpal = 1
+random = 10, 15
+vel = (0.5*ifelse(random%2=0,1,-1))+random%6*0.1*ifelse(random%2=0,1,-1),-1.5-random%11*0.01
+accel = 0,.095-(0.01+random%11*0.001)
+sprpriority = 5
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = HitBy
+triggerAll = MoveType != H
+trigger1 = (StateNo=[435,460])&&Time>23
+value = SCA,AA,AP,HT
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　ヴァイタルソース
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+trigger1 = (StateNo=[191,199])||(StateNo=[4000,4199])
+trigger1 = Time = 10
+trigger2 = var(7)/1000000%10=0||fvar(26)<0||((StateNo=[930,931])&&MoveType!=H)
+fv = 26
+value = 0
+ignorehitpause = 1
+
+[State -2, START]
+Type = VarSet
+trigger1 = RoundState = [0,1]
+trigger1 = RoundsExisted = 0
+fv = 26
+value = ifelse(var(7)/1000000%10<3,LifeMax*0.1,ifelse(var(7)/1000000%10<5,LifeMax*0.3,LifeMax*0.5))
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(7)/1000000%10=9
+fv = 26
+value = LifeMax
+ignorehitpause = 1
+
+[State -2, Vital Up]
+Type = VarAdd
+trigger1 = RoundState = 2
+trigger1 = Alive
+trigger1 = var(33) = 0 || var(33) = 2
+trigger1 = var(46) = 0
+trigger1 = fvar(18) >= 1
+trigger1 = fvar(26) < 400+(var(7)/1000000%10*100)
+trigger1 = StateNo!=900&&StateNo!=910&&StateNo!=930
+trigger1 = MoveType != H
+fv = 26
+value = ifelse(var(33)=2&&GameTime%36=0,1*var(7)/1000000%10,ifelse(var(33)=0&&GameTime%8=0,1+var(7)/1000000%10,0))
+ignorehitpause = 1
+
+[State -2, Vital Down]
+Type = VarAdd
+triggerAll = RoundState = 2
+triggerAll = Alive
+triggerAll = Life < LifeMax
+triggerAll = var(46) = 0
+triggerAll = fvar(26) > 0
+triggerAll = MoveType != H
+trigger1 = var(33) = 1 || var(33) = -1
+fv = 26
+value = ifelse(GameTime%2=0,-2,-1)
+ignorehitpause = 1
+
+[State -2]
+Type = LifeAdd
+triggerAll = RoundState = 2
+triggerAll = Alive
+triggerAll = Life < LifeMax
+triggerAll = var(33) = 1 || var(33) = -1
+triggerAll = var(46) = 0
+triggerAll = fvar(26) > 0
+triggerAll = MoveType != H
+trigger1 = StateNo!=900&&StateNo!=910&&StateNo!=930
+value = 1+ifelse((StateNo!=0&&var(32)%4=0)||(StateNo=0&&var(32)%2=0),1,0)
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　SHACKLE
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2, USB(GAUGE)]
+Type = Null
+trigger1 = var(46) != 0
+trigger1 = fvar(17) := 0*fvar(18)
+trigger2 = var(46) = 0
+trigger2 = fvar(17) := 0.8*fvar(18)*((var(7)/10000000%10+1)*1-var(7)/10000000%10*0.9)-(var(25)*0.0125)
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　UNLIMITED SHACKLE
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = PlaySnd
+triggerAll = RoundState = 2
+triggerAll = var(7)/10%10<4
+trigger1 = var(7)/1000%10<9&&fvar(18)=0.5&&fvar(19)=0
+trigger2 = var(32)=1&&var(33)=-2
+trigger2 = StateNo!=3100
+value = s24, 15
+channel = 1
+
+[State -2, USB(GAUGE)]
+Type = Null
+trigger1 = fvar(19) = 0
+trigger1 = fvar(18) := 1
+trigger2 = fvar(19) != 0
+trigger2 = fvar(18) := 0.5
+ignorehitpause = 1
+
+[State -2, USB(Reset)]
+Type = VarSet
+trigger1 = Alive=0||var(7)/10%10>3||var(7)/1000%10=9||fvar(19)<0
+fv = 19
+value = 0
+
+[State -2, USB(加減値)]
+Type = VarAdd
+trigger1 = RoundState = 2
+trigger1 = var(7)/1000%10<9
+trigger1 = var(35) = 0
+trigger1 = fvar(19) > 0
+trigger1 = (StateNo!=[930,931])&&StateNo!=960&&StateNo!=970&&StateNo!=5900
+trigger1 = StateNo!=2502
+trigger1 = MoveType = I || MoveType = A && Time%3=0
+fv = 19
+value = ifelse(Ctrl=0,-1-var(7)/1000%10,-2-var(7)/1000%10)
+
+[State -2, USB(Shackle:Occurrence)]
+Type = VarSet
+trigger1 = RoundState = 2
+trigger1 = var(32) = 1
+trigger1 = var(33) = -2
+fv = 20
+value = 0.15
+
+[State -2, USB(制限時間:Shackle判断は処理の都合上MS消失の中間に記載)]
+Type = VarAdd
+triggerAll = RoundState = 2
+trigger1 = fvar(20) > 0
+trigger1 = var(32) = 1
+trigger1 = var(33) = -2
+fv = 19
+value = 1000
+
+[State -2, USB(Reset)]
+Type = VarSet
+trigger1 = Alive=0||var(7)/10%10>3||var(7)/1000%10=9
+trigger2 = RoundState = 2
+trigger2 = var(33) != -2
+trigger2 = fvar(19) = 0
+fv = 20
+value = 0
+
+[State -2, USB(Damage)]
+Type = Null
+trigger1 = RoundState != 2 || var(46) = 0
+trigger1 = fvar(25) := 1-fvar(20)
+trigger2 = RoundState = 2 || var(46) != 0
+trigger2 = fvar(25) := 0.8-fvar(20)
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　HANDICAP [ GUARDBREAK ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+triggerAll = MoveGuarded||(MoveHit&&P2MoveType!=H)
+trigger1 = StateNo=[200,3200]
+fv = 38
+value = fvar(38)+1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = fvar(38)=1
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = (StateNo=[200,205])||(StateNo=[400,405])||(StateNo=[600,605])
+trigger2 = (StateNo = [1020,1021]) || StateNo = 1025
+v = 41
+value = var(41)+(var(17)%10*1)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = fvar(38)=1
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = StateNo=210||(StateNo=[220,225])||(StateNo=[410,425])||(StateNo=[610,620])
+trigger2 = (StateNo=[1000,1005])||StateNo=2320
+v = 41
+value = var(41)+(var(17)%10*2)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = fvar(38)=1
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = StateNo=230
+trigger2 = (StateNo=[250,255])||StateNo=270||StateNo=1010||(StateNo=[1100,1110])||StateNo=1200||(StateNo=[1821,1824])||StateNo=2300
+v = 41
+value = var(41)+(var(17)%10*3)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = fvar(38)=1
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = StateNo=260||StateNo=1022||StateNo=1120||(StateNo=[1400,1420])||(StateNo=[1500,1520])||(StateNo=[1700,1715])
+v = 41
+value = var(41)+(var(17)%10*5)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = fvar(38)=1
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = StateNo=215||StateNo=625
+trigger2 = StateNo = 1300
+v = 41
+value = var(41)+(var(17)%10*7)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = fvar(38)=1
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = StateNo=720
+trigger2 = StateNo=1220||StateNo=1720||StateNo=1921||StateNo=1925
+v = 41
+value = var(41)+(var(17)%10*15)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = fvar(38)=1
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = StateNo=2500||StateNo=2520
+v = 41
+value = var(41)+(var(17)%10*20)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = fvar(38)=1
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = StateNo=2000||StateNo=2010||StateNo=2100||StateNo=2110||StateNo=2910||StateNo=3000
+v = 41
+value = var(41)+(var(17)%10*30)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = fvar(38)=1
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = StateNo=3100
+v = 41
+value = var(41)+(var(17)%10*40)
+ignorehitpause = 1
+
+[State -2]
+type = TargetState
+triggerAll = TeamSide=1&&Helper(8100),NumExplod(8110)=0||TeamSide=2&&Helper(8100),NumExplod(8111)=0
+trigger1 = var(41)>107
+trigger1 = P2MoveType=H&&(P2StateNo=150||P2StateNo=152||P2StateNo=154)
+value = 6610
+ignorehitpause = 1
+
+[State -2]
+type = Helper
+trigger1 = NumHelper(6170)=0&&var(41)>=107&&P2MoveType=H&&(P2StateNo=[6610,6611])
+Stateno = 6170
+ID = 6170
+pos = const(size.mid.pos.x), const(size.mid.pos.y)
+postype = P2
+ownpal = 1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = MoveType=H||((Time=[0,1])&&(StateNo=[200,3200]))
+trigger2 = var(20)=0
+trigger2 = StateNo=200||StateNo=215||StateNo=230||(StateNo=[250,280])||StateNo=420||StateNo=720||(StateNo=[1000,1720])||StateNo=1921||StateNo=1925
+trigger3 = var(20)=0
+trigger3 = (StateNo=[2100,3100])
+fv = 38
+value = 0
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(17)%10=0
+v = 41
+value = 0
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　HANDICAP [ GUARDBREAK - Summon Missile ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+triggerAll = ((Enemy(0),Time=[0,1])&&(Enemy(0),MoveType=H)&&(Enemy(0),StateNo=[120,155]))||((Enemy(1),Time=[0,1])&&(Enemy(1),MoveType=H)&&(Enemy(1),StateNo=[120,155]))
+trigger1 = ProjGuardedTime(7500) = 0
+v = 41
+value = var(41)+(var(17)%10*1)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = ((Enemy(0),Time=[0,1])&&(Enemy(0),MoveType=H)&&(Enemy(0),StateNo=[120,155]))||((Enemy(1),Time=[0,1])&&(Enemy(1),MoveType=H)&&(Enemy(1),StateNo=[120,155]))
+trigger1 = ProjGuardedTime(1710) = 0
+v = 41
+value = var(41)+(var(17)%10*2)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = ((Enemy(0),MoveType!=H)&&(Enemy(0),StateNo!=[120,155]))||((Enemy(1),MoveType!=H)&&(Enemy(1),StateNo!=[120,155]))
+trigger1 = ProjHitTime(7500) = 0
+v = 41
+value = var(41)+(var(17)%10*1)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = ((Enemy(0),MoveType!=H)&&(Enemy(0),StateNo!=[120,155]))||((Enemy(1),MoveType!=H)&&(Enemy(1),StateNo!=[120,155]))
+trigger1 = ProjHitTime(1710) = 0
+v = 41
+value = var(41)+(var(17)%10*2)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = ((Enemy(0),MoveType!=H)&&(Enemy(0),StateNo!=[120,155]))||((Enemy(1),MoveType!=H)&&(Enemy(1),StateNo!=[120,155]))
+trigger1 = ProjHitTime(1410) = 0
+v = 41
+value = var(41)+(var(17)%10*20)
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　HANDICAP [ Skill Performance ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = NotHitBy
+triggerAll = var(16)%10=[1,2]
+triggerAll = StateNo=0||(StateNo=[10,12])||StateNo=20||(StateNo=[130,132])||(StateNo=[150,155])
+trigger1 = Helper(8040),var(1) = [0,1]
+value = SCA
+
+[State -2]
+Type = NotHitBy
+triggerAll = var(16)%10=[3,5]
+triggerAll = StateNo=0||(StateNo=[10,12])||StateNo=20||(StateNo=[130,132])||(StateNo=[150,155])
+trigger1 = Helper(8040),var(1) = [0,1]
+trigger2 = Helper(8040),var(1)%8=0
+trigger3 = Helper(8040),var(1) >= 50
+trigger3 = Helper(8040),var(1)%6=0
+value = SCA
+
+[State -2]
+Type = NotHitBy
+triggerAll = var(16)%10=[6,9]
+triggerAll = StateNo=0||(StateNo=[10,12])||StateNo=20||(StateNo=[130,132])||(StateNo=[150,155])
+trigger1 = Helper(8040),var(1) = [0,2]
+trigger2 = Helper(8040),var(1)%7=0
+trigger3 = Helper(8040),var(1) >= 50
+trigger3 = Helper(8040),var(1)%5=0
+value = SCA
+
+[State -2]
+Type = NotHitBy
+triggerAll = var(16)/10%10>0
+triggerAll = StateNo=0||(StateNo=[10,12])||StateNo=20||(StateNo=[130,132])||(StateNo=[150,155])
+trigger1 = Helper(8040),var(1) = [0,3]
+trigger2 = Helper(8040),var(1)%5=0
+trigger3 = Helper(8040),var(1) = [50,100]
+trigger3 = Helper(8040),var(1)%4=0
+trigger4 = Helper(8040),var(1) > 100
+trigger4 = Helper(8040),var(1)%3=0
+value = SCA
+
+[State -2]
+Type = AssertSpecial
+trigger1 = var(17)%10=9
+flag = unguardable
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　HANDICAP [ 火事場の馬鹿力とド根性 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = AttackMulSet
+trigger1 = 1
+value = 1*fvar(21)*fvar(23)*fvar(24)*fvar(25)*fvar(27)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(10)%10=0||Life=LifeMax||Alive=0
+fv = 27
+value = 1*const(data.attack)*0.01
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = var(10)%10>0
+trigger1 = Life < LifeMax && Life >= LifeMax*0.9
+trigger1 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.01
+trigger2 = Life < LifeMax*0.9 && Life >= LifeMax*0.8
+trigger2 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.02
+trigger3 = Life < LifeMax*0.8 && Life >= LifeMax*0.7
+trigger3 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.03
+trigger4 = Life < LifeMax*0.7 && Life >= LifeMax*0.6
+trigger4 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.04
+trigger5 = Life < LifeMax*0.6 && Life >= LifeMax*0.5
+trigger5 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.05
+trigger6 = Life < LifeMax*0.5 && Life >= LifeMax*0.4
+trigger6 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.06
+trigger7 = Life < LifeMax*0.4 && Life >= LifeMax*0.3
+trigger7 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.07
+trigger8 = Life < LifeMax*0.3 && Life >= LifeMax*0.2
+trigger8 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.08
+trigger9 = Life < LifeMax*0.2 && Life >= LifeMax*0.1
+trigger9 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.09
+trigger10 = Life < LifeMax*0.1 && Life > 0
+trigger10 = fvar(27) := 1*const(data.attack)*0.01+var(10)%10*fvar(23)*0.1
+ignorehitpause = 1
+
+[State -2]
+Type = DefenceMulSet
+trigger1 = 1
+value = ifelse(var(13)%10>0,Helper(8040),fvar(1),1)
+ignorehitpause = 1
+SuperMoveTime = 99999999
+PauseMoveTime = 99999999
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　HANDICAP [ 底力 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = Null
+triggerAll = RoundState = 2
+trigger1 = var(10)/10%10=9||var(25)<0||P2MoveType!=H
+trigger1 = var(25) := 0
+trigger2 = var(10)/10%10>7&&var(25)>11
+trigger2 = var(25) := 11
+trigger3 = var(10)/10%10>6&&var(25)>12
+trigger3 = var(25) := 12
+trigger4 = var(10)/10%10>5&&var(25)>13
+trigger4 = var(25) := 13
+trigger5 = var(10)/10%10>4&&var(25)>14
+trigger5 = var(25) := 14
+trigger6 = var(10)/10%10>3&&var(25)>15
+trigger6 = var(25) := 15
+trigger7 = var(10)/10%10>2&&var(25)>16
+trigger7 = var(25) := 16
+trigger8 = var(10)/10%10>1&&var(25)>17
+trigger8 = var(25) := 17
+trigger9 = var(10)/10%10>0&&var(25)>19
+trigger9 = var(25) := 19
+ignorehitpause = 1
+
+[State -2]
+Type = Null
+triggerAll = RoundState = 2
+trigger1 = var(10)/10%10=9||fvar(24)>1||P2MoveType!=H
+trigger1 = fvar(24) := 1
+trigger2 = var(10)/10%10>7&&fvar(24)<0.66
+trigger2 = fvar(24) := 0.66
+trigger3 = var(10)/10%10>6&&fvar(24)<0.62
+trigger3 = fvar(24) := 0.62
+trigger4 = var(10)/10%10>5&&fvar(24)<0.58
+trigger4 = fvar(24) := 0.58
+trigger5 = var(10)/10%10>4&&fvar(24)<0.54
+trigger5 = fvar(24) := 0.54
+trigger6 = var(10)/10%10>3&&fvar(24)<0.5
+trigger6 = fvar(24) := 0.5
+trigger7 = var(10)/10%10>2&&fvar(24)<0.46
+trigger7 = fvar(24) := 0.46
+trigger8 = var(10)/10%10>1&&fvar(24)<0.42
+trigger8 = fvar(24) := 0.42
+trigger9 = var(10)/10%10>0&&fvar(24)<0.38
+trigger9 = fvar(24) := 0.38
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(25) > 24
+v = 25
+value = 24
+ignorehitpause = 1
+SuperMoveTime = 99999999
+PauseMoveTime = 99999999
+
+[State -2]
+Type = VarSet
+trigger1 = 1
+fv = 22
+value = 1
+ignorehitpause = 1
+SuperMoveTime = 99999999
+PauseMoveTime = 99999999
+
+[State -2]
+Type = VarSet
+trigger1 = fvar(24) < 0.34
+fv = 24
+value = 0.34
+ignorehitpause = 1
+SuperMoveTime = 99999999
+PauseMoveTime = 99999999
+
+[State -2]
+Type = VarSet
+trigger1 = var(25) > 0
+trigger1 = fvar(24) != 1
+fv = 21
+value = 1-0.02625*var(25)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(25) > 0
+fv = 23
+value = 1-0.03125*var(25)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = RoundState = 2
+trigger1 = var(10)/10%10=9||var(25)=0||P2MoveType!=H
+fv = 21
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = RoundState = 2
+trigger1 = var(10)/10%10=9||var(25)=0||P2MoveType!=H
+fv = 23
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = LifeAdd
+triggerAll = RoundState = 2
+triggerAll = Alive
+triggerAll = var(13)/10%10>0
+trigger1 = (StateNo=[130,132])||(StateNo=[150,155])
+value = GetHitvar(damage)*(var(13)/10%10*0.1+0.1)
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Helper
+triggerAll = StateNo = [150,155]
+triggerAll = MoveType=H
+triggerAll = NumHelper(6261) = 0
+trigger1 = Helper(8040),var(2) > 300
+Stateno = 6261
+ID = 6261
+pos = 0, 0
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = CtrlSet
+trigger1 = Helper(8040),var(2)>300&&NumHelper(6261)>0&&(StateNo=[150,155])&&MoveType=H
+value = 1
+
+[State -2]
+Type = ChangeState
+triggerAll = !Ishelper
+triggerAll = Alive
+triggerAll = var(40)>=2000
+triggerAll = MoveType=H
+triggerAll = (StateNo=[5000,5001])||(StateNo=[5010,5011])||StateNo=5020||StateNo=5030||StateNo=5035||StateNo=5050||(StateNo=[5070,5071])||(StateNo=[5080,5081])||(StateNo=[5100,5110])
+trigger1 = Command = "a" || Command = "b" || Command = "c" || Command = "x" || Command = "y" || Command = "z"  || Command = "start" || Command = "recovery"
+trigger2 = Command = "fwd" || Command = "back" || Command = "up" || Command = "down"
+trigger3 = Command = "holdfwd" || Command = "holdback" || Command = "holddown" || Command = "holdup"
+value = 970
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　RELEASE
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+trigger1 = var(7)/10%10!=1
+trigger1 = var(33)=0&&var(46)=0&&Power>=3000
+v = 33
+value = 2
+ignorehitpause = 1
+
+[State -2]
+Type = PlaySnd
+trigger1 = RoundState=2
+trigger1 = !IsHelper
+trigger1 = var(32)=0&&var(33)=2&&Power>=3000
+value = s2, 13
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　魔力開放設定 [ 制限時間 ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2, MAX・HEAT・BLOOD HEAT(解放量判定)]
+Type = VarSet
+trigger1 = var(32)=0&&var(33)!=0&&var(33)!=-2
+v = 32
+value = Ceil(Power*0.2)+2
+
+[State -2]
+Type = VarSet
+triggerAll = var(33)=-2
+triggerAll = AnimElem=2
+trigger1 = StateNo=930&&Anim=930
+trigger2 = StateNo=931&&Anim=940
+v = 32
+value = ifelse(var(32)>402,602,var(32)+200)
+
+[State -2]
+Type = VarSet
+trigger1 = var(32) = 1
+v = 33
+value = 0
+
+[State -2]
+Type = VarAdd
+trigger1 = RoundState=2
+trigger1 = var(33)!=0&&MoveType=H
+v = 34
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState!=2||MoveType!=H
+v = 34
+value = 0
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState=1&&(var(32)>0||var(46)>0)
+v = 35
+value = 96
+
+[State -2]
+Type = VarAdd
+trigger1 = RoundState=2&&var(35)>0
+v = 35
+value = -1
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState=2&&var(35)>0&&StateNo!=0&&Ctrl=1
+v = 35
+value = 0
+
+[State -2]
+Type = VarAdd
+triggerAll = RoundState=2
+triggerAll = var(32)>1&&var(33)!=0&&var(46)=0
+triggerAll = (var(33)>0&&(var(34)<400-var(9)%10*30))||(var(33)=-1&&(var(34)<300-var(9)%10*20))||(var(33)=-2&&var(34)<100)
+triggerAll = var(35)=0
+triggerAll = var(33)=2||(var(33)!=2&&(Time%2=0||var(9)%10<4&&Time%9!=0||var(9)%10=4&&Time%7!=0||var(9)%10>4&&Time%4!=0))
+trigger1 = StateNo!=720&&StateNo!=900&&StateNo!=910&&(StateNo!=[930,931])&&(StateNo!=[1000,3199])
+trigger2 = (StateNo=[1000,3199])&&Time%3=0
+v = 32
+value = ifelse(var(32)%3!=1,-1,ceil(1-(random%3%2))-1)
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　PowerGAUGE [ EXSkill ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = PowerAdd
+triggerAll = var(32) = 0
+triggerAll = MoveType != H
+triggerAll = (AnimElem = 2 && StateNo != 1220) || (Time = 1 && StateNo = 1220)
+trigger1 = StateNo=720||StateNo=1020||StateNo=1120||StateNo=1220||StateNo=1320||StateNo=1420||StateNo=1520||StateNo=1620||StateNo=1720||StateNo=1820||StateNo=1920
+trigger2 = StateNo=1025
+value = -1000
+
+[State -2]
+Type = PowerAdd
+triggerAll = var(32)=0&&AnimElem=2&&MoveType!=H
+trigger1 = StateNo=2300||StateNo=2310||StateNo=2320||StateNo=2400||StateNo=2410||StateNo=2420||StateNo=2500||StateNo=2510||StateNo=2520
+value = -2000
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Excess System
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+triggerAll = var(33)=1&&MoveType!=H&&Time=1
+trigger1 = StateNo=720||StateNo=1020||StateNo=1120||StateNo=1220||StateNo=1320||StateNo=1420||StateNo=1520||StateNo=1620||StateNo=1720||StateNo=1820||StateNo=1920
+trigger2 = StateNo=1025
+v = 47
+value = ifelse(var(32)<150,abs(var(32)-150)*7.25,0)
+
+[State -2]
+Type = VarSet
+triggerAll = var(33)=1&&MoveType!=H&&Time=1
+trigger1 = StateNo=2000||StateNo=2100||StateNo=2200||StateNo=2300||StateNo=2310||StateNo=2320||StateNo=2400||StateNo=2410||StateNo=2500||StateNo=2510||StateNo=2520||StateNo=2600||StateNo=2700
+v = 47
+value = ifelse(var(32)<300,abs(var(32)-300)*7.25,0)
+
+[State -2]
+Type = VarSet
+triggerAll = var(33)=0&&var(47)>0
+trigger1 = StateNo=720||StateNo=1020||StateNo=1120||StateNo=1220||StateNo=1320||StateNo=1420||StateNo=1520||StateNo=1620||StateNo=1720||StateNo=1820||StateNo=1920
+trigger2 = StateNo=2000||StateNo=2100||StateNo=2200||StateNo=2300||StateNo=2310||StateNo=2320||StateNo=2400||StateNo=2410||StateNo=2420||StateNo=2500||StateNo=2510||StateNo=2520||StateNo=2600||StateNo=2700
+trigger3 = StateNo=1025
+v = 46
+value = var(46)+var(47)
+
+[State -2]
+Type = PlaySnd
+triggerAll = var(33)=0&&var(47)>0
+trigger1 = StateNo=720||StateNo=1020||StateNo=1120||StateNo=1220||StateNo=1320||StateNo=1420||StateNo=1520||StateNo=1620||StateNo=1720||StateNo=1820||StateNo=1920
+trigger2 = StateNo=2000||StateNo=2100||StateNo=2200||StateNo=2300||StateNo=2310||StateNo=2320||StateNo=2400||StateNo=2410||StateNo=2420||StateNo=2500||StateNo=2510||StateNo=2520||StateNo=2600||StateNo=2700
+trigger3 = StateNo=1025
+value = s24, 15
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState!=2||var(33)=0
+v = 47
+value = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　MAGIC CIRCUIT [ EXSkill ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2, MAX]
+Type = VarAdd
+triggerAll = var(32)>1&&var(33)=2&&MoveType!=H
+triggerAll = (AnimElem=2&&StateNo!=1220)||(Time=1&&StateNo=1220)
+trigger1 = StateNo=720||StateNo=1020||StateNo=1120||StateNo=1220||StateNo=1320||StateNo=1420||StateNo=1520||StateNo=1620||StateNo=1720||StateNo=1820||StateNo=1920
+trigger2 = StateNo=1025
+v = 32
+value = -ifelse(var(32)>350,350,var(32)-1)
+persistent = 0
+
+[State -2, MAX]
+Type = VarAdd
+triggerAll = var(32)>1&&var(33)=2&&MoveType!=H
+triggerAll = (AnimElem=2&&StateNo!=1220)||(Time=1&&StateNo=1220)
+trigger1 = StateNo=2300||StateNo=2310||StateNo=2320||StateNo=2400||StateNo=2410||StateNo=2420||StateNo=2500||StateNo=2510||StateNo=2520
+v = 32
+value = -ifelse(var(32)>600,600,var(32)-1)
+persistent = 0
+
+[State -2, HEAT・BLODD HEAT]
+Type = VarAdd
+triggerAll = var(32)>1&&(var(33)=1||var(33)=-1)&&MoveType!=H
+triggerAll = (AnimElem=2&&StateNo!=1220)||(Time=1&&StateNo=1220)
+trigger1 = StateNo=720||StateNo=1020||StateNo=1120||StateNo=1220||StateNo=1320||StateNo=1420||StateNo=1520||StateNo=1620||StateNo=1720||StateNo=1820||StateNo=1920
+trigger2 = StateNo=1025
+v = 32
+value = -ifelse(var(32)>150,150,var(32)-1)
+persistent = 0
+
+[State -2, HEAT・BLODD HEAT]
+Type = VarAdd
+triggerAll = var(32)>1&&(var(33)=1||var(33)=-1)&&MoveType!=H
+triggerAll = (AnimElem=2&&StateNo!=1220)||(Time=1&&StateNo=1220)
+trigger1 = StateNo=2300||StateNo=2310||StateNo=2320||StateNo=2400||StateNo=2410||StateNo=2420||StateNo=2500||StateNo=2510||StateNo=2520
+v = 32
+value = -ifelse(var(32)>300,300,var(32)-1)
+persistent = 0
+
+[State -2, UNLIMITED]
+Type = VarAdd
+triggerAll = var(32)>1&&var(33)=-2&&MoveType!=H
+triggerAll = (AnimElem=2&&StateNo!=1220)||(Time=1&&StateNo=1220)
+trigger1 = StateNo=720||StateNo=1020||StateNo=1120||StateNo=1220||StateNo=1320||StateNo=1420||StateNo=1520||StateNo=1620||StateNo=1720||StateNo=1820||StateNo=1920
+trigger2 = StateNo=2300||StateNo=2310||StateNo=2320||StateNo=2400||StateNo=2410||StateNo=2420||StateNo=2500||StateNo=2510||StateNo=2520||StateNo=2600||StateNo=2700||StateNo=2800||StateNo=2900
+trigger3 = StateNo=1025
+v = 32
+value = -ifelse(var(32)>150,150,var(32)-1)
+persistent = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　CIRCUIT BREAK
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarAdd
+triggerAll = RoundState=2
+triggerAll = var(35)=0&&var(46)>0
+trigger1 = MoveType=H||(MoveType=I&&(StateNo!=[2000,3299]))
+trigger2 = MoveType=A
+trigger2 = StateNo!=720&&StateNo!=900&&StateNo!=910&&(StateNo!=[930,931])&&(StateNo!=[2000,3299])
+trigger2 = (StateNo!=[1020,1029])&&(StateNo!=[1120,1129])&&(StateNo!=[1220,1229])&&(StateNo!=[1320,1329])&&(StateNo!=[1420,1429])&&(StateNo!=[1520,1529])&&(StateNo!=[1620,1629])&&(StateNo!=[1720,1729])&&(StateNo!=[1820,1829])&&(StateNo!=[1920,1929])
+v = 46
+value = -2-var(7)/100%10
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = Alive
+trigger1 = var(32)=1&&var(33)=-2
+v = 46
+value = var(46)+2000
+
+[State -2]
+Type = VarSet
+trigger1 = var(7)/100%10=9||var(46)<0||RoundState=0
+v = 46
+value = 0
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Exclusive Revision
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+triggerAll = Alive
+triggerAll = var(33)!=-2&&var(42)>0&&var(43)<=0&&fvar(19)=0
+triggerAll = MoveType!=H
+trigger1 = StateNo=2300||StateNo=2320||StateNo=2500||(StateNo=[2520,2521])||(StateNo=[2910,2911])
+v = 46
+value = ifelse((StateNo=[2910,2911]),var(42)*8,var(42)*4)
+ignorehitpause = 1
+
+[State -2, USB]
+Type = VarAdd
+triggerAll = Alive
+triggerAll = var(33)!=-2&&var(42)>0&&var(43)<=0&&fvar(19)=0
+triggerAll = MoveType!=H
+trigger1 = StateNo=2300||StateNo=2320||StateNo=2500||(StateNo=[2520,2521])||(StateNo=[2910,2911])
+fv = 19
+value = ifelse((StateNo=[2910,2911]),var(42)*10,var(42)*2)
+ignorehitpause = 1
+
+[State -2, USB(Shackle:Occurrence)]
+Type = VarSet
+triggerAll = Alive
+triggerAll = var(33)!=-2&&var(42)>0&&var(43)<=0
+triggerAll = MoveType!=H
+trigger1 = StateNo=2300||StateNo=2320||StateNo=2500||(StateNo=[2520,2521])||(StateNo=[2910,2911])
+fv = 20
+value = 0.15
+ignorehitpause = 1
+
+[State -2]
+type = Helper
+triggerAll = Alive
+triggerAll = NumHelper(6180) = 0
+triggerAll = var(33)!=-2&&var(42)>0&&var(43)<=0
+triggerAll = MoveType!=H
+trigger1 = StateNo=2300||StateNo=2320||StateNo=2500||(StateNo=[2520,2521])||(StateNo=[2910,2911])
+Stateno = 6180
+ID = 6180
+pos = 0, 0
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState = 2
+trigger1 = var(43)=0
+trigger1 = StateNo=3003&&anim=3003&&Time=102&&MoveType=A
+v = 46
+value = var(46)+1000
+ignorehitpause = 1
+
+[State -2]
+Type = PlaySnd
+triggerAll = RoundState=2
+triggerAll = var(43)=0
+triggerAll = var(7)/100%10<9
+trigger1 = StateNo=3003&&anim=3003&&Time=102&&MoveType=A
+value = s24, 15
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　MAX・HEAT・BLOOD HEAT [ END ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+triggerAll = RoundState=[2,3]
+trigger1 = var(32)<=4&&var(33)!=0
+trigger2 = var(32)>1&&var(33)!=0&&MoveType!=H&&Time=1
+trigger2 = StateNo=2000||StateNo=2010||StateNo=2100||StateNo=2110||StateNo=2200||StateNo=2900||StateNo=2910||StateNo=3000||StateNo=3100
+v = 32
+value = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(32)=2||var(33)=0
+v = 32
+value = 0
+
+[State -2]
+Type = PowerSet
+triggerAll = RoundState=[2,3]
+triggerAll = var(32)=1&&var(33)=2
+trigger1 = StateNo!=2000&&StateNo!=2100&&StateNo!=2200&&StateNo!=2900
+value = 2001
+
+[State -2]
+Type = PowerSet
+trigger1 = var(32)=1&&var(33)=2&&MoveType!=H&&Time=1
+trigger1 = StateNo=2000||StateNo=2100||StateNo=2200||StateNo=2900
+value = 1000
+
+[State -2]
+Type = PowerSet
+triggerAll = RoundState=[2,3]
+triggerAll = var(32)=1
+trigger1 = var(33)=1||var(33)<0
+value = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Round Over
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = PowerSet
+triggerAll = RoundState=[0,1]
+triggerAll = var(7)/10%10<2
+trigger1 = var(32)<400&&var(33)=1||var(32)<450&&var(33)=-1||var(33)=-2
+value = 0
+
+[State -2]
+Type = PowerSet
+triggerAll = RoundState=[0,1]
+triggerAll = var(7)/10%10<2
+trigger1 = var(32)>=400&&var(33)=1||var(32)>=450&&var(33)=-1
+value = 1000
+
+[State -2]
+Type = PowerSet
+triggerAll = RoundState=[0,1]
+triggerAll = var(7)/10%10<2
+trigger1 = var(32)>=500&&var(33)=1||var(32)>=550&&var(33)=-1
+value = 2000
+
+[State -2]
+Type = PowerSet
+triggerAll = RoundState=[0,1]
+trigger1 = var(33) = 2
+value = 3000
+
+[State -2]
+Type = VarSet
+triggerAll = RoundState=[0,1]
+triggerAll = var(7)/10%10<2
+trigger1 = var(32) != 0
+v = 32
+value = 0
+
+[State -2]
+Type = VarSet
+triggerAll = RoundState=[0,1]
+triggerAll = var(7)/10%10<2
+trigger1 = var(33) != 0
+v = 33
+value = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　EX GAUGE
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = PowerAdd
+triggerAll = RoundState=2
+triggerAll = Alive
+triggerAll = var(7)%10>0
+triggerAll = var(33)=0&&var(35)=0&&var(46)=0
+trigger1 = MoveType=H||(MoveType=I&&(StateNo!=[2000,3299]))
+trigger2 = MoveType=A
+trigger2 = StateNo!=720&&StateNo!=900&&StateNo!=910&&(StateNo!=[930,931])&&(StateNo!=[2000,3299])
+trigger2 = (StateNo!=[1020,1029])&&(StateNo!=[1120,1129])&&(StateNo!=[1220,1229])&&(StateNo!=[1320,1329])&&(StateNo!=[1420,1429])&&(StateNo!=[1520,1529])&&(StateNo!=[1620,1629])&&(StateNo!=[1720,1729])&&(StateNo!=[1820,1829])&&(StateNo!=[1920,1929])
+value = var(7)%10
+ignorehitpause = 1
+
+[State -2]
+Type = PowerSet
+triggerAll = RoundState=2
+triggerAll = Alive
+triggerAll = var(7)/10%10=1
+trigger1 = var(33)=0&&var(35)=0&&var(46)=0
+value = 0
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(7)/10%10>3||var(7)/10%10>2&&var(33)=-1||var(7)/10%10>1&&var(33)=2
+v = 32
+value = 602
+
+[State -2]
+Type = VarSet
+trigger1 = var(7)/10%10>1&&var(33)=0
+v = 33
+value = 2
+
+[State -2]
+Type = VarSet
+trigger1 = var(7)/10%10>2&&var(33)!=-2
+v = 33
+value = -1
+
+[State -2]
+Type = VarSet
+trigger1 = var(7)/10%10>3
+v = 33
+value = -2
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Armor of Reflection - Easy Type Version
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = Helper
+triggerAll = Alive
+triggerAll = NumHelper(3900)=0
+triggerAll = var(43)>0||var(17)/10%10>8||StateNo=2800
+triggerAll = MoveType!=H
+triggerAll = StateNo!=105&&StateNo!=801&&StateNo!=811&&StateNo!=821&&StateNo!=921&&StateNo!=926&&StateNo!=970
+triggerAll = StateNo!=802&&(StateNo!=[822,823])&&(StateNo!=[851,852])&&(StateNo!=[1201,1202])&&StateNo!=1221&&StateNo!=1421&&StateNo!=1701&&StateNo!=1711&&StateNo!=1716
+triggerAll = (StateNo!=[1721,1722])&&(StateNo!=[2001,2002])&&StateNo!=2101&&(StateNo!=[2501,2502])&&StateNo!=2521&&(StateNo!=[3001,3004])&&(StateNo!=[3101,3104])
+triggerAll = StateNo!=1920||StateNo=1920&&AnimElemTime(5)>=0
+trigger1 = var(17)/10%10>0&&(StateNo=970)
+trigger2 = var(17)/10%10>3&&(StateNo=900||StateNo=910)
+trigger3 = var(17)/10%10>4&&((StateNo=[100,101])||StateNo=106||StateNo=110||StateNo=115||StateNo=915||StateNo=920||StateNo=922||StateNo=925||StateNo=927)
+trigger4 = var(17)/10%10>5&&(StateNo=960)
+trigger5 = var(17)/10%10>6&&(StateNo=[1000,3999])
+trigger6 = var(17)/10%10>7&&(StateNo=[20,999])
+trigger7 = var(17)/10%10>8
+trigger8 = (StateNo=3100)&&var(17)/10%10>0
+trigger9 = (StateNo=3000)&&var(17)/10%10>1
+trigger10 = (StateNo=2100||StateNo=2110||StateNo=2910)&&var(17)/10%10>2
+trigger11 = (StateNo=2000||StateNo=2010||StateNo=2300||StateNo=2320||StateNo=2500||StateNo=2520||StateNo=2900||StateNo=1921||StateNo=1925)&&var(17)/10%10>3
+trigger12 = (StateNo=1020||StateNo=1120||StateNo=1220||StateNo=1320||StateNo=1420||StateNo=1520||StateNo=1620||StateNo=1720||StateNo=1820||StateNo=1920)&&var(17)/10%10>4
+trigger13 = ((StateNo=[1021,1022])||StateNo=1025||(StateNo=[1821,1824]))&&var(17)/10%10>4
+trigger14 = (StateNo=250||StateNo=255||StateNo=260||StateNo=270||StateNo=280||StateNo=450||StateNo=455||StateNo=460||StateNo=470||StateNo=850||(StateNo=[1000,1005])||StateNo=1500||StateNo=1510)&&var(17)/10%10>4
+trigger15 = (StateNo=1100||StateNo=1110||StateNo=1200||StateNo=1210||StateNo=1300||StateNo=1400||StateNo=1410||StateNo=1700||StateNo=1710||StateNo=1715||StateNo=1800||StateNo=1810)&&var(17)/10%10>5
+trigger16 = (StateNo=215||StateNo=415)&&var(17)/10%10>6
+trigger17 = StateNo=2800
+Stateno = 3900
+ID = 3900
+pos = 0, 0
+postype = P1
+ignorehitpause = 1
+PauseMoveTime = 99999
+SuperMoveTime = 99999
+
+[State -2]
+Type = NotHitBy
+triggerAll = Alive&&NumHelper(3900)>0&&MoveType!=H
+trigger1 = var(17)/10%10>0&&(StateNo=970)
+trigger2 = var(17)/10%10>3&&(StateNo=900||StateNo=910)
+trigger3 = var(17)/10%10>4&&((StateNo=[100,101])||StateNo=106||StateNo=110||StateNo=115||StateNo=915||StateNo=920||StateNo=922||StateNo=925||StateNo=927)
+trigger4 = var(17)/10%10>5&&(StateNo=960)
+trigger5 = var(17)/10%10>8
+value = SCA
+
+[State -2]
+Type = PalFX
+triggerAll = Alive
+triggerAll = fvar(30)!=0
+triggerAll = NumHelper(3900)>0
+trigger1 = StateNo=[0,3100]
+time = 8
+add = 256,50,50
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+type = LifeAdd
+triggerAll = Alive
+triggerAll = fvar(30)!=0
+triggerAll = NumHelper(3900)>0
+trigger1 = StateNo=[0,3100]
+value = ifelse((StateNo!=[120,159]),fvar(30),floor(fvar(30)*0.05))
+
+[State -2]
+Type = VarAdd
+trigger1 = var(9)%10<6&&var(17)/10%10<9
+trigger1 = fvar(30)!=0
+trigger1 = NumHelper(3900)>0
+v = 42
+value = ifelse(fvar(30)>40-var(9)%10*2-var(17)/10%10,40-var(9)%10*2-var(17)/10%10,-Ceil(fvar(30)*0.3))
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+trigger1 = fvar(30)!=0
+fv = 30
+value= 0
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Learning Element Level 2 [ GAUGE ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+trigger1 = fvar(14)>0&&Ctrl=1
+fv = 14
+value = 0
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = StateNo=960&&MoveType!=H
+v = 20
+value = 9999
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = fvar(14)=0&&StateNo=960&&MoveType!=H&&Time=0
+fv = 14
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = fvar(14)=1&&StateNo=960&&MoveType!=H&&Time>92
+fv = 14
+value = 2
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = fvar(14)=1&&MoveType=H&&(P2BodyDist X!=[-199,199])&&(P2BodyDist X=[-229,229])
+fv = 14
+value = -1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = (fvar(14)=1||fvar(14)=-1)&&MoveType=H&&(P2BodyDist X!=[-229,229])&&(P2BodyDist X=[-259,259])
+fv = 14
+value = -2
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = (fvar(14)=1||(fvar(14)=[-2,-1]))&&MoveType=H&&(P2BodyDist X!=[-259,259])
+trigger2 = fvar(14)>2||fvar(14)<-3
+fv = 14
+value = -3
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = var(20)=9999&&MoveType=H&&Time=1
+fv = 14
+value = -1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(20)=9999&&MoveType=H&&Time>0
+v = 20
+value = 0
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Learning Element Level 2 [ Basic ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+trigger1 = RoundState!=2||EnemyNear,Ctrl=1||P2MoveType!=H||(P2MoveType=H&&(P2StateNo=[120,159]))
+v = 51
+value = 0
+
+[State -2]
+type = VarAdd
+trigger1 = (StateNo=[200,205])||(StateNo=[400,405])
+trigger1 = MoveGuarded=2
+fv = 15
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState!=2||MoveType=H||StateType=A||(P2MoveType=H&&(P2StateNo!=[120,159]))||StateNo=105||(StateNo=[210,225])||(StateNo=[410,425])||(StateNo=[1000,3200])
+fv = 15
+value = 0
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Learning Element Level 4 [ Summon Tactics ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+trigger1 = RoundState = 2
+trigger1 = Alive
+v = 44
+value = Helper(8040),var(44)
+persistent = 0
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState != 2
+trigger2 = Alive = 0
+v = 44
+value = 0
+persistent = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Learning Element Level 3 [ Delay Attack Tactics ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+triggerAll = var(53)<0&&(Ctrl=1||(MoveType=H&&Time=1)||(MoveType=A&&Time=1&&(StateNo=[200,3200])))
+trigger1 = StateNo!=215&&StateNo!=230&&StateNo!=1110&&StateNo!=1410
+v = 53
+value = 0
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = var(53)!=0&&MoveType=H&&Time=0&&(StateNo!=[120,159])
+trigger1 = PrevStateNo=215||PrevStateNo=230||PrevStateNo=1110||PrevStateNo=1410
+v = 53
+value = var(53)+1000
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(53)!=2000&&(var(53)>1000||var(53)<-1)
+v = 53
+value = 1000
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = RoundState=2&&MoveType=I&&var(53)>0&&var(53)!=2000
+v = 53
+value = -1
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = var(53)=0&&MoveType=A&&Time=1
+trigger1 = StateNo=215||StateNo=230||StateNo=1110||StateNo=1410
+v = 53
+value = -1
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+triggerAll = var(53)<0&&MoveHit&&(P2MoveType=H&&(P2StateNo!=[120,159]))
+trigger1 = StateNo=215||StateNo=230||StateNo=1110||StateNo=1410
+v = 53
+value = 2000
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Learning Element Level 3 [ Round JUDGMENT ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+triggerAll = RoundState!=2&&Alive&&fvar(10)=0&&MoveType!=H
+triggerAll = (StateNo=[181,189])||(StateNo=[4200,4399])
+trigger1 = EnemyNear,TeamMode = Single
+fv = 10
+value = 1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState!=2&&Alive=0&&MoveType=H&&EnemyNear,TeamMode = Single || EnemyNear,TeamMode = Simul || EnemyNear,TeamMode = Turns
+fv = 10
+value = -1
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Learning Element Level 5 [ Defense Tactics ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = VarSet
+trigger1 = StateNo=131&&Ctrl =1
+fv = 11
+value = ifelse((P2BodyDist X=[-99,99]),1,2)
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+trigger1 = fvar(11)>0&&Ctrl=1&&(StateNo!=131&&(StateNo!=[152,153]))
+fv = 11
+value = 0
+ignorehitpause = 1
+
+[State -2, Defense(近接)]
+Type = VarSet
+trigger1 = fvar(11)=1&&(StateNo!=[120,159])&&MoveType=H&&Time=0
+fv = 12
+value = var(12)+750
+ignorehitpause = 1
+
+[State -2, Defense(中距離)]
+Type = VarSet
+trigger1 = fvar(12)=2&&(StateNo!=[120,159])&&MoveType=H&&Time=0
+fv = 13
+value = fvar(13)+750
+ignorehitpause = 1
+
+[State -2, Defense(RESET:近接)]
+Type = VarSet
+trigger1 = fvar(12)>1000
+fv = 12
+value = 1000
+ignorehitpause = 1
+
+[State -2, Defense(RESET:中距離)]
+Type = VarSet
+trigger1 = fvar(13)>1000
+fv = 13
+value = 1000
+ignorehitpause = 1
+
+[State -2, Defense(Time:近接)]
+Type = VarAdd
+trigger1 = RoundState=2&&fvar(12)>0&&MoveType=I
+fv = 12
+value = -1
+ignorehitpause = 1
+
+[State -2, Defense(Time:中距離)]
+Type = VarAdd
+trigger1 = RoundState=2&&fvar(13)>0&&MoveType=I
+fv = 13
+value = -1
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Element Level 1 [ Reflection - Safety ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Element Level 1 [ Multiple Attack - Safety ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarSet
+trigger1 = fvar(34)>0||fvar(34)<-3
+fv = 34
+value = ifelse(fvar(34)>0,0,-3)
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = RoundState = 2
+triggerAll = (MoveType=H&&(StateNo!=[120,159]))||(StateNo=[5200,5201])||StateNo=5210
+triggerAll = Time = 1
+trigger1 = fvar(34)>-3
+fv = 34
+value = ifelse((P2BodyDist X=[-198,198]),-1,ifelse((P2BodyDist X=[-248,248]),-2,-3))
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Element Level 1 [ Random Move ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = VarSet
+trigger1 = fvar(35) = [-1,1]
+trigger1 = (P2StateNo=[1130,1135])||(P2StateNo=[1540,1542])
+trigger1 = P2StateType = A && P2MoveType = H
+fv = 35 
+value = ifelse((P2BodyDist X !=[-28,28]),2,-2)
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+trigger1 = fvar(35) > 100 || fvar(35) < -100
+fv = 35
+value = 0
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+trigger1 = StateNo = 20
+trigger1 = fvar(35) = 0
+trigger1 = Random < 500
+fv = 35
+value = ifelse(random>=500,100,-100)
+ignorehitpause = 1
+
+[State -2]
+type = VarAdd
+trigger1 = fvar(35) != 0
+fv = 35
+value = ifelse(fvar(35) > 0,-1,1)
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI Learning Element Level 1 [ Missfire Detector ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = VarSet
+triggerAll = var(37)%10=0
+trigger1 = MoveContact&&(StateNo=[200,425])
+v = 37
+value = var(37)+1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = var(37)%10=0&&var(37)/10%10=0
+triggerAll = MoveType=A&&StateType!=A
+triggerAll = P2BodyDist X=[-98,98]
+trigger1 = !MoveContact&&(StateNo=[200,425])
+v = 37
+value = var(37)+10
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+triggerAll = var(37)/100%10=0
+triggerAll = var(59)=0
+triggerAll = MoveType=A&&StateType!=A
+triggerAll = (P2BodyDist X=[-98,98])||(StateNo=[1000,3100])
+trigger1 = ((StateNo=800||StateNo=810)&&AnimElemTime(3)>0)
+trigger2 = (StateNo=850&&AnimElemTime(4)>0)||(StateNo=1200&&AnimElemTime(13)>0)||(StateNo=1210&&AnimElemTime(13)>0)||(StateNo=1220&&AnimElemTime(13)>0)||(StateNo=1700&&AnimElemTime(5)>0)
+trigger3 = (StateNo=2000&&AnimElemTime(20)>0)||(StateNo=2010&&AnimElemTime(20)>0)||(StateNo=2500&&AnimElemTime(21)>0)||(StateNo=2520&&AnimElemTime(12)>0)||(StateNo=2910&&AnimElemTime(23)=0)
+trigger4 = (StateNo=3000&&AnimElemTime(8)>0)||(StateNo=3100&&AnimElemTime(8)>0)
+v = 37
+value = var(37)+100
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+trigger1 = var(37)%10>0
+trigger1 = MoveType=H||EnemyNear,Ctrl=1||P2StateNo=5120||(P2StateNo=[5200,5210])
+v = 37
+value = var(37)-1
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(37)%10>0&&var(37)/10%10>0
+v = 37
+value = var(37)-10
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = var(37)/100%10>0
+trigger1 = var(59)>1
+trigger1 = (StateNo=[200,699])||(StateNo=[1000,1999])
+trigger1 = P2MoveType=H&&(P2StateNo!=[120,159])
+v = 37
+value = var(37)-100
+ignorehitpause = 1
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Damage Counter
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2, 1桁削除]
+Type = RemoveExplod
+trigger1 = RoundState = 2
+trigger1 = NumExplod(21000) > 0
+trigger1 = NumExplod(21110) > 0
+ID = 21110
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 2桁削除]
+Type = RemoveExplod
+trigger1 = RoundState = 2
+trigger1 = NumExplod(21001) > 0
+trigger1 = NumExplod(21111) > 0
+ID = 21111
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 3桁削除]
+Type = RemoveExplod
+trigger1 = RoundState = 2
+trigger1 = NumExplod(21002) > 0
+trigger1 = NumExplod(21112) > 0
+ID = 21112
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 4桁削除]
+Type = RemoveExplod
+trigger1 = RoundState = 2
+trigger1 = NumExplod(21003) > 0
+trigger1 = NumExplod(21113) > 0
+ID = 21113
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, Damage削除]
+Type = RemoveExplod
+trigger1 = RoundState = 2
+trigger1 = NumExplod(21200) > 0
+trigger1 = NumExplod(21210) > 0
+ID = 21210
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, FO1桁表示]
+Type = Explod
+triggerAll = NumExplod(21110) = 0
+triggerAll = NumExplod(21000) > 0
+trigger1 = P2MoveType != H
+trigger2 = RoundState = 4
+trigger3 = P2StateNo = [5200,5201]
+anim = 21110+var(29)%10
+ID = 21110
+bindtime = -1
+pos = ifelse(teamside=1,74,222), 90
+postype = Left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, FO2桁表示]
+Type = Explod
+triggerAll = NumExplod(21111) = 0
+triggerAll = NumExplod(21001) > 0
+trigger1 = P2MoveType != H
+trigger2 = RoundState = 4
+trigger3 = P2StateNo = [5200,5201]
+anim = 21110+var(29)/10%10
+ID = 21111
+bindtime = -1
+pos = ifelse(teamside=1,68,216), 90
+postype = Left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, FO3桁表示]
+Type = Explod
+triggerAll = NumExplod(21112) = 0
+triggerAll = NumExplod(21002) > 0
+trigger1 = P2MoveType != H
+trigger2 = RoundState = 4
+trigger3 = P2StateNo = [5200,5201]
+anim = 21110+var(29)/100%10
+ID = 21112
+bindtime = -1
+pos = ifelse(teamside=1,62,210), 90
+postype = Left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, FO4桁表示]
+Type = Explod
+triggerAll = NumExplod(21113) = 0
+triggerAll = NumExplod(21003) > 0
+trigger1 = P2MoveType != H
+trigger2 = RoundState = 4
+trigger3 = P2StateNo = [5200,5201]
+anim = 21110+var(29)/1000%10
+ID = 21113
+bindtime = -1
+pos = ifelse(teamside=1,56,204), 90
+postype = Left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, FODamage表示]
+Type = Explod
+triggerAll = NumExplod(21210) = 0
+triggerAll = NumExplod(21200) > 0
+trigger1 = P2MoveType != H
+trigger2 = RoundState = 4
+trigger3 = P2StateNo = [5200,5201]
+anim = 21210
+ID = 21210
+bindtime = -1
+pos = ifelse(teamside=1,80,228), 90
+postype = Left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 1桁-1削除]
+Type = RemoveExplod
+triggerAll = NumExplod(21000) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21110) > 0
+ID = 21000
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 1桁-2削除]
+Type = RemoveExplod
+triggerAll = NumExplod(22000) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21110) > 0
+ID = 22000
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 2桁-1削除]
+Type = RemoveExplod
+triggerAll = NumExplod(21001) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21111) > 0
+ID = 21001
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 2桁-2削除]
+Type = RemoveExplod
+triggerAll = NumExplod(22001) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21111) > 0
+ID = 22001
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 3桁-1削除]
+Type = RemoveExplod
+triggerAll = NumExplod(21002) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21112) > 0
+ID = 21002
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 3桁-2削除]
+Type = RemoveExplod
+triggerAll = NumExplod(22002) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21112) > 0
+ID = 22002
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 4桁-1削除]
+Type = RemoveExplod
+triggerAll = NumExplod(21003) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21113) > 0
+ID = 21003
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 4桁-2削除]
+Type = RemoveExplod
+triggerAll = NumExplod(22003) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21113) > 0
+ID = 22003
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, Damage-1削除]
+Type = RemoveExplod
+triggerAll = NumExplod(21200) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21210) > 0
+ID = 21200
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, Damage-2削除]
+Type = RemoveExplod
+triggerAll = NumExplod(22200) > 0
+trigger1 = RoundState = 2
+trigger2 = RoundState = 3 && P2StateType = A
+trigger3 = RoundState >= 3 && NumExplod(21210) > 0
+ID = 22200
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = VarSet
+trigger1 = P2MoveType != H
+trigger2 = P2StateNo = [120,159]
+trigger3 = P2StateNo = [5200,5201]
+v = 28
+value = P2Life
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = VarSet
+trigger1 = P2MoveType != H
+trigger2 = P2StateNo = [120,159]
+trigger3 = P2StateNo = [5200,5201]
+fv = 16
+value = 100
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = VarAdd
+trigger1 = Ceil(fvar(16))%10 > 0
+fv = 16
+value = -1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = VarAdd
+triggerAll = P2MoveType = H
+triggerAll = P2StateNo != [120,159]
+triggerAll = P2StateNo != [5200,5201]
+trigger1 = var(28) > P2Life
+trigger1 = Ceil(fvar(16))/10 > 0
+fv = 16
+value = -10
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = VarSet
+triggerAll = P2MoveType = H
+triggerAll = P2StateNo != [120,159]
+triggerAll = P2StateNo != [5200,5201]
+trigger1 = var(28) > P2Life
+trigger1 = var(28) - P2Life != var(29)
+fv = 16
+value = floor(fvar(16)/10)*10+6
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = VarSet
+triggerAll = P2MoveType = H
+triggerAll = P2StateNo != [120,159]
+triggerAll = P2StateNo != [5200,5201]
+trigger1 = var(28) > P2Life
+v = 29
+value = var(28)-P2Life
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = VarSet
+trigger1 = P2MoveType != H
+trigger2 = P2StateNo = [120,159]
+trigger3 = P2StateNo = [5200,5201]
+v = 29
+value = 0
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 1桁1]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(21000) = 0
+trigger1 = var(29) > 0
+anim = 21000+var(29)%10+ifelse(ceil(fvar(16))%10=0,100,0)
+ID = 21000
+bindtime = -1
+pos = ifelse(teamside=1,74,222)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = Left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 1桁2]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(22000) = 0
+trigger1 = var(29) > 0
+anim = 22000+var(29)%10+ifelse(ceil(fvar(16))%10=0,100,0)
+ID = 22000
+bindtime = -1
+pos = ifelse(teamside=1,74,222)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = Left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 2桁1]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(21001) = 0
+trigger1 = var(29) >= 10
+anim = 21000+var(29)/10%10+ifelse(ceil(fvar(16))%10=0,100,0)
+ID = 21001
+bindtime = -1
+pos = ifelse(teamside=1,68,216)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = Left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 2桁2]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(22001) = 0
+trigger1 = var(29) >= 10
+anim = 22000+var(29)/10%10+ifelse(ceil(fvar(16))%10=0,100,0)
+ID = 22001
+bindtime = -1
+pos = ifelse(teamside=1,68,216)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = Left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 3桁1]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(21002) = 0
+trigger1 = var(29) >= 100
+anim = 21000+var(29)/100%10+ifelse(ceil(fvar(16))%10=0,100,0)
+ID = 21002
+bindtime = -1
+pos = ifelse(teamside=1,62,210)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 3桁2]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(22002) = 0
+trigger1 = var(29) >= 100
+anim = 22000+var(29)/100%10+ifelse(ceil(fvar(16))%10=0,100,0)
+ID = 22002
+bindtime = -1
+pos = ifelse(teamside=1,62,210)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 4桁1]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(21003) = 0
+trigger1 = var(29) >= 1000
+anim = 21000+var(29)/1000%10+ifelse(ceil(fvar(16))%10=0,100,0)
+ID = 21003
+bindtime = -1
+pos = ifelse(teamside=1,56,204)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 4桁2]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(22003) = 0
+trigger1 = var(29) >= 1000
+anim = 22000+var(29)/1000%10+ifelse(ceil(fvar(16))%10=0,100,0)
+ID = 22003
+bindtime = -1
+pos = ifelse(teamside=1,56,204)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, Damage表示1]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(21200) = 0
+trigger1 = var(29) > 0
+anim = 21200
+ID = 21200
+bindtime = -1
+pos = ifelse(teamside=1,80,228)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = left
+scale = 0.5,0.5
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, Damage表示2]
+Type = Explod
+triggerAll = RoundState != 4
+triggerAll = P2MoveType = H
+triggerAll = NumExplod(22200) = 0
+trigger1 = var(29) > 0
+anim = 22200
+ID = 22200
+pos = ifelse(teamside=1,80,228)+10*ifelse(teamside=1,-floor(fvar(16)/10),floor(fvar(16)/10)), 90
+postype = left
+scale = 0.5,0.5
+bindtime = -1
+ownpal = 1
+sprpriority = 4
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Extra
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2, 1桁削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21110
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 2桁削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21111
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 3桁削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21112
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 4桁削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21113
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, Damage削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21210
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 1桁-1削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21000
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 1桁-2削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 22000
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 2桁-1削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21001
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 2桁-2削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 22001
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 3桁-1削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21002
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 3桁-2削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 22002
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 4桁-1削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21003
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, 4桁-2削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 22003
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, Damage-1削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 21200
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2, Damage-2削除]
+Type = RemoveExplod
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+ID = 22200
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+type = HitAdd
+trigger1 = StateNo=0&&Anim=3005||StateNo=2502&&MoveType!=H
+trigger2 = ((StateNo=[3001,3002])&&MoveType=A)||StateNo=3003&&AnimElemTime(22)<0||((StateNo=3004||StateNo=3104)&&MoveType=A)
+trigger3 = (StateNo=[3101,3104])&&MoveType=A
+trigger4 = StateNo=2911&&MoveType!=H&&(TeamMode = Single || TeamMode = Turns || (TeamMode = Simul &&(Partner,Alive=0||Enemy(0),Alive=0||Enemy(1),Alive=0)))
+value = -999
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　Bound
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = Helper
+triggerAll = NumHelper(6850) = 0
+trigger1 = NumTarget(280)>0&&Target(280),Time=1&&(Target(280),StateNo=831||Target(280),StateNo=1542)
+trigger2 = NumTarget(1003)>0&&Target(1003),Time=1&&Target(1003),StateNo=1542
+trigger3 = NumTarget(1500)>0&&Target(1500),Time=1&&Target(1500),StateNo=1540
+trigger4 = NumTarget(1510)>0&&Target(1510),Time=1&&Target(1510),StateNo=1541
+trigger5 = NumTarget(1520)>0&&Target(1520),Time=1&&Target(1520),StateNo=1540
+trigger6 = NumTarget(1925)>0&&Target(1925),Time=1&&Target(1925),StateNo=1540
+Stateno = 6850
+ID = 6850
+pos = 0, 0
+postype = P2
+ownpal = 1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　SECOND LIMIT BREAK
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+type = Helper
+triggerAll = !NumHelper(6290)
+triggerAll = (Power>=2000&&var(33)=0||var(33)=2)&&var(46)=0&&var(43)>300
+triggerAll = MoveType!=H
+triggerAll = var(1)=0
+triggerAll = Command = "hold_y" 
+triggerAll = Command != "holdfwd" && Command != "holdback" && Command != "holdup" && Command != "holddown"
+triggerAll = ((StateNo=[0,1999])&&(Power>=2000||var(33)!=0))||(StateNo!=[0,1999])
+trigger1 = StateNo=1005&&(AnimElemTime(6)>0&&AnimElemTime(9)<0)&&var(59)>1
+trigger2 = StateNo=1021&&Time>78&&var(59)>1
+trigger3 = StateNo=1025&&Time>105&&var(59)>1
+trigger4 = StateNo=1201&&AnimElemTime(5)>0&&AnimElemTime(8)<0
+trigger5 = StateNo=1221&&AnimElemTime(5)>0&&AnimElemTime(8)<0
+trigger6 = StateNo=1410&&(AnimElemTime(7)>0&&AnimElemTime(11)<0)&&var(59)>1
+trigger7 = StateNo=1500&&(AnimElemTime(7)>0&&AnimElemTime(12)<0)&&var(59)>1
+trigger8 = StateNo=1510&&(AnimElemTime(7)>0&&AnimElemTime(12)<0)&&var(59)>1
+trigger9 = StateNo=1520&&(AnimElemTime(7)>0&&AnimElemTime(12)<0)&&var(59)>1
+trigger10 = StateNo=1701&&AnimElemTime(3)>0&&AnimElemTime(6)<0
+trigger11 = StateNo=1711&&Anim=1740&&AnimElemTime(9)>0
+trigger12 = StateNo=1716&&Anim=1745&&AnimElemTime(5)>0
+Stateno = 6290
+ID = 6290
+pos = const(size.mid.pos.x),const(size.mid.pos.y)
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -1]
+type = Helper
+triggerAll = !NumHelper(6290)
+triggerAll = var(1)=1
+triggerAll = (Power>=2000&&var(33)=0||var(33)=2)&&var(46)=0&&var(43)>300
+triggerAll = MoveType!=H
+triggerAll = ((StateNo=[0,1999])&&(Power>=2000||var(33)!=0))||(StateNo!=[0,1999])
+triggerAll = var(9)%10>6&&var(17)/10%10>7&&var(33)=2
+triggerAll = var(33)=2
+trigger1 = StateNo=1005&&(AnimElemTime(6)>0&&AnimElemTime(9)<0)&&var(59)>1
+trigger2 = StateNo=1021&&Time>78&&var(59)>1
+trigger3 = StateNo=1025&&Time>105&&var(59)>1
+trigger4 = StateNo=1201&&AnimElemTime(5)>0&&AnimElemTime(8)<0
+trigger5 = StateNo=1221&&AnimElemTime(5)>0&&AnimElemTime(8)<0
+trigger6 = StateNo=1410&&(AnimElemTime(7)>0&&AnimElemTime(11)<0)&&var(59)>1
+trigger7 = StateNo=1500&&(AnimElemTime(7)>0&&AnimElemTime(12)<0)&&var(59)>1
+trigger8 = StateNo=1510&&(AnimElemTime(7)>0&&AnimElemTime(12)<0)&&var(59)>1
+trigger9 = StateNo=1520&&(AnimElemTime(7)>0&&AnimElemTime(12)<0)&&var(59)>1
+trigger10 = StateNo=1701&&AnimElemTime(3)>0&&AnimElemTime(6)<0
+trigger11 = StateNo=1711&&Anim=1740&&AnimElemTime(9)>0
+trigger12 = StateNo=1716&&Anim=1745&&AnimElemTime(5)>0
+Stateno = 6290
+ID = 6290
+pos = const(size.mid.pos.x),const(size.mid.pos.y)
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　HANDICAP [ Artificial  ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2]
+Type = VarAdd
+triggerAll = MoveType != H
+triggerAll = Time = 1
+trigger1 = StateNo=430||StateNo=435||StateNo=440
+v = 42
+value = 200
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo=2100||StateNo=2110
+v = 42
+value = 333
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType != H
+triggerAll = Time = 1
+trigger1 = StateNo=450||StateNo=455||StateNo=460
+v = 42
+value = ifelse((PrevStateNo=[200,649])||(PrevStateNo=[800,3100]),100,250)
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo=[1001,1005]
+v = 42
+value = 40
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType != H
+trigger1 = StateNo=470&&Time=1
+v = 42
+value = 100
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType != H
+trigger1 = StateNo=1110&&AnimElemTime(9)=0||StateNo=1210&&Time=1
+v = 42
+value = 200
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType != H
+trigger1 = StateNo=1025&&Time=1
+v = 42
+value = 250
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType != H
+trigger1 = StateNo=1920&&AnimElemTime(5)=1||StateNo=1921&&AnimElemTime(6)=0||StateNo=1925&&AnimElemTime(8)=0
+v = 42
+value = 500
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType = A
+triggerAll = Time = 1
+trigger1 = StateNo=1820
+v = 42
+value = 500
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = var(9)%10<6
+triggerAll = MoveType != H
+trigger1 = StateNo=1824&&(PrevStateNo=[1821,1823])&&Time=1
+v = 42
+value = ifelse(var(9)%10<2,300,200)
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType != H
+trigger1 = StateNo=2300&&AnimElemTime(14)=0||StateNo=2320&&AnimElemTime(11)=0||StateNo=2500&&Time=1||StateNo=2520&&AnimElemTime(12)=0||StateNo=2521&&AnimElemTime(2)=2||StateNo=2900&&AnimElemTime(2)=40
+v = 42
+value = 500
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType = A
+trigger1 = StateNo=3002&&Anim=3002&&Time=152
+v = 42
+value = 700
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType = A
+triggerAll = var(33)!=-2
+trigger1 = StateNo=2910&&AnimElemTime(23)=0||StateNo=2911&&Anim=2911&&AnimElemTime(80)=2
+v = 42
+value = 900
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = MoveType != H
+trigger1 = StateNo=3103&&Time=1
+v = 42
+value = 1000
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+triggerAll = RoundState=2
+triggerAll = var(43)<1000
+triggerAll = (var(46)=0&&fvar(19)=0)||(var(46)!=0&&fvar(19)=0&&GameTime%5=0)||(var(46)=0&&fvar(19)!=0&&GameTime%20=0)
+triggerAll = StateNo!=430&&StateNo!=435&&StateNo!=440&&StateNo!=450&&StateNo!=455&&StateNo!=460&&StateNo!=470&&(StateNo!=[2000,3199])
+triggerAll = (StateNo!=[1000,1005])&&(StateNo!=[1020,1025])&&StateNo!=1201&&StateNo!=1210&&StateNo!=1421&&(StateNo!=[1820,1824])
+trigger1 = MoveType = H || Ctrl = 1
+trigger2 = (NumHelper(8040)>0&&Helper(8040),Time%2=0)||NumHelper(8040)<=0
+trigger2 = MoveType = A
+trigger2 = (NumHelper(8040)>0&&Helper(8040),Time%3=0)||NumHelper(8040)<=0
+v = 43
+value = 1+var(7)/10000%10
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = var(42)>0
+v = 43
+value = ifelse(var(42)>=300,-20-(var(42)>=400)*20-(var(42)>=600)*20,ifelse(var(42)>=10,-10,-var(42)))
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = var(42)>0
+v = 42
+value = ifelse(var(42)>=300,-20-(var(42)>=400)*20-(var(42)>=600)*20,ifelse(var(42)>=10,-10,-var(42)))
+ignorehitpause = 1
+
+[State -2]
+Type = VarAdd
+trigger1 = var(7)/100000%10>0&&var(42)>0
+v = 42
+value = ifelse(var(42)>=30,-var(7)/100000%10-(var(42)>=300)*5-(var(42)>=400)*5-(var(42)>=600)*10,-var(7)/100000%10)
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = 1
+v = 42
+value = ifelse(var(42)>=1000,1000,ifelse(var(42)<0,0,var(42)))
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = 1
+v = 43
+value = ifelse(var(43)>=1000,1000,ifelse(var(43)<=0,0,var(43)))
+ignorehitpause = 1
+
+[State -2]
+Type = VarSet
+trigger1 = RoundState = 1
+trigger1 = (StateNo=[191,199])||(StateNo=[4000,4199])
+trigger1 = Time=10||var(43)<=0
+trigger2 = var(7)/10000%10=9
+v = 43
+value = 1000
+ignorehitpause = 1

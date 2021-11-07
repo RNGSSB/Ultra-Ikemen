@@ -1,0 +1,843 @@
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　イントロ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+; 191                       : やりがいのある
+; 192                       : 他人の気がしない
+; 193                       : 知らない顔
+; 194                       : パンダ
+; 195                       : 鬼退治
+; 4100                      : ナイフを取り出す
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　勝利ポーズ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+; 181                       : 桜吹雪の舞う浮き世
+; 4200                      : 完全勝利
+; 4210                      : 快勝
+; 4220                      : 辛勝
+; 4300                      : 通常勝利
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　技一覧Statedef管理
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+; var(1)  = AI専用
+; var(2)  = AI専用
+; var(3)  = Color Rank Change
+; var(4)  = 
+; var(5)  = 
+; var(6)  = HANDICAP(RESET)
+; var(7)  = HANDICAP(GAUGE・SB)
+; var(8)  = HANDICAP(CUSTOM)
+; var(9)  = HANDICAP(BOSS)
+; var(10) = HANDICAP(ATK-DEF)
+; var(11) = 
+; var(12) = HANDICAP(SKILL-SPEED)
+; var(13) = HANDICAP(SKILL-CHANGE)
+; var(14) = 
+; var(15) = HANDICAP(VLG)
+; var(16) = HANDICAP(無敵)
+; var(17) = HANDICAP(GUARD)
+; var(18) = HANDICAP(EACH)
+; var(19) = 使用判定(立屈空・強版)
+; var(20) = 一時判定用
+; var(21) = 使用判定(立屈空・中版)
+; var(22) = Air Jump
+; var(23) = Air Dash
+; var(24) = Air High Jump
+; var(25) = 第0補正(DIRECT)
+; var(26) = 使用判定(特殊中段)
+; var(27) = 使用判定(固有)
+; var(28) = D-Counter
+; var(29) = D-Counter
+; var(30) = 使用判定
+; var(31) = 使用判定
+; var(32) = MAGIC CIRCUIT(制限時間)
+; var(33) = MAGIC CIRCUIT(魔力解放)
+; var(34) = MAGIC CIRCUIT(制限時間減少判定)
+; var(35) = MAGIC CIRCUIT(開始判定)
+; var(36) = 
+; var(37) = 一時判定用
+; var(38) = 
+; var(39) = 
+; var(40) = LIFE BREAK
+; var(41) = ガードブレイク
+; var(42) = Artificial GAUGE(Change)
+; var(43) = Artificial GAUGE
+; var(44) = AI-LEARNING(Summon)
+; var(45) = 
+; var(46) = MAGIC CIRCUIT(SB)
+; var(47) = VLG(OPEN/CLOSE) AND MAGIC CIRCUIT(Excess)
+; var(48) = VLG(QUANTITY)
+; var(49) = VLG(SWITCH)
+; var(50) = 
+; var(51) = AI-LEARNING(airjuggle)
+; var(52) = 
+; var(53) = AI-LEARNING(中段)
+; var(54) = 
+; var(55) = Temporary
+; var(56) = Temporary
+; var(57) = Temporary
+; var(58) = Temporary
+; var(59) = Temporary
+
+; fvar(1) = commonアニメ復帰用
+; fvar(2) = 使用判定
+; fvar(3) = 使用判定
+; fvar(4) = 使用判定
+; fvar(5) = 使用判定
+; fvar(6) = 使用判定
+; fvar(7) = 使用判定
+; fvar(8) = 使用判定
+; fvar(9) = 
+; fvar(10) = AI-LEARNING(Round JUDGMENT)
+; fvar(11) = AI-LEARNING(防御学習用一次判定)
+; fvar(12) = AI-LEARNING(防御学習用近接)
+; fvar(13) = AI-LEARNING(防御学習用中距離以上)
+; fvar(14) = AI-LEARNING(ゲージ)
+; fvar(15) = AI-LEARNING(弱永久防止)
+; fvar(16) = D-Counter
+; fvar(17) = SHACKLE
+; fvar(18) = SHACKLE
+; fvar(19) = SHACKLE
+; fvar(20) = SHACKLE
+; fvar(21) = 第1補正(Hit Second)
+; fvar(22) = 第2補正(Easy)
+; fvar(23) = 第3補正(Hit First)
+; fvar(24) = 第4補正(Normal)
+; fvar(25) = CIRCUIT BREAK-Shackle
+; fvar(26) = ヴァイタルソース用
+; fvar(27) = 第5補正(Fire)
+; fvar(28) = 
+; fvar(29) = 
+; fvar(30) = 各々専用判定(Counter・HANDICAP...etc)
+; fvar(31) = 
+; fvar(32) = 
+; fvar(33) = AI-LEARNING(Reflection - Safety)
+; fvar(34) = AI-LEARNING(Multiple Attack - Safety)
+; fvar(35) = AI-LEARNING(Random Move)
+; fvar(36) = 
+; fvar(37) = 
+; fvar(38) = GUARDBREAK一時判定用
+; fvar(39) = 一時
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;      基本データ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+; キャラクター基準値の設定
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Data]
+life              = 1000
+attack            = 100
+defence           = 100
+power             = 3000
+fall.defence_up   = 50
+liedown.Time      = 40
+airjuggle         = 18
+sparkno           = -1
+guard.sparkno     = -1
+KO.echo           = 0
+volume            = 255
+IntPersistIndex   = 0
+FloatPersistIndex = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+; サイズ指定
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Size]
+xScale           = 1
+yScale           = 1
+ground.back      = 12
+ground.front     = 12
+air.back         = 12
+air.front        = 12
+height           = 65
+attack.dist      = 160
+proj.attack.dist = 90
+proj.doscale     = 0
+head.pos         = -1, -87
+mid.pos          = -3, -61
+shadowoffset     = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+; 移動速度の設定
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Velocity]
+walk.fwd     = 1.6
+walk.back    = -1.2
+run.fwd      = 6,0
+run.back     = -6,3
+jump.neu     = 0, -9.22
+jump.back    = -1.6
+jump.fwd     = 2.4
+runjump.back = -2.7,-9.15
+runjump.fwd  = 2.7,-9.15
+airjump.neu  = 0, -8.48
+airjump.back = -1.6,-8
+airjump.fwd  = 2.4, -8
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+; 動作の設定
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Movement]
+airjump.num     = 1
+airjump.height  = 30
+yaccel          = .47
+stand.friction  = .85
+crouch.friction = .82
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　イントロ分岐
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 190]
+type        = S
+physics     = N
+ctrl        = 0
+
+[State -1, やりがいのある奴]
+Type = ChangeState
+triggerAll = Time = 0
+trigger1 = Enemy(0),Name = "Dust of Osiris"         || Enemy(1),Name = "Dust of Osiris"
+trigger2 = Enemy(0),Name = "Warachia"               || Enemy(1),Name = "Warachia"
+trigger3 = Enemy(0),Name = "Warakia"                || Enemy(1),Name = "Warakia"
+trigger4 = Enemy(0),Name = "Nrvnqsr Chaos"          || Enemy(1),Name = "Nrvnqsr Chaos"
+trigger5 = Enemy(0),Name = "Nrvnqsr_Chaos"          || Enemy(1),Name = "Nrvnqsr_Chaos"
+trigger6 = Enemy(0),Name = "Arcueid Brunestud"      || Enemy(1),Name = "Arcueid Brunestud"
+trigger7 = Enemy(0),Name = "Arcueid_Brunestud"      || Enemy(1),Name = "Arcueid_Brunestud"
+trigger8 = Enemy(0),Name = "Arcueid"                || Enemy(1),Name = "Arcueid"
+trigger9 = Enemy(0),Name = "Akaitsuki"              || Enemy(1),Name = "Akaitsuki"
+trigger10 = Enemy(0),Name = "ARCHETYPE:EARTH"       || Enemy(1),Name = "ARCHETYPE:EARTH"
+value = 191
+
+[State -1, 他人の気がしない]
+Type = ChangeState
+triggerAll = Time = 0
+trigger1 = Enemy(0),Name = "Ryougi Shiki"             || Enemy(1),Name = "Ryougi Shiki"
+trigger2 = Enemy(0),Name = "Ryougi_Shiki"             || Enemy(1),Name = "Ryougi_Shiki"
+trigger3 = Enemy(0),Name = "Shiki Ryougi"             || Enemy(1),Name = "Shiki Ryougi"
+trigger4 = Enemy(0),Name = "Shiki_Ryougi"             || Enemy(1),Name = "Shiki_Ryougi"
+trigger5 = Enemy(0),Name = "Aoko Aozaki"              || Enemy(1),Name = "Aoko Aozaki"
+trigger6 = Enemy(0),Name = "Aoko_Aozaki"              || Enemy(1),Name = "Aoko_Aozaki"
+trigger7 = Enemy(0),Name = "Aozaki Aoko"              || Enemy(1),Name = "Aozaki Aoko"
+trigger8 = Enemy(0),Name = "Aozaki_Aoko"              || Enemy(1),Name = "Aozaki_Aoko"
+trigger9 = Enemy(0),Name = "Aoko Aozaki 7thMoonStyle" || Enemy(1),Name = "Aoko Aozaki 7thMoonStyle"
+trigger10 = Enemy(0),Name = "Aoko_M"                  || Enemy(1),Name = "Aoko_M"
+value = 192
+
+[State -1, 知らない顔]
+Type = ChangeState
+triggerAll = Time = 0
+trigger1 = Enemy(0),Name = "Shiki Tohno"        || Enemy(1),Name = "Shiki Tohno"
+trigger2 = Enemy(0),Name = "Shiki_Tohno"        || Enemy(1),Name = "Shiki_Tohno"
+trigger3 = Enemy(0),Name = "Tohno Shiki"        || Enemy(1),Name = "Tohno Shiki"
+trigger4 = Enemy(0),Name = "Tohno_Shiki"        || Enemy(1),Name = "Tohno_Shiki"
+trigger5 = Enemy(0),Name = "Hisui"              || Enemy(1),Name = "Hisui"
+trigger6 = Enemy(0),Name = "Maximum_Cute_Hisui" || Enemy(1),Name = "Maximum_Cute_Hisui"
+trigger7 = Enemy(0),Name = "Kohaku"             || Enemy(1),Name = "Kohaku"
+trigger8 = Enemy(0),Name = "Satsuki Yumiduka"   || Enemy(1),Name = "Satsuki Yumiduka"
+trigger9 = Enemy(0),Name = "Satsuki_Yumiduka"   || Enemy(1),Name = "Satsuki_Yumiduka"
+trigger10 = Enemy(0),Name = "Yumiduka_Satsuki"   || Enemy(1),Name = "Yumiduka_Satsuki"
+trigger11 = Enemy(0),Name = "satsuki EX"         || Enemy(1),Name = "satsuki EX"
+trigger12 = Enemy(0),Name = "Riesbyfe Stridberg" || Enemy(1),Name = "Riesbyfe Stridberg"
+trigger13 = Enemy(0),Name = "Riesbyfe_Stridberg" || Enemy(1),Name = "Riesbyfe_Stridberg"
+trigger14 = Enemy(0),Name = "Ciel"               || Enemy(1),Name = "Ciel"
+trigger15 = Enemy(0),Name = "CHIEL"              || Enemy(1),Name = "CHIEL"
+trigger16 = Enemy(0),Name = "PsychoCiel"         || Enemy(1),Name = "PsychoCiel"
+trigger17 = Enemy(0),Name = "Sion Eltnam Atlasia" || Enemy(1),Name = "Sion Eltnam Atlasia"
+trigger18 = Enemy(0),Name = "Sion_Eltnam_Atlasia" || Enemy(1),Name = "Sion_Eltnam_Atlasia"
+value = 193
+
+[State -1, パンダ]
+Type = ChangeState
+triggerAll = Time = 0
+trigger1 = Enemy(0),Name = "Shiki Nanaya"       || Enemy(1),Name = "Shiki Nanaya"
+trigger2 = Enemy(0),Name = "Shiki_Nanaya"       || Enemy(1),Name = "Shiki_Nanaya"
+trigger3 = Enemy(0),Name = "Nanaya Shiki"       || Enemy(1),Name = "Nanaya Shiki"
+trigger4 = Enemy(0),Name = "Nanaya_Shiki"       || Enemy(1),Name = "Nanaya_Shiki"
+value = 194
+
+[State -1, 古今東西鬼退治]
+type = ChangeState
+triggerAll = Time = 0
+trigger1 = Enemy(0),Name = "Kishima kouma"     || Enemy(1),Name = "Kishima kouma"
+trigger2 = Enemy(0),Name = "Kishima_kouma"     || Enemy(1),Name = "Kishima_kouma"
+trigger3 = Enemy(0),Name = "KishiMAX"          || Enemy(1),Name = "KishiMAX"
+trigger4 = Enemy(0),Name = "Akiha Tohno"        || Enemy(1),Name = "Akiha Tohno"
+trigger5 = Enemy(0),Name = "Akiha_Tohno"        || Enemy(1),Name = "Akiha_Tohno"
+trigger6 = Enemy(0),Name = "Tohno_Akiha"        || Enemy(1),Name = "Tohno_Akiha"
+trigger7 = Enemy(0),Name = "Akiha_Vermilion"    || Enemy(1),Name = "Akiha_Vermilion"
+trigger8 = Enemy(0),Name = "Akiha"              || Enemy(1),Name = "Akiha"
+trigger9 = Enemy(0),Name = "Sion TATARI"        || Enemy(1),Name = "Sion TATARI"
+trigger10 = Enemy(0),Name = "Sion_TATARI"        || Enemy(1),Name = "Sion_TATARI"
+trigger11 = Enemy(0),Name = "Warakia"            || Enemy(1),Name = "Warakia"
+trigger12 = Enemy(0),Name = "White_Len(CPU)"     || Enemy(1),Name = "White_Len(CPU)"
+trigger13 = Enemy(0),Name = "White_Len"          || Enemy(1),Name = "White_Len"
+trigger14 = Enemy(0),Name = "Warachia"           || Enemy(1),Name = "Warachia"
+trigger15 = Enemy(0),Name = "Dust of Osiris"     || Enemy(1),Name = "Dust of Osiris"
+trigger16 = Enemy(0),Name = "satsuki EX"         || Enemy(1),Name = "satsuki EX"
+trigger17 = Enemy(0),Name = "Remilia_Scarlet"   || Enemy(1),Name = "Remilia_Scarlet"
+trigger18 = Enemy(0),Name = "Flandre_Scarlet"   || Enemy(1),Name = "Flandre_Scarlet"
+trigger19 = Enemy(0),Name = "Demitri"           || Enemy(1),Name = "Demitri"
+trigger20 = Enemy(0),Name = "dio"              || Enemy(1),Name = "dio"
+trigger21 = Enemy(0),Name = "Nrvnqsr Chaos"      || Enemy(1),Name = "Nrvnqsr Chaos"
+trigger22 = Enemy(0),Name = "Nrvnqsr_Chaos"      || Enemy(1),Name = "Nrvnqsr_Chaos"
+trigger23 = Enemy(0),Name = "Chaos Nrvnqsr"      || Enemy(1),Name = "Chaos Nrvnqsr"
+trigger24 = Enemy(0),Name = "Chaos_Nrvnqsr"      || Enemy(1),Name = "Chaos_Nrvnqsr"
+trigger25 = Enemy(0),Name = "kouma kishima"     || Enemy(1),Name = "kouma kishima"
+value = 195
+
+[State -1, 通常イントロ(ナイフを取り出す)]
+Type = ChangeState
+trigger1 = Time = 0
+value = 4100
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　やりがいのある奴
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 191]
+type        = S
+anim        = 191
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = PowerSet
+trigger1 = RoundNo = 1
+trigger1 = Time = 1
+value = 1000
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+trigger2 = Time = 72
+value = s10, 10+(Time>=72)*1
+channel = 0
+
+[State -1]
+Type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　自分
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 192]
+type        = S
+anim        = 192
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = PowerSet
+trigger1 = RoundNo = 1
+trigger1 = Time = 1
+value = 1000
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(3) = 0
+trigger2 = Time = 72
+trigger3 = Time = 208
+value = s10, 20+(Time>=72)*1+(Time>=208)*1
+channel = 0
+
+[State -1]
+Type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　新八
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 193]
+type        = S
+anim        = 193
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = PowerSet
+trigger1 = RoundNo = 1
+trigger1 = Time = 1
+value = 1000
+
+[State -1]
+Type = PlaySnd
+trigger1 = Time = 24
+trigger2 = Time = 148
+value = s10, 30+(Time>=148)*1
+channel = 0
+
+[State -1]
+Type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　パンダ
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 194]
+type        = S
+anim        = 194
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = PowerSet
+trigger1 = RoundNo = 1
+trigger1 = Time = 1
+value = 1000
+
+[State -1]
+Type = PlaySnd
+trigger1 = Time = 24
+trigger2 = Time = 108
+trigger3 = Time = 216
+value = s10, 40+(Time>=108)*1+(Time>=216)*1
+channel = 0
+
+[State -1]
+Type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　キシMAX
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 195]
+type        = S
+anim        = 191
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = PowerSet
+trigger1 = RoundNo = 1
+trigger1 = Time = 1
+value = 1000
+
+[State -1]
+Type = PlaySnd
+trigger1 = Time = 24
+trigger2 = Time = 108
+value = s10, 20+(Time>=108)*30
+channel = 0
+
+[State -1]
+Type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　通常イントロ [ ナイフ ]
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 4100]
+type        = S
+anim        = 191
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = VarRandom
+trigger1 = Time = 0
+v = 59
+range = 2
+ignorehitpause = 1
+
+[State -1]
+Type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+type = PowerSet
+trigger1 = Time = 1
+trigger1 = RoundNo = 1
+value = 1000
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(59)%10=0
+trigger1 = AnimElemTime(10) = 0
+value = s10, 0+random%2
+channel = 0
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(59)%10=1
+trigger1 = AnimElemTime(10) = 0
+value = s10, 41
+channel = 0
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(59)%10>1
+trigger1 = AnimElemTime(10) = 0
+value = s10, 50
+channel = 0
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(20) = 0
+value = s3, 105
+
+[State -1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　勝利ポーズ分岐
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 180]
+type        = S
+physics     = N
+ctrl        = 0
+
+[State -1, 桜吹雪の舞う浮き世]
+Type = ChangeState
+triggerAll = Time = 0
+trigger1 = var(57) = 100
+value = 181
+
+[State -1, 通常勝利]
+Type = ChangeState
+trigger1 = Time = 0
+trigger1 = MatchOver!=0&&Random<600||Random<400
+value = 4300
+
+[State -1, 完全勝利]
+Type = ChangeState
+triggerAll = Time = 0
+trigger1 = Life = LifeMax&&Random<250||MatchOver!=0&&Random<750
+value = 4200
+
+[State -1, 快勝]
+Type = ChangeState
+triggerAll = Time = 0
+trigger1 = Life >= LifeMax*0.85 && Life < LifeMax
+value = 4210
+
+[State -1, 辛勝]
+Type = ChangeState
+triggerAll = Time = 0
+trigger1 = Life < LifeMax*0.25 && Life > 0
+value = 4220
+
+[State -1, 通常勝利]
+Type = ChangeState
+trigger1 = Time = 0
+value = 4300
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　桜吹雪の舞う浮き世
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 181]
+type        = S
+anim        = 181
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = VarSet
+trigger1 = 1
+v = 57
+value = 0
+ignorehitpause = 1
+
+[State -1]
+Type = AssertSpecial
+trigger1 = Time < 260
+flag = RoundNotOver
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = PlaySnd
+trigger1 = Time = 46
+trigger2 = Time = 146
+value = s15, 30+(Time>=146)*1
+channel = 0
+
+[State -1]
+type = ChangeAnim
+trigger1 = Anim = 181
+trigger1 = Time >= 146
+value = 180
+ignorehitpause = 1
+persistent = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　完全勝利
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 4200]
+type        = S
+anim        = 4200
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = AssertSpecial
+trigger1 = var(20)%10=0&&Time<200
+trigger2 = var(20)%10=1&&Time<210
+trigger3 = var(20)%10=2&&Time<220
+trigger4 = var(20)%10=3&&Time<200
+flag = RoundNotOver
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = VarSet
+trigger1 = Time = 0
+v = 20
+value = random%4
+ignorehitpause = 1
+
+[State -1]
+Type = VarSet
+trigger1 = Time = 0
+trigger1 = var(20)%10=0
+v = 20
+value = random%4
+ignorehitpause = 1
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(6) = 0
+value = s12, 150
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(20)%10=0&&AnimElemTime(17)=0
+trigger2 = var(20)%10=1&&AnimElemTime(13)=0
+value = s11, 10+(var(20)%10!=0)*10
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(20)%10=2&&(AnimElemTime(8)=30||AnimElemTime(12)=0||AnimElemTime(24)=0)
+value = s11, 30+(AnimElemTime(8)>30)*1+(AnimElemTime(12)>0)*1
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(20)%10=3&&(AnimElemTime(10)=0||AnimElemTime(18)=0)
+value = s11, 40+(AnimElemTime(10)>0)*1
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(10) = 0
+value = s3, 87
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(18) = 0
+value = s3, 105
+
+[State -1]
+type = Helper
+trigger1 = AnimElemTime(6) = 0
+Stateno = 9100
+ID = 9100
+pos = 0, -100
+postype = P1
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　快勝
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 4210]
+type        = S
+anim        = 4210
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = AssertSpecial
+trigger1 = Time<130
+flag = RoundNotOver
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(2) = 0
+value = s11, 20
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(4) = 0
+value = s3, 105
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　辛勝
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 4220]
+type        = S
+anim        = 4220
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = AssertSpecial
+trigger1 = Time<180
+flag = RoundNotOver
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(2)=0||AnimElemTime(6)=0||AnimElemTime(13)=20
+value = s11, 30+(AnimElemTime(2)>0)*1+(AnimElemTime(6)>20)*1
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(5) = 0
+value = s3, 105
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　通常勝利
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Statedef 4300]
+type        = S
+anim        = ifelse(random<500,4300,4310)
+velset      = 0, 0
+ctrl        = 0
+
+[State -1]
+Type = AssertSpecial
+trigger1 = var(20)%10=0&&Time<140
+trigger2 = var(20)%10=1&&Time<90
+trigger3 = var(20)%10=2&&Time<120
+trigger4 = var(20)%10=3&&Time<160
+trigger5 = var(20)%10=4&&Time<120
+flag = RoundNotOver
+
+[State -1]
+Type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State -1]
+Type = VarSet
+trigger1 = Time = 0
+v = 20
+value = random%4
+ignorehitpause = 1
+
+[State -1]
+Type = VarSet
+trigger1 = Time = 0
+trigger1 = var(20)%10=1
+v = 20
+value = random%4
+ignorehitpause = 1
+
+[State -1]
+Type = VarSet
+trigger1 = Time = 0
+trigger1 = MatchOver!=0
+v = 20
+value = 3+random%2
+ignorehitpause = 1
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(20)%10=0
+trigger1 = AnimElemTime(2)=0||AnimElemTime(10)=0
+value = s11, 40+(AnimElemTime(2)>0)*1
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(20)%10=1
+trigger1 = AnimElemTime(2)=0
+value = s11, 10
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(20)%10=2
+trigger1 = AnimElemTime(2)=0
+value = s11, 20
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(20)%10=3
+trigger1 = Time=10||Time=40||Time=110
+value = s11, 30+(Time>10)*1+(Time>40)*1
+
+[State -1]
+Type = PlaySnd
+trigger1 = var(20)%10=4
+trigger1 = Time=10||Time=40
+value = s11, 30+(Time>10)*40
+
+[State -1]
+Type = PlaySnd
+trigger1 = AnimElemTime(5) = 0
+value = s3, 105

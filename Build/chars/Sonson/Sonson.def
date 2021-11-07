@@ -1,0 +1,33 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Sonson"
+displayname = "Sonson"
+versiondate = 26,04,2011
+mugenversion = 1.0
+author = "FerchoGTX, Ryou Win & Kong"
+editor = "REDHOT"
+pal.defaults = 1,2,3,4,5,6
+
+[Files]
+cmd      = CMND/Sonson.cmd
+cns      = CNS/Sonson.cns
+st       = CNS/Sonson.cns
+st1      = CNS/config.txt
+stcommon = CNS/common1.cns
+sprite   = SPRITES/Sonson.sff
+anim     = ANIMATIONS/Sonson.air
+sound    = SOUNDS/Sonson.snd
+pal1     = PALETTES/Sonson_01.act
+pal2     = PALETTES/Sonson_02.act
+pal3     = PALETTES/Sonson_03.act
+pal4     = PALETTES/Sonson_04.act
+pal5     = PALETTES/Sonson_05.act
+pal6     = PALETTES/Sonson_06.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

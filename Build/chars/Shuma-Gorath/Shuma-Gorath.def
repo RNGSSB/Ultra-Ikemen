@@ -1,0 +1,29 @@
+; Definition file for Shuma Gorath
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name ="Shuma-Gorath"
+displayname ="Shuma-Gorath"
+versiondate =31,12,2011
+mugenversion =1.0
+author ="Cyanide"
+editor       = "REDHOT"
+pal.defaults =1,2,3,4,5,6
+
+; Files for the player
+[Files]
+cmd      = CMND/Shuma-Gorath.cmd
+cns      = CNS/Shuma-Gorath.cns
+st       = CNS/Shuma-Gorath.cns
+st1      = CNS/config.txt
+stcommon = CNS/common1.cns
+sprite   = SPRITES/Shuma-Gorath.sff
+anim     = ANIMATIONS/Shuma-Gorath.air
+sound    = SOUNDS/Shuma-Gorath.snd
+pal1     = PALETTES/Shuma-Gorath_01.act
+pal2     = PALETTES/Shuma-Gorath_02.act
+pal3     = PALETTES/Shuma-Gorath_03.act
+pal4     = PALETTES/Shuma-Gorath_04.act
+pal5     = PALETTES/Shuma-Gorath_05.act
+pal6     = PALETTES/Shuma-Gorath_06.act

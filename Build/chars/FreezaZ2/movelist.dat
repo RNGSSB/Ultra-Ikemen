@@ -1,0 +1,45 @@
+<#f0f000>:Command Normals:</>
+  Axe Kick        _F^HK
+
+  Tail Lance        _F^HP
+
+  Death Star (LAUNCH)       _D^HK
+
+  Extended Elbow (HOLD)       (in air) ^LP
+
+  Saucer Kick (HOLD)        (in air) ^MK
+
+  Dive Kick       (in air) _D^MK
+
+  Tail Spin (BOUNCE)      (in air)  ^HK
+
+<#f0f000>:Special Moves:</>
+  Head Charge (AIR) (EX)        _D_DF_F^P
+
+  Death Wave (AIR) (EX)        _D_DB_B^P
+
+  Dancing Elbow (EX)        _D_DB_B^K
+
+  After You       _B_D_DB^K
+
+<#f0f000>:Super Moves:</>
+  Death Beam
+    LVL 1   _D_DF_F_D_DF_F^P
+    LVL 2   _D_DF_F_D_DF_F^P_+^P
+
+  Death Saw
+    LVL 1   _D_DB_B_F^P
+
+  Death Ball (AIR) (HOLD)
+    LVL 1   _D_DB_B_D_DB_B^P
+    LVL 2   _D_DB_B_D_DB_B^P_+^P
+    LVL 3   _D_DB_B_D_DB_B^3P
+
+  Tail Press Nightmare (POWER)
+    LVL 3   _D_DF_F_D_DF_F^K
+
+<#f0f000>:Power Mode:</>
+  Sadism Mode    _D_D^MP_+^MK
+    then Dash Teleport    _F_F, _B_B, or (in air) _D_D
+    or Torture Gun    _B_D_DB^P (tap)
+    or Death Charge   _D_D^MP_+^MK or (charge) _B, _F_B_F^P_+^P

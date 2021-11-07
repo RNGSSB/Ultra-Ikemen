@@ -1,0 +1,41 @@
+;■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+;アルクェイド・ブリュンスタッド(Ver.0.70)　  キャラクターデータセッティング
+;■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+;━|　 　　基本情報 　　　|━━━━━━━━━━━━━━━━━━━━━━━━
+[Info]
+Name         = "Arcueid_Brunestud"  
+DisplayName  = "Arcueid_Brunestud"  
+VersionDate  = 07,16,2018         
+MugenVersion = 04,14,2002           
+Author       = "Asuka-Masaki"             
+Pal.Defaults = 2,3,4,7,8,9,10             
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;━| 必要なファイルの設定 |━━━━━━━━━━━━━━━━━━━━━━━━
+[Files]
+cmd       = Arcueid_AA.cmd.cns 
+cns       = Arcueid_AA.cns
+st        = Arcueid_AA.cns
+st1       = Arcueid_AA_00.cns
+st2       = Arcueid_AA_01.cns
+st3       = Arcueid_AA_02.cns
+st4       = Arcueid_AA_03.cns
+st5       = Arcueid_AA_04.cns
+st6       = helper.cns
+stcommon  = Arcueid_common.cns
+sprite    = Arcueid_AA.sff
+anim      = Arcueid_AA.air
+sound     = Arcueid_AA.snd
+;━| 必要なファイルの設定 |━━━━━━━━━━━━━━━━━━━━━━━━
+pal1  = Act/01_Arcueid.1.act
+pal2  = Act/02_Arcueid.2.act
+pal3  = Act/03_Shiki.act
+pal4  = Act/04_Saber.act
+pal5  = Act/05_Dark.act
+pal6  = Act/06_Light.act
+pal7  = Act/07_Arcueid.1-E.act
+pal8  = Act/08_Arcueid.2-E.act
+pal9  = Act/09_Shiki-E.act
+pal10 = Act/10_Saber-E.act
+pal11 = Act/11_Dark-E.act
+pal12 = Act/12_Light-E.act
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  

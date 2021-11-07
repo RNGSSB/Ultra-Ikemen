@@ -1,0 +1,448 @@
+[Statedef -3]
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+;　AI CUSTOM
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3, Generalized-AI(Configuration)]
+Type = VarSet
+trigger1 = 1
+v = 2
+value = 000001
+
+; 1 … AI(0-起動しない, 1-常時起動)
+; 2 … ARTIFICE(0-DEFAULT,1-8LV形式(確率低下), 9-禁止)
+; 3 … INTERCEPTION(0-DEFAULT,1-9LV形式(確率低下))
+; 4 … UNLIMITED Skill(0-DEFAULT,1-EX&DIVINE&SECRET禁止)
+; 5 … SKILL CARRYOVER(0-DEFAULT,1-2LV形式, 3-DEMISE優先)
+; 6 … TRICKSTER(0-DEFAULT,1-間接優先, 2-間接最優先, 3-無計画)
+
+[State -3, COLOR RANK MODE]
+Type = VarSet
+trigger1 = 1
+v = 3
+value = 0   ;カラーランク（モード）
+
+; 0 … デフォルト
+; 1 … それぞれのカラーごとにキャラクターランクが変化するので注意。（個別ハンディキャップ変更全て不可）
+
+[State -3, HANDICAP(CUSTOM)]
+Type = VarSet
+trigger1 = var(3)%10=0
+v = 9
+value = 000000000       ;キャラクターランク（モード）
+
+; 0 … デフォルト
+; 1 … 村人A
+; 2 … ネームドキャラ
+; 3 … 主人公
+; 4 … 小ボス
+; 5 … 中ボス
+; 6 … ボス
+; 7 … ラスボス
+; 8 … 裏ボス
+; 9 … イベントボス
+
+;※2桁以上からはリクエストによるカスタムを採用
+;2桁 … ゲージ（0-DEFAULT、1-常時ゲージ０、2-常時MAX、3-常時BLOOD HEAT、4-常時UNLIMITED）
+;3桁 … ダメージ攻撃力補正値(0-DEFAULT,1-8LV形式, 9-EX)
+;4桁 … コンボ補正(0-DEFAULT,1-8LV形式、9-コンボ補正無し）
+;5桁 … 無敵(0-DEFAULT,1-8LV形式、9-ほぼ完全無敵）
+;6桁 … 食らい抜け(0-DEFAULT,1-9LV形式)
+;7桁 … 攻撃速度(0-DEFAULT,1-9LV形式) ※5以上からは投げにも適用
+;8桁 … ARTIFICIAL GAUGE RECOVERY(0-DEFAULT,1-8LV形式, 9-EX)
+;9桁 … 常時ゲージ上昇LV（0-DEFAULT,1-9LV形式）
+
+;※リクエストカスタムの攻撃速度は一括設定で行われるため融通がききませんので、個別に設定したい場合はそれぞれの規定の値を変更して下さい。
+
+[State -3, HANDICAP(CUSTOM)]
+Type = VarSet
+trigger1 = var(3)%10=0
+v = 8
+value = 0000000       ;カスタム（モード）
+
+; 1 … Damage Scaling Reset Arc Skill LV(0-DEFAULT,1-9LV形式)
+; 2 … ARTIFICIAL GAUGE SCALING LV(0-DEFAULT,1-9LV形式)
+; 3 … POWER GAUGE SAVE LV(0-DEFAULT,1-9LV形式)
+; 4 … Armor LV(0-DEFAULT,1-9LV形式)
+; 5 … DEMISE ARC(Easy Version) Liberation LV(0-DEFAULT,1-9LV形式)
+; 6 … Emergency Avoidance LV(0-DEFAULT,1-9LV形式)
+; 7 … Summon LV(0-DEFAULT,1-9LV形式)
+
+[State -3, HANDICAP(RESET)]
+Type = VarSet
+trigger1 = var(3)%10=0
+v = 6
+value = 000000       ;リセットするハンディキャップを指定
+
+; 1 … 無敵
+; 2 … 攻撃速度
+; 3 … 食らい抜け
+; 4 … 防御力補正値
+; 5 … アーマー
+; 6 … ガードブレイク
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -3, HANDICAP(EX-ATK)]
+Type = Null
+trigger1 = var(9)%10=0
+trigger1 = var(10) := (000)   ;デフォルト
+trigger2 = var(9)%10=1
+trigger2 = var(10) := (211)   ;村人A
+trigger3 = var(9)%10=2
+trigger3 = var(10) := (422)   ;ネームドキャラ
+trigger4 = var(9)%10=3
+trigger4 = var(10) := (623)   ;主人公
+trigger5 = var(9)%10=4
+trigger5 = var(10) := (834)   ;小ボス
+trigger6 = var(9)%10=5
+trigger6 = var(10) := (935)   ;中ボス
+trigger7 = var(9)%10=6
+trigger7 = var(10) := (947)   ;ボス
+trigger8 = var(9)%10=7
+trigger8 = var(10) := (958)   ;ラスボス
+trigger9 = var(9)%10=8
+trigger9 = var(10) := (979)   ;裏ボス
+trigger10= var(9)%10=9
+trigger10= var(10) := (999)   ;イベントボス
+
+; 1 … Damage Bonus LIFE LV(1～9)
+; 2 … Damage Scaling Reset LV(1～9)
+; 3 … Damage Scaling Reset Arc Skill LV(1～9)
+
+[State -3, HANDICAP(GAUGE)]
+Type = Null
+trigger1 = var(9)%10=0
+trigger1 = var(7) := (000000000)   ;デフォルト
+trigger2 = var(9)%10=1
+trigger2 = var(7) := (110011100)   ;村人A
+trigger3 = var(9)%10=2
+trigger3 = var(7) := (321122200)   ;ネームドキャラ
+trigger4 = var(9)%10=3
+trigger4 = var(7) := (421233300)   ;主人公
+trigger5 = var(9)%10=4
+trigger5 = var(7) := (642344400)   ;小ボス
+trigger6 = var(9)%10=5
+trigger6 = var(7) := (853455501)   ;中ボス
+trigger7 = var(9)%10=6
+trigger7 = var(7) := (975677702)   ;ボス
+trigger8 = var(9)%10=7
+trigger8 = var(7) := (981888805)   ;ラスボス
+trigger9 = var(9)%10=8
+trigger9 = var(7) := (990999907)   ;裏ボス
+trigger10= var(9)%10=9
+trigger10= var(7) := (990999909)   ;イベントボス
+
+; 1 … 常時ゲージ上昇LV+(1～9)
+; 2 … EX GAUGE(1-常時ゲージ0、2-常時MAX、3-常時BLOOD HEAT、4-常時UNLIMITED)
+; 3 … CIRCUIT BREAK RESET LV+(1～9)
+; 4 … SHACKLE RESET LV+(1～9)
+; 5 … ARTIFICIAL GAUGE RECOVERY LV+(1~9)
+; 6 … ARTIFICIAL GAUGE SCALING LV+(1~9)
+; 7 … VITAL SOURCE LV+(1～9)
+; 8 … POWER GAUGE SAVE LV+(1～9)
+; 9 … POWER GAUGE STORE UP LV+(1～9)
+
+[State -3, HANDICAP(NOTHIT)]
+Type = Null
+trigger1 = var(9)%10=0
+trigger1 = var(16) := (00)   ;デフォルト
+trigger2 = var(9)%10=1
+trigger2 = var(16) := (00)   ;村人A
+trigger3 = var(9)%10=2
+trigger3 = var(16) := (01)   ;ネームドキャラ
+trigger4 = var(9)%10=3
+trigger4 = var(16) := (01)   ;主人公
+trigger5 = var(9)%10=4
+trigger5 = var(16) := (02)   ;小ボス
+trigger6 = var(9)%10=5
+trigger6 = var(16) := (02)   ;中ボス
+trigger7 = var(9)%10=6
+trigger7 = var(16) := (03)   ;ボス
+trigger8 = var(9)%10=7
+trigger8 = var(16) := (01)   ;ラスボス
+trigger9 = var(9)%10=8
+trigger9 = var(16) := (00)   ;裏ボス
+trigger10= var(9)%10=9
+trigger10= var(16) := (00)   ;イベントボス
+
+; 1 … 無敵レベル(1～9)
+; 2 … 無敵レベル(EX)
+
+[State -3, HANDICAP(ATTACK-SPEED)]
+Type = Null
+trigger1 = var(9)%10=0
+trigger1 = var(12) := (0000000)   ;デフォルト
+trigger2 = var(9)%10=1
+trigger2 = var(12) := (0011110)   ;村人A
+trigger3 = var(9)%10=2
+trigger3 = var(12) := (0012211)   ;ネームドキャラ
+trigger4 = var(9)%10=3
+trigger4 = var(12) := (0022222)   ;主人公
+trigger5 = var(9)%10=4
+trigger5 = var(12) := (0133332)   ;小ボス
+trigger6 = var(9)%10=5
+trigger6 = var(12) := (1144443)   ;中ボス
+trigger7 = var(9)%10=6
+trigger7 = var(12) := (1155554)   ;ボス
+trigger8 = var(9)%10=7
+trigger8 = var(12) := (1199999)   ;ラスボス
+trigger9 = var(9)%10=8
+trigger9 = var(12) := (1199999)   ;裏ボス
+trigger10= var(9)%10=9
+trigger10= var(12) := (1199999)   ;イベントボス
+
+; 1 … 必殺LV1+(1～9)
+; 2 … 必殺LV2+(1～9)
+; 3 … 必殺LV3+(1～9)
+; 4 … 必殺LV4+(1～9)
+; 5 … 必殺LV5+(1～9)
+; 6 … 投げ技LV1+(1～1)
+; 7 … 投げ技LV2+(1～1)
+
+[State -3, HANDICAP(EXTRA)]
+Type = Null
+trigger1 = var(9)%10=0
+trigger1 = var(17) := (01001)   ;デフォルト
+trigger2 = var(9)%10=1
+trigger2 = var(17) := (01001)   ;村人A
+trigger3 = var(9)%10=2
+trigger3 = var(17) := (01011)   ;ネームドキャラ
+trigger4 = var(9)%10=3
+trigger4 = var(17) := (01021)   ;主人公
+trigger5 = var(9)%10=4
+trigger5 = var(17) := (12132)   ;小ボス
+trigger6 = var(9)%10=5
+trigger6 = var(17) := (34243)   ;中ボス
+trigger7 = var(9)%10=6
+trigger7 = var(17) := (55354)   ;ボス
+trigger8 = var(9)%10=7
+trigger8 = var(17) := (99986)   ;ラスボス
+trigger9 = var(9)%10=8
+trigger9 = var(17) := (99998)   ;裏ボス
+trigger10= var(9)%10=9
+trigger10= var(17) := (99999)  ;イベントボス
+
+; 1 … Unblockable LV+(1～9)
+; 2 … Armor LV+(1～9)
+; 3 … DEMISE ARC(Easy Version) Liberation LV(1～9)
+; 4 … Emergency Avoidance LV(1～9)
+; 5 … Summon LV(1～9)
+
+[State -3, HANDICAP(RECOVERY-DEFENSE)]
+Type = Null
+trigger1 = var(9)%10=0
+trigger1 = var(13) := (0001)   ;デフォルト
+trigger2 = var(9)%10=1
+trigger2 = var(13) := (0011)   ;村人A
+trigger3 = var(9)%10=2
+trigger3 = var(13) := (0122)   ;ネームドキャラ
+trigger4 = var(9)%10=3
+trigger4 = var(13) := (0233)   ;主人公
+trigger5 = var(9)%10=4
+trigger5 = var(13) := (1244)   ;小ボス
+trigger6 = var(9)%10=5
+trigger6 = var(13) := (2456)   ;中ボス
+trigger7 = var(9)%10=6
+trigger7 = var(13) := (4567)   ;ボス
+trigger8 = var(9)%10=7
+trigger8 = var(13) := (8998)   ;ラスボス
+trigger9 = var(9)%10=8
+trigger9 = var(13) := (9998)   ;裏ボス
+trigger10= var(9)%10=9
+trigger10= var(13) := (9999)   ;イベントボス
+
+; 1 … 防御力補正値(1～9)   ; 旧ド根性
+; 2 … ガード削り無効LV+(1～9)
+; 3 … ガード復帰LV+(1～9)
+; 4 … 食らい抜け(LV+1～9)
+
+[State -3, AI]
+Type = VarSet
+triggerAll = var(1) != 1
+triggerAll = var(2)%10>0
+trigger1 = RoundState = [1,2]
+v = 1
+value = 1
+
+[State -3, AI(切断)]
+Type = VarSet
+triggerAll = var(1) = 1
+trigger1 = RoundState = 3
+trigger2 = Life <= 0
+v = 1
+value = 11
+
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2, Arc Scaling]
+Type = VarSet
+trigger1 = var(8)%10>0
+v = 10
+value = var(10)-(var(10)/100%10*100)+(var(8)%10*100)
+
+[State -2, A(Scaling)]
+Type = VarSet
+trigger1 = var(8)/10%10>0
+v = 7
+value = var(7)-(var(7)/100000%10*100000)+(var(8)/10%10*100000)
+
+[State -2, A(Scaling)]
+Type = VarSet
+trigger1 = var(8)/100%10>0
+v = 7
+value = var(7)-(var(7)/10000000%10*10000000)+(var(8)/100%10*10000000)
+
+[State -2, FIXED]
+Type = VarSet
+trigger1 = var(8)/1000%10>0
+v = 17
+value = var(17)-(var(17)/10%10*10)+(var(8)/1000%10*10)
+
+[State -2, END(Skill)]
+Type = VarSet
+trigger1 = var(8)/10000%10>0
+v = 17
+value = var(17)-(var(17)/100%10*100)+(var(8)/10000%10*100)
+
+[State -2, EMERGENCY]
+Type = VarSet
+trigger1 = var(8)/100000%10>0
+v = 17
+value = var(17)-(var(17)/1000%10*1000)+(var(8)/100000%10*1000)
+
+[State -2, SUMMON]
+Type = VarSet
+trigger1 = var(8)/1000000%10>0
+v = 17
+value = var(17)-(var(17)/10000%10*10000)+(var(8)/1000000%10*10000)
+
+[State -2, LIBERATE]
+Type = VarSet
+trigger1 = var(9)/10%10>0
+v = 7
+value = var(7)-(var(7)/10%10*10)+(var(9)/10%10*10)
+
+[State -2, LIFEATTCK]
+Type = VarSet
+trigger1 = var(9)/100%10>0
+v = 10
+value = var(10)-(var(10)%10*1)+(var(9)/100%10*1)
+
+[State -2, ATTACK]
+Type = VarSet
+trigger1 = var(9)/1000%10>0
+v = 10
+value = var(10)-(var(10)/10%10*10)+(var(9)/1000%10*10)
+
+[State -2, MISFIRE]
+Type = VarSet
+trigger1 = var(9)/10000%10>0
+v = 16
+value = var(16)-(var(16)%10*1)+(var(9)/10000%10*1+(var(9)/10000%10=9)*1)
+
+[State -2, RECOVERY]
+Type = VarSet
+trigger1 = var(9)/100000%10>0
+v = 13
+value = var(13)-(var(13)/1000%10*1000)+(var(9)/100000%10*1000)
+
+[State -2, DELAY]
+Type = VarSet
+trigger1 = var(9)/1000000%10>0
+v = 12
+value = ifelse((var(9)/1000000%10=[1,4]),var(9)/1000000%10*11111,var(9)/1000000%10*1111111)
+
+[State -2, A(GAUGE)]
+Type = VarSet
+trigger1 = var(9)/10000000%10>0
+v = 7
+value = var(7)-(var(7)/10000%10*10000)+(var(9)/10000000%10*10000)
+
+[State -2, GAUGE]
+Type = VarSet
+trigger1 = var(9)/100000000%10>0
+v = 7
+value = var(7)-(var(7)%10*1)+(var(9)/100000000%10*1)
+
+[State -2]
+Type = VarSet
+trigger1 = var(6)%10>0
+v = 16
+value = 0
+
+[State -2]
+Type = VarSet
+trigger1 = var(6)/10%10>0
+v = 12
+value = 0
+
+[State -2]
+Type = VarSet
+trigger1 = var(6)/100%10>0
+v = 13
+value = var(13)-(var(13)/1000%10*1000)
+
+[State -2]
+Type = VarSet
+trigger1 = var(6)/1000%10>0
+v = 13
+value = var(13)-(var(13)%10*1)
+
+[State -2]
+Type = VarSet
+trigger1 = var(6)/10000%10>0
+v = 17
+value = var(17)-(var(17)/10%10*10)
+
+[State -2]
+Type = VarSet
+trigger1 = var(6)/100000%10>0
+v = 17
+value = var(17)-(var(17)%10*1)
+;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[State -2, HANDICAP(COLOR)]
+Type = VarSet
+trigger1 = var(3)%10>0
+trigger1 = PalNo%10=1
+v = 9
+value = 0
+
+[State -2, HANDICAP(COLOR)]
+Type = VarSet
+trigger1 = var(3)%10>0
+trigger1 = PalNo%10=2
+v = 9
+value = 1000000
+
+[State -2, HANDICAP(COLOR)]
+Type = VarSet
+trigger1 = var(3)%10>0
+trigger1 = PalNo%10=2
+v = 8
+value = 110
+
+[State -2, HANDICAP(COLOR)]
+Type = VarSet
+trigger1 = var(3)%10>0
+trigger1 = PalNo%10=3
+v = 9
+value = 1
+
+[State -2, HANDICAP(COLOR)]
+Type = VarSet
+trigger1 = var(3)%10>0
+trigger1 = PalNo%10=4
+v = 9
+value = 11001101
+
+[State -2, HANDICAP(COLOR)]
+Type = VarSet
+trigger1 = var(3)%10>0
+trigger1 = PalNo%10>4
+v = 9
+value = PalNo%10-3
+
+[State -2, HANDICAP(COLOR)]
+Type = VarSet
+trigger1 = var(3)%10>0
+trigger1 = PalNo/10%10>0
+v = 9
+value = ifelse(PalNo%10>1,9,ifelse(PalNo%10=1,8,7))

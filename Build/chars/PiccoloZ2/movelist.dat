@@ -1,0 +1,65 @@
+<#f0f000>:Command Normals:</>
+  Knuckle Smash       _F^HP
+
+  Knee Smash        (close) ^HK or _B^HK
+
+  Eye Laser       _DF^HP
+
+  Handstand Kick (LAUNCH)       _DF^HK
+
+  Savage Sweep        _D^HK
+
+  Fang Kick       (in air) _D^MK
+
+  Rapid-Fire Kick   (in air) ^MK rapid
+
+  Elbow Drop        (in air) _D^HP
+
+  Solar Kick        (in air) _F^HK
+
+  Sonic Kick        _F_F^HK
+
+<#f0f000>:Target Combos:</>
+  Double Claw       ^HP,^HP
+
+  Jumping Knees (LAUNCH)          (close) ^HK,^HK or _F^HK,^HK
+
+<#f0f000>:Special Moves:</>
+  Command Jumping     _D^K+^K
+
+  Destructive Wave (AIR) (EX)       _D_DF_F^P
+
+  Mystic Harpoon (GRAB) (EX)        (charge) _B,_F^P
+
+  Mystic Air Harpoon (GRAB) (EX)        (charge) _D,_U^P
+
+  Carnage Blitz (EX)        (charge) _B,_F^P
+
+  Red Carnage (HOLD)       (charge) ^P or ^K
+
+  Halo Stomp (EX)       (in air) _D_DF_F^K
+
+
+
+<#f0f000>:Super Moves:</>
+  Special Beam Cannon (HOLD)
+    LVL 1-2   _D_DF_F_D_DF_F^P
+
+  Demon Thunder Legs
+    LVL 1   _D_DB_B_D_DB_B^K
+
+  Dark Lord's Army
+    LVL 1   _D_DB_B_F^K
+      then LVL 2    _D_DB_B_F^K
+
+  Seeking Bullet
+    LVL 2   _D_DF_F_D_DF_F^P_+^P
+
+  Hellzone Grenade (POWER)
+    LVL 3   _D_DB_B_D_DB_B^P
+      then I'll See You In Hell   _D_D^HP_+^HK
+
+<#f0f000>:Power Mode:</>
+  Demon Mode    _D_D^MP_+^MK
+    then Trap Blast   _D_DF_F^K or _D_DB_B^K
+    or Dead End (HOLD)    _D_D^MP+^MK
