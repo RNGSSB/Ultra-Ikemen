@@ -61,8 +61,8 @@ botscale =1.2
 
 
 [Bound]
-screenleft  = 60
-screenright = 60
+screenleft  = 30
+screenright = 30
 
 
 [StageInfo]

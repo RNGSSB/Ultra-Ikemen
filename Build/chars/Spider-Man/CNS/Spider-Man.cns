@@ -4219,14 +4219,14 @@ ground.type = Low
 air.type = low
 ground.slidetime = 15
 ground.hittime  = 20
-air.hittime = 3
+air.hittime = 20
 guard.velocity = -14
-ground.velocity = -7,-6
-air.velocity = -7,-6
+ground.velocity = -7,-14
+air.velocity = -7,-14
 airguard.velocity = -10.5,3
 yaccel = .88
-fall = 1
-air.fall = 1
+fall = 0
+air.fall = 0
 fall.animtype = DiagUp
 fall.yvelocity = 0
 fall.recover = 0
@@ -4258,13 +4258,13 @@ air.type = low
 ground.slidetime = 15
 ground.hittime  = 20
 guard.velocity = -14
-air.hittime = 3
-ground.velocity = -7,-6
-air.velocity = -7,-6
+air.hittime = 20
+ground.velocity = -7,-14
+air.velocity = -7,-14
 airguard.velocity = -10.5,3
 yaccel = .88
-fall = 1
-air.fall = 1
+fall = 0
+air.fall = 0
 fall.animtype = DiagUp
 fall.yvelocity = 0
 fall.recover = 0
@@ -4414,6 +4414,13 @@ stateno = 31304
 ID = 31304
 pos = -8,-6
 
+[State 0, CtrlSet]
+type = CtrlSet
+trigger1 = animelem = 37
+value = 1
+;ignorehitpause = 
+;persistent = 
+
 [State 1510]
 type = ChangeState
 trigger1 = AnimTime = 0
@@ -4499,13 +4506,13 @@ air.type = low
 ground.slidetime = 15
 guard.velocity = -14
 ground.hittime  = 20
-air.hittime = 3
-ground.velocity = -7,-6
-air.velocity = -7,-6
+air.hittime = 20
+ground.velocity = -7,-14
+air.velocity = -7,-14
 airguard.velocity = -10.5,3
 yaccel = .88
-fall = 1
-air.fall = 1
+fall = 0
+air.fall = 0
 fall.animtype = DiagUp
 fall.yvelocity = 0
 fall.recover = 0
@@ -4537,13 +4544,13 @@ air.type = low
 ground.slidetime = 15
 guard.velocity = -14
 ground.hittime  = 20
-air.hittime = 3
-ground.velocity = -7,-6
-air.velocity = -7,-6
+air.hittime = 20
+ground.velocity = -7,-14
+air.velocity = -7,-14
 airguard.velocity = -10.5,3
 yaccel = .88
-fall = 1
-air.fall = 1
+fall = 0
+air.fall = 0
 fall.animtype = DiagUp
 fall.yvelocity = 0
 fall.recover = 0
@@ -4703,7 +4710,7 @@ type = A
 movetype = I
 physics = N
 anim = 1314 + var(22)
-ctrl = 0
+ctrl = 1
 sprpriority = 0
 velset = 0,0
 
@@ -4889,7 +4896,7 @@ persistent = 0
 [state 3100, Set Initial Vel]
 type = VelSet
 trigger1 = Time = 0
-x = -8
+x = -15
 y = -3
 
 [State 1210, Hold Camera]
@@ -4906,7 +4913,7 @@ persistent = 0
 
 [State 3010]
 type = ChangeAnim
-trigger1 = BackEdgeDist < 15 && Pos Y < -80 && time >= 30
+trigger1 = BackEdgeDist < 15
 value = 3000
 persistent = 0
 
@@ -5000,22 +5007,20 @@ ignorehitpause = 1
 [State 3102, 0a]
 type = ChangeAnim
 triggerall = time = 0
-trigger1 = P2Dist Y >= -50
-trigger2 = command = "holddown"
+trigger1 = command = "holddown"
 value = 3007
 
 [State 3102, 0b]
 type = ChangeAnim
 triggerall = time = 0
-trigger1 = Pos Y <= -250
-trigger2 = command = "holdfwd"
+trigger1 = command = "holdfwd"
+trigger2 = command != "holdfwd" && command != "holddown" && command != "holdup"
 value = 3005
 
 [State 3102, 0c]
 type = ChangeAnim
 triggerall = time = 0
-trigger1 = P2Dist Y < -390
-trigger2 = command = "holdup"
+trigger1 = command = "holdup"
 value = 3004
 
 ; Velocity Changes
@@ -8050,10 +8055,10 @@ guard.sparkno = s8050
 ground.type = Low
 down.velocity = -6,-7
 hitflag = MAFD
-ground.hittime  = 10
-ground.velocity = -11,0
-air.hittime = 17
-air.velocity = -9,-2
+ground.hittime  = 25
+ground.velocity = -7,-5
+air.hittime = 25
+air.velocity = -7,-5
 ground.cornerpush.veloff = 0
 air.cornerpush.veloff = 0
 ground.cornerpush.veloff = 0
@@ -8888,7 +8893,7 @@ flag = NoAutoTurn
 
 [State 1340]
 type = CtrlSet
-trigger1 = Time = 15
+trigger1 = Time = 8
 value = 1
 
 [State 0, Helper]

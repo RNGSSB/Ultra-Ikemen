@@ -63,8 +63,8 @@ botscale = 1.2     ;Scale to use at bottom
 [Bound]
  ;Distance from left/right edge of screen that player can move to
  ;Typically 15
-screenleft = 80  ;Dist from left of screen that player can move to
-screenright = 80  ;Right edge
+screenleft = 30  ;Dist from left of screen that player can move to
+screenright = 30  ;Right edge
 
 ;--------------------------------------------------------
 [StageInfo]

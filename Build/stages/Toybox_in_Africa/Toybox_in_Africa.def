@@ -48,8 +48,8 @@ topscale		= 1
 botscale		= 1.2
 
 [Bound]
-screenleft		= 80
-screenright		= 80
+screenleft		= 30
+screenright		= 30
 
 [StageInfo]
 zoffset			= 0				;Calculatred
