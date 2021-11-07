@@ -24,7 +24,8 @@
 		"data/rank.zss",
 		"data/score.zss",
 		"data/tag.zss",
-		"data/training.zss"
+		"data/training.zss",
+		"data/turtlewax.zss"
 	],
 	"ControllerStickSensitivity": 0.4,
 	"Credits": 10,
