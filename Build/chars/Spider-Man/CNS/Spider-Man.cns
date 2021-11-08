@@ -668,11 +668,11 @@ ground.hittime = 19
 air.hittime = 26
 guard.hittime = 17
 yaccel = .83
-ground.velocity = 0,-16
+ground.velocity = 0,-19
 guard.velocity = -11
 guard.cornerpush.veloff = -12
 ground.cornerpush.veloff = 0
-air.velocity = 0,-16
+air.velocity = 0,-19
 guard.velocity = -10
 airguard.velocity = -10.5,3
 fall.xvelocity = 0
@@ -1822,7 +1822,6 @@ ontop = 1
 ownpal = 1
 ignorehitpause = 1
 persistent = 0
-
 ;---------------------------------------------------------------------------
 ;Air Medium Punch
 [Statedef 610]
@@ -1989,13 +1988,13 @@ down.velocity = -6,-7
 guard.velocity = -12
 ground.velocity = -12,0
 ground.cornerpush.veloff = ifelse(var(6)||var(1),0,-8)
-air.velocity = -2,16
+air.velocity = -0.5,-2.3
 airguard.velocity = -10.5,3
 fall.xvelocity = 0
 fall.yvelocity = -3
 air.fall = 1
 fall.recover = 0
-id = 2+4
+id = 1
 
 [State 620]
 type = HitDef
@@ -2024,14 +2023,14 @@ down.velocity = -6,-7
 guard.velocity = -12
 ground.velocity = -12,0
 ground.cornerpush.veloff = ifelse(var(6)||var(1),0,-8)
-air.velocity = -2,16
+air.velocity = -0.5,-2.3
 airguard.velocity = -10.5,3
 fall.xvelocity = 0
 fall.yvelocity = -3
 air.fall = 1
 fall.recover = 0
 fall.envshake.time = 10
-id = 4+64
+id = 1
 
 [State G-FX, Hit/Guard Spark]
 type = Explod
@@ -2226,7 +2225,6 @@ ontop = 1
 ownpal = 1
 ignorehitpause = 1
 persistent = 0
-
 ;---------------------------------------------------------------------------
 ;Air Strong Kick
 [Statedef 650]
@@ -2297,7 +2295,7 @@ down.velocity = -6,-7
 guard.velocity = -12
 ground.velocity = -12,0
 ground.cornerpush.veloff = ifelse(var(6)||var(1),0,-8)
-air.velocity = -11,7
+air.velocity = -11,15
 airguard.velocity = -10.5,3
 fall.xvelocity = 0
 fall.yvelocity = -3
@@ -2332,7 +2330,7 @@ down.velocity = -6,-7
 guard.velocity = -12
 ground.velocity = -12,0
 ground.cornerpush.veloff = ifelse(var(6)||var(1),0,-8)
-air.velocity = -11,7
+air.velocity = -11,15
 airguard.velocity = -10.5,3
 fall.xvelocity = 0
 fall.yvelocity = -3
@@ -2608,10 +2606,8 @@ sprpriority = -1
 type = changestate
 triggerall = time < 4
 triggerall = command = "holdfwd" || command = "holdback"
-trigger1 = command = "y"
-trigger2 = command = "z"
-trigger3 = command = "b"
-trigger4 = command = "c"
+trigger1 = Map(y)
+trigger2 = Map(b)
 value = 200020
 ;persistent = 0
 
@@ -2835,10 +2831,8 @@ sprpriority = -1
 type = changestate
 triggerall = time < 4
 triggerall = command = "holdfwd" || command = "holdback"
-trigger1 = command = "y"
-trigger2 = command = "z"
-trigger3 = command = "b"
-trigger4 = command = "c"
+trigger1 = Map(y)
+trigger3 = Map(b)
 value = 200020
 ;persistent = 0
 
@@ -3137,10 +3131,8 @@ value = 940
 type = changestate
 triggerall = time < 4
 triggerall = command = "holdfwd" || command = "holdback"
-trigger1 = command = "y"
-trigger2 = command = "z"
-trigger3 = command = "b"
-trigger4 = command = "c"
+trigger1 = Map(y)
+trigger3 = Map(b)
 value = 200020
 ;persistent = 0
 
@@ -3331,7 +3323,7 @@ x = 0
 type = ChangeState
 triggerall = Movehit && AnimElem = 7
 ;trigger1 = AILevel = 0
-trigger1 = (command = "x") || (command = "y") || (command = "z")
+trigger1 = (Map(x)) || (Map(y))
 value = 1011
 
 [State 1480]
@@ -3481,7 +3473,7 @@ x = 0
 type = ChangeState
 triggerall = Movehit && AnimElemNo(0) > 7
 ;trigger1 = AILevel = 0
-trigger1 = (command = "x") || (command = "y") || (command = "z")
+trigger1 = (Map(x)) || (Map(y))
 value = 1011
 
 [State 1500]
@@ -4218,11 +4210,11 @@ guard.sparkno = s8050
 ground.type = Low
 air.type = low
 ground.slidetime = 15
-ground.hittime  = 20
+ground.hittime  = 30
 air.hittime = 20
 guard.velocity = -14
-ground.velocity = -7,-14
-air.velocity = -7,-14
+ground.velocity = -7,-17
+air.velocity = -7,-17
 airguard.velocity = -10.5,3
 yaccel = .88
 fall = 0
@@ -4404,7 +4396,7 @@ y = -8 * const(size.yscale)
 type = PosAdd
 trigger1 = AnimElem = 35
 x = 1 * const(size.xscale)
-y = -1 * const(size.yscale)
+y = -15 * const(size.yscale)
 
 [State 1518]
 type = Helper
@@ -4505,10 +4497,10 @@ ground.type = Low
 air.type = low
 ground.slidetime = 15
 guard.velocity = -14
-ground.hittime  = 20
+ground.hittime  = 30
 air.hittime = 20
-ground.velocity = -7,-14
-air.velocity = -7,-14
+ground.velocity = -7,-17
+air.velocity = -7,-17
 airguard.velocity = -10.5,3
 yaccel = .88
 fall = 0
@@ -8280,7 +8272,7 @@ sysvar(1) = ifelse(command = "holdfwd",1,ifelse(command = "holdback", -1, 0))
 [State 40, VarSet]
 type = VarSet
 trigger1 = time = 0 && var(6) < 2
-var(1) = command = "highjump" || prevstateno = [200,499]
+var(1) = Map(CDU) || prevstateno = [200,499]
 
 [State 40, VarSet]
 type = VarSet
@@ -8608,12 +8600,10 @@ channel = 0
 [State 105, 2]
 type = PosSet
 triggerall = time > 2
-trigger1 = command = "x"
-trigger2 = command = "y"
-trigger3 = command = "z"
-trigger4 = command = "a"
-trigger5 = command = "b"
-trigger6 = command = "c"
+trigger1 = Map(x)
+trigger2 = Map(y)
+trigger3 = Map(a)
+trigger4 = Map(b)
 y = 0
 
 [State 105, 2]
@@ -8630,49 +8620,35 @@ x = 3
 [State 105, 2a]
 type = VelSet
 triggerall = time > 2
-trigger1 = command = "x"
-trigger2 = command = "y"
-trigger3 = command = "z"
-trigger4 = command = "a"
-trigger5 = command = "b"
-trigger6 = command = "c"
+trigger1 = Map(x)
+trigger2 = Map(y)
+trigger3 = Map(a)
+trigger4 = Map(b)
 y = 0
 x = 11
 
 [State 105, 3]
 type = ChangeState
 triggerall = time > 2
-trigger1 = command = "x"
+trigger1 = Map(x)
 value = 200
-
-[State 105, 3a]
-type = ChangeState
-triggerall = time > 2
-trigger1 = command = "y"
-value = 210
 
 [STate 105, 3b]
 type = ChangeState
 triggerall = time > 2
-trigger1 = command = "z"
+trigger1 = Map(y)
 value = 220
-
-[State 105, 3c]
-type = ChangeState
-triggerall = time > 2
-trigger1 = command = "a"
-value = 230
 
 [State 105, 3d]
 type = ChangeState
 triggerall = time > 2
-trigger1 = command = "b"
+trigger1 = Map(a)
 value = 240
 
 [State 105, 3e]
 type = ChangeState
 triggerall = time > 2
-trigger1 = command = "c"
+trigger1 = Map(b)
 value = 250
 
 [State 100, 8]
@@ -8749,25 +8725,21 @@ flag2 = noautoturn
 [State 105, 2]
 type = PosSet
 triggerall = time > 2
-trigger1 = command = "x"
-trigger2 = command = "y"
-trigger3 = command = "z"
-trigger4 = command = "a"
-trigger5 = command = "b"
-trigger6 = command = "c"
-trigger7 = command = "holddown"
+trigger1 = Map(x)
+trigger2 = Map(y)
+trigger3 = Map(a)
+trigger4 = Map(b)
+trigger5 = command = "holddown"
 y = 0
 
 [State 105, 2a]
 type = VelSet
 triggerall = time > 2
-trigger1 = command = "x"
-trigger2 = command = "y"
-trigger3 = command = "z"
-trigger4 = command = "a"
-trigger5 = command = "b"
-trigger6 = command = "c"
-trigger7 = command = "holddown"
+trigger1 = Map(x)
+trigger2 = Map(y)
+trigger3 = Map(a)
+trigger4 = Map(b)
+trigger5 = command = "holddown"
 y = 0
 x = -3
 
@@ -8786,37 +8758,25 @@ x = -11
 [State 105, 3]
 type = ChangeState
 triggerall = time > 2
-trigger1 = command = "x"
+trigger1 = Map(x)
 value = 200
-
-[State 105, 3a]
-type = ChangeState
-triggerall = time > 2
-trigger1 = command = "y"
-value = 210
 
 [STate 105, 3b]
 type = ChangeState
 triggerall = time > 2
-trigger1 = command = "z"
+trigger1 = Map(y)
 value = 220
-
-[State 105, 3c]
-type = ChangeState
-triggerall = time > 2
-trigger1 = command = "a"
-value = 230
 
 [State 105, 3d]
 type = ChangeState
 triggerall = time > 2
-trigger1 = command = "b"
+trigger1 = Map(a)
 value = 240
 
 [State 105, 3e]
 type = ChangeState
 triggerall = time > 2
-trigger1 = command = "c"
+trigger1 = Map(b)
 value = 250
 
 [State 100, 4]
@@ -11191,13 +11151,13 @@ time = -1
 [State 23040]
 type = HitDef
 attr = SA, HP
-triggerall = P2StateType != L
+triggerall = p2movetype != H
 trigger1 = Time = 6
-damage = 70,5
+damage = 120,5
 animtype = Hard
 priority  = 5, Hit
-guardflag = MA
-hitflag = MAFD
+guardflag = 
+hitflag = A
 pausetime = 13,13
 guard.pausetime = 16,13
 sparkxy = -10,-40 + floor(P2Dist Y)

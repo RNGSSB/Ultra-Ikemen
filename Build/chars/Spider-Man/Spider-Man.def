@@ -22,7 +22,7 @@ pal3     = PALETTES/Spider-Man_03.act
 pal4     = PALETTES/Spider-Man_04.act
 pal5     = PALETTES/Spider-Man_05.act
 pal6     = PALETTES/Spider-Man_06.act
-
+movelist = movelist.dat
 
 [Arcade]
 intro.storyboard = 

@@ -31,6 +31,7 @@ pal3     = PALETTES/Cyclops_03.act
 pal4     = PALETTES/Cyclops_04.act
 pal5     = PALETTES/Cyclops_05.act
 pal6     = PALETTES/Cyclops_06.act
+movelist = movelist.dat
 
 [Arcade]
 intro.storyboard=

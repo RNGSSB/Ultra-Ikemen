@@ -591,7 +591,8 @@ value = 3000
 triggerall = !var(7)
 triggerall = statetype != A
 triggerall = power >= 1000
-triggerall = command = "MegaOpticBlast"
+triggerall = Map(QCF) 
+triggerall = Map(xy)|| Map(z)           
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -619,7 +620,8 @@ value = 3050
 triggerall = power >= 1000
 triggerall = !var(7)
 triggerall = statetype = A
-triggerall = command = "MegaOpticBlast"
+triggerall = Map(QCF)
+triggerall = Map(xy) || Map(z)
 trigger1 = ctrl
 trigger2 = stateno = 600
 trigger3 = stateno = 610 || stateno = 611
@@ -647,7 +649,8 @@ value = 3500
 triggerall = power >= 1000
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "SuperOpticBlast"
+triggerall = Map(QCF)
+triggerall = Map(ab) || Map(c)
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -675,7 +678,8 @@ value = 3600
 triggerall = power >= 1000
 triggerall = !var(7)
 triggerall = statetype = A
-triggerall = command = "SuperOpticBlast"
+triggerall = Map(QCF)
+triggerall = Map(ab) || Map(c)
 trigger1 = ctrl
 trigger2 = stateno = 600
 trigger3 = stateno = 610 || stateno = 611
@@ -703,7 +707,21 @@ trigger18 = stateno = 1200
 [State -1]
 type = ChangeState
 value = 105
-triggerall = (command = "holdback2" && command = "recovery") || (StateType != A && command = "BB")
+triggerall = (command = "holdback" && (Map(xy) || Map(z))) || (StateType != A && Map(BB))
+triggerall = StateType != A
+trigger1 = StateNo != [100,109]
+trigger1 = ctrl
+trigger2 = StateNo = 900 && PrevStateNo != [150,154]
+trigger3 = StateNo = 920 && PrevStateNo != [150,154]
+trigger4 = StateNo = 940 && PrevStateNo != [150,154]
+trigger5 = StateNo = 100
+
+
+;RunFwd
+[State -1]
+type = ChangeState
+value = 100
+triggerall = (Map(xy) || Map(z)) || (StateType != A && Map(FF))
 triggerall = StateType != A
 trigger1 = StateNo != [100,109]
 trigger1 = ctrl
@@ -711,17 +729,7 @@ trigger2 = StateNo = 900 && PrevStateNo != [150,154]
 trigger3 = StateNo = 920 && PrevStateNo != [150,154]
 trigger4 = StateNo = 940 && PrevStateNo != [150,154]
 
-;RunFwd
-[State -1]
-type = ChangeState
-value = 100
-triggerall = (command = "recovery") || (StateType != A && command = "FF")
-triggerall = StateType != A
-trigger1 = StateNo != [100,109]
-trigger1 = ctrl
-trigger2 = StateNo = 900 && PrevStateNo != [150,154]
-trigger3 = StateNo = 920 && PrevStateNo != [150,154]
-trigger4 = StateNo = 940 && PrevStateNo != [150,154]
+
 
 ;---------------------------------------------------------------------------
 ;-------------------------------Specials------------------------------------
@@ -734,33 +742,8 @@ type = ChangeState
 value = 1400
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "GeneSpliceX"
-trigger1 = ctrl
-trigger2 = stateno = [200,201]
-trigger3 = stateno = 210
-trigger4 = stateno = 220
-trigger5 = stateno = [230,231]
-trigger6 = stateno = 240
-trigger7 = stateno = 250
-trigger8 = stateno = 251
-trigger9 = stateno = 400
-trigger10 = stateno = 410
-trigger11 = stateno = 420
-trigger12 = stateno = 430
-trigger13 = stateno = 440
-trigger14 = stateno = 450
-trigger15 = StateNo = 900 && PrevStateNo != [150,154]
-trigger16 = StateNo = 920 && PrevStateNo != [150,154]
-trigger17 = StateNo = 940 && PrevStateNo != [150,154]
-
-;---------------------------------------------------------------------------
-; Gene Splice Y
-[State -1]
-type = ChangeState
-value = 1410
-triggerall = !var(7)
-triggerall = statetype != A
-triggerall = command = "GeneSpliceY"
+triggerall = Map(DP)
+triggerall = Map(x)
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -786,7 +769,8 @@ type = ChangeState
 value = 1420
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "GeneSpliceZ"
+triggerall = Map(DP)
+triggerall = Map(y)
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -833,29 +817,29 @@ trigger17 = StateNo = 940 && PrevStateNo != [150,154]
 
 ;---------------------------------------------------------------------------
 ; Optic Blast X
-[State -1]
-type = ChangeState
-value = 1000
-triggerall = !var(7)
-triggerall = statetype != A
-triggerall = command = "OpticBlastX"
-trigger1 = ctrl
-trigger2 = stateno = [200,201]
-trigger3 = stateno = 210
-trigger4 = stateno = 220
-trigger5 = stateno = [230,231]
-trigger6 = stateno = 240
-trigger7 = stateno = 250
-trigger8 = stateno = 251
-trigger9 = stateno = 400
-trigger10 = stateno = 410
-trigger11 = stateno = 420
-trigger12 = stateno = 430
-trigger13 = stateno = 440
-trigger14 = stateno = 450
-trigger15 = StateNo = 900 && PrevStateNo != [150,154]
-trigger16 = StateNo = 920 && PrevStateNo != [150,154]
-trigger17 = StateNo = 940 && PrevStateNo != [150,154]
+;[State -1]
+;type = ChangeState
+;value = 1000
+;triggerall = !var(7)
+;triggerall = statetype != A
+;triggerall = command = "OpticBlastX"
+;trigger1 = ctrl
+;trigger2 = stateno = [200,201]
+;trigger3 = stateno = 210
+;trigger4 = stateno = 220
+;trigger5 = stateno = [230,231]
+;trigger6 = stateno = 240
+;trigger7 = stateno = 250
+;trigger8 = stateno = 251
+;trigger9 = stateno = 400
+;trigger10 = stateno = 410
+;trigger11 = stateno = 420
+;trigger12 = stateno = 430
+;trigger13 = stateno = 440
+;trigger14 = stateno = 450
+;trigger15 = StateNo = 900 && PrevStateNo != [150,154]
+;trigger16 = StateNo = 920 && PrevStateNo != [150,154]
+;trigger17 = StateNo = 940 && PrevStateNo != [150,154]
 
 ;---------------------------------------------------------------------------
 ; Optic Blast Y
@@ -864,7 +848,8 @@ type = ChangeState
 value = 1001
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "OpticBlastY"
+triggerall = Map(QCF)
+triggerall = Map(x)
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -890,7 +875,8 @@ type = ChangeState
 value = 1002
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "OpticBlastZ"
+triggerall = Map(QCF)
+triggerall = Map(y)
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -916,7 +902,8 @@ type = ChangeState
 value = 1100
 triggerall = !var(7)
 triggerall = statetype = A
-triggerall = command = "OpticBlastX" || command = "OpticBlastY" || command = "OpticBlastZ"
+triggerall = Map(QCF)
+triggerall = Map(x) || Map(y)
 triggerall = Pos Y <= -20
 trigger1 = ctrl
 trigger2 = stateno = 600
@@ -936,7 +923,8 @@ type = ChangeState
 value = 1050
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "OpticSweep"
+triggerall = Map(QCF)
+triggerall = Map(a)|| Map(b) 
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -962,7 +950,8 @@ type = ChangeState
 value = 1200
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "CycloneKick"
+triggerall = Map(QCB)
+triggerall = Map(a)|| Map(b)
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -1072,7 +1061,7 @@ trigger4 = StateNo = 940 && PrevStateNo != [150,154]
 type = ChangeState
 value = 820
 triggerall = !var(7)
-trigger1 = command = "z" && (command = "holdfwd" || command = "holdback")
+trigger1 = Map(y) && (command = "holdfwd" || command = "holdback")
 trigger1 = p2bodydist x < 18 && enemynear,movetype != H
 trigger1 = statetype = S && ctrl
 
@@ -1084,8 +1073,8 @@ value = 830
 triggerall = !var(7)
 triggerall = StateType = S
 triggerall = p2StateType = S || p2StateType = C
-triggerall = command = "holdfwd2"
-triggerall = command = "c"
+triggerall = command = "holdfwd"
+triggerall = Map(b)
 triggerall = p2dist X <= 65
 triggerall = p2dist X > 0
 triggerall = p2dist Y <= 50
@@ -1106,7 +1095,7 @@ triggerall = !var(7)
 triggerall = StateType = C
 triggerall = p2StateType = S || p2StateType = C
 triggerall = command = "holddownback"
-triggerall = command = "c"
+triggerall = Map(y)
 triggerall = p2dist X <= 65
 triggerall = p2dist X > 0
 triggerall = p2dist Y <= 50
@@ -1126,7 +1115,7 @@ triggerall = !var(7)
 triggerall = StateType = A
 triggerall = p2StateType = A
 triggerall = command = "holdfwd2" || command = "holdback2"
-triggerall = command = "z"
+triggerall = Map(y)
 triggerall = p2dist X <= 65
 triggerall = p2dist X > 0
 triggerall = p2dist Y <= 50
@@ -1146,45 +1135,13 @@ type = ChangeState
 value = 200
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "x"
+triggerall = Map(x)
 triggerall = command != "holddown"
 trigger1 = ctrl
 trigger2 = StateNo = 900 && PrevStateNo != [150,154]
 trigger3 = StateNo = 920 && PrevStateNo != [150,154]
 trigger4 = StateNo = 940 && PrevStateNo != [150,154]
 
-;---------------------------------------------------------------------------
-; s. Strong
-[State -1]
-type = ChangeState
-value = 210
-triggerall = statetype != A
-triggerall = command = "y"
-triggerall = command != "holddown"
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = [230,231]
-trigger3 = MoveContact
-trigger4 = stateno = 400
-trigger4 = MoveContact
-trigger5 = stateno = 430
-trigger5 = MoveContact
-
-[State -1]
-type = ChangeState
-value = 210
-triggerall = statetype != A
-triggerall = command = "holddownfwd"
-triggerall = command = "z"
-trigger1 = ctrl
-
-; Launcher followup jump
-[State -1, Launcher followup]
-type = ChangeState
-value = 41
-triggerall = command = "holdup" 
-trigger1 = stateno = 210 && movehit
-trigger2 = stateno = 441 && movehit
 ;---------------------------------------------------------------------------
 ; s. Fierce
 [State -1]
@@ -1193,7 +1150,7 @@ value = 220
 triggerall = !var(7)
 triggerall = statetype != A
 triggerall = NumProjId(221) = 0
-triggerall = command = "z"
+triggerall = Map(y)
 triggerall = command != "holddown"
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
@@ -1217,44 +1174,13 @@ trigger11 = StateNo = 920 && PrevStateNo != [150,154]
 trigger12 = StateNo = 940 && PrevStateNo != [150,154]
 
 ;---------------------------------------------------------------------------
-; s. Short
-[State -1]
-type = ChangeState
-value = 230
-triggerall = !var(7)
-triggerall = statetype != A
-triggerall = command = "a"
-triggerall = command != "holddown"
-trigger1 = ctrl
-trigger2 = stateno = [200,201]
-trigger2 = MoveContact
-trigger3 = stateno = 210
-trigger3 = MoveGuarded
-trigger4 = stateno = 220
-trigger4 = MoveContact
-trigger5 = stateno = [230,231]
-trigger5 = MoveContact
-trigger6 = stateno = 240
-trigger6 = MoveContact
-trigger7 = stateno = 400
-trigger7 = MoveContact
-trigger8 = stateno = 410
-trigger8 = MoveContact
-trigger9 = stateno = 420
-trigger9 = MoveContact
-trigger10 = stateno = 430
-trigger10 = MoveContact
-trigger11 = stateno = 440
-trigger11 = MoveGuarded
-
-;---------------------------------------------------------------------------
 ; s. Forward
 [State -1]
 type = ChangeState
 value = 240
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "b"
+triggerall = Map(a)
 triggerall = command != "holddown"
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
@@ -1280,7 +1206,7 @@ type = ChangeState
 value = 250
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "c"
+triggerall = Map(b)
 triggerall = command != "holddown"
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
@@ -1315,34 +1241,12 @@ type = ChangeState
 value = 400
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "x"
+triggerall = Map(x)
 triggerall = command = "holddown"
 trigger1 = ctrl
 trigger2 = StateNo = 900 && PrevStateNo != [150,154]
 trigger3 = StateNo = 920 && PrevStateNo != [150,154]
 trigger4 = StateNo = 940 && PrevStateNo != [150,154]
-
-;---------------------------------------------------------------------------
-; c. Strong
-[State -1]
-type = ChangeState
-value = 410
-triggerall = !var(7)
-triggerall = statetype != A
-triggerall = command = "y"
-triggerall = command = "holddown"
-trigger1 = ctrl
-trigger2 = stateno = [200,201]
-trigger2 = MoveContact
-trigger3 = stateno = [230,231]
-trigger3 = MoveContact
-trigger4 = stateno = 400
-trigger4 = MoveContact
-trigger5 = stateno = 430
-trigger5 = MoveContact
-trigger6 = StateNo = 900 && PrevStateNo != [150,154]
-trigger7 = StateNo = 920 && PrevStateNo != [150,154]
-trigger8 = StateNo = 940 && PrevStateNo != [150,154]
 
 ;---------------------------------------------------------------------------
 ; c. Fierce
@@ -1352,8 +1256,9 @@ value = 420
 triggerall = !var(7)
 triggerall = statetype != A
 triggerall = NumProjId(221) = 0
-triggerall = command = "z"
+triggerall = Map(y)
 triggerall = command = "holddown"
+triggerall = command = "holdfwd"
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger2 = MoveContact
@@ -1374,7 +1279,32 @@ trigger9 = MoveGuarded
 trigger10 = StateNo = 900 && PrevStateNo != [150,154]
 trigger11 = StateNo = 920 && PrevStateNo != [150,154]
 trigger12 = StateNo = 940 && PrevStateNo != [150,154]
+;---------------------------------------------------------------------------
 
+; s. Strong
+[State -1]
+type = ChangeState
+value = 210
+triggerall = statetype != A
+triggerall = Map(y)
+triggerall = command = "holddown"
+triggerall = command != "holdfwd"
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = [230,231]
+trigger3 = MoveContact
+trigger4 = stateno = 400
+trigger4 = MoveContact
+trigger5 = stateno = 430
+trigger5 = MoveContact
+
+; Launcher followup jump
+[State -1, Launcher followup]
+type = ChangeState
+value = 41
+triggerall = command = "holdup" 
+trigger1 = stateno = 210 && movehit
+trigger2 = stateno = 441 && movehit
 ;---------------------------------------------------------------------------
 ; c. Short
 [State -1]
@@ -1382,7 +1312,7 @@ type = ChangeState
 value = 430
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "a"
+triggerall = Map(a)
 triggerall = command = "holddown"
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
@@ -1405,41 +1335,6 @@ trigger10 = stateno = 430
 trigger10 = MoveContact
 trigger11 = stateno = 440
 trigger11 = MoveGuarded
-
-;---------------------------------------------------------------------------
-; c. Forward
-[State -1]
-type = ChangeState
-value = 440
-triggerall = !var(7)
-triggerall = statetype != A
-triggerall = command = "b"
-triggerall = command = "holddown"
-trigger1 = ctrl
-trigger2 = stateno = [200,201]
-trigger2 = MoveContact
-trigger3 = stateno = 210
-trigger3 = MoveGuarded
-trigger4 = stateno = [230,231]
-trigger4 = MoveContact
-trigger5 = stateno = 400
-trigger5 = MoveContact
-trigger6 = stateno = 410
-trigger6 = MoveContact
-trigger7 = stateno = 430
-trigger7 = MoveContact
-trigger8 = StateNo = 900 && PrevStateNo != [150,154]
-trigger9 = StateNo = 920 && PrevStateNo != [150,154]
-trigger10 = StateNo = 940 && PrevStateNo != [150,154]
-
-[State -1]
-type = ChangeState
-value = 441
-triggerall = statetype != A
-triggerall = command = "holddownfwd"
-triggerall = command = "c"
-trigger1 = ctrl
-
 ;---------------------------------------------------------------------------
 ; c. Roundhouse
 [State -1]
@@ -1447,7 +1342,7 @@ type = ChangeState
 value = 450
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "c"
+triggerall = Map(b)
 triggerall = command = "holddown"
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
@@ -1480,49 +1375,17 @@ trigger14 = StateNo = 940 && PrevStateNo != [150,154]
 [State -1]
 type = ChangeState
 value = 600
-triggerall = command = "x"
+triggerall = Map(x)
 trigger1 = statetype = A && ctrl
-
-;---------------------------------------------------------------------------
-; j. Strong Special
-[State -1]
-type = ChangeState
-value = 611
-triggerall = command = "down_y"
-trigger1 = statetype = A && ctrl
-trigger2 = stateno = 600 && movecontact
-trigger3 = stateno = 630 && movecontact
 
 ;---------------------------------------------------------------------------
 ; j. Strong
 [State -1]
 type = ChangeState
 value = 610
-triggerall = command = "y"
-trigger1 = statetype = A && ctrl
-trigger2 = stateno = 600 && movecontact
-trigger3 = stateno = 630 && movecontact
-
-;---------------------------------------------------------------------------
-; j. Fierce Special
-[State -1]
-type = ChangeState
-value = 621
-triggerall = !var(7)
-triggerall = statetype = A
-triggerall = command = "down_z"
-trigger1 = ctrl
-trigger2 = stateno = 600
-trigger2 = MoveContact
-trigger3 = stateno = 610 || stateno = 611
-trigger3 = MoveContact
-trigger4 = stateno = 630 || stateno = 631
-trigger4 = MoveContact
-trigger5 = stateno = 640 || stateno = 641
-trigger5 = MoveContact
-trigger6 = StateNo = 900 && PrevStateNo != [150,154]
-trigger7 = StateNo = 920 && PrevStateNo != [150,154]
-trigger8 = StateNo = 940 && PrevStateNo != [150,154]
+triggerall = Map(x)
+triggerall = stateno = 600 && movecontact
+trigger1 = statetype = A
 
 ;---------------------------------------------------------------------------
 ; j. Fierce
@@ -1531,7 +1394,7 @@ type = ChangeState
 value = 620
 triggerall = !var(7)
 triggerall = statetype = A
-triggerall = command = "z"
+triggerall = Map(y)
 trigger1 = ctrl
 trigger2 = stateno = 600
 trigger2 = MoveContact
@@ -1546,62 +1409,13 @@ trigger7 = StateNo = 920 && PrevStateNo != [150,154]
 trigger8 = StateNo = 940 && PrevStateNo != [150,154]
 
 ;---------------------------------------------------------------------------
-; j. Short Special
-[State -1]
-type = ChangeState
-value = 631
-triggerall = !var(7)
-triggerall = statetype = A
-triggerall = command = "down_a"
-trigger1 = ctrl
-trigger2 = stateno = 600
-trigger2 = MoveContact
-trigger3 = StateNo = 900 && PrevStateNo != [150,154]
-trigger4 = StateNo = 920 && PrevStateNo != [150,154]
-trigger5 =StateNo = 940 && PrevStateNo != [150,154]
-
-;---------------------------------------------------------------------------
-; j. Short
-[State -1]
-type = ChangeState
-value = 630
-triggerall = !var(7)
-triggerall = statetype = A
-triggerall = command = "a"
-trigger1 = ctrl
-trigger2 = stateno = 600
-trigger2 = MoveContact
-trigger3 = StateNo = 900 && PrevStateNo != [150,154]
-trigger4 = StateNo = 920 && PrevStateNo != [150,154]
-trigger5 = StateNo = 940 && PrevStateNo != [150,154]
-
-;---------------------------------------------------------------------------
-; j. Forward Special
-[State -1]
-type = ChangeState
-value = 641
-triggerall = !var(7)
-triggerall = statetype = A
-triggerall = command = "down_b"
-trigger1 = ctrl
-trigger2 = stateno = 600
-trigger2 = MoveContact
-trigger3 = stateno = 610 || stateno = 611
-trigger3 = MoveContact
-trigger4 = stateno = 630 || stateno = 631
-trigger4 = MoveContact
-trigger5 = StateNo = 900 && PrevStateNo != [150,154]
-trigger6 = StateNo = 920 && PrevStateNo != [150,154]
-trigger7 = StateNo = 940 && PrevStateNo != [150,154]
-
-;---------------------------------------------------------------------------
 ; j. Forward
 [State -1]
 type = ChangeState
 value = 640
 triggerall = !var(7)
 triggerall = statetype = A
-triggerall = command = "b"
+triggerall = Map(a)
 trigger1 = ctrl
 trigger2 = stateno = 600
 trigger2 = MoveContact
@@ -1614,13 +1428,14 @@ trigger6 = StateNo = 920 && PrevStateNo != [150,154]
 trigger7 = StateNo = 940 && PrevStateNo != [150,154]
 
 ;---------------------------------------------------------------------------
-; j. Roundhouse Special
+; j. Roundhouse
 [State -1]
 type = ChangeState
 value = 651
 triggerall = !var(7)
 triggerall = statetype = A
-triggerall = command = "down_c"
+triggerall = Map(b)
+triggerall = command != "holddown"
 trigger1 = ctrl
 trigger2 = stateno = 600
 trigger2 = MoveContact
@@ -1643,7 +1458,8 @@ type = ChangeState
 value = 650
 triggerall = !var(7)
 triggerall = statetype = A
-triggerall = command = "c"
+triggerall = Map(b)
+triggerall = command = "holddown"
 trigger1 = ctrl
 trigger2 = stateno = 600
 trigger2 = MoveContact
@@ -1659,13 +1475,12 @@ trigger7 = StateNo = 900 && PrevStateNo != [150,154]
 trigger8 = StateNo = 920 && PrevStateNo != [150,154]
 trigger9 = StateNo = 940 && PrevStateNo != [150,154]
 
-;---------------------------------------------------------------------------
 ;Super Jump
 [State -1]
 type = ChangeState
 value = 41
 triggerall = !var(7)
-trigger1 = command = "DU"
+trigger1 = Map(CDU)
 trigger1 = StateType = S
 trigger1 = ctrl
 trigger2 = command = "DU"
