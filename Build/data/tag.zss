@@ -210,6 +210,21 @@ if AnimTime >= 0 {
 }
 
 #===============================================================================
+#StateCallAssist
+#===============================================================================
+[Statedef 5630; type: S; movetype: I; physics: N;
+ anim: Const(AnimTagLanding); sprpriority: 2;]
+
+if Time = 0 {
+	PosSet{y: 0}
+}
+
+if AnimTime >= 0 {
+	ChangeState{value: Const(StateStand); ctrl: 1}
+}
+
+
+#===============================================================================
 #Global states
 #===============================================================================
 [Statedef -2]
@@ -246,9 +261,9 @@ if !Const(Default.Enable.Tag) || IsHelper || TeamSide = 0 {
 					let previousPartnerID = call fTagGetPartnerID(-1);
 					if AILevel > 0 {
 						let partnerID = call fTagAISwitch($nextPartnerID, $previousPartnerID);
-					} else if Command = "TagShiftFwd" {
+					} else if Command = "TagShiftFwd" && Command = "holdfwd" && (moveContact || projContact = 1)  {
 						let partnerID = $nextPartnerID;
-					} else if Command = "TagShiftBack" {
+					} else if Command = "TagShiftBack" && Command = "holdfwd" && (moveContact || projContact = 1) {
 						let partnerID = $previousPartnerID;
 					}
 					if $partnerID > 0 && playerID($partnerID),StateNo = Const(StateTagWaitingOutside) {
