@@ -1,25 +1,28 @@
 <#f0f000>Command Normals</>
-  Kick Launch Start		_DF^LK
-      then Heavy Kick    ^HK
-	  
-  Air Dash (IN AIR)		_F_F
+  Laser		_DF^HP
+	
+  Air Launcher (IN AIR)		_D^HK
+  
+  Double Jump (IN AIR)		_U
 
 <#f0f000>Special Moves</>
-  Web Ball (AIR OK)		_D_DF_F^P
+  Optic Blast (AIR OK)		_D_DF_F^P
 
-  Web Throw		_F_DF_D_DB_B^P
+  Optic Sweep		_D_DF_F^K
 
-  Web Swing (AIR OK)		_D_DB_B^K
+  Cyclone Kick		_D_DB_B^K
 
-  Spider Sting		_F_D_DF^P
-      then Spider Bite    ^P
+  Gene Splice		_F_D_DF^P
 
-<#f0f000>Super Moves</>
-  Maximum Spider (AIR OK) (LEVEL 1)		_D_DF_F^K+^K
+  Rapid Punches (CHARGE)		[_B]_F^P
+      then mash ^P
 
-  Crawler Assault (LEVEL 1)		_D_DF_F^P+^P
+  Running Neckbreaker		[_B]_F^K		
   
-  Ultimate Web Throw (LEVEL 1)		_F_DF_D_DB_B^P+^P
+<#f0f000>Super Moves</>
+  Mega Optic Blast (AIR OK) (LEVEL 1)		_D_DF_F^P+^P
+
+  Super Optic Blast (AIR OK) (LEVEL 1)		_D_DF_F^K+^K		
 
 <#f0f000>Marvel Universal Mechanics</>
  
