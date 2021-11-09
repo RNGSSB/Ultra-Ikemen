@@ -796,7 +796,9 @@ type = ChangeState
 value = 1300
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "RushingPunches"
+triggerall = Map(B_ChargeReady)
+triggerall = Map(BF)
+triggerall = Map(x) || Map(y)
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -977,7 +979,9 @@ type = ChangeState
 value = 1500
 triggerall = !var(7)
 triggerall = statetype != A
-triggerall = command = "RushingSlam"
+triggerall = Map(B_ChargeReady)
+triggerall = Map(BF)
+triggerall = Map(a) || Map(b)
 trigger1 = ctrl
 trigger2 = stateno = [200,201]
 trigger3 = stateno = 210
@@ -1001,19 +1005,19 @@ trigger17 = StateNo = 940 && PrevStateNo != [150,154]
 [State -1, Guard Push stand]
 type = ChangeState
 value = 6300
-triggerall = command = "guardpush" && statetype = S
+triggerall = (Map(xy) || Map(z)) && statetype = S
 trigger1 = stateno = [150,153]
 
 [State -1, Guard Push crouch]
 type = ChangeState
 value = 6310
-triggerall = command = "guardpush" && statetype = C
+triggerall = (Map(xy) || Map(z)) && statetype = C
 trigger1 = stateno = [150,153]
 
 [State -1, Guard Push aerial]
 type = ChangeState
 value = 6320
-triggerall = command = "guardpush" && statetype = A
+triggerall = (Map(xy) || Map(z)) && statetype = A
 trigger1 = stateno = [154,155]
 
 ;------------------------------------
@@ -1034,26 +1038,6 @@ trigger1 = Time >= 5
 ;---------------------------------------------------------------------------
 
 ;--|[ Throws ]}--
-
-;---------------------------------------------------------------------------
-; s. Strong Throw
-[State -1]
-type = ChangeState
-value = 800
-triggerall = !var(7)
-triggerall = StateType = S
-triggerall = p2StateType = S || p2StateType = C
-triggerall = (command = "HCF_x") || (command = "HCF_y") || (command = "HCF_z")
-triggerall = p2dist X <= 65
-triggerall = p2dist X > 0
-triggerall = p2dist Y <= 50
-triggerall = p2dist Y > -50
-triggerall = StateNo != 100
-triggerall = enemyNear, StateNo != [120,159]
-trigger1 = ctrl
-trigger2 = StateNo = 900 && PrevStateNo != [150,154]
-trigger3 = StateNo = 920 && PrevStateNo != [150,154]
-trigger4 = StateNo = 940 && PrevStateNo != [150,154]
 
 ;---------------------------------------------------------------------------
 ; s. Fierce Throw
@@ -1085,27 +1069,6 @@ trigger1 = ctrl
 trigger2 = StateNo = 900 && PrevStateNo != [150,154]
 trigger3 = StateNo = 920 && PrevStateNo != [150,154]
 trigger4 = StateNo = 940 && PrevStateNo != [150,154]
-
-;---------------------------------------------------------------------------
-; s. Roundhouse Throw
-[State -1]
-type = ChangeState
-value = 840
-triggerall = !var(7)
-triggerall = StateType = C
-triggerall = p2StateType = S || p2StateType = C
-triggerall = command = "holddownback"
-triggerall = Map(y)
-triggerall = p2dist X <= 65
-triggerall = p2dist X > 0
-triggerall = p2dist Y <= 50
-triggerall = p2dist Y > -50
-triggerall = enemyNear, StateNo != [120,159]
-trigger1 = ctrl
-trigger2 = StateNo = 900 && PrevStateNo != [150,154]
-trigger3 = StateNo = 920 && PrevStateNo != [150,154]
-trigger4 = StateNo = 940 && PrevStateNo != [150,154]
-
 ;---------------------------------------------------------------------------
 ; j. Fierce Throw Forward
 [State -1]
